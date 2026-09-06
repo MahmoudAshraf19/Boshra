@@ -46,3 +46,4 @@ class AudioService {
   void dispose() {
     _audioPlayer.stop();
   }
+}
