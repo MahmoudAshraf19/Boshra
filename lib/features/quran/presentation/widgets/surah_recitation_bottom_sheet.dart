@@ -4,6 +4,7 @@ import 'package:just_audio_background/just_audio_background.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../data/models/quran_models.dart';
 import '../../data/models/reciter_model.dart';
+import 'package:boshra/core/services/audio_service.dart';
 import '../../../../l10n/app_localizations.dart';
 
 class SurahRecitationBottomSheet extends StatefulWidget {
@@ -38,7 +39,7 @@ class _SurahRecitationBottomSheetState extends State<SurahRecitationBottomSheet>
   void initState() {
     super.initState();
     _selectedReciter = availableReciters[0];
-    _audioPlayer = AudioPlayer();
+    _audioPlayer = GlobalAudioPlayer.player;
     
     _initPlayer();
   }

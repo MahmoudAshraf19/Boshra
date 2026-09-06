@@ -125,13 +125,18 @@ class NotificationService {
           scheduledDate: scheduledDate,
           notificationDetails: const NotificationDetails(
             android: AndroidNotificationDetails(
-              'quran_messages_channel',
+              'quran_messages_channel_2',
               'Quran Messages',
               channelDescription: 'Daily message from the Quran',
               importance: Importance.high,
               priority: Priority.high,
+              sound: RawResourceAndroidNotificationSound('notification'),
+              playSound: true,
             ),
-            iOS: DarwinNotificationDetails(),
+            iOS: DarwinNotificationDetails(
+              sound: 'notification.mp3',
+              presentSound: true,
+            ),
           ),
           androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
         );
@@ -158,7 +163,7 @@ class NotificationService {
 
     const AndroidNotificationDetails androidPlatformChannelSpecifics =
         AndroidNotificationDetails(
-      'daily_azkar_channel',
+      'daily_azkar_channel_3',
       'Daily Azkar Notifications',
       channelDescription: 'Notifications for morning and evening Azkar',
       importance: Importance.max,

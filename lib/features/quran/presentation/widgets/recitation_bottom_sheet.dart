@@ -4,6 +4,7 @@ import 'package:just_audio_background/just_audio_background.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../data/models/quran_models.dart';
 import '../../data/models/reciter_model.dart';
+import 'package:boshra/core/services/audio_service.dart';
 
 class RecitationBottomSheet extends StatefulWidget {
   final AyahModel initialAyah;
@@ -38,7 +39,7 @@ class _RecitationBottomSheetState extends State<RecitationBottomSheet> {
     super.initState();
     _currentAyah = widget.initialAyah;
     _selectedReciter = availableReciters[0];
-    _audioPlayer = AudioPlayer();
+    _audioPlayer = GlobalAudioPlayer.player;
     
     _initPlayer();
   }

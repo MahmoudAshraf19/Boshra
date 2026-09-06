@@ -1,7 +1,11 @@
 import 'package:just_audio/just_audio.dart';
 
+class GlobalAudioPlayer {
+  static final AudioPlayer player = AudioPlayer();
+}
+
 class AudioService {
-  final AudioPlayer _audioPlayer = AudioPlayer();
+  final AudioPlayer _audioPlayer = GlobalAudioPlayer.player;
 
   AudioPlayer get player => _audioPlayer;
 
@@ -40,6 +44,5 @@ class AudioService {
 
   /// Dispose the player when done.
   void dispose() {
-    _audioPlayer.dispose();
+    _audioPlayer.stop();
   }
-}

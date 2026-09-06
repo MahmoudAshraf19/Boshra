@@ -136,19 +136,19 @@ class PrayerSchedulerService {
 
     const AndroidNotificationDetails androidPlatformChannelSpecifics =
         AndroidNotificationDetails(
-      'prayer_times_channel',
+      'prayer_times_channel_3',
       'Prayer Times Notifications',
       channelDescription: 'Notifications for prayer times and pre-prayer alerts',
       importance: Importance.max,
       priority: Priority.high,
-      sound: RawResourceAndroidNotificationSound('adhan'),
+      sound: RawResourceAndroidNotificationSound('notification'),
       playSound: true,
       audioAttributesUsage: AudioAttributesUsage.alarm,
     );
 
     const DarwinNotificationDetails iOSPlatformChannelSpecifics =
         DarwinNotificationDetails(
-      sound: 'adhan.mp3',
+      sound: 'notification.mp3',
       presentSound: true,
     );
 

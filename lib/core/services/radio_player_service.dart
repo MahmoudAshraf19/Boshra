@@ -1,6 +1,7 @@
 import 'package:just_audio/just_audio.dart';
 import 'package:just_audio_background/just_audio_background.dart';
 import '../../features/radio/data/models/radio_model.dart';
+import 'audio_service.dart';
 
 class RadioPlayerService {
   // Singleton instance
@@ -8,7 +9,7 @@ class RadioPlayerService {
   factory RadioPlayerService() => _instance;
   RadioPlayerService._internal();
 
-  final AudioPlayer _player = AudioPlayer();
+  final AudioPlayer _player = GlobalAudioPlayer.player;
   RadioModel? _currentRadio;
 
   AudioPlayer get player => _player;
@@ -58,6 +59,6 @@ class RadioPlayerService {
   }
 
   void dispose() {
-    _player.dispose();
+    _player.stop();
   }
 }
