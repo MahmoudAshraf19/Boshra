@@ -631,6 +631,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Message from the Quran 🌿'**
   String get quranMessageNotificationTitle;
+
+  /// No description provided for @saveBookmark.
+  ///
+  /// In en, this message translates to:
+  /// **'Save Bookmark'**
+  String get saveBookmark;
+
+  /// No description provided for @bookmarkSavedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Bookmark saved at Surah {surahName} Ayah {ayahNumber}'**
+  String bookmarkSavedSuccessfully(String surahName, String ayahNumber);
 }
 
 class _AppLocalizationsDelegate

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:just_audio_background/just_audio_background.dart';
@@ -34,6 +35,10 @@ class _RecitationBottomSheetState extends State<RecitationBottomSheet> {
   bool _isLooping = false;
   bool _isMuted = false;
 
+  StreamSubscription? _playerStateSubscription;
+  StreamSubscription? _durationSubscription;
+  StreamSubscription? _positionSubscription;
+
   @override
   void initState() {
     super.initState();
@@ -59,7 +64,7 @@ class _RecitationBottomSheetState extends State<RecitationBottomSheet> {
   }
 
   void _setupAudioListeners() {
-    _audioPlayer.playerStateStream.listen((state) {
+    _playerStateSubscription = _audioPlayer.playerStateStream.listen((state) {
       if (mounted) {
         setState(() {
           _isPlaying = state.playing;
@@ -77,13 +82,13 @@ class _RecitationBottomSheetState extends State<RecitationBottomSheet> {
       }
     });
 
-    _audioPlayer.durationStream.listen((d) {
+    _durationSubscription = _audioPlayer.durationStream.listen((d) {
       if (mounted) {
         setState(() => _duration = d ?? Duration.zero);
       }
     });
 
-    _audioPlayer.positionStream.listen((p) {
+    _positionSubscription = _audioPlayer.positionStream.listen((p) {
       if (mounted) {
         setState(() => _position = p);
       }
@@ -104,6 +109,7 @@ class _RecitationBottomSheetState extends State<RecitationBottomSheet> {
           artist: widget.locale == 'ar' ? _selectedReciter.nameAr : _selectedReciter.nameEn,
         ),
       );
+      await _audioPlayer.stop();
       await _audioPlayer.setAudioSource(audioSource);
       print('🟢 [Audio Success] MP3 Loaded successfully!');
       
@@ -170,8 +176,10 @@ class _RecitationBottomSheetState extends State<RecitationBottomSheet> {
 
   @override
   void dispose() {
+    _playerStateSubscription?.cancel();
+    _durationSubscription?.cancel();
+    _positionSubscription?.cancel();
     _audioPlayer.stop();
-    _audioPlayer.dispose();
     super.dispose();
   }
 

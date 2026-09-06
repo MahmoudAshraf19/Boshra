@@ -35,6 +35,7 @@ class RadioPlayerService {
         ),
       );
 
+      await _player.stop();
       await _player.setAudioSource(audioSource);
       await _player.play();
     } catch (e) {

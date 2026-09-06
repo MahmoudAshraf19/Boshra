@@ -131,5 +131,17 @@
   "azkarCategoryDailySub": "Various remembrances for the day",
   "azkarAllCategories": "All Categories",
   "navRadio": "Radio",
-  "quranMessageNotificationTitle": "پیامی از قرآن 🌿"
+  "quranMessageNotificationTitle": "پیامی از قرآن 🌿",
+  "saveBookmark": "ذخیره نشانک",
+  "bookmarkSavedSuccessfully": "نشانک در سوره {surahName} آیه {ayahNumber} ذخیره شد",
+  "@bookmarkSavedSuccessfully": {
+    "placeholders": {
+      "surahName": {
+        "type": "String"
+      },
+      "ayahNumber": {
+        "type": "String"
+      }
+    }
+  }
 }

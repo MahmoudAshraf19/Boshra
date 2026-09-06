@@ -284,4 +284,12 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get quranMessageNotificationTitle => 'پیامی از قرآن 🌿';
+
+  @override
+  String get saveBookmark => 'ذخیره نشانک';
+
+  @override
+  String bookmarkSavedSuccessfully(String surahName, String ayahNumber) {
+    return 'نشانک در سوره $surahName آیه $ayahNumber ذخیره شد';
+  }
 }

@@ -131,5 +131,17 @@
   "azkarCategoryDailySub": "Various remembrances for the day",
   "azkarAllCategories": "All Categories",
   "navRadio": "Radio",
-  "quranMessageNotificationTitle": "Message du Coran 🌿"
+  "quranMessageNotificationTitle": "Message du Coran 🌿",
+  "saveBookmark": "Enregistrer le signet",
+  "bookmarkSavedSuccessfully": "Signet enregistré à la Sourate {surahName} Ayah {ayahNumber}",
+  "@bookmarkSavedSuccessfully": {
+    "placeholders": {
+      "surahName": {
+        "type": "String"
+      },
+      "ayahNumber": {
+        "type": "String"
+      }
+    }
+  }
 }

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:just_audio_background/just_audio_background.dart';
@@ -35,6 +36,11 @@ class _SurahRecitationBottomSheetState extends State<SurahRecitationBottomSheet>
   int _currentIndex = 0;
   bool _isLoading = true;
 
+  StreamSubscription? _playerStateSubscription;
+  StreamSubscription? _durationSubscription;
+  StreamSubscription? _positionSubscription;
+  StreamSubscription? _currentIndexSubscription;
+
   @override
   void initState() {
     super.initState();
@@ -59,7 +65,7 @@ class _SurahRecitationBottomSheetState extends State<SurahRecitationBottomSheet>
   }
 
   void _setupAudioListeners() {
-    _audioPlayer.playerStateStream.listen((state) {
+    _playerStateSubscription = _audioPlayer.playerStateStream.listen((state) {
       if (mounted) {
         setState(() {
           _isPlaying = state.playing;
@@ -72,19 +78,19 @@ class _SurahRecitationBottomSheetState extends State<SurahRecitationBottomSheet>
       }
     });
 
-    _audioPlayer.durationStream.listen((d) {
+    _durationSubscription = _audioPlayer.durationStream.listen((d) {
       if (mounted) {
         setState(() => _duration = d ?? Duration.zero);
       }
     });
 
-    _audioPlayer.positionStream.listen((p) {
+    _positionSubscription = _audioPlayer.positionStream.listen((p) {
       if (mounted) {
         setState(() => _position = p);
       }
     });
     
-    _audioPlayer.currentIndexStream.listen((index) {
+    _currentIndexSubscription = _audioPlayer.currentIndexStream.listen((index) {
       if (mounted && index != null) {
         setState(() {
           _currentIndex = index;
@@ -114,6 +120,7 @@ class _SurahRecitationBottomSheetState extends State<SurahRecitationBottomSheet>
       
       final playlist = ConcatenatingAudioSource(children: audioSources);
       
+      await _audioPlayer.stop();
       await _audioPlayer.setAudioSource(playlist, initialIndex: 0, initialPosition: Duration.zero);
       if (_isLooping) {
         _audioPlayer.setLoopMode(LoopMode.all);
@@ -184,8 +191,11 @@ class _SurahRecitationBottomSheetState extends State<SurahRecitationBottomSheet>
 
   @override
   void dispose() {
+    _playerStateSubscription?.cancel();
+    _durationSubscription?.cancel();
+    _positionSubscription?.cancel();
+    _currentIndexSubscription?.cancel();
     _audioPlayer.stop();
-    _audioPlayer.dispose();
     super.dispose();
   }
 

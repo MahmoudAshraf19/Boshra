@@ -289,4 +289,12 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get quranMessageNotificationTitle => 'Message du Coran 🌿';
+
+  @override
+  String get saveBookmark => 'Enregistrer le signet';
+
+  @override
+  String bookmarkSavedSuccessfully(String surahName, String ayahNumber) {
+    return 'Signet enregistré à la Sourate $surahName Ayah $ayahNumber';
+  }
 }

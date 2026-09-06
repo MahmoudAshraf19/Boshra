@@ -289,7 +289,7 @@ class _SurahItemWidgetState extends State<SurahItemWidget> with AutomaticKeepAli
                 ),
               ),
               const SizedBox(height: 16),
-              _buildBottomSheetOption(Icons.bookmark_add, 'حفظ العلامة', widget.theme.colorScheme, () async {
+              _buildBottomSheetOption(Icons.bookmark_add, widget.l10n.saveBookmark, widget.theme.colorScheme, () async {
                 Navigator.pop(context);
                 final prefs = await SharedPreferences.getInstance();
                 await prefs.setInt('last_read_surah', surah.number);
@@ -297,7 +297,7 @@ class _SurahItemWidgetState extends State<SurahItemWidget> with AutomaticKeepAli
                 if (mounted) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
-                      content: Text('تم حفظ العلامة عند سورة ${surah.name} آية ${ayah.numberInSurah}'),
+                      content: Text(widget.l10n.bookmarkSavedSuccessfully(surah.name, ayah.numberInSurah.toString())),
                       backgroundColor: widget.theme.colorScheme.primary,
                     ),
                   );

@@ -131,5 +131,17 @@
   "azkarCategoryDailySub": "Various remembrances for the day",
   "azkarAllCategories": "All Categories",
   "navRadio": "Radio",
-  "quranMessageNotificationTitle": "Mensaje del Corán 🌿"
+  "quranMessageNotificationTitle": "Mensaje del Corán 🌿",
+  "saveBookmark": "Guardar Marcador",
+  "bookmarkSavedSuccessfully": "Marcador guardado en Sura {surahName} Aleya {ayahNumber}",
+  "@bookmarkSavedSuccessfully": {
+    "placeholders": {
+      "surahName": {
+        "type": "String"
+      },
+      "ayahNumber": {
+        "type": "String"
+      }
+    }
+  }
 }

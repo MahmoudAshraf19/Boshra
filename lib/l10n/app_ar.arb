@@ -132,5 +132,17 @@
   "azkarCategoryDailySub": "أذكار متنوعة لليوم",
   "azkarAllCategories": "كل الأقسام",
   "navRadio": "الإذاعة",
-  "quranMessageNotificationTitle": "رسالة من القرآن 🌿"
+  "quranMessageNotificationTitle": "رسالة من القرآن 🌿",
+  "saveBookmark": "حفظ العلامة",
+  "bookmarkSavedSuccessfully": "تم حفظ العلامة عند سورة {surahName} آية {ayahNumber}",
+  "@bookmarkSavedSuccessfully": {
+    "placeholders": {
+      "surahName": {
+        "type": "String"
+      },
+      "ayahNumber": {
+        "type": "String"
+      }
+    }
+  }
 }

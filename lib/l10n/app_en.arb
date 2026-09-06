@@ -131,5 +131,17 @@
   "azkarCategoryDaily": "Daily Azkar",
   "azkarCategoryDailySub": "Various remembrances for the day",
   "azkarAllCategories": "All Categories",
-  "quranMessageNotificationTitle": "Message from the Quran 🌿"
+  "quranMessageNotificationTitle": "Message from the Quran 🌿",
+  "saveBookmark": "Save Bookmark",
+  "bookmarkSavedSuccessfully": "Bookmark saved at Surah {surahName} Ayah {ayahNumber}",
+  "@bookmarkSavedSuccessfully": {
+    "placeholders": {
+      "surahName": {
+        "type": "String"
+      },
+      "ayahNumber": {
+        "type": "String"
+      }
+    }
+  }
 }

@@ -131,5 +131,17 @@
   "azkarCategoryDailySub": "Various remembrances for the day",
   "azkarAllCategories": "All Categories",
   "navRadio": "Radio",
-  "quranMessageNotificationTitle": "قرآن کا پیغام 🌿"
+  "quranMessageNotificationTitle": "قرآن کا پیغام 🌿",
+  "saveBookmark": "بک مارک محفوظ کریں",
+  "bookmarkSavedSuccessfully": "سورہ {surahName} آیت {ayahNumber} پر بک مارک محفوظ کیا گیا",
+  "@bookmarkSavedSuccessfully": {
+    "placeholders": {
+      "surahName": {
+        "type": "String"
+      },
+      "ayahNumber": {
+        "type": "String"
+      }
+    }
+  }
 }

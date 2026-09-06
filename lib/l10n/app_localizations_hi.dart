@@ -287,4 +287,12 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get quranMessageNotificationTitle => 'कुरान से संदेश 🌿';
+
+  @override
+  String get saveBookmark => 'बुकमार्क सहेजें';
+
+  @override
+  String bookmarkSavedSuccessfully(String surahName, String ayahNumber) {
+    return 'सूरह $surahName आयत $ayahNumber पर बुकमार्क सहेजा गया';
+  }
 }
