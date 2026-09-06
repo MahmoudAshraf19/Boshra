@@ -1,0 +1,135 @@
+{
+  "@@locale": "es",
+  "appTitle": "Boshra",
+  "onboarding1Title": "Bushra... Tu compañero en el camino del bien",
+  "onboarding1Desc": "Haz que tu día esté más cerca de Allah, con pasos simples.",
+  "onboarding2Title": "Todo lo que necesitas para tu adoración, en un solo lugar",
+  "onboarding2Desc": "Corán, tiempos de oración, Adhkar, Qibla y súplicas.",
+  "onboarding3Title": "Un pequeño paso cada día... hace un gran impacto",
+  "onboarding3Desc": "Construye tus hábitos de fe y aprovecha los momentos de tu día.",
+  "startJourney": "Comienza tu viaje",
+  "next": "Siguiente",
+  "skip": "Omitir",
+  "navHome": "Inicio",
+  "navQuran": "Corán",
+  "navAzkar": "Azkar",
+  "navQibla": "Qibla",
+  "navMore": "Más",
+  "nextPrayerTitle": "{prayerName}",
+  "@nextPrayerTitle": {
+    "placeholders": {
+      "prayerName": {
+        "type": "String"
+      }
+    }
+  },
+  "untilNextPrayer": "Hasta {prayerName}",
+  "@untilNextPrayer": {
+    "placeholders": {
+      "prayerName": {
+        "type": "String"
+      }
+    }
+  },
+  "greeting": "As-salamu alaykum👋",
+  "fajr": "Fajr",
+  "dhuhr": "Dhuhr",
+  "asr": "Asr",
+  "maghrib": "Maghrib",
+  "isha": "Isha",
+  "ayahOfTheDay": "Aleya del Día",
+  "listen": "Escuchar",
+  "tafseer": "Tafsir",
+  "surahAndVerse": "{surahName} • Aleya {verseNumber}",
+  "@surahAndVerse": {
+    "placeholders": {
+      "surahName": {
+        "type": "String"
+      },
+      "verseNumber": {
+        "type": "String"
+      }
+    }
+  },
+  "dailyWird": "Completa tu Wird diario",
+  "morningAzkar": "Azkar de la mañana",
+  "eveningAzkar": "Azkar de la tarde",
+  "continueReading": "Continuar",
+  "morningAzkarNotificationTitle": "Azkar de la Mañana 🌅",
+  "morningAzkarNotificationBody": "Comienza tu día con el recuerdo de Allah",
+  "eveningAzkarNotificationTitle": "Azkar de la Tarde 🌙",
+  "eveningAzkarNotificationBody": "Termina tu día con el recuerdo de Allah",
+  "quickAccess": "Acceso Rápido",
+  "qibla": "Qibla",
+  "recitation": "Recitación",
+  "quran": "Corán",
+  "quranRadio": "Radio del Corán",
+  "azkar": "Azkar",
+  "surahs": "Suras",
+  "juzs": "Juzs",
+  "prayerSettingsTitle": "Ajustes de Oración y Adhan",
+  "prePrayerAlertTitle": "Alerta antes de la Oración",
+  "minutesBeforeAdhan": "{minutes} minutos antes del Adhan",
+  "@minutesBeforeAdhan": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "enablePrayerAlertsTitle": "Activar Alertas de Oración",
+  "continueReadingCardTitle": "Continuar Leyendo",
+  "surahName": "Sura {surahName}",
+  "@surahName": {
+    "placeholders": {
+      "surahName": {
+        "type": "String"
+      }
+    }
+  },
+  "ayahNumber": "Aleya {number}",
+  "@ayahNumber": {
+    "placeholders": {
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "selectedRecitationTitle": "Recitación Seleccionada",
+  "live": "Live",
+  "quranScreenTitle": "El Sagrado Corán",
+  "startQuranJourney": "Comienza tu viaje con el Corán",
+  "openSurahAndRead": "Abre una Sura y comienza a leer",
+  "browseSurahs": "Explorar Suras",
+  "searchSurah": "Buscar una Sura...",
+  "tabSurahs": "Suras",
+  "tabJuzs": "Juzs",
+  "tabHizbs": "Hizbs",
+  "meccan": "Mequinense",
+  "medinan": "Medinense",
+  "ayahsCount": "{count} Versos",
+  "tafsirOption": "Tafsir",
+  "recitationOption": "Recitación",
+  "downloadOption": "Descargar",
+  "shareOption": "Compartir",
+  "infoOption": "Información",
+  "copyOption": "Copiar",
+  "copiedSuccessfully": "Versículo copiado al portapapeles",
+  "azkarScreenTitle": "Azkar",
+  "azkarScreenSubtitle": "Close to Allah... in every moment",
+  "azkarCategoryMorning": "Morning Azkar",
+  "azkarCategoryMorningSub": "Remembrances for the morning",
+  "azkarCategoryEvening": "Evening Azkar",
+  "azkarCategoryEveningSub": "Remembrances for the evening",
+  "azkarCategoryPrayer": "After Prayer",
+  "azkarCategoryPrayerSub": "Remembrances after prayer",
+  "azkarCategorySleep": "Sleep Azkar",
+  "azkarCategorySleepSub": "Remembrances before sleep",
+  "azkarCategoryProtection": "Protection Azkar",
+  "azkarCategoryProtectionSub": "For protection and tranquility",
+  "azkarCategoryDaily": "Daily Azkar",
+  "azkarCategoryDailySub": "Various remembrances for the day",
+  "azkarAllCategories": "All Categories",
+  "navRadio": "Radio",
+  "quranMessageNotificationTitle": "Mensaje del Corán 🌿"
+}

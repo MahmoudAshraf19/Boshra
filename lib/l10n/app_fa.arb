@@ -1,0 +1,135 @@
+{
+  "@@locale": "fa",
+  "appTitle": "بشری",
+  "onboarding1Title": "بشری... همراه شما در مسیر خیر",
+  "onboarding1Desc": "روز خود را به خدا نزدیک‌تر کنید، با قدم‌های ساده.",
+  "onboarding2Title": "هر آنچه برای عبادت نیاز دارید، در یک مکان",
+  "onboarding2Desc": "قرآن، اوقات شرعی، اذکار، قبله و ادعیه.",
+  "onboarding3Title": "یک قدم کوچک هر روز... تاثیر بزرگی می‌گذارد",
+  "onboarding3Desc": "عادات ایمانی خود را بسازید.",
+  "startJourney": "سفر خود را شروع کنید",
+  "next": "بعدی",
+  "skip": "رد شدن",
+  "navHome": "خانه",
+  "navQuran": "قرآن",
+  "navAzkar": "اذکار",
+  "navQibla": "قبله",
+  "navMore": "بیشتر",
+  "nextPrayerTitle": "{prayerName}",
+  "@nextPrayerTitle": {
+    "placeholders": {
+      "prayerName": {
+        "type": "String"
+      }
+    }
+  },
+  "untilNextPrayer": "تا نماز {prayerName}",
+  "@untilNextPrayer": {
+    "placeholders": {
+      "prayerName": {
+        "type": "String"
+      }
+    }
+  },
+  "greeting": "سلام عليكم👋",
+  "fajr": "فجر",
+  "dhuhr": "ظهر",
+  "asr": "عصر",
+  "maghrib": "مغرب",
+  "isha": "عشاء",
+  "ayahOfTheDay": "آیه روز",
+  "listen": "گوش دادن",
+  "tafseer": "تفسیر",
+  "surahAndVerse": "سوره {surahName} • آیه {verseNumber}",
+  "@surahAndVerse": {
+    "placeholders": {
+      "surahName": {
+        "type": "String"
+      },
+      "verseNumber": {
+        "type": "String"
+      }
+    }
+  },
+  "dailyWird": "ورد روزانه خود را کامل کنید",
+  "morningAzkar": "اذکار صبح",
+  "eveningAzkar": "اذکار عصر",
+  "continueReading": "ادامه",
+  "morningAzkarNotificationTitle": "اذکار صبح 🌅",
+  "morningAzkarNotificationBody": "روز خود را با یاد خدا آغاز کنید",
+  "eveningAzkarNotificationTitle": "اذکار عصر 🌙",
+  "eveningAzkarNotificationBody": "روز خود را با یاد خدا به پایان برسانید",
+  "quickAccess": "دسترسی سریع",
+  "qibla": "قبله",
+  "recitation": "تلاوت",
+  "quran": "قرآن",
+  "quranRadio": "رادیو قرآن",
+  "azkar": "اذکار",
+  "surahs": "سوره‌ها",
+  "juzs": "جزءها",
+  "prayerSettingsTitle": "تنظیمات نماز و اذان",
+  "prePrayerAlertTitle": "هشدار قبل از نماز",
+  "minutesBeforeAdhan": "{minutes} دقیقه قبل از اذان",
+  "@minutesBeforeAdhan": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "enablePrayerAlertsTitle": "فعال سازی هشدارهای نماز",
+  "continueReadingCardTitle": "ادامه خواندن",
+  "surahName": "سوره {surahName}",
+  "@surahName": {
+    "placeholders": {
+      "surahName": {
+        "type": "String"
+      }
+    }
+  },
+  "ayahNumber": "آیه {number}",
+  "@ayahNumber": {
+    "placeholders": {
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "selectedRecitationTitle": "تلاوت منتخب",
+  "live": "Live",
+  "quranScreenTitle": "قرآن کریم",
+  "startQuranJourney": "سفر خود را با قرآن آغاز کنید",
+  "openSurahAndRead": "یک سوره را باز کنید و بخوانید",
+  "browseSurahs": "مرور سوره‌ها",
+  "searchSurah": "جستجوی سوره...",
+  "tabSurahs": "سوره‌ها",
+  "tabJuzs": "جزءها",
+  "tabHizbs": "حزب‌ها",
+  "meccan": "مکی",
+  "medinan": "مدنی",
+  "ayahsCount": "{count} آیات",
+  "tafsirOption": "تفسیر",
+  "recitationOption": "تلاوت",
+  "downloadOption": "دانلود",
+  "shareOption": "اشتراک گذاری",
+  "infoOption": "اطلاعات",
+  "copyOption": "کپی",
+  "copiedSuccessfully": "آیه در کلیپ‌بورد کپی شد",
+  "azkarScreenTitle": "Azkar",
+  "azkarScreenSubtitle": "Close to Allah... in every moment",
+  "azkarCategoryMorning": "Morning Azkar",
+  "azkarCategoryMorningSub": "Remembrances for the morning",
+  "azkarCategoryEvening": "Evening Azkar",
+  "azkarCategoryEveningSub": "Remembrances for the evening",
+  "azkarCategoryPrayer": "After Prayer",
+  "azkarCategoryPrayerSub": "Remembrances after prayer",
+  "azkarCategorySleep": "Sleep Azkar",
+  "azkarCategorySleepSub": "Remembrances before sleep",
+  "azkarCategoryProtection": "Protection Azkar",
+  "azkarCategoryProtectionSub": "For protection and tranquility",
+  "azkarCategoryDaily": "Daily Azkar",
+  "azkarCategoryDailySub": "Various remembrances for the day",
+  "azkarAllCategories": "All Categories",
+  "navRadio": "Radio",
+  "quranMessageNotificationTitle": "پیامی از قرآن 🌿"
+}

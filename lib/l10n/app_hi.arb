@@ -1,0 +1,135 @@
+{
+  "@@locale": "hi",
+  "appTitle": "बुशरा",
+  "onboarding1Title": "बुशरा... अच्छाई के मार्ग पर आपका साथी",
+  "onboarding1Desc": "सरल कदमों के साथ अपने दिन को अल्लाह के करीब लाएं।",
+  "onboarding2Title": "आपकी इबादत के लिए जो कुछ भी चाहिए, एक ही स्थान पर",
+  "onboarding2Desc": "कुरान, प्रार्थना का समय, अज़कार, क़िबला, और दुआएं।",
+  "onboarding3Title": "हर दिन एक छोटा कदम... बड़ा प्रभाव डालता है",
+  "onboarding3Desc": "अपनी आस्था की आदतें बनाएं।",
+  "startJourney": "अपनी यात्रा शुरू करें",
+  "next": "अगला",
+  "skip": "छोड़ें",
+  "navHome": "होम",
+  "navQuran": "कुरान",
+  "navAzkar": "अज़कार",
+  "navQibla": "किबला",
+  "navMore": "अधिक",
+  "nextPrayerTitle": "{prayerName}",
+  "@nextPrayerTitle": {
+    "placeholders": {
+      "prayerName": {
+        "type": "String"
+      }
+    }
+  },
+  "untilNextPrayer": "{prayerName} तक",
+  "@untilNextPrayer": {
+    "placeholders": {
+      "prayerName": {
+        "type": "String"
+      }
+    }
+  },
+  "greeting": "अस्सलामु अलैकुम👋",
+  "fajr": "फ़ज्र",
+  "dhuhr": "ज़ुहर",
+  "asr": "अस्र",
+  "maghrib": "मग़रिब",
+  "isha": "ईशा",
+  "ayahOfTheDay": "आज की आयत",
+  "listen": "सुनें",
+  "tafseer": "तफ़सीर",
+  "surahAndVerse": "{surahName} • आयत {verseNumber}",
+  "@surahAndVerse": {
+    "placeholders": {
+      "surahName": {
+        "type": "String"
+      },
+      "verseNumber": {
+        "type": "String"
+      }
+    }
+  },
+  "dailyWird": "अपना दैनिक विर्द पूरा करें",
+  "morningAzkar": "सुबह के अज़कार",
+  "eveningAzkar": "शाम के अज़कार",
+  "continueReading": "जारी रखें",
+  "morningAzkarNotificationTitle": "सुबह के अज़कार 🌅",
+  "morningAzkarNotificationBody": "अपने दिन की शुरुआत अल्लाह के ज़िक्र से करें",
+  "eveningAzkarNotificationTitle": "शाम के अज़कार 🌙",
+  "eveningAzkarNotificationBody": "अपने दिन का अंत अल्लाह के ज़िक्र से करें",
+  "quickAccess": "त्वरित पहुँच",
+  "qibla": "किबला",
+  "recitation": "तिलावत",
+  "quran": "क़ुरान",
+  "quranRadio": "क़ुरान रेडियो",
+  "azkar": "अज़कार",
+  "surahs": "सूरह",
+  "juzs": "पारे",
+  "prayerSettingsTitle": "प्रार्थना और अज़ान सेटिंग्स",
+  "prePrayerAlertTitle": "प्रार्थना से पहले अलर्ट",
+  "minutesBeforeAdhan": "अज़ान से {minutes} मिनट पहले",
+  "@minutesBeforeAdhan": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "enablePrayerAlertsTitle": "प्रार्थना अलर्ट सक्षम करें",
+  "continueReadingCardTitle": "पढ़ना जारी रखें",
+  "surahName": "सूरह {surahName}",
+  "@surahName": {
+    "placeholders": {
+      "surahName": {
+        "type": "String"
+      }
+    }
+  },
+  "ayahNumber": "आयत {number}",
+  "@ayahNumber": {
+    "placeholders": {
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "selectedRecitationTitle": "चयनित कुरान पाठ",
+  "live": "Live",
+  "quranScreenTitle": "पवित्र कुरान",
+  "startQuranJourney": "कुरान के साथ अपनी यात्रा शुरू करें",
+  "openSurahAndRead": "एक सूरह खोलें और पढ़ना शुरू करें",
+  "browseSurahs": "सूरह ब्राउज़ करें",
+  "searchSurah": "सूरह खोजें...",
+  "tabSurahs": "सूरह",
+  "tabJuzs": "पारे",
+  "tabHizbs": "हिज्ब",
+  "meccan": "मक्की",
+  "medinan": "मदनी",
+  "ayahsCount": "{count} आयतें",
+  "tafsirOption": "तफ़्सीर",
+  "recitationOption": "तिलावत",
+  "downloadOption": "डाउनलोड",
+  "shareOption": "साझा करें",
+  "infoOption": "जानकारी",
+  "copyOption": "कॉपी",
+  "copiedSuccessfully": "आयत क्लिपबोर्ड पर कॉपी हो गई",
+  "azkarScreenTitle": "Azkar",
+  "azkarScreenSubtitle": "Close to Allah... in every moment",
+  "azkarCategoryMorning": "Morning Azkar",
+  "azkarCategoryMorningSub": "Remembrances for the morning",
+  "azkarCategoryEvening": "Evening Azkar",
+  "azkarCategoryEveningSub": "Remembrances for the evening",
+  "azkarCategoryPrayer": "After Prayer",
+  "azkarCategoryPrayerSub": "Remembrances after prayer",
+  "azkarCategorySleep": "Sleep Azkar",
+  "azkarCategorySleepSub": "Remembrances before sleep",
+  "azkarCategoryProtection": "Protection Azkar",
+  "azkarCategoryProtectionSub": "For protection and tranquility",
+  "azkarCategoryDaily": "Daily Azkar",
+  "azkarCategoryDailySub": "Various remembrances for the day",
+  "azkarAllCategories": "All Categories",
+  "navRadio": "Radio",
+  "quranMessageNotificationTitle": "कुरान से संदेश 🌿"
+}

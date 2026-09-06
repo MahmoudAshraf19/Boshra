@@ -1,0 +1,2802 @@
+{
+    "type": "table",
+    "database": null,
+    "name": "azkar",
+    "withoutRowId": false,
+    "strict": false,
+    "ddl": "CREATE TABLE azkar (category TEXT (50) REFERENCES category (category) ON UPDATE CASCADE MATCH SIMPLE, zekr TEXT, description TEXT, count INTEGER, reference TEXT, search TEXT);",
+    "columns": [
+        {
+            "name": "category",
+            "type": "TEXT",
+            "constraints": [
+                {
+                    "type": "FOREIGN KEY",
+                    "definition": "REFERENCES category (category) ON UPDATE CASCADE MATCH SIMPLE"
+                }
+            ]
+        },
+        {
+            "name": "zekr",
+            "type": "TEXT"
+        },
+        {
+            "name": "description",
+            "type": "TEXT"
+        },
+        {
+            "name": "count",
+            "type": "INTEGER"
+        },
+        {
+            "name": "reference",
+            "type": "TEXT"
+        },
+        {
+            "name": "search",
+            "type": "TEXT"
+        }
+    ],
+    "rows": [
+        [
+            "Morning Adhkar",
+            "I seek refuge in Allah from Satan, the rejected.\nAllah! There is no deity except Him, the Ever-Living, the Sustainer of [all] existence. Neither slumber nor sleep overtakes Him. To Him belongs whatever is in the heavens and whatever is on the earth. Who is it that can intercede with Him except by His permission? He knows what is [presently] before them and what will be after them, and they encompass not a thing of His knowledge except for what He wills. His Kursi (Throne) extends over the heavens and the earth, and He is not wearied by their preservation. And He is the Most High, the Most Great.",
+            "Whoever recites it in the morning will be protected from the jinn until evening, and whoever recites it in the evening will be protected from the jinn until morning.",
+            1,
+            "Ayatul Kursi - Surah Al-Baqarah 255",
+            "Morning Adhkar"
+        ],
+        [
+            "Morning Adhkar",
+            "In the Name of Allah, the Most Gracious, the Most Merciful.\nSay, 'He is Allah, [who is] One, Allah, the Eternal Refuge. He has not begotten, nor has He been begotten, And there has never been unto Him any equivalent.'",
+            "Whoever recites them (Surah Al-Ikhlas and Al-Mu'awwidhatayn) in the morning and in the evening, they will suffice him against everything.",
+            3,
+            "Surah Al-Ikhlas",
+            "Morning Adhkar"
+        ],
+        [
+            "Morning Adhkar",
+            "In the Name of Allah, the Most Gracious, the Most Merciful.\nSay, 'I seek refuge in the Lord of daybreak, from the evil of what He has created, and from the evil of darkness when it settles, and from the evil of the blowers in knots, and from the evil of an envier when he envies.'",
+            "Whoever recites them in the morning and in the evening, they will suffice him against everything (referring to Surah Al-Ikhlas and Al-Mu'awwidhatayn - Al-Falaq and An-Nas).",
+            3,
+            "Surah Al-Falaq",
+            "Morning Adhkar"
+        ],
+        [
+            "Morning Adhkar",
+            "In the Name of Allah, the Most Gracious, the Most Merciful.\nSay, 'I seek refuge in the Lord of mankind,\nThe Sovereign of mankind,\nThe God of mankind,\nFrom the evil of the retreating whisperer –\nWho whispers into the breasts of mankind –\nFrom among the jinn and mankind.'",
+            "Whoever recites them (Surah Al-Ikhlas, Al-Falaq, and An-Nas) in the morning and in the evening, they will suffice him against everything.",
+            3,
+            "Surah An-Nas",
+            "Morning Adhkar"
+        ],
+        [
+            "Morning Adhkar",
+            "We have entered the morning, and with us, the dominion belongs to Allah, and all praise is due to Allah. There is no deity worthy of worship except Allah, alone, without any partner. To Him belongs the dominion, and to Him belongs all praise, and He is over all things competent. My Lord, I ask You for the good of this day and the good of what comes after it, and I seek refuge in You from the evil of this day and the evil of what comes after it. My Lord, I seek refuge in You from laziness and the evil of old age. My Lord, I seek refuge in You from the torment of the Fire and the torment of the grave.",
+            "",
+            1,
+            "Muslim",
+            "Morning Adhkar"
+        ],
+        [
+            "Morning Adhkar",
+            "O Allah, You are my Lord. There is no deity worthy of worship except You. You created me, and I am Your servant. I am abiding by Your covenant and Your promise as much as I am able. I seek refuge in You from the evil of what I have done. I acknowledge Your blessings upon me, and I confess to my sin. So forgive me, for indeed, none forgives sins except You.",
+            "Whoever says this with firm conviction in the evening and dies that night will enter Jannah (Paradise); and likewise, whoever says it with firm conviction in the morning and dies that day will enter Jannah.",
+            1,
+            "Al-Bukhari",
+            "Morning Adhkar"
+        ],
+        [
+            "Morning Adhkar",
+            "I am pleased with Allah as my Lord, with Islam as my religion, and with Muhammad (peace be upon him) as my Prophet.",
+            "Whoever says this in the morning and in the evening, it is a right upon Allah to please him on the Day of Resurrection.",
+            3,
+            "Ahmad",
+            "Morning Adhkar"
+        ],
+        [
+            "Morning Adhkar",
+            "O Allah, as I enter this morning, I call You to witness, and I call to witness the bearers of Your Throne, Your angels, and all of Your creation, that You are Allah, there is no deity worthy of worship except You, You alone, without partner, and that Muhammad is Your servant and Your Messenger.",
+            "Whoever says this, Allah will free him from the Hellfire.",
+            4,
+            "Abu Dawud",
+            "Morning Adhkar"
+        ],
+        [
+            "Morning Adhkar",
+            "O Allah, whatever blessing has come to me or to any of Your creation in the morning, it is from You alone, You have no partner. So to You belongs all praise and to You belongs all thanks.",
+            "Whoever says this in the morning has fulfilled the thanks for his day.",
+            1,
+            "Abu Dawud",
+            "Morning Adhkar"
+        ],
+        [
+            "Morning Adhkar",
+            "Allah is sufficient for me; there is no deity except Him. Upon Him I have relied, and He is the Lord of the Great Throne.",
+            "Whoever says it, Allah will suffice him from whatever worries him regarding the matters of this world and the Hereafter.",
+            7,
+            "Ibn As-Sunni",
+            "Morning Adhkar"
+        ],
+        [
+            "Morning Adhkar",
+            "In the Name of Allah, with Whose Name nothing can cause harm in the earth nor in the heaven, and He is the All-Hearing, the All-Knowing.",
+            "Nothing will harm him.",
+            3,
+            "Ibn Majah",
+            "Morning Adhkar"
+        ],
+        [
+            "Morning Adhkar",
+            "O Allah, by Your grace we have entered the morning and by Your grace we have entered the evening, and by Your grace we live and by Your grace we die, and to You is the resurrection.",
+            "",
+            1,
+            "At-Tirmidhi",
+            "Morning Adhkar"
+        ],
+        [
+            "Morning Adhkar",
+            "We have entered the morning upon the natural disposition of Islam, and upon the word of sincerity (Kalimat al-Ikhlas), and upon the religion of our Prophet Muhammad (peace and blessings of Allah be upon him), and upon the creed of our father Ibrahim, who was a pure monotheist (hanifan) and a Muslim, and not of the polytheists.",
+            "",
+            1,
+            "Ahmad",
+            "Morning Adhkar"
+        ],
+        [
+            "Morning Adhkar",
+            "Glory be to Allah and praise be to Him, as many times as the number of His creation, as much as pleases Him, as much as the weight of His Throne, and as much as the ink of His words.",
+            "",
+            3,
+            "Muslim",
+            "Morning Adhkar"
+        ],
+        [
+            "Morning Adhkar",
+            "O Allah, grant me well-being in my body. O Allah, grant me well-being in my hearing. O Allah, grant me well-being in my sight. There is no deity worthy of worship except You.",
+            "",
+            3,
+            "Ahmad",
+            "Morning Adhkar"
+        ],
+        [
+            "Morning Adhkar",
+            "O Allah, I seek refuge in You from disbelief and poverty, and I seek refuge in You from the torment of the grave. There is no deity worthy of worship except You.",
+            "",
+            3,
+            "",
+            "Morning Adhkar"
+        ],
+        [
+            "Morning Adhkar",
+            "O Allah, I ask You for forgiveness and well-being in this world and the Hereafter. O Allah, I ask You for forgiveness and well-being in my religion, my worldly affairs, my family, and my wealth. O Allah, conceal my faults and calm my fears. O Allah, protect me from in front of me and behind me, from my right and my left, and from above me, and I seek refuge in Your Greatness from being unexpectedly destroyed from beneath me.",
+            "",
+            1,
+            "Abu Dawud",
+            "Morning Adhkar"
+        ],
+        [
+            "Morning Adhkar",
+            "O Ever-Living, O Self-Sustaining! By Your mercy I seek help. Rectify all my affairs for me and do not entrust me to my soul for the blink of an eye.",
+            "",
+            3,
+            "At-Tirmidhi",
+            "Morning Adhkar"
+        ],
+        [
+            "Morning Adhkar",
+            "We have entered the morning, and the dominion belongs to Allah, Lord of the worlds. O Allah, I ask You for the good of this day: its opening, its victory, its light, its blessings, and its guidance. And I seek refuge in You from the evil of what is in it and the evil of what comes after it.",
+            "",
+            1,
+            "Abu Dawud",
+            "Morning Adhkar"
+        ],
+        [
+            "Morning Adhkar",
+            "O Allah, Knower of the unseen and the seen, Creator of the heavens and the earth, Lord of everything and its Sovereign. I bear witness that there is no deity worthy of worship except You. I seek refuge in You from the evil of my soul, and from the evil of Shaytan (Satan) and his shirk (associating partners with Allah), and from committing any evil against myself or bringing it upon a Muslim.",
+            "",
+            1,
+            "At-Tirmidhi",
+            "Morning Adhkar"
+        ],
+        [
+            "Morning Adhkar",
+            "I seek refuge in the perfect words of Allah from the evil of what He has created.",
+            "",
+            3,
+            "",
+            "Morning Adhkar"
+        ],
+        [
+            "Morning Adhkar",
+            "O Allah, bestow Your prayers, peace, and blessings upon our Prophet Muhammad.",
+            "Whoever sends prayers upon me in the morning and in the evening will receive my intercession on the Day of Resurrection.",
+            10,
+            "Al-Tabarani",
+            "Morning Adhkar"
+        ],
+        [
+            "Morning Adhkar",
+            "O Allah, we seek refuge in You from knowingly associating anything with You, and we seek Your forgiveness for that which we do not know.",
+            "",
+            3,
+            "",
+            "Morning Adhkar"
+        ],
+        [
+            "Morning Adhkar",
+            "O Allah, I seek refuge in You from worry and grief, and I seek refuge in You from helplessness and laziness, and I seek refuge in You from cowardice and miserliness, and I seek refuge in You from being overwhelmed by debt and from the domination of men.",
+            "",
+            3,
+            "Abu Dawud",
+            "Morning Adhkar"
+        ],
+        [
+            "Morning Adhkar",
+            "I seek forgiveness from Allah, the Magnificent, Whom there is no deity worthy of worship except Him, the Ever-Living, the Self-Subsisting, and I repent to Him.",
+            "",
+            3,
+            "",
+            "Morning Adhkar"
+        ],
+        [
+            "Morning Adhkar",
+            "O my Lord, to You belongs all praise as befits the Majesty of Your Countenance and the Greatness of Your Authority.",
+            "",
+            3,
+            "",
+            "Morning Adhkar"
+        ],
+        [
+            "Morning Adhkar",
+            "O Allah, I ask You for beneficial knowledge, good provision, and accepted deeds.",
+            "",
+            1,
+            "Ibn Majah",
+            "Morning Adhkar"
+        ],
+        [
+            "Morning Adhkar",
+            "O Allah, You are my Lord, there is no deity worthy of worship except You. Upon You I rely, and You are the Lord of the Magnificent Throne. What Allah wills, happens; and what He does not will, does not happen. There is no might nor power except with Allah, the Most High, the Most Great. I know that Allah is over all things competent, and that Allah has encompassed everything in knowledge. O Allah, I seek refuge in You from the evil of my soul, and from the evil of every creature that You hold by its forelock. Indeed, my Lord is on a straight path.",
+            "A blessed remembrance.",
+            1,
+            "",
+            "Morning Adhkar"
+        ],
+        [
+            "Morning Adhkar",
+            "There is no deity worthy of worship except Allah, alone, without any partner. To Him belongs all sovereignty and all praise, and He is over all things competent.",
+            "Whoever says it 100 times in a day, it will be for him equivalent to freeing ten slaves, and 100 good deeds will be recorded for him, and 100 bad deeds will be erased from him, and it will be a protection for him from Satan on that day until evening, and no one will come with anything better than what he came with except someone who did more than that.",
+            100,
+            "At-Tirmidhi",
+            "Morning Adhkar"
+        ],
+        [
+            "Morning Adhkar",
+            "Glory be to Allah and praise be to Him.",
+            "His sins will be forgiven, even if they were like the foam of the sea. No one will come on the Day of Resurrection with anything better than what he came with, except for someone who said the same or more.",
+            100,
+            "Muslim",
+            "Morning Adhkar"
+        ],
+        [
+            "Morning Adhkar",
+            "I seek Allah's forgiveness and repent to Him.",
+            "One hundred good deeds, one hundred bad deeds are erased from him, and it is a protection for him from Satan until evening.",
+            100,
+            "Al-Bukhari",
+            "Morning Adhkar"
+        ],
+        [
+            "Evening Remembrances",
+            "I seek refuge in Allah from Satan, the rejected.\nAllah! There is no god but He, the Ever-Living, the Sustainer of [all] existence. Neither slumber overtakes Him nor sleep. To Him belongs whatever is in the heavens and whatever is on the earth. Who is it that can intercede with Him except by His permission? He knows what is [presently] before them and what will be after them, and they encompass not a thing of His knowledge except for what He wills. His Kursi extends over the heavens and the earth, and their preservation tires Him not. And He is the Most High, the Most Great.",
+            "Whoever recites it in the morning will be protected from the jinn until evening, and whoever recites it in the evening will be protected from the jinn until morning.",
+            1,
+            "Ayat al-Kursi - Surah Al-Baqarah 255",
+            "Evening Remembrances"
+        ],
+        [
+            "أذكار المساء",
+            "أَعُوذُ بِاللهِ مِنْ الشَّيْطَانِ الرَّجِيمِ\nآمَنَ الرَّسُولُ بِمَا أُنْزِلَ إِلَيْهِ مِنْ رَبِّهِ وَالْمُؤْمِنُونَ ۚ كُلٌّ آمَنَ بِاللَّهِ وَمَلَائِكَتِهِ وَكُتُبِهِ وَرُسُلِهِ لَا نُفَرِّقُ بَيْنَ أَحَدٍ مِنْ رُسُلِهِ ۚ وَقَالُوا سَمِعْنَا وَأَطَعْنَا ۖ غُفْرَانَكَ رَبَّنَا وَإِلَيْكَ الْمَصِيرُ. لَا يُكَلِّفُ اللَّهُ نَفْسًا إِلَّا وُسْعَهَا لَهَا مَا كَسَبَتْ وَعَلَيْهَا مَا اكْتَسَبَتْ رَبَّنَا لَا تُؤَاخِذْنَا إِنْ نَّسِينَآ أَوْ أَخْطَأْنَا رَبَّنَا وَلَا تَحْمِلْ عَلَيْنَا إِصْرًا كَمَا حَمَلْتَهُ عَلَى الَّذِينَ مِنْ قَبْلِنَا رَبَّنَا وَلَا تُحَمِّلْنَا مَا لَا طَاقَةَ لَنَا بِهِ وَاعْفُ عَنَّا وَاغْفِرْ لَنَا وَارْحَمْنَا أَنْتَ مَوْلَانَا فَانْصُرْنَا عَلَى الْقَوْمِ الْكَافِرِينَ.",
+            "من قرأ آيتين من آخر سورة البقرة في ليلة كفتاه.",
+            1,
+            "سورة البقرة 285 - 286",
+            "أذكار المساء"
+        ],
+        [
+            "Evening Adhkar",
+            "In the Name of Allah, the Most Gracious, the Most Merciful. Say, 'He is Allah, [who is] One, Allah, the Eternal Refuge. He neither begets nor is born, Nor is there to Him any equivalent.'",
+            "Whoever recites them in the morning and in the evening, they will suffice him against everything (Al-Ikhlas and Al-Mu'awwidhatayn).",
+            3,
+            "Surah Al-Ikhlas",
+            "Evening Adhkar"
+        ],
+        [
+            "Evening Adhkar",
+            "In the Name of Allah, the Most Gracious, the Most Merciful. Say, 'I seek refuge in the Lord of daybreak, from the evil of what He has created, and from the evil of darkness when it settles, and from the evil of the blowers in knots, and from the evil of an envier when he envies.'",
+            "",
+            3,
+            "Surah Al-Falaq",
+            "Evening Adhkar"
+        ],
+        [
+            "Evening Adhkar",
+            "In the Name of Allah, the Most Gracious, the Most Merciful.\nSay, 'I seek refuge in the Lord of mankind, The Sovereign of mankind, The God of mankind, From the evil of the retreating whisperer – Who whispers into the chests of mankind – From among the jinn and mankind.'",
+            "",
+            3,
+            "Surah An-Nas",
+            "Evening Adhkar"
+        ],
+        [
+            "Evening Adhkar",
+            "We have entered the evening, and with it, the dominion belongs to Allah, and all praise is due to Allah. There is no deity worthy of worship except Allah, alone, without any partner. To Him belongs all sovereignty and all praise, and He is over all things competent. My Lord, I ask You for the good of this night and the good of what comes after it. And I seek refuge in You from the evil of this night and the evil of what comes after it. My Lord, I seek refuge in You from laziness and the trials of old age. My Lord, I seek refuge in You from the torment of the Fire and the torment of the grave.",
+            "",
+            1,
+            "Sahih Muslim",
+            "Evening Adhkar"
+        ],
+        [
+            "Evening Adhkar",
+            "O Allah, You are my Lord. There is no god worthy of worship except You. You created me, and I am Your slave, and I am upon Your covenant and Your promise as much as I am able. I seek refuge in You from the evil of what I have done. I acknowledge Your favor upon me, and I acknowledge my sin. So forgive me, for indeed, none forgives sins except You.",
+            "Whoever says this with certainty in it when he reaches the evening and dies that night, he will enter Paradise. And similarly when he reaches the morning.",
+            1,
+            "Al-Bukhari",
+            "Evening Adhkar"
+        ],
+        [
+            "Evening Adhkar",
+            "I am pleased with Allah as my Lord, with Islam as my religion, and with Muhammad (peace and blessings of Allah be upon him) as my Prophet.",
+            "Whoever says this in the morning and in the evening, it is a right upon Allah to please him on the Day of Resurrection.",
+            3,
+            "Ahmad",
+            "Evening Adhkar"
+        ],
+        [
+            "Evening Adhkar",
+            "O Allah, I have reached the evening and I bear witness to You, and I bear witness to the bearers of Your Throne, Your angels, and all of Your creation, that You are Allah, there is no deity worthy of worship except You alone, without any partner, and that Muhammad is Your servant and Your Messenger.",
+            "Whoever says this, Allah will free him from the Hellfire.",
+            4,
+            "Abu Dawud",
+            "Evening Adhkar"
+        ],
+        [
+            "Evening Adhkar",
+            "O Allah, whatever blessing has come to me this evening or to any of Your creation, it is from You alone, You have no partner. So to You belongs all praise and to You belongs all thanks.",
+            "Whoever says this in the evening will have fulfilled the thanks for his day.",
+            1,
+            "Abu Dawud",
+            "Evening Adhkar"
+        ],
+        [
+            "Evening Adhkar",
+            "Allah is sufficient for me. There is no deity worthy of worship except Him. Upon Him I have relied, and He is the Lord of the Great Throne.",
+            "Whoever says it, Allah will suffice him from whatever worries him regarding the affairs of this world and the Hereafter.",
+            7,
+            "Ibn Al-Sunni",
+            "Evening Adhkar"
+        ],
+        [
+            "Evening Adhkar",
+            "In the Name of Allah, with Whose Name nothing on earth or in the heavens can cause harm, and He is the All-Hearing, the All-Knowing.",
+            "Nothing from Allah will harm him.",
+            3,
+            "Ibn Majah",
+            "Evening Adhkar"
+        ],
+        [
+            "Evening Adhkar",
+            "O Allah, by Your grace we have entered the evening, and by Your grace we have entered the morning; by Your grace we live, and by Your grace we die, and to You is the final return.",
+            "",
+            1,
+            "At-Tirmidhi",
+            "Evening Adhkar"
+        ],
+        [
+            "Evening Adhkar",
+            "We have entered the evening upon the natural disposition of Islam, and upon the word of sincerity (Kalimat al-Ikhlas), and upon the religion of our Prophet Muhammad (peace and blessings of Allah be upon him), and upon the creed of our father Ibrahim, a pure monotheist, a Muslim, and he was not of the polytheists.",
+            "",
+            1,
+            "Ahmad",
+            "Evening Adhkar"
+        ],
+        [
+            "Evening Adhkar",
+            "Glory be to Allah and praise be to Him, as many times as the number of His creation, as much as pleases Him, as much as the weight of His Throne, and as much as the ink of His words.",
+            "",
+            3,
+            "Muslim",
+            "Evening Adhkar"
+        ],
+        [
+            "Evening Adhkar",
+            "O Allah, grant me well-being in my body. O Allah, grant me well-being in my hearing. O Allah, grant me well-being in my sight. None has the right to be worshipped except You.",
+            "",
+            3,
+            "Ahmad",
+            "Evening Adhkar"
+        ],
+        [
+            "Evening Remembrances",
+            "O Allah, I seek refuge in You from disbelief and poverty, and I seek refuge in You from the torment of the grave. There is no deity worthy of worship except You.",
+            "",
+            3,
+            "",
+            "Evening Remembrances"
+        ],
+        [
+            "Evening Adhkar",
+            "O Allah, I ask You for forgiveness and well-being in this world and the Hereafter. O Allah, I ask You for forgiveness and well-being in my religion, my worldly affairs, my family, and my wealth. O Allah, conceal my faults and calm my fears. O Allah, protect me from in front of me and from behind me, from my right and from my left, and from above me. And I seek refuge in Your Greatness from being unexpectedly destroyed from beneath me.",
+            "",
+            1,
+            "Abu Dawud",
+            "Evening Adhkar"
+        ],
+        [
+            "Evening Adhkar",
+            "O Ever-Living, O Self-Subsisting, by Your mercy I seek assistance; rectify for me all my affairs and do not entrust me to my soul for the blink of an eye.",
+            "",
+            3,
+            "At-Tirmidhi",
+            "Evening Adhkar"
+        ],
+        [
+            "Evening Adhkar",
+            "We have entered the evening, and the dominion belongs to Allah, Lord of the worlds. O Allah, I ask You for the good of this night: its opening, its victory, its light, its blessings, and its guidance. And I seek refuge in You from the evil of what is in it and the evil of what comes after it.",
+            "",
+            1,
+            "Abu Dawud",
+            "Evening Adhkar"
+        ],
+        [
+            "Evening Adhkar",
+            "O Allah, Knower of the unseen and the seen, Creator of the heavens and the earth, Lord of everything and its Sovereign. I bear witness that there is no god worthy of worship except You. I seek refuge in You from the evil of my soul, and from the evil of Satan and his shirk, and from committing any evil against myself or bringing it upon a Muslim.",
+            "",
+            1,
+            "At-Tirmidhi",
+            "Evening Adhkar"
+        ],
+        [
+            "Evening Adhkar",
+            "I seek refuge in the perfect words of Allah from the evil of what He has created.",
+            "",
+            3,
+            "",
+            "Evening Adhkar"
+        ],
+        [
+            "Evening Adhkar",
+            "O Allah, bestow Your prayers, peace, and blessings upon our Prophet Muhammad.",
+            "Whoever sends prayers upon me in the morning and in the evening will receive my intercession on the Day of Resurrection.",
+            10,
+            "Al-Tabarani",
+            "Evening Adhkar"
+        ],
+        [
+            "Evening Adhkar",
+            "O Allah, we seek refuge in You from associating anything with You knowingly, and we seek Your forgiveness for what we do not know.",
+            "",
+            3,
+            "",
+            "Evening Adhkar"
+        ],
+        [
+            "Evening Adhkar",
+            "O Allah, I seek refuge in You from anxiety and sorrow, and I seek refuge in You from helplessness and laziness, and I seek refuge in You from cowardice and miserliness, and I seek refuge in You from the burden of debt and from being overpowered by men.",
+            "",
+            3,
+            "Abu Dawud",
+            "Evening Adhkar"
+        ],
+        [
+            "Evening Adhkar",
+            "I seek forgiveness from Allah, the Most Great, Whom there is no deity except Him, the Ever-Living, the Sustainer of all existence, and I repent to Him.",
+            "",
+            3,
+            "",
+            "Evening Adhkar"
+        ],
+        [
+            "Evening Adhkar",
+            "O my Lord, to You belongs all praise as befits the Majesty of Your Countenance and the Greatness of Your Sovereignty.",
+            "",
+            3,
+            "",
+            "Evening Adhkar"
+        ],
+        [
+            "Evening Adhkar",
+            "There is no deity worthy of worship except Allah, alone, He has no partner. To Him belongs all sovereignty and to Him belongs all praise, and He is over all things All-Powerful.",
+            "It was for him like freeing ten slaves, and one hundred good deeds were written for him, and one hundred bad deeds were erased from him, and it was a protection for him from Satan.",
+            100,
+            "At-Tirmidhi",
+            "Evening Adhkar"
+        ],
+        [
+            "Evening Adhkar",
+            "O Allah, You are my Lord, there is no deity worthy of worship except You. Upon You I have relied, and You are the Lord of the Magnificent Throne. What Allah wills occurs, and what He does not will does not occur. There is no might nor power except with Allah, the Most High, the Most Great. I know that Allah is over all things competent, and that Allah has encompassed all things in knowledge. O Allah, I seek refuge in You from the evil of my soul, and from the evil of every creature You hold by its forelock. Indeed, my Lord is on a straight path.",
+            "A virtuous remembrance.",
+            1,
+            "",
+            "Evening Adhkar"
+        ],
+        [
+            "Evening Adhkar",
+            "Subhan Allah wa bihamdihi. (Glorified is Allah and praised is He.)",
+            "His sins will be forgiven, even if they were like the foam of the sea. No one will come on the Day of Resurrection with anything better than what he came with, except for someone who said the same as he said or added to it.",
+            100,
+            "Muslim",
+            "Evening Adhkar"
+        ],
+        [
+            "Adhkar upon Waking Up",
+            "All praise is due to Allah Who gave us life after He had caused us to die, and to Him is the resurrection.",
+            "",
+            "",
+            "",
+            "Adhkar upon Waking Up"
+        ],
+        [
+            "Adhkar upon Waking Up",
+            "There is no deity worthy of worship except Allah, alone, without partner. To Him belongs sovereignty and to Him belongs all praise, and He is over all things competent. Glorified be Allah, and all praise is due to Allah, and there is no deity worthy of worship except Allah, and Allah is the Greatest. And there is no might nor power except with Allah, the Most High, the Most Magnificent. My Lord, forgive me.",
+            "",
+            "",
+            "",
+            "Adhkar upon Waking Up"
+        ],
+        [
+            "Adhkar for Waking Up",
+            "All praise is due to Allah Who granted me well-being in my body, returned my soul to me, and permitted me to remember Him.",
+            "",
+            0,
+            "",
+            "Adhkar for Waking Up"
+        ],
+        [
+            "أذكار الاستيقاظ من النوم",
+            "﴿ إِنَّ فِي خَلْقِ السَّمَوَاتِ وَالأَرْضِ وَاخْتِلاَفِ اللَّيْلِ وَالنَّهَارِ لَآيَاتٍ لأُوْلِي الألْبَابِ * الَّذِينَ يَذْكُرُونَ اللَّهَ قِيَاماً وَقُعُوداً وَعَلَىَ جُنُوبِهِمْ وَيَتَفَكَّرُونَ فِي خَلْقِ السَّمَوَاتِ وَالأَرْضِ رَبَّنَا مَا خَلَقْتَ هَذا بَاطِلاً سُبْحَانَكَ فَقِنَا عَذَابَ النَّارِ* رَبَّنَا إِنَّكَ مَن تُدْخِلِ النَّارَ فَقَدْ أَخْزَيْتَهُ وَمَا لِلظَّالِمِينَ مِنْ أَنصَارٍ* رَّبَّنَا إِنَّنَا سَمِعْنَا مُنَادِياً يُنَادِي لِلإِيمَانِ أَنْ آمِنُواْ بِرَبِّكُمْ فَآمَنَّا رَبَّنَا فَاغْفِرْ لَنَا ذُنُوبَنَا وَكَفِّرْ عَنَّا سَيِّئَاتِنَا وَتَوَفَّنَا مَعَ الأبْرَارِ* رَبَّنَا وَآتِنَا مَا وَعَدتَّنَا عَلَى رُسُلِكَ وَلاَ تُخْزِنَا يَوْمَ الْقِيَامَةِ إِنَّكَ لاَ تُخْلِفُ الْمِيعَادَ* فَاسْتَجَابَ لَهُمْ رَبُّهُمْ أَنِّي لاَ أُضِيعُ عَمَلَ عَامِلٍ مِّنكُم مِّن ذَكَرٍ أَوْ أُنثَى بَعْضُكُم مِّن بَعْضٍ فَالَّذِينَ هَاجَرُواْ وَأُخْرِجُواْ مِن دِيَارِهِمْ وَأُوذُواْ فِي سَبِيلِي وَقَاتَلُواْ وَقُتِلُواْ لأُكَفِّرَنَّ عَنْهُمْ سَيِّئَاتِهِمْ وَلأُدْخِلَنَّهُمْ جَنَّاتٍ تَجْرِي مِن تَحْتِهَا الأَنْهَارُ ثَوَاباً مِّن عِندِ اللَّهِ وَاللَّهُ عِندَهُ حُسْنُ الثَّوَابِ * لاَ يَغُرَّنَّكَ تَقَلُّبُ الَّذِينَ كَفَرُواْ فِي الْبِلاَدِ * مَتَاعٌ قَلِيلٌ ثُمَّ مَأْوَاهُمْ جَهَنَّمُ وَبِئْسَ الْمِهَادُ * لَكِنِ الَّذِينَ اتَّقَوْاْ رَبَّهُمْ لَهُمْ جَنَّاتٌ تَجْرِي مِنْ تَحْتِهَا الأَنْهَارُ خَالِدِينَ فِيهَا نُزُلاً مِّنْ عِندِ اللَّهِ وَمَا عِندَ اللَّهِ خَيْرٌ لِّلأَبْرَارِ * وَإِنَّ مِنْ أَهْلِ الْكِتَابِ لَمَن يُؤْمِنُ بِاللَّهِ وَمَا أُنزِلَ إِلَيْكُمْ وَمَآ أُنزِلَ إِلَيْهِمْ خَاشِعِينَ لِلَّهِ لاَ يَشْتَرُونَ بِآيَاتِ اللَّهِ ثَمَناً قَلِيلاً أُوْلَئِكَ لَهُمْ أَجْرُهُمْ عِندَ رَبِّهِمْ إِنَّ اللَّهَ سَرِيعُ الْحِسَابِ*يَا أَيُّهَا الَّذِينَ آمَنُواْ اصْبِرُواْ وَصَابِرُواْ وَرَابِطُواْ وَاتَّقُواْ اللَّهَ لَعَلَّكُمْ تُفْلِحُونَ ﴾",
+            "",
+            "",
+            "",
+            "أذكار الاستيقاظ من النوم"
+        ],
+        [
+            "Supplication for Wearing a Garment",
+            "All praise is due to Allah Who clothed me with this (garment) and provided it for me, without any strength or power from me.",
+            "",
+            "",
+            "",
+            "Supplication for Wearing a Garment - clothes garments attire"
+        ],
+        [
+            "Dua for Wearing New Clothes",
+            "O Allah, all praise is due to You. You have clothed me with it. I ask You for its goodness and the goodness for which it was made, and I seek refuge in You from its evil and the evil for which it was made.",
+            "",
+            "",
+            "",
+            "Dua for Wearing New Clothes - clothes, garments, attire"
+        ],
+        [
+            "Supplication for Wearing New Clothes",
+            "May you wear it out, and may Allah Most High replace it (with something better).",
+            "",
+            "",
+            "",
+            "Supplication for Wearing New Clothes - clothes garments attire"
+        ],
+        [
+            "Dua for Wearing New Clothes",
+            "(Wear new clothes, live a praiseworthy life, and die as a martyr).",
+            "",
+            "",
+            "",
+            "Dua for Wearing New Clothes - clothes garments attire"
+        ],
+        [
+            "What to say when putting on a garment",
+            "In the Name of Allah.",
+            "",
+            0,
+            "",
+            "What to say when putting on a garment - clothes garments attire"
+        ],
+        [
+            "Dua for Entering the Toilet",
+            "[In the name of Allah] O Allah, I seek refuge in You from the male and female evil spirits (devils).",
+            "",
+            "",
+            "",
+            "Dua for entering the toilet - Bathroom, Restroom, Toilet"
+        ],
+        [
+            "Supplication upon leaving the restroom",
+            "(I seek Your forgiveness.)",
+            "",
+            0,
+            "",
+            "Supplication upon leaving the restroom - Bathroom toilet lavatory"
+        ],
+        [
+            "Remembrance before Wudu",
+            "(In the Name of Allah).",
+            "",
+            "",
+            "",
+            "Remembrance before Wudu"
+        ],
+        [
+            "Remembrance after completing Wudu'",
+            "I bear witness that there is no deity worthy of worship except Allah, He is One, without partner, and I bear witness that Muhammad is His servant and Messenger.",
+            "",
+            0,
+            "",
+            "Remembrance after completing Wudu'"
+        ],
+        [
+            "Dhikr after completing Wudu",
+            "O Allah, make me among those who repent and make me among those who purify themselves.",
+            "",
+            0,
+            "",
+            "Dhikr after completing Wudu"
+        ],
+        [
+            "Remembrance after completing Wudu",
+            "Glorified are You, O Allah, and with Your praise. I bear witness that there is no deity worthy of worship except You. I seek Your forgiveness and repent to You.",
+            "",
+            "",
+            "",
+            "Remembrance after completing Wudu"
+        ],
+        [
+            "Remembrance upon leaving the house",
+            "In the Name of Allah, I have placed my trust in Allah; there is no might and no power except with Allah.",
+            "",
+            "",
+            "",
+            "Remembrance upon leaving the house - Home Apartment Residence"
+        ],
+        [
+            "Remembrance upon leaving the home",
+            "(O Allah, I seek refuge in You lest I go astray or be led astray, or slip (into error) or be made to slip, or oppress or be oppressed, or act ignorantly or have ignorance acted upon me.)",
+            "",
+            0,
+            "",
+            "Remembrance upon leaving the home - House Apartment Residence"
+        ],
+        [
+            "Remembrance upon entering the home",
+            "In the Name of Allah we enter, and in the Name of Allah we exit, and upon Allah, our Lord, we rely. Then let him greet his family.",
+            "",
+            "",
+            "",
+            "Remembrance upon entering the home - House Apartment Residence"
+        ],
+        [
+            "Dua for Going to the Mosque",
+            "O Allah, place light in my heart, and light in my tongue, and light in my hearing, and light in my sight, and light above me, and light below me, and light on my right, and light on my left, and light in front of me, and light behind me, and place light in my soul, and magnify light for me, and make great light for me, and make light for me, and make me light. O Allah, grant me light, and place light in my nerves, and in my flesh, and in my blood, and in my hair, and in my skin. (O Allah, make light for me in my grave... and light in my bones.) (And increase me in light, and increase me in light, and increase me in light.) (And grant me light upon light.)",
+            "",
+            "",
+            "",
+            "Dua for Going to the Mosque - The Mosque"
+        ],
+        [
+            "Dua for Entering the Mosque",
+            "(He starts with his right foot) and says: ((I seek refuge in Allah, the Almighty, and in His Noble Countenance, and in His Eternal Dominion, from the accursed Shaitan.)) [In the Name of Allah, and blessings] [and peace be upon the Messenger of Allah.] ((O Allah, open for me the gates of Your Mercy.))",
+            "",
+            "",
+            "",
+            "Dua for Entering the Mosque - Jami'"
+        ],
+        [
+            "Supplication upon leaving the mosque",
+            "((He should start with his left foot)) and say: ((In the Name of Allah, and prayers and peace be upon the Messenger of Allah. O Allah, I ask You from Your bounty. O Allah, protect me from the accursed Shaitan.))",
+            "",
+            0,
+            "",
+            "Supplication upon leaving the mosque - Al-Jami'"
+        ],
+        [
+            "Adhkar of the Adhan",
+            "One should repeat what the Mu'adhdhin says, except when he says 'Hayya 'ala As-Salah (Come to prayer)' and 'Hayya 'ala Al-Falah (Come to success)', at which point one should say: 'La hawla wa la quwwata illa billah (There is no might nor power except with Allah).'",
+            "",
+            "",
+            "",
+            "Adhkar of the Adhan - Adhan"
+        ],
+        [
+            "Remembrances of the Adhan",
+            "One says: 'And I bear witness that there is no deity worthy of worship except Allah, alone, without partner, and that Muhammad is His slave and His Messenger. I am pleased with Allah as my Lord, and with Muhammad as a Messenger, and with Islam as a religion.' (One says this immediately after the Mu'adhdhin's declaration of faith).",
+            "",
+            "",
+            "",
+            "Remembrances of the Adhan - Adhan"
+        ],
+        [
+            "Remembrances of the Adhan",
+            "He sends blessings upon the Prophet (peace be upon him) after he finishes responding to the Mu'adhdhin.",
+            "",
+            "",
+            "",
+            "Remembrances of the Adhan - Adhan"
+        ],
+        [
+            "Supplications after the Adhan",
+            "One says: 'O Allah, Lord of this perfect call (Adhan) and of the established prayer, grant Muhammad Al-Wasilah and Al-Fadheelah, and raise him to the praised station (Maqam Mahmud) which You have promised him. [Verily, You do not break Your promise.]'",
+            "",
+            "",
+            "",
+            "Supplications after the Adhan - Adhan"
+        ],
+        [
+            "Adhkar of the Adhan",
+            "One should supplicate for oneself between the Adhan and the Iqamah, for indeed, supplication at that time is not rejected.",
+            "",
+            "",
+            "",
+            "Adhkar of the Adhan - Adhan"
+        ],
+        [
+            "Du'a al-Istiftah",
+            "O Allah, distance me from my sins as You have distanced the East and the West. O Allah, purify me from my sins as a white garment is purified from dirt. O Allah, wash away my sins with snow, water, and hail.",
+            "",
+            "",
+            "",
+            "Du'a al-Istiftah - Prayer - Salah"
+        ],
+        [
+            "Opening Supplication (Du'a al-Istiftah)",
+            "((How perfect You are, O Allah, and praise be to You. Blessed is Your Name, and exalted is Your Majesty, and there is no god worthy of worship except You.))",
+            "",
+            "",
+            "",
+            "Opening Supplication - Prayer Salah"
+        ],
+        [
+            "Opening Supplication (Du'a al-Istiftah)",
+            "((I have turned my face sincerely towards Him Who originated the heavens and the earth, and I am not of the polytheists. Indeed, my prayer, my rites of sacrifice, my living and my dying are for Allah, Lord of the worlds. No partner has He. With this I have been commanded, and I am of the Muslims. O Allah, You are the Sovereign, there is no deity except You. You are my Lord and I am Your slave. I have wronged myself, and I have acknowledged my sin, so forgive me all my sins. Indeed, none forgives sins except You. And guide me to the best of characters, for none guides to the best of them except You. And turn away from me the evil of them, for none turns away the evil of them except You. I respond to Your call and am at Your service. All good is in Your hands, and evil is not attributed to You. I exist by You and return to You. Blessed are You and Exalted. I seek Your forgiveness and repent to You.))",
+            "",
+            0,
+            "",
+            "Opening Supplication (Du'a al-Istiftah) - Salat"
+        ],
+        [
+            "Opening Supplication",
+            "O Allah, Lord of Jibreel, Mika'eel, and Israfeel, Originator of the heavens and the earth, Knower of the unseen and the seen. You judge between Your servants concerning that wherein they differ. Guide me to the truth concerning that wherein they differed, by Your permission. Verily, You guide whom You will to a straight path.",
+            "",
+            "",
+            "",
+            "Opening Supplication - Prayer Salat"
+        ],
+        [
+            "Du'a al-Istiftah",
+            "((Allah is Most Great, greatly. Allah is Most Great, greatly. Allah is Most Great, greatly. And praise be to Allah abundantly. And praise be to Allah abundantly. And praise be to Allah abundantly. And glory be to Allah in the morning and in the evening.)) (Recited three times). ((I seek refuge with Allah from Satan: from his blowing (into pride), his spitting (into evil poetry/magic), and his evil suggestions (leading to madness).))",
+            "",
+            1,
+            "",
+            "Du'a al-Istiftah - Prayer Salat"
+        ],
+        [
+            "Opening Supplication",
+            "((O Allah, to You belongs all praise, You are the Light of the heavens and the earth and all who are in them, and to You belongs all praise, You are the Sustainer of the heavens and the earth and all who are in them, [and to You belongs all praise, You are the Lord of the heavens and the earth and all who are in them] [and to You belongs all praise, Yours is the dominion of the heavens and the earth and all who are in them] [and to You belongs all praise, You are the Sovereign of the heavens and the earth] [and to You belongs all praise] [You are the Truth, Your promise is true, Your word is true, the meeting with You is true, Paradise is true, Hellfire is true, the Prophets are true, Muhammad (peace and blessings of Allah be upon him) is true, and the Hour is true] [O Allah, to You I have submitted, in You I have placed my trust, in You I have believed, to You I have turned in repentance, by Your help I have disputed, and to You I have referred for judgment. So forgive me what I have sent forth and what I have held back, what I have concealed and what I have declared] [and what You know better than I] [You are the One Who brings forward, and You are the One Who delays. There is no deity worthy of worship except You] [You are my God, there is no deity worthy of worship except You] [and there is no might nor power except with Allah])).",
+            "",
+            0,
+            "",
+            "Opening Supplication - Prayer Salat"
+        ],
+        [
+            "Du'a of Ruku'",
+            "((Subhan Rabbi al-Azeem)). Three times.",
+            "",
+            3,
+            "",
+            "Du'a of Ruku' - Salat Prayer"
+        ],
+        [
+            "Supplication for Ruku'",
+            "How perfect You are, O Allah, our Lord, and praise is to You. O Allah, forgive me.",
+            "",
+            0,
+            "",
+            "Supplication for Ruku' - Prayer Salat"
+        ],
+        [
+            "Dua for Ruku'",
+            "((Perfectly Glorified, Perfectly Holy, Lord of the angels and the Spirit)).",
+            "",
+            "",
+            "",
+            "Dua for Ruku' - Salat Salat"
+        ],
+        [
+            "Du'a for Ruku'",
+            "((O Allah, to You I have bowed, and in You I have believed, and to You I have submitted. My hearing, my sight, my brain, my bones, my nerves, and all that my feet have carried have humbled themselves before You.))",
+            "",
+            "",
+            "",
+            "Du'a for Ruku' - Prayer"
+        ],
+        [
+            "Dua for Ruku'",
+            "Glory be to the Possessor of Absolute Power, Sovereignty, Grandeur, and Magnificence.",
+            "",
+            0,
+            "",
+            "Dua for Ruku' - Salat"
+        ],
+        [
+            "Supplication upon rising from Ruku'",
+            "Allah hears those who praise Him.",
+            "",
+            "",
+            "",
+            "Supplication upon rising from Ruku' - Prayer Prayer"
+        ],
+        [
+            "Supplication upon rising from Ruku'",
+            "((Our Lord, and to You be all praise, abundant, good, and blessed praise)).",
+            "",
+            "",
+            "",
+            "Supplication upon rising from Ruku' - Prayer"
+        ],
+        [
+            "Supplication upon rising from Ruku'",
+            "((Filling the heavens and filling the earth, and what is between them, and filling whatever else You wish. O You Who are worthy of praise and glory, the truest thing a servant has said, and we are all Your servants. O Allah, there is none to withhold what You have given, and none to give what You have withheld, and the good fortune of the fortunate will not avail them against You.))",
+            "",
+            0,
+            "",
+            "Supplication upon rising from Ruku' - Prayer Prayer"
+        ],
+        [
+            "Dua of Prostration",
+            "((Glory be to my Lord, the Most High)) three times.",
+            "",
+            "",
+            "",
+            "Dua of Prostration - Prayer"
+        ],
+        [
+            "Supplication in Prostration",
+            "Glory be to You, O Allah, our Lord, and with Your praise. O Allah, forgive me.",
+            "",
+            0,
+            "",
+            "Supplication in Prostration - Prayer Salat"
+        ],
+        [
+            "Dua of Sujood",
+            "Perfectly Glorified, Perfectly Holy, Lord of the angels and the Spirit.",
+            "",
+            "",
+            "",
+            "Dua of Sujood - Prayer Salat"
+        ],
+        [
+            "Du'a of Sujood",
+            "O Allah, to You I have prostrated, in You I have believed, and to You I have submitted. My face has prostrated to the One Who created it, fashioned it, and gave it its hearing and sight. Blessed is Allah, the Best of creators.",
+            "",
+            "",
+            "",
+            "Du'a of Sujood - Prayer"
+        ],
+        [
+            "Du'a of Prostration",
+            "((Glory be to the Possessor of absolute power, sovereignty, grandeur, and magnificence)).",
+            "",
+            0,
+            "",
+            "Du'a of Prostration - Salat Salat"
+        ],
+        [
+            "Supplication in Prostration",
+            "O Allah, forgive all my sins: their minor and major, their first and last, their apparent and hidden.",
+            "",
+            "",
+            "",
+            "Supplication in Prostration - Prayer Prayer"
+        ],
+        [
+            "Supplication in Prostration",
+            "O Allah, I seek refuge in Your pleasure from Your wrath, and in Your forgiveness from Your punishment, and I seek refuge in You from You. I cannot enumerate Your praises; You are as You have praised Yourself.",
+            "",
+            "",
+            "",
+            "Supplication in Prostration - Prayer Salat"
+        ],
+        [
+            "Dua between the two prostrations",
+            "((My Lord, forgive me, My Lord, forgive me)).",
+            "",
+            "",
+            "",
+            "Dua between the two prostrations - Prayer Salah"
+        ],
+        [
+            "Dua for the sitting between the two prostrations",
+            "O Allah, forgive me, and have mercy on me, and guide me, and set me right, and grant me well-being, and provide for me, and elevate my status.",
+            "",
+            "",
+            "",
+            "Dua for the sitting between the two prostrations - Salah"
+        ],
+        [
+            "Dua for Sujud At-Tilawah",
+            "((My face has prostrated to the One Who created it, and fashioned its hearing and sight by His might and power. So blessed is Allah, the best of creators.))",
+            "",
+            "",
+            "",
+            "Dua for Sujud At-Tilawah - Recitation"
+        ],
+        [
+            "Dua for the Prostration of Recitation",
+            "((O Allah, grant me by it a reward with You, and remove from me by it a burden (of sin), and make it for me a treasure with You, and accept it from me just as You accepted it from Your servant Dawud (David))).",
+            "",
+            "",
+            "",
+            "Dua for Sujud At-Tilawah - Recitation"
+        ],
+        [
+            "At-Tashahhud",
+            "All compliments, prayers, and good things are for Allah. Peace be upon you, O Prophet, and the mercy of Allah and His blessings. Peace be upon us and upon the righteous servants of Allah. I bear witness that there is no deity worthy of worship except Allah, and I bear witness that Muhammad is His servant and His Messenger.",
+            "",
+            0,
+            "",
+            "Tashahhud - Prayer"
+        ],
+        [
+            "Salawat upon the Prophet after Tashahhud",
+            "O Allah, send Your blessings upon Muhammad and upon the family of Muhammad, as You sent Your blessings upon Ibrahim and upon the family of Ibrahim. Indeed, You are Praiseworthy and Glorious. O Allah, bestow Your grace upon Muhammad and upon the family of Muhammad, as You bestowed Your grace upon Ibrahim and upon the family of Ibrahim. Indeed, You are Praiseworthy and Glorious.",
+            "",
+            "",
+            "",
+            "Salawat upon the Prophet after Tashahhud - Salawat Prayer"
+        ],
+        [
+            "Sending Blessings upon the Prophet after Tashahhud",
+            "((O Allah, send Your blessings upon Muhammad and upon his wives and his offspring, as You sent Your blessings upon the family of Ibrahim (Abraham). And bestow Your grace upon Muhammad and upon his wives and his offspring, as You bestowed Your grace upon the family of Ibrahim (Abraham). Indeed, You are Praiseworthy and Glorious.))",
+            "",
+            0,
+            "",
+            "Sending Blessings upon the Prophet after Tashahhud - Salawat Salawat"
+        ],
+        [
+            "Supplication after the Final Tashahhud, before the Tasleem",
+            "O Allah, I seek refuge in You from the torment of the grave, and from the torment of Hellfire, and from the trials of life and death, and from the evil of the trial of the Dajjal (Antichrist).",
+            "",
+            "",
+            "",
+            "Supplication after the Final Tashahhud, before the Tasleem - Prayer Salah"
+        ],
+        [
+            "Supplication after the Last Tashahhud before the Tasleem",
+            "O Allah, I seek refuge in You from the torment of the grave, and I seek refuge in You from the trial of Al-Masih Ad-Dajjal (the Antichrist), and I seek refuge in You from the trials of life and death. O Allah, I seek refuge in You from sin and debt.",
+            "",
+            "",
+            "",
+            "Supplication after the Final Tashahhud before the Tasleem - Prayer Salat"
+        ],
+        [
+            "Supplication after the Final Tashahhud before the Salaam",
+            "O Allah, I have wronged myself greatly, and none forgives sins except You. So grant me forgiveness from You and have mercy upon me. Indeed, You are the All-Forgiving, the Most Merciful.",
+            "",
+            "",
+            "",
+            "Supplication after the Final Tashahhud before the Salaam - Prayer"
+        ],
+        [
+            "Supplication after the last Tashahhud before the Tasleem",
+            "((O Allah, forgive me for what I have put forward and what I have delayed, and what I have concealed and what I have made public, and what I have exceeded in, and what You are more knowledgeable of than me. You are Al-Muqaddim (The Advancer), and You are Al-Mu'akhkhir (The Delayer). There is no deity worthy of worship except You.))",
+            "",
+            "",
+            "",
+            "Supplication after the last Tashahhud before the Tasleem - Prayer - Salat"
+        ],
+        [
+            "Supplication after the last Tashahhud, before the Tasleem",
+            "O Allah, help me to remember You, to thank You, and to worship You well.",
+            "",
+            "",
+            "",
+            "Supplication after the last Tashahhud, before the Tasleem - Prayer Salat"
+        ],
+        [
+            "Supplication after the last Tashahhud before the Tasleem",
+            "O Allah, I seek refuge in You from stinginess, and I seek refuge in You from cowardice, and I seek refuge in You from being returned to the most decrepit age, and I seek refuge in You from the trials of this world and the torment of the grave.",
+            "",
+            "",
+            "",
+            "Supplication after the last Tashahhud before the Tasleem - Prayer Salat"
+        ],
+        [
+            "Supplication after the final Tashahhud before the Tasleem",
+            "O Allah, I ask You for Paradise and I seek refuge in You from the Fire.",
+            "",
+            "",
+            "",
+            "Supplication after the final Tashahhud before the Tasleem - Prayer Prayer"
+        ],
+        [
+            "Supplication after the last Tashahhud before the Tasleem",
+            "((O Allah, by Your knowledge of the Unseen and Your power over creation, keep me alive as long as You know life is better for me, and cause me to die when You know death is better for me. O Allah, I ask You for Your awe in the unseen and the seen, and I ask You for the word of truth in contentment and anger, and I ask You for moderation in wealth and poverty, and I ask You for blessings that never cease, and I ask You for comfort of the eye that never ends, and I ask You for contentment after the decree, and I ask You for the coolness of life after death, and I ask You for the delight of looking at Your Countenance, and the longing to meet You, without a harmful adversity nor a misleading trial. O Allah, adorn us with the adornment of faith, and make us guides who are guided.))",
+            "",
+            "",
+            "",
+            "Supplication after the last Tashahhud before the Tasleem - Prayer Salat"
+        ],
+        [
+            "Supplication after the last Tashahhud, before the Tasleem",
+            "O Allah, I ask You, O Allah, by virtue of You being The One, The Unique, The Self-Sufficient Master, Who neither begets nor is begotten, and to Whom there is none co-equal or comparable. Forgive my sins, for verily You are The Oft-Forgiving, The Most Merciful.",
+            "",
+            "",
+            "",
+            "Supplication after the last Tashahhud, before the Tasleem - Prayer"
+        ],
+        [
+            "Supplication after the final Tashahhud, before the Tasleem",
+            "O Allah, I ask You by the fact that all praise is due to You, there is no deity worthy of worship except You alone, You have no partner, The Bestower of Favors, O Originator of the heavens and the earth, O Possessor of Majesty and Honor, O The Ever-Living, The Sustainer of all existence, I ask You for Paradise and I seek refuge in You from the Fire.",
+            "",
+            null,
+            "",
+            "Supplication after the final Tashahhud, before the Tasleem - Prayer Salat"
+        ],
+        [
+            "Supplication after the final Tashahhud before the Tasleem",
+            "O Allah, I ask You by virtue of my bearing witness that You are Allah, there is no deity worthy of worship except You, The One, The Self-Sufficient Master, Who neither begets nor is begotten, and to Whom there is none comparable.",
+            "",
+            0,
+            "",
+            "Supplication after the final Tashahhud before the Tasleem - Salat Salat"
+        ],
+        [
+            "Remembrance after concluding the prayer",
+            "I seek forgiveness from Allah (three times). O Allah, You are As-Salam, and from You comes all peace. Blessed are You, O Possessor of Majesty and Honor.",
+            "",
+            0,
+            "",
+            "Remembrance after concluding the prayer"
+        ],
+        [
+            "Adhkar after the Taslim of the Prayer",
+            "((There is no deity worthy of worship except Allah alone, He has no partner. To Him belongs the dominion, and to Him belongs all praise, and He is over all things competent [three times]. O Allah, there is none who can withhold what You have given, and none who can give what You have withheld, and the worldly fortune of a fortunate person will not avail him against You)).",
+            "",
+            0,
+            "",
+            "Adhkar after the Taslim of the Prayer"
+        ],
+        [
+            "Adhkar after Tasleem from Prayer",
+            "There is no deity except Allah, alone, without partner. To Him belongs sovereignty, and to Him belongs all praise, and He is over all things competent. There is no might nor power except with Allah. There is no deity except Allah, and we worship none but Him. To Him belongs all blessings, and to Him belongs all grace, and to Him belongs all good praise. There is no deity except Allah, sincere in devotion to Him, even if the disbelievers detest it.",
+            "",
+            "",
+            "",
+            "Adhkar after Tasleem from Prayer"
+        ],
+        [
+            "Remembrance after concluding the prayer",
+            "Glory be to Allah, and praise be to Allah, and Allah is the Greatest (thirty-three times). There is no deity worthy of worship except Allah, alone, without any partner. To Him belongs all sovereignty and to Him belongs all praise, and He is over all things competent.",
+            "",
+            "",
+            "",
+            "Remembrance after concluding the prayer"
+        ],
+        [
+            "Adhkar after the Salam of the Prayer",
+            "In the Name of Allah, the Most Gracious, the Most Merciful. Say, 'He is Allah, [who is] One, Allah, the Eternal Refuge. He neither begets nor is born, Nor is there to Him any equivalent.' In the Name of Allah, the Most Gracious, the Most Merciful. Say, 'I seek refuge in the Lord of daybreak From the evil of what He has created And from the evil of darkness when it settles And from the evil of the blowers in knots And from the evil of an envier when he envies.' In the Name of Allah, the Most Gracious, the Most Merciful. Say, 'I seek refuge in the Lord of mankind, The Sovereign of mankind, The God of mankind, From the evil of the retreating whisperer - Who whispers [evil] into the breasts of mankind - From among the jinn and mankind.' After every prayer.",
+            "",
+            "",
+            "",
+            "Adhkar after the Salam of the Prayer"
+        ],
+        [
+            "Adhkar after the Salaam of Prayer",
+            "Allah! There is no deity except Him, the Ever-Living, the Sustainer of [all] existence. Neither slumber nor sleep overtakes Him. To Him belongs whatever is in the heavens and whatever is on the earth. Who is it that can intercede with Him except by His permission? He knows what is [presently] before them and what will be after them, and they encompass not a thing of His knowledge except for what He wills. His Kursi (Throne) extends over the heavens and the earth, and their preservation tires Him not. And He is the Most High, the Most Great. (Recite after every prayer.)",
+            "",
+            0,
+            "Ayatul Kursi - Surah Al-Baqarah 255",
+            "Adhkar after the Salaam of Prayer"
+        ],
+        [
+            "Remembrance after Concluding the Prayer",
+            "((There is no deity worthy of worship except Allah, alone, without partner. To Him belongs all sovereignty and to Him belongs all praise. He gives life and causes death, and He is over all things competent.)) ten times after the Fajr (Dawn) and Maghrib (Sunset) prayers.",
+            "",
+            "",
+            "",
+            "Remembrance after Concluding the Prayer"
+        ],
+        [
+            "Adhkar after Concluding the Prayer",
+            "((O Allah, I ask You for beneficial knowledge, good provision, and accepted deeds)) after concluding the Fajr prayer.",
+            "",
+            "",
+            "",
+            "Adhkar after Concluding the Prayer"
+        ],
+        [
+            "Du'a of Salatul-Istikhara",
+            "Jabir ibn Abdullah (may Allah be pleased with them both) said: The Messenger of Allah (peace and blessings be upon him) used to teach us Istikhara for all matters, just as he would teach us a Surah from the Qur'an. He would say: \"If any one of you is concerned about a matter, let him pray two rak'ahs other than the obligatory prayers, then let him say: 'O Allah, I seek Your guidance by Your knowledge, and I seek Your ability by Your power, and I ask You from Your immense bounty; for You are able and I am not, You know and I do not, and You are the Knower of the unseen. O Allah, if You know that this matter - (and he would mention his need) - is good for me in my religion, my livelihood, and the outcome of my affair - or he said: in its immediate and future consequences - then decree it for me and make it easy for me, then bless me in it. And if You know that this matter is bad for me in my religion, my livelihood, and the outcome of my affair - or he said: in its immediate and future consequences - then turn it away from me and turn me away from it, and decree for me what is good wherever it may be, then make me content with it.'\" And no one regrets who seeks guidance from the Creator, consults believing creatures, and is firm in his matter. For Allah, the Exalted, said: \"And consult them in the matter. And when you have decided, then rely upon Allah.\" (Quran 3:159)",
+            "",
+            "",
+            "",
+            "Du'a of Salatul-Istikhara - Istikhara"
+        ],
+        [
+            "Adhkar for Sleep",
+            "He cups his hands together, then blows into them and recites into them: In the Name of Allah, the Most Gracious, the Most Merciful. Say, 'He is Allah, [who is] One, Allah, the Eternal Refuge. He neither begets nor is born, Nor is there to Him any equivalent.' In the Name of Allah, the Most Gracious, the Most Merciful. Say, 'I seek refuge in the Lord of daybreak From the evil of that which He created; And from the evil of darkness when it settles And from the evil of the blowers in knots And from the evil of an envier when he envies.' In the Name of Allah, the Most Gracious, the Most Merciful. Say, 'I seek refuge in the Lord of mankind, The Sovereign of mankind, The God of mankind, From the evil of the retreating whisperer - Who whispers [evil] into the breasts of mankind - From among the jinn and mankind.' Then he wipes with them (his hands) whatever he can of his body, starting with his head, his face, and the front of his body. (He does that three times).",
+            "",
+            "",
+            "",
+            "Adhkar for Sleep"
+        ],
+        [
+            "Remembrance before Sleep",
+            "Allah! There is no deity except Him, the Ever-Living, the Sustainer of [all] existence. Neither slumber nor sleep overtakes Him. To Him belongs whatever is in the heavens and whatever is on the earth. Who is it that can intercede with Him except by His permission? He knows what is [presently] before them and what will be after them, and they encompass not a thing of His knowledge except for what He wills. His Kursi (Throne) extends over the heavens and the earth, and their preservation tires Him not. And He is the Most High, the Most Great.",
+            "",
+            "",
+            "Ayatul Kursi - Surah Al-Baqarah 255",
+            "Remembrance before Sleep"
+        ],
+        [
+            "أذكار النوم",
+            "أَعُوذُ بِاللهِ مِنْ الشَّيْطَانِ الرَّجِيمِ\nآمَنَ الرَّسُولُ بِمَا أُنْزِلَ إِلَيْهِ مِنْ رَبِّهِ وَالْمُؤْمِنُونَ ۚ كُلٌّ آمَنَ بِاللَّهِ وَمَلَائِكَتِهِ وَكُتُبِهِ وَرُسُلِهِ لَا نُفَرِّقُ بَيْنَ أَحَدٍ مِنْ رُسُلِهِ ۚ وَقَالُوا سَمِعْنَا وَأَطَعْنَا ۖ غُفْرَانَكَ رَبَّنَا وَإِلَيْكَ الْمَصِيرُ. لَا يُكَلِّفُ اللَّهُ نَفْسًا إِلَّا وُسْعَهَا لَهَا مَا كَسَبَتْ وَعَلَيْهَا مَا اكْتَسَبَتْ رَبَّنَا لَا تُؤَاخِذْنَا إِنْ نَّسِينَآ أَوْ أَخْطَأْنَا رَبَّنَا وَلَا تَحْمِلْ عَلَيْنَا إِصْرًا كَمَا حَمَلْتَهُ عَلَى الَّذِينَ مِنْ قَبْلِنَا رَبَّنَا وَلَا تُحَمِّلْنَا مَا لَا طَاقَةَ لَنَا بِهِ وَاعْفُ عَنَّا وَاغْفِرْ لَنَا وَارْحَمْنَا أَنْتَ مَوْلَانَا فَانْصُرْنَا عَلَى الْقَوْمِ الْكَافِرِينَ.",
+            "من قرأ آيتين من آخر سورة البقرة في ليلة كفتاه.",
+            "",
+            "سورة البقرة 285 - 286",
+            "أذكار النوم"
+        ],
+        [
+            "Adhkar for Sleep",
+            "In Your Name, my Lord, I lay down my side, and by Your will I raise it. If You take my soul, then have mercy upon it, and if You send it back, then protect it with that by which You protect Your righteous servants.",
+            "",
+            "",
+            "",
+            "Adhkar for Sleep"
+        ],
+        [
+            "Supplications Before Sleep",
+            "((O Allah, verily You have created my soul, and You will take it (at death). To You belongs its death and its life. If You keep it alive, then protect it, and if You cause it to die, then forgive it. O Allah, I ask You for well-being)).",
+            "",
+            0,
+            "",
+            "Supplications Before Sleep"
+        ],
+        [
+            "Remembrance before Sleep",
+            "O Allah, protect me from Your punishment on the Day You resurrect Your servants.",
+            "",
+            "",
+            "",
+            "Remembrance before Sleep"
+        ],
+        [
+            "Adhkar of Sleep",
+            "((In Your Name, O Allah, I die and I live.))",
+            "",
+            "",
+            "",
+            "Adhkar of Sleep"
+        ],
+        [
+            "Remembrances Before Sleep",
+            "Subhan Allah (thirty-three times), Walhamdulillah (thirty-three times), and Allahu Akbar (thirty-four times).",
+            "",
+            "",
+            "",
+            "Remembrances Before Sleep"
+        ],
+        [
+            "Remembrance before Sleep",
+            "((O Allah, Lord of the seven heavens and Lord of the earth, and Lord of the Magnificent Throne, our Lord and the Lord of everything, Splitter of the grain and the date-stone, Revealer of the Torah and the Injeel (Gospel), and the Furqan (Qur'an), I seek refuge in You from the evil of everything whose forelock You hold. O Allah, You are the First, so there is nothing before You; and You are the Last, so there is nothing after You; and You are the Manifest, so there is nothing above You; and You are the Intimate, so there is nothing beyond You. Settle our debts for us and enrich us from poverty.))",
+            "",
+            "",
+            "",
+            "Remembrance before Sleep"
+        ],
+        [
+            "Remembrance before Sleep",
+            "All praise is due to Allah, Who fed us and gave us drink, sufficed us and sheltered us. For how many are there who have no one to suffice them and no one to shelter them.",
+            "",
+            0,
+            "",
+            "Remembrance before Sleep"
+        ],
+        [
+            "Remembrance before Sleep",
+            "O Allah, Knower of the unseen and the seen, Creator of the heavens and the earth, Lord of everything and its Sovereign. I bear witness that there is no deity worthy of worship except You. I seek refuge in You from the evil of my soul, and from the evil of Satan and his shirk, and from committing any evil against myself or bringing it upon a Muslim.",
+            "",
+            0,
+            "",
+            "Remembrance before Sleep"
+        ],
+        [
+            "Remembrance before Sleep",
+            "((Recites Surah As-Sajdah (Chapter 32) and Surah Al-Mulk (Chapter 67))).",
+            "",
+            "",
+            "",
+            "Remembrance before Sleep"
+        ],
+        [
+            "Adhkar for Sleep",
+            "O Allah, I surrender myself to You, and I entrust my affair to You, and I turn my face towards You, and I seek refuge in You with my back, with hope and fear of You. There is no refuge and no escape from You except to You. I believe in Your Book which You have revealed, and in Your Prophet whom You have sent.",
+            "",
+            "",
+            "",
+            "Adhkar for Sleep"
+        ],
+        [
+            "Supplication when turning over at night",
+            "((There is no deity worthy of worship except Allah, The One, The Irresistible, Lord of the heavens and the earth and what is between them, The All-Mighty, The Oft-Forgiving)).",
+            "",
+            0,
+            "",
+            "Supplication when turning over at night - Sleep"
+        ],
+        [
+            "Supplication for fright in sleep and for one afflicted with loneliness/dread",
+            "I seek refuge in the perfect words of Allah from His wrath and His punishment, from the evil of His servants, and from the whisperings of the devils and from their presence.",
+            "",
+            "",
+            "",
+            "Supplication for fright in sleep and for one afflicted with loneliness/dread"
+        ],
+        [
+            "What to do upon seeing a dream or nightmare in sleep",
+            "[ (Spit lightly to his left (three times)) - (Seek refuge with Allah from Satan and from the evil of what he saw (three times)) - (Do not tell anyone about it) - (Turn over from the side he was sleeping on) ]",
+            "",
+            "",
+            "",
+            "What to do upon seeing a dream or nightmare in sleep"
+        ],
+        [
+            "What to do upon seeing a dream or a nightmare in sleep",
+            "And he should stand up and pray if he wishes to do so.",
+            "",
+            "",
+            "",
+            "What to do upon seeing a dream or a nightmare in sleep"
+        ],
+        [
+            "Du'a of Qunut for Witr Prayer",
+            "O Allah, guide me among those whom You have guided, and grant me well-being among those whom You have granted well-being, and take me into Your care among those whom You have taken into Your care, and bless for me what You have given, and protect me from the evil of what You have decreed. For verily, You decree and none can decree against You. Indeed, he whom You have befriended shall not be humiliated, and he whom You have antagonized shall not be honored. Blessed are You, our Lord, and Exalted.",
+            "",
+            0,
+            "",
+            "Du'a of Qunut for Witr Prayer - Witr Prayer"
+        ],
+        [
+            "Dua of Qunut in Witr Prayer",
+            "O Allah, I seek refuge in Your pleasure from Your wrath, and in Your pardon from Your punishment, and I seek refuge in You from You. I cannot enumerate Your praises; You are as You have praised Yourself.",
+            "",
+            "",
+            "",
+            "Dua of Qunut in Witr Prayer - Witr Prayer"
+        ],
+        [
+            "Witr Qunut Supplication",
+            "O Allah, You alone we worship, and to You we pray and prostrate. To You we strive and hasten. We hope for Your mercy and we fear Your punishment. Indeed, Your punishment will surely reach the disbelievers. O Allah, we seek Your help, and we seek Your forgiveness, and we praise You with all good. We do not disbelieve in You, and we believe in You, and we submit to You, and we renounce whoever disbelieves in You.",
+            "",
+            0,
+            "",
+            "Witr Qunut Supplication - Witr Prayer"
+        ],
+        [
+            "Dhikr after Witr Taslim",
+            "((Subhan al-Malik al-Quddus)) three times, and on the third time, he raises his voice and prolongs it, saying: [Rabb al-Mala'ikati wa ar-Ruh (Lord of the angels and the Spirit)]).",
+            "",
+            0,
+            "",
+            "Dhikr after Witr Taslim - Witr Prayer"
+        ],
+        [
+            "Dua for Worry and Sadness",
+            "O Allah, I am Your servant, the son of Your male servant, the son of Your female servant. My forelock is in Your Hand. Your judgment upon me is ever-executed, and Your decree concerning me is just. I ask You by every Name belonging to You by which You have named Yourself, or revealed in Your Book, or taught to any of Your creation, or kept hidden in the knowledge of the unseen with You, to make the Qur'an the spring of my heart, the light of my chest, the dispeller of my sadness, and the reliever of my worry.",
+            "",
+            "",
+            "",
+            "Dua for Worry and Sadness"
+        ],
+        [
+            "Supplication for Worry and Sadness",
+            "O Allah, I seek refuge in You from worry and sadness, from helplessness and laziness, from miserliness and cowardice, from the burden of debt and from being overpowered by men.",
+            "",
+            "",
+            "",
+            "Supplication for Worry and Sadness"
+        ],
+        [
+            "Supplication for Distress",
+            "There is no deity worthy of worship except Allah, the Most Great, the Most Forbearing. There is no deity worthy of worship except Allah, Lord of the Magnificent Throne. There is no deity worthy of worship except Allah, Lord of the heavens and Lord of the earth and Lord of the Noble Throne.",
+            "",
+            0,
+            "",
+            "Supplication for Distress"
+        ],
+        [
+            "Dua for Distress",
+            "O Allah, I hope for Your mercy. Do not leave me to myself even for the blink of an eye. Rectify all my affairs for me. There is no deity worthy of worship except You.",
+            "",
+            "",
+            "",
+            "Dua for Distress"
+        ],
+        [
+            "Supplication for Distress",
+            "None has the right to be worshipped except You; glorified be You. Indeed, I have been of the wrongdoers.",
+            "",
+            0,
+            "",
+            "Supplication for Distress"
+        ],
+        [
+            "Du'a for Distress",
+            "Allah, Allah, my Lord, I do not associate anything with Him.",
+            "",
+            "",
+            "",
+            "Du'a for Distress"
+        ],
+        [
+            "Supplication upon meeting an enemy or one with authority",
+            "O Allah, we place You against their throats, and we seek refuge in You from their evils.",
+            "",
+            0,
+            "",
+            "Supplication upon meeting an enemy or one with authority"
+        ],
+        [
+            "Supplication upon encountering an enemy or one with authority",
+            "O Allah, You are my support, and You are my helper. By You I maneuver, and by You I charge, and by You I fight.",
+            "",
+            "",
+            "",
+            "Supplication upon encountering an enemy or one with authority"
+        ],
+        [
+            "Supplication upon encountering an enemy or one with authority",
+            "Allah is sufficient for us, and He is the best Disposer of affairs.",
+            "",
+            0,
+            "",
+            "Supplication upon encountering an enemy or one with authority"
+        ],
+        [
+            "Supplication upon meeting an enemy or a person in authority",
+            "O Allah, Lord of the seven heavens and Lord of the Magnificent Throne, be my Protector from [so-and-so, son of so-and-so] and his party among Your creation, lest any of them transgress against me or oppress me. Mighty is Your protection, and exalted is Your praise, and there is no deity worthy of worship except You.",
+            "",
+            "",
+            "",
+            "Supplication for one who fears the oppression of a ruler"
+        ],
+        [
+            "Supplication upon encountering an enemy or a person of authority",
+            "Allah is the Greatest, Allah is mightier than all of His creation, Allah is mightier than what I fear and dread. I seek refuge with Allah, there is no deity worthy of worship except Him, the One Who holds the seven heavens from falling upon the earth except by His permission, from the evil of Your servant [so-and-so], and his soldiers, his followers, and his supporters, from among the jinn and mankind. O Allah, be my protector against their evil. Exalted is Your praise, mighty is Your protection, blessed is Your Name, and there is no deity worthy of worship other than You. (Three times).",
+            "",
+            3,
+            "",
+            "Supplication for one who fears the oppression of a ruler"
+        ],
+        [
+            "Supplication Against the Enemy",
+            "O Allah, Revealer of the Book, Swift in taking account, defeat the confederates. O Allah, defeat them and make them tremble.",
+            "",
+            "",
+            "",
+            "Supplication Against the Enemy"
+        ],
+        [
+            "Supplication when fearing a group of people",
+            "((O Allah, suffice me against them with whatever You wish.))",
+            "",
+            "",
+            "",
+            "Supplication when fearing a group of people - Fear - Dread"
+        ],
+        [
+            "Dua for one afflicted by Waswasa in faith",
+            "((He should seek refuge with Allah and desist from what he doubts.))",
+            "",
+            0,
+            "",
+            "Dua for one afflicted by Waswasa in faith"
+        ],
+        [
+            "Supplication for one afflicted by whispers (Waswasa) regarding faith",
+            "((One should say: ((I believe in Allah and His Messengers)).",
+            "",
+            "",
+            "",
+            "Supplication for one afflicted by whispers (Waswasa) regarding faith"
+        ],
+        [
+            "Supplication for one afflicted with whispers (Waswasah) concerning faith",
+            "((One should recite the saying of Allah the Almighty: ﴿He is the First and the Last, the Manifest and the Intimate, and He is, of all things, Knowing.﴾))",
+            "",
+            "",
+            "",
+            "Supplication for one afflicted with whispers (Waswasah) concerning faith"
+        ],
+        [
+            "Dua for Settling Debts",
+            "O Allah, suffice me with Your lawful (provision) against Your unlawful, and enrich me with Your bounty, making me independent of anyone other than You.",
+            "",
+            "",
+            "",
+            "Dua for Settling Debts - Repaying Debts"
+        ],
+        [
+            "Supplication for Settling Debts",
+            "O Allah, I seek refuge in You from worry and grief, from helplessness and laziness, from miserliness and cowardice, from the burden of debt and from being overpowered by men.",
+            "",
+            "",
+            "",
+            "Supplication for Settling Debts - Debt Repayment"
+        ],
+        [
+            "Supplication for Waswasa (Evil Whispers) during Prayer and Recitation",
+            "((I seek refuge in Allah from the accursed Shaitan (Satan), and spit lightly to your left (three times))).",
+            "",
+            "",
+            "",
+            "Dua for Waswasa in Prayer and Recitation - Shaitan Prayer"
+        ],
+        [
+            "Supplication for one who finds a matter difficult",
+            "O Allah, there is no ease except what You make easy, and You, if You will, can turn difficulty into ease.",
+            "",
+            0,
+            "",
+            "Supplication for one who finds a matter difficult"
+        ],
+        [
+            "What to say and do when one commits a sin",
+            "There is no servant who commits a sin, then performs ablution perfectly, then stands and prays two rak'ahs, then seeks Allah's forgiveness, except that Allah forgives him.",
+            "",
+            "",
+            "",
+            "What to say and do when one commits a sin - Sin Disobedience Istighfar Seeking Forgiveness"
+        ],
+        [
+            "Dua for Expelling Satan and His Whispers",
+            "((Seeking refuge in Allah from him (Satan))).",
+            "",
+            "",
+            "",
+            "Dua for Expelling Satan and His Whispers"
+        ],
+        [
+            "Supplication for Expelling Satan and His Whispers",
+            "The Adhan.",
+            "",
+            "",
+            "",
+            "Supplication for Expelling Satan and His Whispers"
+        ],
+        [
+            "Dua for Expelling Satan and His Whispers",
+            "((Adhkar and Recitation of the Quran)).",
+            "",
+            "",
+            "",
+            "Dua for Expelling Satan and His Whispers"
+        ],
+        [
+            "Supplication when something displeasing occurs or when one is overwhelmed in their affair",
+            "It is the decree of Allah, and whatever He wills, He does.",
+            "",
+            0,
+            "",
+            "Supplication when something displeasing occurs or when one is overwhelmed in their affair"
+        ],
+        [
+            "Congratulating the Parents of a Newborn and Their Reply",
+            "((May Allah bless you in what He has bestowed upon you, and may you be grateful to the Giver, and may he/she reach full strength, and may you be granted his/her righteousness.)) And the one being congratulated replies by saying: ((May Allah bless you and shower His blessings upon you, and may Allah reward you with good, and may Allah grant you the like of it, and may He multiply your reward.))",
+            "",
+            "",
+            "",
+            "Congratulating the Parents of a Newborn and Their Reply - Newborn Child Birth Congratulation"
+        ],
+        [
+            "Supplication for the Protection of Children",
+            "The Messenger of Allah (peace and blessings be upon him) used to seek protection for Al-Hasan and Al-Husain (may Allah be pleased with them both) saying: 'I seek refuge for you both with the perfect Words of Allah from every devil and poisonous pest, and from every evil eye.'",
+            "",
+            "",
+            "",
+            "Supplication for the Protection of Children - Ruqyah"
+        ],
+        [
+            "Supplication for the sick person when visiting them",
+            "((No harm, it is a purification, if Allah wills)).",
+            "",
+            0,
+            "",
+            "Supplication for the sick person when visiting them - Visiting the sick"
+        ],
+        [
+            "Supplication for the sick when visiting them",
+            "I ask Allah, the Most Great, Lord of the Magnificent Throne, to cure you.",
+            "",
+            7,
+            "",
+            "Supplication for the sick when visiting them - Visiting the sick"
+        ],
+        [
+            "The Virtue of Visiting the Sick",
+            "The Prophet (peace be upon him) said: 'When a man visits his Muslim brother, he walks in the harvest of Paradise until he sits down, and when he sits, mercy envelops him. If it is in the morning, seventy thousand angels pray for him until evening, and if it is in the evening, seventy thousand angels pray for him until morning.'",
+            "",
+            "",
+            "",
+            "The Virtue of Visiting the Sick - Visiting the Sick"
+        ],
+        [
+            "Dua of the patient who has despaired of his life",
+            "((O Allah, forgive me, have mercy on me, and join me with the Exalted Companion)).",
+            "",
+            "",
+            "",
+            "Dua of the patient who has despaired of his life - Visiting the Sick"
+        ],
+        [
+            "Dua for the Terminally Ill",
+            "The Prophet (peace be upon him) at the time of his death would dip his hands in water and wipe his face with them, saying: 'There is no deity worthy of worship except Allah; indeed, death has its agonies.'",
+            "",
+            "",
+            "",
+            "Dua for the Terminally Ill - Visiting the Sick"
+        ],
+        [
+            "Supplication for the sick person who has despaired of his life",
+            "((There is no deity worthy of worship except Allah, and Allah is the Greatest. There is no deity worthy of worship except Allah, alone. There is no deity worthy of worship except Allah, alone, without any partner. There is no deity worthy of worship except Allah; to Him belongs all sovereignty and to Him belongs all praise. There is no deity worthy of worship except Allah, and there is no might nor power except with Allah)).",
+            "",
+            0,
+            "",
+            "Supplication for the sick person who has despaired of his life - Visiting the sick"
+        ],
+        [
+            "Instructing the Dying",
+            "((Whoever's last words are 'La ilaha illallah' (There is no deity worthy of worship except Allah) will enter Paradise)).",
+            "",
+            "",
+            "",
+            "Instructing the Dying - Agonies of Death Death"
+        ],
+        [
+            "Supplication for one afflicted by a calamity",
+            "Indeed, to Allah we belong and to Him we shall return. O Allah, reward me in my calamity and replace it for me with something better.",
+            "",
+            null,
+            "",
+            "Supplication for one afflicted by a calamity"
+        ],
+        [
+            "Supplication when closing the eyes of the deceased",
+            "O Allah, forgive [so-and-so] (mentioning his/her name) and raise his/her rank among the guided ones. Be his/her successor among his/her family (those left behind). Forgive us and him/her, O Lord of the worlds. Make his/her grave spacious for him/her and illuminate it for him/her.",
+            "",
+            "",
+            "",
+            "Supplication when closing the eyes of the deceased - Death"
+        ],
+        [
+            "Supplication for the deceased in the funeral prayer",
+            "((O Allah, forgive him, and have mercy on him, and grant him well-being, and pardon him, and honor his reception, and make his entrance spacious, and wash him with water, snow, and hail, and purify him from sins as You purified the white garment from dirt, and grant him a home better than his home, and a family better than his family, and a spouse better than his spouse, and admit him into Paradise, and protect him from the torment of the grave [and the torment of the Fire])).",
+            "",
+            0,
+            "",
+            "Supplication for the deceased in the funeral prayer - Death demise passing away"
+        ],
+        [
+            "Dua for the deceased in the funeral prayer",
+            "O Allah, forgive our living and our dead, those present and those absent, our young and our old, our males and our females. O Allah, whoever You keep alive from among us, keep him alive upon Islam, and whoever You cause to die from among us, cause him to die upon faith. O Allah, do not deprive us of his reward, and do not let us go astray after him.",
+            "",
+            0,
+            "",
+            "Dua for the deceased in the funeral prayer - Demise Death Passing away"
+        ],
+        [
+            "Supplication for the deceased in the funeral prayer",
+            "O Allah, indeed so-and-so, son of so-and-so, is under Your protection and in the bond of Your security. So protect him from the trial of the grave and the punishment of the Fire. And You are worthy of faithfulness and truth. So forgive him and have mercy on him. Indeed, You are the Oft-Forgiving, the Most Merciful.",
+            "",
+            "",
+            "",
+            "Supplication for the deceased in the funeral prayer - Death Death Death"
+        ],
+        [
+            "Supplication for the deceased during the funeral prayer",
+            "O Allah, Your servant and the son of Your female servant has become in need of Your mercy, and You are not in need of punishing him. If he was a doer of good, then increase his good deeds, and if he was a wrongdoer, then overlook his sins.",
+            "",
+            0,
+            "",
+            "Supplication for the deceased during the funeral prayer - Demise Death Mortality"
+        ],
+        [
+            "Supplication for a child who died young during their funeral prayer",
+            "((O Allah, protect him from the torment of the grave.)) And if one says: ((O Allah, make him a precursor and a treasure for his parents, and an accepted intercessor. O Allah, make their scales heavy with him, and magnify their rewards through him, and join him with the righteous believers, and place him under the care of Ibrahim (Abraham), and protect him by Your mercy from the torment of Hellfire, and grant him a home better than his home, and a family better than his family. O Allah, forgive our predecessors, and our children who died young, and those who preceded us in faith.)) If one says that, it is good.",
+            "",
+            "",
+            "",
+            "Supplication for a child who died young during their funeral prayer"
+        ],
+        [
+            "Supplication for the Forerunner (Deceased Child) in the Funeral Prayer",
+            "((O Allah, make him/her for us a forerunner, a predecessor, and a reward)).",
+            "",
+            0,
+            "",
+            "Supplication for the Forerunner (Deceased Child) in the Funeral Prayer"
+        ],
+        [
+            "Dua of Condolence",
+            "Indeed, to Allah belongs what He has taken, and to Him belongs what He has given, and everything with Him has an appointed term... so be patient and seek reward from Allah. And if one says: 'May Allah magnify your reward, and make your solace good, and forgive your deceased,' then that is good.",
+            "",
+            "",
+            "",
+            "Dua of Condolence - Condolence Death Demise Mortality"
+        ],
+        [
+            "Supplication upon placing the deceased in the grave",
+            "((In the Name of Allah, and upon the Sunnah of the Messenger of Allah)).",
+            "",
+            "",
+            "",
+            "Supplication upon placing the deceased in the grave - Graves Death Demise"
+        ],
+        [
+            "Supplication after burying the deceased",
+            "O Allah, forgive him. O Allah, grant him steadfastness.",
+            "",
+            "",
+            "",
+            "Supplication after burying the deceased - Graves Death Demise"
+        ],
+        [
+            "Dua for Visiting Graves",
+            "Peace be upon you, O dwellers of these abodes, from among the believers and Muslims. And verily, if Allah wills, we shall join you. May Allah have mercy upon those who have gone ahead of us and those who will come later. I ask Allah for well-being for us and for you.",
+            "",
+            "",
+            "",
+            "Dua for Visiting Graves - Graves Death Demise"
+        ],
+        [
+            "Dua for Wind",
+            "O Allah, I ask You for its good, and I seek refuge in You from its evil.",
+            "",
+            0,
+            "",
+            "Dua for Wind - Winds, Air, Storms, Storm"
+        ],
+        [
+            "Supplication for Wind",
+            "O Allah, I ask You for its good, the good of what is in it, and the good of what it has been sent with. And I seek refuge in You from its evil, the evil of what is in it, and the evil of what it has been sent with.",
+            "",
+            "",
+            "",
+            "Du'a for Wind - Winds Air Storms Storm"
+        ],
+        [
+            "Supplication for Thunder",
+            "((Glorified is He whom the thunder glorifies with His praise, and the angels out of fear of Him)).",
+            "",
+            0,
+            "",
+            "Supplication for Thunder"
+        ],
+        [
+            "From Supplications for Rain",
+            "O Allah, grant us rain that is relieving, wholesome, productive, beneficial, not harmful, immediate, and not delayed.",
+            "",
+            "",
+            "",
+            "From Supplications for Rain"
+        ],
+        [
+            "From the Supplications for Rain",
+            "((O Allah, grant us rain! O Allah, grant us rain! O Allah, grant us rain!)).",
+            "",
+            "",
+            "",
+            "From the Supplications for Rain"
+        ],
+        [
+            "From the Supplications for Rain",
+            "((O Allah, give water to Your servants and Your animals, and spread Your mercy, and revive Your dead land.))",
+            "",
+            "",
+            "",
+            "From the Supplications for Rain"
+        ],
+        [
+            "Supplication upon Rainfall",
+            "O Allah, [make it] a beneficial rain.",
+            "",
+            "",
+            "",
+            "Supplication upon Rainfall"
+        ],
+        [
+            "Dhikr After Rainfall",
+            "Rain has fallen upon us by the grace and mercy of Allah.",
+            "",
+            "",
+            "",
+            "Dhikr After Rainfall"
+        ],
+        [
+            "Supplications for Clear Weather",
+            "O Allah, (let it rain) around us and not upon us. O Allah, (let it be) upon the hills, the elevated places, the bottoms of the valleys, and the places where trees grow.",
+            "",
+            "",
+            "",
+            "Supplications for Clear Weather"
+        ],
+        [
+            "Supplication upon seeing the new moon",
+            "Allah is Most Great. O Allah, bring it forth upon us with security and faith, and safety and Islam, and success in what You love and are pleased with, our Lord. Our Lord and your Lord is Allah.",
+            "",
+            0,
+            "",
+            "Supplication upon seeing the new moon"
+        ],
+        [
+            "Supplication upon breaking the fast",
+            "The thirst has gone, the veins are moistened, and the reward is confirmed, if Allah wills.",
+            "",
+            0,
+            "",
+            "Supplication upon breaking the fast - Fasting Fasting Eating Eating"
+        ],
+        [
+            "Du'a upon breaking the fast",
+            "O Allah, I ask You by Your mercy which encompasses all things, to forgive me.",
+            "",
+            "",
+            "",
+            "Du'a upon breaking the fast - Fasting Fasting Eating Eating"
+        ],
+        [
+            "Supplication Before Eating",
+            "((When one of you eats food, let him say 'Bismillah' (In the Name of Allah). If he forgets at the beginning, then let him say 'Bismillah fi awwalihi wa akhirih' (In the Name of Allah, in its beginning and its end)).)",
+            "",
+            0,
+            "",
+            "Supplication Before Eating - Eating"
+        ],
+        [
+            "Supplication Before Eating",
+            "Whoever Allah feeds with food, let him say: 'O Allah, bless it for us and feed us better than it.' And whoever Allah gives milk to drink, let him say: 'O Allah, bless it for us and increase us from it.'",
+            "",
+            0,
+            "",
+            "Supplication Before Eating - Eating Food"
+        ],
+        [
+            "Supplication upon finishing a meal",
+            "All praise is due to Allah Who fed me this, and provided it for me, without any power or strength from me.",
+            "",
+            0,
+            "",
+            "Supplication upon finishing a meal - Eating food"
+        ],
+        [
+            "Dua after eating",
+            "((All praise is due to Allah, abundant, good, blessed praise therein, never-ending, nor to be forsaken, nor to be dispensed with, Our Lord)).",
+            "",
+            0,
+            "",
+            "Dua after finishing food - Eating food"
+        ],
+        [
+            "Dua of the guest for the host",
+            "O Allah, bless them in what You have provided them, and forgive them and have mercy on them.",
+            "",
+            0,
+            "",
+            "Dua of the guest for the host - Eating Food"
+        ],
+        [
+            "Supplication for the provider of food or drink",
+            "O Allah, feed whoever fed me, and give drink to whoever gave me drink.",
+            "",
+            "",
+            "",
+            "Supplication for the provider of food or drink - Eating, Food"
+        ],
+        [
+            "Supplication upon breaking fast at a household's home",
+            "May the fasting people break their fast with you, and the righteous eat your food, and the angels send blessings upon you.",
+            "",
+            "",
+            "",
+            "Dua upon breaking fast at a household's home - food eating fasting"
+        ],
+        [
+            "Dua of the fasting person when food is present and he has not broken his fast",
+            "((If one of you is invited, let him respond. If he is fasting, let him supplicate (for them), and if he is not fasting, let him eat.)) And the meaning of 'let him supplicate' is 'let him make dua'.",
+            "",
+            "",
+            "",
+            "Dua of the fasting person when food is present and he has not broken his fast - Eating food fast fasting"
+        ],
+        [
+            "What a fasting person says if someone insults him",
+            "Indeed, I am fasting, indeed, I am fasting.",
+            "",
+            "",
+            "",
+            "What a fasting person says if someone insults him - fasting, insult"
+        ],
+        [
+            "Dua upon seeing the first fruits",
+            "O Allah, bless us in our fruits, and bless us in our city, and bless us in our Sa', and bless us in our Mudd.",
+            "",
+            "",
+            "",
+            "Dua upon seeing the first fruits"
+        ],
+        [
+            "Dua for Sneezing",
+            "When one of you sneezes, he should say: 'Alhamdulillah' (All praise is due to Allah). And his brother or companion should say to him: 'Yarhamukallah' (May Allah have mercy on you). And when he says to him: 'Yarhamukallah', he should say: 'Yahdeekumullahu wa yuslihu baalakum' (May Allah guide you and rectify your affairs).",
+            "",
+            "",
+            "",
+            "Dua for Sneezing"
+        ],
+        [
+            "What is said to a disbeliever if he sneezes and praises Allah",
+            "May Allah guide you and rectify your affairs.",
+            "",
+            "",
+            "",
+            "What is said to a disbeliever if he sneezes and praises Allah"
+        ],
+        [
+            "Supplication for the Married Couple",
+            "May Allah bless you, and may He bestow His blessings upon you, and may He unite you both in goodness.",
+            "",
+            "",
+            "",
+            "Supplication for the Married Couple - Marriage Nikah"
+        ],
+        [
+            "Supplication for the Newly Married and for Buying an Animal",
+            "When one of you marries a woman, or buys a servant, he should say: 'O Allah, I ask You for her goodness and the goodness of what You have created her upon, and I seek refuge in You from her evil and the evil of what You have created her upon.' And if he buys a camel, he should take it by the peak of its hump and say the same (supplication).",
+            "",
+            0,
+            "",
+            "Du'a for the Newly Married and for Buying an Animal"
+        ],
+        [
+            "Du'a Before Marital Intimacy",
+            "In the Name of Allah. O Allah, keep Satan away from us, and keep Satan away from what You bestow upon us (i.e., offspring).",
+            "",
+            "",
+            "",
+            "Du'a Before Marital Intimacy - Intercourse, Marriage, Nikah"
+        ],
+        [
+            "Dua for Anger",
+            "((I seek refuge in Allah from Satan, the accursed.))",
+            "",
+            "",
+            "",
+            "Dua for Anger - Stress, Irritability"
+        ],
+        [
+            "Supplication upon seeing an afflicted person",
+            "All praise is due to Allah Who has saved me from that with which He has afflicted you, and has preferred me over many of those whom He has created with a distinct preference.",
+            "",
+            "",
+            "",
+            "Supplication upon seeing an afflicted person"
+        ],
+        [
+            "What is recited in a gathering",
+            "It was narrated from Ibn Umar, may Allah be pleased with him, who said: It was counted that the Messenger of Allah (peace be upon him) would say in a single gathering one hundred times before he stood up: 'My Lord, forgive me, and accept my repentance. Verily, You are the Accepter of Repentance, the Oft-Forgiving.'",
+            "",
+            "",
+            "",
+            "What is recited in a gathering"
+        ],
+        [
+            "Expiation for the Gathering",
+            "((Glory be to You, O Allah, and praise be to You. I bear witness that there is no god worthy of worship except You. I seek Your forgiveness and repent to You.))",
+            "",
+            "",
+            "",
+            "Expiation for the Gathering"
+        ],
+        [
+            "Dua for someone who says 'May Allah forgive you'",
+            "((And to you too)).",
+            "",
+            "",
+            "",
+            "Dua for someone who says 'May Allah forgive you'"
+        ],
+        [
+            "Dua for one who does you a favor",
+            "((May Allah reward you with good)).",
+            "",
+            "",
+            "",
+            "Dua for one who does you a favor"
+        ],
+        [
+            "What Allah Protects One With from the Dajjal",
+            "((Whoever memorizes ten verses from the beginning of Surat Al-Kahf will be protected from the Dajjal)), and seeking refuge with Allah from his trial after the last Tashahhud in every prayer.",
+            "",
+            "",
+            "",
+            "What Allah Protects One With from the Dajjal"
+        ],
+        [
+            "Supplication for one who says 'I love you for the sake of Allah'",
+            "May the One for whose sake you loved me, love you.",
+            "",
+            "",
+            "",
+            "Supplication for one who says 'I love you for the sake of Allah'"
+        ],
+        [
+            "Supplication for someone who offered you his wealth",
+            "May Allah bless you in your family and your wealth.",
+            "",
+            0,
+            "",
+            "Supplication for someone who offered you his wealth"
+        ],
+        [
+            "Supplication for the lender upon repayment",
+            "May Allah bless you in your family and your wealth. Indeed, the recompense of a loan is praise and repayment.",
+            "",
+            "",
+            "",
+            "Supplication for the lender upon repayment"
+        ],
+        [
+            "Supplication for Fear of Shirk",
+            "O Allah, I seek refuge in You from associating partners with You knowingly, and I seek Your forgiveness for what I do not know.",
+            "",
+            0,
+            "",
+            "Supplication for Fear of Shirk"
+        ],
+        [
+            "Supplication for someone who said 'May Allah bless you'",
+            "((And may Allah bless you too)).",
+            "",
+            0,
+            "",
+            "Supplication for someone who said 'May Allah bless you'"
+        ],
+        [
+            "Supplication for Aversion to Omens",
+            "O Allah, there is no augury except Your augury, and there is no good except Your good, and there is no god except You.",
+            "",
+            "",
+            "",
+            "Supplication for Aversion to Omens - Shirk"
+        ],
+        [
+            "Du'a for Riding",
+            "((In the Name of Allah, and all praise is due to Allah. [Glory be to Him Who has subjected this to us, and we could not have [otherwise] subdued it. And indeed, to our Lord we will [surely] return.] All praise is due to Allah, all praise is due to Allah, all praise is due to Allah. Allah is the Greatest, Allah is the Greatest, Allah is the Greatest. Glory be to You, O Allah, I have wronged myself, so forgive me; for indeed, no one forgives sins except You.))",
+            "",
+            0,
+            "",
+            "Du'a for Riding - Car Elevator Airplane Aircraft"
+        ],
+        [
+            "Supplication for Travel",
+            "Allah is the Greatest, Allah is the Greatest, Allah is the Greatest. [Glory be to Him Who has subjected this to us, and we could not have subdued it. And verily, to Our Lord we are returning!] (O Allah, we ask You in this journey of ours for righteousness and piety, and for deeds that please You. O Allah, make this journey easy for us and shorten its distance. O Allah, You are the Companion in the journey and the Guardian of the family. O Allah, I seek refuge in You from the hardships of travel, the sorrowful sights, and an evil return regarding wealth and family.) And when he returns, he says them and adds to them: (Returning, repenting, worshipping, and praising our Lord.)",
+            "",
+            0,
+            "",
+            "Supplication for Travel"
+        ],
+        [
+            "Dua for Entering a Village or Town",
+            "O Allah, Lord of the seven heavens and whatever they overshadow, and Lord of the seven earths and whatever they carry, and Lord of the devils and whatever they mislead, and Lord of the winds and whatever they scatter. I ask You for the good of this village/town, and the good of its people, and the good of what is in it. And I seek refuge in You from its evil, and the evil of its people, and the evil of what is in it.",
+            "",
+            "",
+            "",
+            "Dua for Entering a Village or Town - Travel, Traveler, City, Town"
+        ],
+        [
+            "Dua for Entering the Market",
+            "((There is no deity worthy of worship except Allah, He is One, without partner. To Him belongs all sovereignty, and to Him belongs all praise. He gives life and causes death, and He is the Ever-Living who never dies. In His Hand is all good, and He is over all things competent.))",
+            "",
+            0,
+            "",
+            "Dua for Entering the Market - The Mall Shopping Markets"
+        ],
+        [
+            "Supplication when the Mount Stumbles/Becomes Difficult",
+            "In the Name of Allah.",
+            "",
+            "",
+            "",
+            "Supplication when the Mount Stumbles/Becomes Difficult"
+        ],
+        [
+            "Traveler's Supplication for the Resident",
+            "I entrust you to Allah, with Whom nothing entrusted is lost.",
+            "",
+            "",
+            "",
+            "Traveler's Supplication for the Resident - Travel"
+        ],
+        [
+            "Supplication of the Resident for the Traveler",
+            "I entrust to Allah your religion, your trust, and the end of your deeds.",
+            "",
+            "",
+            "",
+            "Supplication of the Resident for the Traveler - Travel"
+        ],
+        [
+            "Supplication of the Resident for the Traveler",
+            "May Allah provide you with piety, forgive your sin, and make good easy for you wherever you are.",
+            "",
+            "",
+            "",
+            "Supplication of the Resident for the Traveler - Travel"
+        ],
+        [
+            "Takbir and Tasbih During Travel",
+            "Jabir (may Allah be pleased with him) said: 'We used to say 'Allahu Akbar' when ascending, and 'Subhanallah' when descending.'",
+            "",
+            "",
+            "",
+            "Takbir and Tasbih During Travel"
+        ],
+        [
+            "Traveler's Supplication at Pre-dawn",
+            "May a witness testify to Allah's praise, and His good favor upon us. Our Lord, be with us and bestow Your grace upon us, seeking refuge with Allah from the Fire.",
+            "",
+            "",
+            "",
+            "Traveler's Supplication at Pre-dawn - Travel"
+        ],
+        [
+            "Supplication when alighting at a place, whether during travel or otherwise",
+            "I seek refuge in the perfect words of Allah from the evil of what He created.",
+            "",
+            "",
+            "",
+            "Supplication when alighting at a place, whether during travel or otherwise - The Traveler"
+        ],
+        [
+            "Remembrance upon returning from a journey",
+            "((He would say 'Allahu Akbar' three times upon every elevated place. Then he would say: 'There is no deity worthy of worship except Allah, alone, without partner. To Him belongs all sovereignty and all praise, and He is over all things competent. We are returning, repenting, worshipping, praising our Lord. Allah fulfilled His promise, and He aided His servant, and He defeated the confederates alone.')).",
+            "",
+            "",
+            "",
+            "Remembrance upon returning from a journey - The Traveler"
+        ],
+        [
+            "What one says when something pleasing or displeasing happens to him",
+            "The Prophet (peace be upon him) used to say, when something pleasing happened to him: \"All praise is due to Allah, by Whose grace good deeds are completed.\" And when something displeasing happened to him, he would say: \"All praise is due to Allah in every circumstance.\"",
+            "",
+            "",
+            "",
+            "What one says when something pleasing or displeasing happens to him - news reports joy happiness"
+        ],
+        [
+            "The Virtue of Sending Blessings Upon the Prophet (peace be upon him)",
+            "The Prophet (peace be upon him) said: 'Whoever sends blessings upon me once, Allah will send blessings upon him ten times for it.'",
+            "",
+            "",
+            "",
+            "The Virtue of Sending Blessings Upon the Prophet (peace be upon him)"
+        ],
+        [
+            "The Virtue of Sending Blessings upon the Prophet (peace and blessings of Allah be upon him)",
+            "And the Prophet (peace and blessings of Allah be upon him) said: ((Do not make my grave a place of celebration, and send blessings upon me; for indeed your blessings reach me wherever you are)).",
+            "",
+            "",
+            "",
+            "The Virtue of Sending Blessings upon the Prophet (peace and blessings of Allah be upon him)"
+        ],
+        [
+            "The Virtue of Sending Blessings Upon the Prophet (peace and blessings of Allah be upon him)",
+            "And the Prophet (peace and blessings of Allah be upon him) said: 'The miser is he in whose presence I am mentioned, and he does not send blessings upon me.'",
+            "",
+            "",
+            "",
+            "The Virtue of Sending Blessings Upon the Prophet (peace and blessings of Allah be upon him)"
+        ],
+        [
+            "The Virtue of Sending Blessings Upon the Prophet (peace and blessings of Allah be upon him)",
+            "The Prophet (peace and blessings of Allah be upon him) said: 'Indeed, Allah has angels who roam the earth, conveying to me the greetings from my Ummah.'",
+            "",
+            0,
+            "",
+            "The Virtue of Sending Blessings Upon the Prophet (peace and blessings of Allah be upon him)"
+        ],
+        [
+            "The Virtue of Sending Blessings Upon the Prophet (peace and blessings of Allah be upon him)",
+            "The Prophet (peace and blessings of Allah be upon him) said: 'There is no one who sends salutations upon me except that Allah returns my soul to me so that I may return his salutation.'",
+            "",
+            "",
+            "",
+            "The Virtue of Sending Blessings Upon the Prophet (peace and blessings of Allah be upon him)"
+        ],
+        [
+            "Spreading Salam",
+            "The Messenger of Allah (peace and blessings be upon him) said: 'You will not enter Paradise until you believe, and you will not believe until you love one another. Shall I not tell you of something which, if you do it, you will love one another? Spread Salam amongst yourselves.'",
+            "",
+            "",
+            "",
+            "Spreading Salam - The Greeting"
+        ],
+        [
+            "Spreading Greetings of Peace",
+            "Three things, whoever combines them, has combined faith: being fair from your own self, offering greetings of peace to everyone, and spending (in charity) even in scarcity.",
+            "",
+            0,
+            "",
+            "Spreading Greetings of Peace - The Greeting"
+        ],
+        [
+            "Spreading Salam",
+            "On the authority of Abdullah ibn Umar, may Allah be pleased with them both, that a man asked the Prophet (peace be upon him): 'Which aspect of Islam is best?' He replied: 'You feed the hungry, and you greet with Salam those you know and those you do not know.'",
+            "",
+            "",
+            "",
+            "Spreading Salam - Greeting"
+        ],
+        [
+            "How to return the greeting of peace to a non-Muslim if they greet",
+            "((If the People of the Book greet you, then say: 'Wa alaykum' (And upon you too))).",
+            "",
+            "",
+            "",
+            "How to return the greeting of peace to a non-Muslim if they greet - The Greeting"
+        ],
+        [
+            "Dua upon hearing the crowing of roosters and the braying of donkeys",
+            "If you hear the crowing of roosters, then ask Allah for His bounty, for they have seen an angel. And if you hear the braying of a donkey, then seek refuge with Allah from Satan, for it has seen Satan.",
+            "",
+            "",
+            "",
+            "Dua upon hearing the crowing of roosters and the braying of donkeys"
+        ],
+        [
+            "Dua upon hearing dogs bark at night",
+            "If you hear the barking of dogs and the braying of donkeys at night, then seek refuge with Allah from them, for indeed, they see what you do not see.",
+            "",
+            "",
+            "",
+            "Dua upon hearing dogs bark at night"
+        ],
+        [
+            "Supplication for one whom I have insulted",
+            "The Prophet (peace be upon him) said: 'O Allah, if I have insulted any believer, then make that a means of closeness for him to You on the Day of Resurrection.'",
+            "",
+            "",
+            "",
+            "Supplication for one whom I have insulted"
+        ],
+        [
+            "What a Muslim says when praising another Muslim",
+            "The Prophet (peace be upon him) said: 'If one of you must praise his companion, then let him say: \"I consider so-and-so (to be such and such), and Allah is his Reckoner, and I do not attest to anyone's purity before Allah. I consider him – if he knows that – to be such and such (i.e., having certain good qualities).\"'",
+            "",
+            "",
+            "",
+            "What a Muslim says when praising another Muslim"
+        ],
+        [
+            "What a Muslim says when he is praised",
+            "O Allah, do not hold me accountable for what they say, and forgive me for what they do not know, [and make me better than what they imagine].",
+            "",
+            null,
+            "",
+            "What a Muslim says when he is praised"
+        ],
+        [
+            "How does the pilgrim (muhrim) perform the Talbiyah during Hajj or Umrah?",
+            "Here I am, O Allah, here I am. Here I am, You have no partner, here I am. Indeed, all praise, grace, and sovereignty belong to You. You have no partner.",
+            "",
+            "",
+            "",
+            "How does the pilgrim (muhrim) perform the Talbiyah during Hajj or Umrah?"
+        ],
+        [
+            "Takbir when approaching the Black Stone",
+            "The Prophet (peace be upon him) circumambulated the Kaaba on a camel. Whenever he came to the (Black) Stone corner, he would point to it with something he had and say 'Allahu Akbar'.",
+            "",
+            0,
+            "",
+            "Takbir when approaching the Black Stone"
+        ],
+        [
+            "Dua between Ar-Rukn al-Yamani and Al-Hajar al-Aswad",
+            "((Our Lord, grant us in this world [that which is] good and in the Hereafter [that which is] good and protect us from the punishment of the Fire)).",
+            "",
+            "",
+            "",
+            "Dua between Ar-Rukn al-Yamani and Al-Hajar al-Aswad"
+        ],
+        [
+            "Dua for Standing at Safa and Marwah",
+            "When the Prophet (peace be upon him) approached Safa, he recited: 'Indeed, Safa and Marwah are among the symbols of Allah.' (Quran 2:158) Then he said: 'I begin with what Allah began with.' So he began with Safa and ascended it until he saw the Kaaba. He faced the Qiblah, affirmed the Oneness of Allah, glorified Him, and said: 'There is no deity worthy of worship except Allah, alone, without partner. To Him belongs all sovereignty and all praise, and He is over all things competent. There is no deity worthy of worship except Allah, alone. He fulfilled His promise, supported His servant, and defeated the confederates (Ahzab) alone.' Then he made supplication between that. He said this three times. The Hadith also states: 'Then he did on Marwah what he had done on Safa.'",
+            "",
+            "",
+            "",
+            "Dua for Standing at Safa and Marwah"
+        ],
+        [
+            "Dua on the Day of Arafah",
+            "The Prophet (peace be upon him) said: 'The best of supplications is the supplication on the Day of Arafah, and the best of what I and the Prophets before me have said is: There is no deity worthy of worship except Allah, alone, without partner. To Him belongs all sovereignty and to Him belongs all praise, and He is over all things competent.'",
+            "",
+            0,
+            "",
+            "Dua on the Day of Arafah"
+        ],
+        [
+            "Remembrance at Al-Mash'ar Al-Haram",
+            "The Prophet (peace be upon him) rode Al-Qaswa until he reached Al-Mash'ar Al-Haram. He faced the Qiblah, then he supplicated to Allah, glorified Him (with Takbir), declared His Oneness (with Tahlil), and affirmed His absolute Uniqueness. He remained standing until it became very bright, then he departed before the sun rose.",
+            "",
+            "",
+            "",
+            "Remembrance at Al-Mash'ar Al-Haram"
+        ],
+        [
+            "Takbir when stoning the Jamarat with every pebble",
+            "He says Takbir every time he throws a pebble at the three Jamarat. Then he moves forward and stands supplicating, facing the Qiblah, raising his hands after the first and second Jamarah. As for Jamarat Al-Aqabah, he stones it and says Takbir with every pebble, then departs and does not stand there.",
+            "",
+            "",
+            "",
+            "Takbir when stoning the Jamarat with every pebble"
+        ],
+        [
+            "Dua for Wonder and Joyful News",
+            "((Subhan Allah!)).",
+            "",
+            "",
+            "",
+            "Dua for Wonder and Joyful News - News of Joy and Delight"
+        ],
+        [
+            "Supplication upon Astonishment and Joyful News",
+            "((Allah is the Greatest!)).",
+            "",
+            "",
+            "",
+            "Supplication upon Astonishment and Joyful News - News of Joy and Delight"
+        ],
+        [
+            "What to do when something pleasing happens to one",
+            "The Prophet (peace be upon him) used to, when something pleasing happened to him or he was gladdened by something, prostrate in sujood in gratitude to Allah, the Blessed and Exalted.",
+            "",
+            "",
+            "",
+            "What to do when something pleasing happens to one - News of joy and happiness"
+        ],
+        [
+            "What to say when feeling pain in the body",
+            "Place your hand on the part of your body that hurts and say: 'Bismillah (In the Name of Allah),' three times. Then say seven times: 'A'udhu billahi wa qudratihi min sharri ma ajidu wa uhadhiru (I seek refuge in Allah and His Power from the evil of what I find and what I fear).'",
+            "",
+            0,
+            "",
+            "What to say when feeling pain in the body - Pain Illness Ache"
+        ],
+        [
+            "Supplication for one who fears affliction by the evil eye",
+            "If one of you sees in his brother, or in himself, or in his wealth what pleases him, then let him supplicate for blessings for it, for indeed the evil eye is real.",
+            "",
+            "",
+            "",
+            "Dua for one who fears affliction by the evil eye - Envy"
+        ],
+        [
+            "What to say when startled",
+            "((There is no deity worthy of worship except Allah!)).",
+            "",
+            "",
+            "",
+            "What to say when startled - Fear"
+        ],
+        [
+            "What to say when slaughtering or sacrificing an animal",
+            "((In the Name of Allah, and Allah is the Greatest. [O Allah, from You and to You.] O Allah, accept from me.))",
+            "",
+            "",
+            "",
+            "What to say when slaughtering or sacrificing an animal - Udhiyah (Sacrifice)"
+        ],
+        [
+            "What to say to repel the plots of rebellious devils",
+            "((I seek refuge in the perfect words of Allah, which no righteous or wicked person can transgress, from the evil of what He created, and originated, and brought into existence; and from the evil of what descends from the sky, and from the evil of what ascends into it; and from the evil of what He has created on the earth, and from the evil of what emerges from it; and from the evil of the trials (fitan) of the night and the day; and from the evil of every night-comer, except a night-comer who comes with good, O Most Merciful)).",
+            "",
+            0,
+            "",
+            "What to say to repel the plots of rebellious devils - Satanic whispers"
+        ],
+        [
+            "Seeking Forgiveness and Repentance",
+            "The Messenger of Allah (peace be upon him) said: 'By Allah, I seek Allah's forgiveness and repent to Him more than seventy times in a day.'",
+            "",
+            "",
+            "Al-Bukhari",
+            "Seeking Forgiveness and Repentance"
+        ],
+        [
+            "Seeking Forgiveness and Repentance",
+            "And the Prophet (peace be upon him) said: 'O people! Repent to Allah, for indeed I repent to Him a hundred times in a day.'",
+            "",
+            "",
+            "Muslim",
+            "Seeking Forgiveness and Repentance"
+        ],
+        [
+            "Seeking Forgiveness and Repentance",
+            "The Prophet (peace be upon him) said: 'Whoever says: 'I seek forgiveness from Allah, the Magnificent, Whom there is no deity worthy of worship except Him, the Ever-Living, the Sustainer of all existence, and I repent to Him,' Allah will forgive him, even if he had fled from the battlefield.'",
+            "",
+            "",
+            "At-Tirmidhi",
+            "Seeking Forgiveness and Repentance"
+        ],
+        [
+            "Seeking Forgiveness and Repentance",
+            "The Prophet (peace be upon him) said: 'The closest the Lord is to His servant is in the last part of the night. So if you are able to be among those who remember Allah in that hour, then be so.'",
+            "",
+            0,
+            "At-Tirmidhi",
+            "Seeking Forgiveness and Repentance"
+        ],
+        [
+            "Seeking Forgiveness and Repentance",
+            "The Prophet (peace be upon him) said: 'The closest a servant is to his Lord is while he is prostrating, so make abundant supplication.'",
+            "",
+            "",
+            "Muslim",
+            "Seeking Forgiveness and Repentance"
+        ],
+        [
+            "Seeking Forgiveness and Repentance",
+            "The Prophet (peace be upon him) said: 'Indeed, a slight veil comes over my heart, and I seek Allah's forgiveness one hundred times a day.'",
+            "",
+            0,
+            "Muslim",
+            "Seeking Forgiveness and Repentance"
+        ],
+        [
+            "Glorification, Praise, Affirmation of Oneness, Magnification",
+            "The Prophet (peace be upon him) said: 'Whoever says, 'Subhan Allah wa bihamdihi' (Glory be to Allah and praise be to Him) one hundred times in a day, his sins will be forgiven, even if they were like the foam of the sea.'",
+            "",
+            "",
+            "Al-Bukhari",
+            "Tasbeeh, Tahmeed, Tahleel, Takbeer"
+        ],
+        [
+            "Tasbeeh, Tahmeed, Tahleel, Takbeer",
+            "The Prophet (peace be upon him) said: 'Whoever says: \"There is no god but Allah, alone, without partner. To Him belongs sovereignty, and to Him belongs all praise, and He is over all things competent,\" ten times, it is as if he freed four souls from the descendants of Isma'il (Ishmael).'",
+            "",
+            "",
+            "Al-Bukhari",
+            "Tasbeeh, Tahmeed, Tahleel, Takbeer"
+        ],
+        [
+            "Tasbeeh, Tahmeed, Tahleel, Takbeer",
+            "The Prophet (peace be upon him) said: 'Two phrases are light on the tongue, heavy in the Scale, and beloved to Ar-Rahman (the Most Merciful): SubhanAllah wa bihamdihi (Glory be to Allah and praise be to Him), SubhanAllah al-Azeem (Glory be to Allah, the Most Magnificent).'",
+            "",
+            0,
+            "Al-Bukhari",
+            "Tasbeeh, Tahmeed, Tahleel, Takbeer"
+        ],
+        [
+            "Glorification, Praise, Declaration of Oneness, Exaltation",
+            "The Prophet (peace be upon him) said: 'For me to say, 'Subhanallah (Glory be to Allah), Walhamdulillah (All praise is due to Allah), Wa La ilaha illa Allah (There is no deity worthy of worship except Allah), Wallahu Akbar (Allah is the Greatest),' is more beloved to me than everything upon which the sun rises.'",
+            "",
+            "",
+            "Muslim",
+            "Tasbeeh, Tahmeed, Tahleel, Takbeer"
+        ],
+        [
+            "Tasbeeh, Tahmeed, Tahleel, Takbeer",
+            "The Prophet (peace be upon him) said: 'Is any of you unable to earn a thousand good deeds every day?' A questioner from among his companions asked him, 'How can one of us earn a thousand good deeds?' He (the Prophet) said: 'He should say Tasbeeh (Subhanallah) a hundred times, and a thousand good deeds will be recorded for him, or a thousand sins will be removed from him.'",
+            "",
+            "",
+            "Muslim",
+            "Tasbeeh, Tahmeed, Tahleel, Takbeer"
+        ],
+        [
+            "Glorification, Praise, Affirmation of Oneness, Magnification",
+            "((Whoever says: 'Subhan Allah Al-Adheem wa bihamdihi' (Glorified be Allah, the Most Great, and praised be He), a date palm tree will be planted for him in Paradise)).",
+            "",
+            "",
+            "At-Tirmidhi",
+            "Tasbeeh, Tahmeed, Tahleel, Takbeer"
+        ],
+        [
+            "Glorification, Praise, Declaration of Oneness, Magnification",
+            "The Prophet (peace be upon him) said: 'O Abdullah ibn Qays, shall I not guide you to a treasure from the treasures of Paradise?' I said: 'Yes, O Messenger of Allah.' He said: 'Say: La hawla wa la quwwata illa billah (There is no might nor power except with Allah).'",
+            "",
+            null,
+            "Al-Bukhari",
+            "Glorification, Praise, Declaration of Oneness, Magnification"
+        ],
+        [
+            "Tasbeeh, Tahmeed, Tahleel, Takbeer",
+            "The Prophet (peace be upon him) said: 'The dearest words to Allah are four: Subhanallah (Glory be to Allah), Alhamdulillah (All praise is due to Allah), La ilaha illa Allah (There is no deity worthy of worship except Allah), and Allahu Akbar (Allah is the Greatest). It does not matter with which of them you begin.'",
+            "",
+            "",
+            "Muslim",
+            "Tasbeeh, Tahmeed, Tahleel, Takbeer"
+        ],
+        [
+            "Tasbeeh, Tahmeed, Tahleel, Takbeer",
+            "A Bedouin came to the Messenger of Allah (peace be upon him) and said: 'Teach me words that I can say.' He said: 'Say: There is no deity worthy of worship except Allah, alone, without partner. Allah is Most Great, immensely. All praise is due to Allah, abundantly. Glorified is Allah, Lord of the worlds. There is no might or power except with Allah, the All-Mighty, the All-Wise.' He (the Bedouin) said: 'These are for my Lord, so what is for me?' He (the Prophet) said: 'Say: O Allah, forgive me, and have mercy on me, and guide me, and provide for me.'",
+            "",
+            0,
+            "Muslim",
+            "Tasbeeh, Tahmeed, Tahleel, Takbeer"
+        ],
+        [
+            "Glorification, Praise, Declaration of Oneness, Magnification",
+            "When a man embraced Islam, the Prophet (peace be upon him) would teach him Salah (prayer), then he would command him to supplicate with these words: ((O Allah, forgive me, and have mercy on me, and guide me, and grant me well-being, and provide for me)).",
+            "",
+            0,
+            "Muslim",
+            "Glorification, Praise, Declaration of Oneness, Magnification"
+        ],
+        [
+            "Glorification, Praise, Affirmation of Oneness, Magnification",
+            "((Indeed, the best supplication is 'Alhamdulillah' (All praise is due to Allah), and the best remembrance is 'La ilaha illa Allah' (There is no deity worthy of worship except Allah)).)",
+            "",
+            "",
+            "Al-Tirmidhi",
+            "Glorification, Praise, Affirmation of Oneness, Magnification"
+        ],
+        [
+            "Tasbeeh, Tahmeed, Tahleel, Takbeer",
+            "The Enduring Good Deeds: Subhanallah (Glory be to Allah), Alhamdulillah (All praise is due to Allah), La ilaha illa Allah (There is no deity worthy of worship except Allah), Allahu Akbar (Allah is the Greatest), and La hawla wa la quwwata illa billah (There is no might nor power except with Allah).",
+            "",
+            "",
+            "Ahmad",
+            "Tasbeeh, Tahmeed, Tahleel, Takbeer"
+        ],
+        [
+            "How did the Prophet make Tasbeeh?",
+            "Narrated by Abdullah ibn Amr, may Allah be pleased with him, who said: 'I saw the Prophet (peace be upon him) counting Tasbeeh (on his fingers).' And in an addition (to the narration): 'with his right hand.'",
+            "",
+            "",
+            "",
+            "How did the Prophet make Tasbeeh?"
+        ],
+        [
+            "Among the comprehensive good deeds and manners",
+            "The Prophet (peace be upon him) said: 'When night falls – or when you enter the evening – restrain your children, for indeed the devils spread out at that time. Then, when an hour of the night has passed, let them go. And close the doors, mentioning the Name of Allah; for indeed Satan does not open a closed door. And tie up your waterskins, mentioning the Name of Allah, and cover your vessels, mentioning the Name of Allah, even if you only place something across them, and extinguish your lamps.'",
+            "",
+            1,
+            "",
+            "Among the comprehensive good deeds and manners - Night Sleep"
+        ],
+        [
+            "Legal Ruqyah from the Holy Quran",
+            "In the Name of Allah, the Most Gracious, the Most Merciful. (1) All praise is due to Allah, Lord of the worlds. (2) The Most Gracious, the Most Merciful. (3) Master of the Day of Judgment. (4) You alone we worship, and You alone we ask for help. (5) Guide us to the straight path. (6) The path of those upon whom You have bestowed favor, not of those who have evoked [Your] wrath or of those who are astray. (7)",
+            "",
+            0,
+            "",
+            "Legal Ruqyah from the Holy Quran"
+        ],
+        [
+            "Legal Ruqyah from the Holy Quran",
+            "Alif, Lam, Mim. (1) This is the Book about which there is no doubt, a guidance for those conscious of Allah - (2) Who believe in the unseen, establish prayer, and spend from what We have provided for them, (3) And who believe in what has been revealed to you, [O Muhammad], and what was revealed before you, and of the Hereafter they are certain [in faith]. (4) Those are upon [right] guidance from their Lord, and it is those who are the successful. (5)",
+            "",
+            0,
+            "",
+            "Legal Ruqyah from the Holy Quran"
+        ],
+        [
+            "Legal Ruqyah from the Holy Quran",
+            "Allah! There is no god but He, the Ever-Living, the Sustainer of all existence. Neither slumber nor sleep overtakes Him. To Him belongs whatever is in the heavens and whatever is on the earth. Who is it that can intercede with Him except by His permission? He knows what is before them and what is behind them, and they encompass not a thing of His knowledge except for what He wills. His Kursi extends over the heavens and the earth, and He feels no fatigue in guarding and preserving them. And He is the Most High, the Most Great.",
+            "",
+            0,
+            "",
+            "Legal Ruqyah from the Holy Quran"
+        ],
+        [
+            "الرقية الشرعية من القرآن الكريم",
+            "لِلَّهِ مَا فِي السَّمَاوَاتِ \r\nوَمَا فِي الْأَرْضِ وَإِنْ تُبْدُوا مَا فِي أَنْفُسِكُمْ أَوْ تُخْفُوهُ \r\nيُحَاسِبْكُمْ بِهِ اللَّهُ فَيَغْفِرُ لِمَنْ يَشَاءُ وَيُعَذِّبُ مَنْ يَشَاءُ \r\nوَاللَّهُ عَلَى كُلِّ شَيْءٍ قَدِيرٌ ﴿284﴾ آَمَنَ الرَّسُولُ بِمَا أُنْزِلَ \r\nإِلَيْهِ مِنْ رَبِّهِ وَالْمُؤْمِنُونَ كُلٌّ آَمَنَ بِاللَّهِ وَمَلَائِكَتِهِ \r\nوَكُتُبِهِ وَرُسُلِهِ لَا نُفَرِّقُ بَيْنَ أَحَدٍ مِنْ رُسُلِهِ وَقَالُوا \r\nسَمِعْنَا وَأَطَعْنَا غُفْرَانَكَ رَبَّنَا وَإِلَيْكَ الْمَصِيرُ ﴿285﴾ لَا \r\nيُكَلِّفُ اللَّهُ نَفْسًا إِلَّا وُسْعَهَا لَهَا مَا كَسَبَتْ وَعَلَيْهَا مَا \r\nاكْتَسَبَتْ رَبَّنَا لَا تُؤَاخِذْنَا إِنْ نَسِينَا أَوْ أَخْطَأْنَا رَبَّنَا \r\nوَلَا تَحْمِلْ عَلَيْنَا إِصْرًا كَمَا حَمَلْتَهُ عَلَى الَّذِينَ مِنْ قَبْلِنَا \r\nرَبَّنَا وَلَا تُحَمِّلْنَا مَا لَا طَاقَةَ لَنَا بِهِ وَاعْفُ عَنَّا وَاغْفِرْ \r\nلَنَا وَارْحَمْنَا أَنْتَ مَوْلَانَا فَانْصُرْنَا عَلَى الْقَوْمِ الْكَافِرِينَ \r\n﴿286﴾.",
+            "",
+            "",
+            "",
+            "الرقية الشرعية من القرآن الكريم"
+        ],
+        [
+            "Sharia-compliant Ruqyah from the Noble Quran",
+            "Say, 'O disbelievers, (1) I do not worship what you worship. (2) Nor are you worshippers of what I worship. (3) Nor will I be a worshipper of what you have worshipped. (4) Nor will you be worshippers of what I worship. (5) For you is your religion, and for me is my religion.' (6)",
+            "",
+            "",
+            "",
+            "Sharia-compliant Ruqyah from the Noble Quran"
+        ],
+        [
+            "Islamic Ruqyah from the Holy Quran",
+            "Say, 'He is Allah, [who is] One, (1) Allah, the Eternal Refuge. (2) He has not begotten, nor has He been begotten, (3) And there is none comparable to Him.' (4)",
+            "",
+            "",
+            "",
+            "Islamic Ruqyah from the Holy Quran"
+        ],
+        [
+            "Legal Ruqyah from the Noble Quran",
+            "Say, \"I seek refuge in the Lord of daybreak, (1)\r\nFrom the evil of what He has created, (2) And from the evil of darkness when it settles, (3) And from the evil of the blowers in knots, (4) And from the evil of an envier when he envies.\" (5)",
+            "",
+            0,
+            "",
+            "Legal Ruqyah from the Noble Quran"
+        ],
+        [
+            "Legal Ruqyah from the Holy Quran",
+            "Say, 'I seek refuge in the Lord of mankind, (1) The Sovereign of mankind, (2) The God of mankind, (3) From the evil of the retreating whisperer – (4) Who whispers into the breasts of mankind – (5) From among the jinn and mankind.' (6)",
+            "",
+            "",
+            "",
+            "Legal Ruqyah from the Holy Quran"
+        ],
+        [
+            "Legal Ruqyah from the Prophetic Sunnah",
+            "I seek refuge with Allah, the Most Great, and with His Noble Countenance, and His Eternal Sovereignty, from the accursed Shaitan.",
+            "If one says this, Shaitan says: 'He has been protected from me for the rest of the day.'",
+            0,
+            "Abu Dawud",
+            "Legal Ruqyah from the Prophetic Sunnah"
+        ],
+        [
+            "Ruqyah Shariah from the Prophetic Sunnah",
+            "I seek refuge in Allah from Satan, the accursed, from his instigation, his blowing, and his spitting.",
+            "",
+            "",
+            "At-Tirmidhi",
+            "Ruqyah Shariah from the Prophetic Sunnah"
+        ],
+        [
+            "Legal Ruqyah from the Prophetic Sunnah",
+            "I seek refuge in the perfect words of Allah from every devil and harmful creature, and from every evil eye.",
+            "",
+            "",
+            "Al-Bukhari",
+            "Legal Ruqyah from the Prophetic Sunnah"
+        ],
+        [
+            "Islamic Ruqyah from the Prophetic Sunnah",
+            "I seek refuge in the perfect words of Allah from the evil of what He created.",
+            "",
+            "",
+            "Muslim",
+            "Islamic Ruqyah from the Prophetic Sunnah"
+        ],
+        [
+            "Legal Ruqyah from the Prophetic Sunnah",
+            "In the Name of Allah, I perform Ruqyah upon you, from everything that harms you, from the evil of every soul or envious eye, May Allah cure you. In the Name of Allah, I perform Ruqyah upon you.",
+            "",
+            0,
+            "Muslim",
+            "Legal Ruqyah from the Prophetic Sunnah"
+        ],
+        [
+            "Legal Ruqyah from the Prophetic Sunnah",
+            "In the Name of Allah (three times), I seek refuge in Allah and His Power from the evil of what I find and what I fear (seven times).",
+            "",
+            "",
+            "Muslim",
+            "Legal Ruqyah from the Prophetic Sunnah"
+        ],
+        [
+            "Islamic Ruqyah from the Prophetic Sunnah",
+            "I ask Allah, the Most Great, Lord of the Magnificent Throne, to cure you.",
+            "",
+            7,
+            "Ahmad",
+            "Islamic Ruqyah from the Prophetic Sunnah"
+        ],
+        [
+            "Legitimate Ruqyah from the Prophetic Sunnah",
+            "O Allah, Lord of mankind, remove the harm and cure, for You are the Healer. There is no healing except Your healing, a healing that leaves no sickness behind.",
+            "",
+            0,
+            "Al-Bukhari",
+            "Legitimate Ruqyah from the Prophetic Sunnah"
+        ],
+        [
+            "Islamic Ruqyah from the Prophetic Sunnah",
+            "O Allah, heal Your servant, and verify Your Messenger.",
+            "",
+            0,
+            "Ahmad",
+            "Islamic Ruqyah from the Prophetic Sunnah"
+        ],
+        [
+            "Ruqyah from the Prophetic Sunnah",
+            "O Allah, bless him, and remove from him the heat of the evil eye, its coldness, and its harm.",
+            "",
+            "",
+            "Ahmad",
+            "Ruqyah from the Prophetic Sunnah"
+        ],
+        [
+            "Legitimate Ruqyah from the Prophetic Sunnah",
+            "O Allah, we ask You for the good of what Your Prophet Muhammad (peace and blessings of Allah be upon him) asked You for, and we seek refuge in You from the evil of what Your Prophet Muhammad (peace and blessings of Allah be upon him) sought refuge from. You are the One Whose help is sought, and upon You is the ultimate outcome, and there is no might nor power except with Allah.",
+            "",
+            0,
+            "At-Tirmidhi",
+            "Legitimate Ruqyah from the Prophetic Sunnah"
+        ],
+        [
+            "Ruqyah from the Prophetic Sunnah",
+            "There is no deity except Allah, the Most Great, the Forbearing. There is no deity except Allah, Lord of the Noble Throne. There is no deity except Allah, Lord of the heavens and Lord of the Magnificent Throne.",
+            "",
+            "",
+            "Ahmad",
+            "Ruqyah from the Prophetic Sunnah"
+        ],
+        [
+            "Ruqyah from the Prophetic Sunnah",
+            "Our Lord, Allah, Who is in the heaven, hallowed be Your Name. Your command is in the heaven and on earth. As Your mercy is in the heaven, make Your mercy on earth. Forgive us our sins and our wrongdoings. You are the Lord of the pure ones. Send down mercy from Your mercy and healing from Your healing upon this pain, so that it may be cured.",
+            "",
+            3,
+            "Abu Dawud",
+            "Ruqyah from the Prophetic Sunnah"
+        ],
+        [
+            "Legal Ruqyah from the Prophetic Sunnah",
+            "I seek refuge in the perfect words of Allah, which no righteous or wicked person can transgress, from the evil of what He created, originated, and propagated, and from the evil of what descends from the heavens, and from the evil of what ascends into them, and from the evil of what He propagated in the earth, and from the evil of what emerges from it, and from the evil of the trials of the night and day, and from the evil of every night-comer, except a night-comer who comes with good, O Most Merciful.",
+            "",
+            "",
+            "Ahmad",
+            "Legal Ruqyah from the Prophetic Sunnah"
+        ],
+        [
+            "Ruqyah from the Prophetic Sunnah",
+            "In the Name of Allah, with Whose Name nothing can cause harm in the earth nor in the heavens, and He is the All-Hearing, the All-Knowing.",
+            "",
+            3,
+            "Abu Dawud",
+            "Ruqyah from the Prophetic Sunnah"
+        ],
+        [
+            "Legal Ruqyah from the Prophetic Sunnah",
+            "I seek refuge in the perfect words of Allah from His wrath and His punishment, from the evil of His servants, from the whisperings of the devils, and from their presence.",
+            "",
+            "",
+            "Abu Dawud",
+            "Legal Ruqyah from the Prophetic Sunnah"
+        ],
+        [
+            "Legal Ruqyah from the Prophetic Sunnah",
+            "In the Name of Allah, the Most Great. I seek refuge with Allah, the Great, from the evil of every throbbing vein, and from the evil of the heat of the Fire.",
+            "",
+            0,
+            "At-Tirmidhi",
+            "Legal Ruqyah from the Prophetic Sunnah"
+        ],
+        [
+            "Islamic Ruqyah from the Prophetic Sunnah",
+            "In the Name of Allah, with the dust of our earth, and the saliva of some of us, our sick will be cured by the permission of our Lord.",
+            "",
+            "",
+            "Al-Bukhari",
+            "Islamic Ruqyah from the Prophetic Sunnah"
+        ],
+        [
+            "Legal Ruqyah from the Prophetic Sunnah",
+            "I ask Allah, the Almighty, Lord of the Magnificent Throne, to grant you well-being and to cure you.",
+            "",
+            7,
+            "Ahmad",
+            "Legal Ruqyah from the Prophetic Sunnah"
+        ],
+        [
+            "Ruqyah from the Prophetic Sunnah",
+            "O Allah, cool my heart with snow, hail, and cold water. O Allah, purify my heart from sins as You purified the white garment from impurity.",
+            "",
+            null,
+            "At-Tirmidhi",
+            "Ruqyah from the Prophetic Sunnah"
+        ],
+        [
+            "Ruqyah from the Prophetic Sunnah",
+            "O Allah, I seek refuge in Your Noble Countenance and Your Perfect Words from the evil of that which You hold by its forelock. O Allah, You remove debt and sin. O Allah, Your army is not defeated, and Your promise is not broken. The good fortune of the fortunate does not benefit them against You. Glory be to You, and praise be to You.",
+            "",
+            "",
+            "Abu Dawud",
+            "Ruqyah from the Prophetic Sunnah"
+        ],
+        [
+            "Legal Ruqyah from the Prophetic Sunnah",
+            "In the Name of Allah, He makes you well, and from every disease, He heals you, and from the evil of an envier when he envies, and from the evil of every evil eye.",
+            "",
+            "",
+            "Muslim",
+            "Legal Ruqyah from the Prophetic Sunnah"
+        ],
+        [
+            "Legal Ruqyah from the Prophetic Sunnah",
+            "O Allah, heal Your servant who will weaken an enemy for Your sake, or walk to prayer for Your sake.",
+            "",
+            "",
+            "Ahmad",
+            "Legal Ruqyah from the Prophetic Sunnah"
+        ],
+        [
+            "Ruqyah Ash-Shar'iyyah from the Prophetic Sunnah",
+            "O Allah, send prayers upon Muhammad and upon the family of Muhammad, as You sent prayers upon Ibrahim and upon the family of Ibrahim. Indeed, You are Praiseworthy and Glorious. O Allah, send blessings upon Muhammad and upon the family of Muhammad, as You sent blessings upon Ibrahim and upon the family of Ibrahim throughout the worlds. Indeed, You are Praiseworthy and Glorious.",
+            "",
+            "",
+            "Al-Bukhari",
+            "Ruqyah Ash-Shar'iyyah from the Prophetic Sunnah"
+        ],
+        [
+            "Ruqyah from the Prophetic Sunnah",
+            "In the Name of Allah, I perform Ruqyah upon you, from everything that harms you, and from the evil of every soul or envious eye. May Allah cure you. In the Name of Allah, I perform Ruqyah upon you.",
+            "",
+            "",
+            "Muslim",
+            "Ruqyah from the Prophetic Sunnah"
+        ],
+        [
+            "Upon waking up at night",
+            "Whoever wakes up during the night and says: 'There is no deity worthy of worship except Allah, alone, without partner. To Him belongs all sovereignty and all praise, and He is over all things competent.' Then says: 'All praise is due to Allah, and glory be to Allah, and there is no deity worthy of worship except Allah, and Allah is the Greatest, and there is no might nor power except with Allah.' Then says: 'O Allah, forgive me,' or makes a supplication; it will be answered for him. And if he performs ablution (wudu') and prays, his prayer will be accepted.",
+            "",
+            1,
+            "Al-Bukhari",
+            "Upon waking up at night"
+        ],
+        [
+            "Places and Times for Accepted Supplication",
+            "Between the Adhan and Iqamah",
+            "(Supplication is not rejected between the Adhan and Iqamah)",
+            null,
+            "Abu Dawud",
+            "Places and Times for Accepted Supplication"
+        ],
+        [
+            "Places and Times for Supplications to be Answered",
+            "During Prostration (Sujood)",
+            "\"The closest a servant is to his Lord is while he is prostrating, so make much supplication.\"",
+            null,
+            "Muslim",
+            "Places and Times for Supplications to be Answered"
+        ],
+        [
+            "Places and Times for Du'a Acceptance",
+            "The Hour on Friday",
+            "Friday has twelve hours. There is no Muslim servant who asks Allah for something during it except that He grants it to him. So seek it in the last hour after Asr.",
+            null,
+            "Abu Dawud",
+            "Places and Times for Du'a Acceptance"
+        ],
+        [
+            "Places and Times for the Acceptance of Supplications",
+            "The Last Third of the Night",
+            "Our Lord, the Blessed and Exalted, descends every night to the lowest heaven when the last third of the night remains and says: 'Who is there to supplicate to Me so that I may answer him? Who is there to ask Me so that I may give him? Who is there to seek My forgiveness so that I may forgive him?'",
+            null,
+            "Al-Bukhari",
+            "Places and Times for the Acceptance of Supplications"
+        ],
+        [
+            "Places and Times for Accepted Supplication",
+            "During Rainfall",
+            "Two are not rejected: (Supplication at the call to prayer and under the rain)",
+            null,
+            "Abu Dawud",
+            "Places and Times for Accepted Supplication"
+        ],
+        [
+            "Places and Times for Du'a to be Answered",
+            "Upon hearing the crowing of roosters",
+            "\"If you hear the crowing of roosters, then ask Allah of His bounty, for they have seen an angel.\"",
+            null,
+            "Al-Bukhari",
+            "Places and Times for Du'a to be Answered"
+        ],
+        [
+            "Places and Times for the Acceptance of Supplication",
+            "Upon Waking Up During the Night",
+            "Whoever wakes up during the night and says: 'There is no deity worthy of worship except Allah, alone, without any partner. To Him belongs the dominion, and to Him belongs all praise, and He is over all things competent. All praise is due to Allah, and Glorified be Allah, and there is no deity worthy of worship except Allah, and Allah is the Greatest, and there is no might nor power except with Allah.' Then says: 'O Allah, forgive me!' or makes a supplication, it will be answered for him. And if he performs ablution (Wudu') and prays, his prayer will be accepted.",
+            null,
+            "Al-Bukhari",
+            "Places and Times for the Acceptance of Supplication"
+        ]
+    ]
+}

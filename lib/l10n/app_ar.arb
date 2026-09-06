@@ -1,0 +1,136 @@
+{
+  "@@locale": "ar",
+  "appTitle": "بشرى",
+  "onboarding1Title": "بُشرى… رفيقك في طريق الخير",
+  "onboarding1Desc": "اجعل يومك أقرب إلى الله، بخطوات بسيطة وعبادات حاضرة معك في كل وقت.",
+  "onboarding2Title": "كل ما تحتاجه لعبادتك، في مكان واحد",
+  "onboarding2Desc": "القرآن، أوقات الصلاة، الأذكار، القبلة، والأدعية… بتجربة بسيطة تساعدك على الاستمرار.",
+  "onboarding3Title": "خطوة صغيرة كل يوم… تصنع أثرًا كبيرًا",
+  "onboarding3Desc": "ابنِ عاداتك الإيمانية، واغتنم لحظات يومك بما يقربك إلى الله.",
+  "startJourney": "ابدأ رحلتك",
+  "next": "التالي",
+  "skip": "تخطي",
+  "navHome": "الرئيسية",
+  "navQuran": "القرآن",
+  "navAzkar": "الأذكار",
+  "navQibla": "القبلة",
+  "navRadio": "الراديو",
+  "navMore": "المزيد",
+  "nextPrayerTitle": "{prayerName}",
+  "@nextPrayerTitle": {
+    "placeholders": {
+      "prayerName": {
+        "type": "String"
+      }
+    }
+  },
+  "untilNextPrayer": "حتى صلاة {prayerName}",
+  "@untilNextPrayer": {
+    "placeholders": {
+      "prayerName": {
+        "type": "String"
+      }
+    }
+  },
+  "greeting": "السلام عليكم👋",
+  "surahs": "السور",
+  "juzs": "الأجزاء",
+  "prayerSettingsTitle": "إعدادات الصلاة والأذان",
+  "prePrayerAlertTitle": "التنبيه المسبق (قبل الصلاة)",
+  "minutesBeforeAdhan": "{minutes} دقيقة قبل الأذان",
+  "@minutesBeforeAdhan": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "enablePrayerAlertsTitle": "تفعيل التنبيهات للصلوات",
+  "fajr": "الفجر",
+  "dhuhr": "الظهر",
+  "asr": "العصر",
+  "maghrib": "المغرب",
+  "isha": "العشاء",
+  "ayahOfTheDay": "آية اليوم",
+  "listen": "استماع",
+  "tafseer": "تفسير",
+  "surahAndVerse": "سورة {surahName} • الآية {verseNumber}",
+  "@surahAndVerse": {
+    "placeholders": {
+      "surahName": {
+        "type": "String"
+      },
+      "verseNumber": {
+        "type": "String"
+      }
+    }
+  },
+  "dailyWird": "أكمل وردك اليومي",
+  "morningAzkar": "أذكار الصباح",
+  "eveningAzkar": "أذكار المساء",
+  "continueReading": "متابعة",
+  "morningAzkarNotificationTitle": "أذكار الصباح 🌅",
+  "morningAzkarNotificationBody": "ابدأ يومك بذكر الله وتوفيقه",
+  "eveningAzkarNotificationTitle": "أذكار المساء 🌙",
+  "eveningAzkarNotificationBody": "اختم يومك بذكر الله وطمأنينة",
+  "quickAccess": "الوصول السريع",
+  "qibla": "القبلة",
+  "recitation": "التلاوة",
+  "quran": "القرآن",
+  "quranRadio": "إذاعة القرآن",
+  "azkar": "الأذكار",
+  "continueReadingCardTitle": "متابعة القراءة",
+  "surahName": "سورة {surahName}",
+  "@surahName": {
+    "placeholders": {
+      "surahName": {
+        "type": "String"
+      }
+    }
+  },
+  "ayahNumber": "الآية {number}",
+  "@ayahNumber": {
+    "placeholders": {
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "selectedRecitationTitle": "تلاوة مختارة",
+  "live": "Live",
+  "quranScreenTitle": "القرآن الكريم",
+  "startQuranJourney": "ابدأ رحلتك مع القرآن",
+  "openSurahAndRead": "افتح سورة وابدأ القراءة",
+  "browseSurahs": "تصفح السور",
+  "searchSurah": "البحث عن سورة...",
+  "tabSurahs": "السور",
+  "tabJuzs": "الأجزاء",
+  "tabHizbs": "الأحزاب",
+  "meccan": "مكية",
+  "medinan": "مدنية",
+  "ayahsCount": "{count} آيات",
+  "tafsirOption": "تفسير",
+  "recitationOption": "تلاوة",
+  "downloadOption": "تنزيل",
+  "shareOption": "مشاركة",
+  "infoOption": "معلومات",
+  "copyOption": "نسخ",
+  "copiedSuccessfully": "تم نسخ الآية للحافظة",
+  "azkarScreenTitle": "أذكار",
+  "azkarScreenSubtitle": "قرب من الله... في كل لحظة",
+  "azkarCategoryMorning": "أذكار الصباح",
+  "azkarCategoryMorningSub": "أذكار و أذكار الصباح",
+  "azkarCategoryEvening": "أذكار المساء",
+  "azkarCategoryEveningSub": "أذكار و أذكار المساء",
+  "azkarCategoryPrayer": "بعد الصلاة",
+  "azkarCategoryPrayerSub": "أذكار بعد الصلاة",
+  "azkarCategorySleep": "أذكار النوم",
+  "azkarCategorySleepSub": "أذكار قبل النوم",
+  "azkarCategoryProtection": "أذكار الحماية",
+  "azkarCategoryProtectionSub": "أذكار للحماية والطمأنينة",
+  "azkarCategoryDaily": "أذكار يومية",
+  "azkarCategoryDailySub": "أذكار متنوعة لليوم",
+  "azkarAllCategories": "كل الأقسام",
+  "navRadio": "الإذاعة",
+  "quranMessageNotificationTitle": "رسالة من القرآن 🌿"
+}
