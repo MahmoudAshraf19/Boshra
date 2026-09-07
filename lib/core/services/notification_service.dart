@@ -125,7 +125,7 @@ class NotificationService {
           scheduledDate: scheduledDate,
           notificationDetails: const NotificationDetails(
             android: AndroidNotificationDetails(
-              'quran_messages_channel_2',
+              'quran_messages_channel_v3',
               'Quran Messages',
               channelDescription: 'Daily message from the Quran',
               importance: Importance.high,
@@ -163,7 +163,7 @@ class NotificationService {
 
     const AndroidNotificationDetails androidPlatformChannelSpecifics =
         AndroidNotificationDetails(
-      'daily_azkar_channel_3',
+      'daily_azkar_channel_v3',
       'Daily Azkar Notifications',
       channelDescription: 'Notifications for morning and evening Azkar',
       importance: Importance.max,
@@ -191,6 +191,36 @@ class NotificationService {
       notificationDetails: platformChannelSpecifics,
       androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
       matchDateTimeComponents: DateTimeComponents.time,
+    );
+  }
+  Future<void> testNotification() async {
+    const AndroidNotificationDetails androidPlatformChannelSpecifics =
+        AndroidNotificationDetails(
+      'test_channel_v3',
+      'Test Notifications',
+      channelDescription: 'Channel for testing notifications',
+      importance: Importance.max,
+      priority: Priority.high,
+      sound: RawResourceAndroidNotificationSound('notification'),
+      playSound: true,
+    );
+
+    const DarwinNotificationDetails iOSPlatformChannelSpecifics =
+        DarwinNotificationDetails(
+      sound: 'notification.mp3',
+      presentSound: true,
+    );
+
+    const NotificationDetails platformChannelSpecifics = NotificationDetails(
+      android: androidPlatformChannelSpecifics,
+      iOS: iOSPlatformChannelSpecifics,
+    );
+
+    await flutterLocalNotificationsPlugin.show(
+      id: 999,
+      title: 'إشعار تجريبي 🔔',
+      body: 'هذا إشعار للتأكد من عمل الصوت والإشعارات بشكل صحيح!',
+      notificationDetails: platformChannelSpecifics,
     );
   }
 }

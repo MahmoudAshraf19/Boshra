@@ -66,15 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
             stretch: true,
             toolbarHeight: 60.0,
             surfaceTintColor: Colors.transparent,
-            actions: [
-              IconButton(
-                icon: const Icon(Icons.settings),
-                color: Theme.of(context).colorScheme.primaryContainer,
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const PrayerSettingsScreen()));
-                },
-              ),
-            ],
+
             flexibleSpace: FlexibleSpaceBar(
               stretchModes: const [StretchMode.zoomBackground],
               titlePadding: const EdgeInsets.only(left: 20, right: 20, bottom: 16),
@@ -243,7 +235,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   child: Column(
                                     children: [
                                       Text(
-                                        l10n.nextPrayerTitle(_controller.nextPrayerName), 
+                                        _getLocalizedPrayerName(_controller.nextPrayerName, l10n), 
                                         style: TextStyle(
                                           fontSize: 36,
                                           fontWeight: FontWeight.bold,
@@ -262,7 +254,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       ),
                                       const SizedBox(height: 4),
                                       Text(
-                                        l10n.untilNextPrayer(_controller.nextPrayerName),
+                                        l10n.untilNextPrayer(_getLocalizedPrayerName(_controller.nextPrayerName, l10n)),
                                         style: TextStyle(
                                           fontSize: 14,
                                           color: headerSubColor,
@@ -419,6 +411,23 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
   
+  String _getLocalizedPrayerName(String englishName, AppLocalizations l10n) {
+    switch (englishName.toLowerCase()) {
+      case 'fajr':
+        return l10n.fajr;
+      case 'dhuhr':
+        return l10n.dhuhr;
+      case 'asr':
+        return l10n.asr;
+      case 'maghrib':
+        return l10n.maghrib;
+      case 'isha':
+        return l10n.isha;
+      default:
+        return englishName;
+    }
+  }
+
   Widget _buildPrayerItem(String name, String timeStr, IconData icon, bool isNext) {
     // Format the time slightly
     String formattedTime = timeStr.split(' ')[0]; // Remove timezone part if any

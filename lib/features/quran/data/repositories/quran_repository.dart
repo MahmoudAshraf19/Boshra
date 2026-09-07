@@ -35,8 +35,9 @@ class QuranRepository {
     return apiMeta;
   }
 
-  /// Gets a Surah. Checks local cache first, if not found fetches from API and caches it.
-  Future<SurahModel?> getSurah(int surahNumber, {bool useUthmani = true}) async {
+  /// Gets a Surah. Checks local cache first, if not found fetches from API.
+  /// If [saveToCache] is true, it will explicitly save the fetched Surah locally.
+  Future<SurahModel?> getSurah(int surahNumber, {bool useUthmani = true, bool saveToCache = false}) async {
     final edition = useUthmani ? 'quran-uthmani' : 'quran-simple';
 
     // 1. Check local cache
@@ -48,12 +49,18 @@ class QuranRepository {
     // 2. If not in cache, fetch from API
     final apiSurah = await _apiService.getSurah(surahNumber, edition: edition);
     
-    // 3. Save to cache for next time
-    if (apiSurah != null) {
+    // 3. Save to cache ONLY if explicitly requested (e.g. from Download button)
+    if (apiSurah != null && saveToCache) {
       await _localService.saveSurah(apiSurah, edition);
     }
 
     return apiSurah;
+  }
+
+  /// Get a set of all currently downloaded (cached) Surah numbers.
+  Future<Set<int>> getDownloadedSurahs({bool useUthmani = true}) async {
+    final edition = useUthmani ? 'quran-uthmani' : 'quran-simple';
+    return await _localService.getCachedSurahs(edition);
   }
 
   /// Gets a random Ayah. Always fetches fresh from API.

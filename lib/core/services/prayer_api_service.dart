@@ -28,7 +28,7 @@ class PrayerApiService {
         queryParameters: {
           'latitude': latitude,
           'longitude': longitude,
-          'method': method,
+          if (method != 'auto') 'method': method,
         },
       );
 
@@ -57,7 +57,7 @@ class PrayerApiService {
         queryParameters: {
           'latitude': latitude,
           'longitude': longitude,
-          'method': method,
+          if (method != 'auto') 'method': method,
           'month': month,
           'year': year,
         },

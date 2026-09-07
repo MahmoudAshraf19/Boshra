@@ -292,4 +292,367 @@ class AppLocalizationsFa extends AppLocalizations {
   String bookmarkSavedSuccessfully(String surahName, String ayahNumber) {
     return 'نشانک در سوره $surahName آیه $ayahNumber ذخیره شد';
   }
+
+  @override
+  String get qiblaDirection => 'جهت قبله';
+
+  @override
+  String get qiblaAccurate => 'قبله دقیق است';
+
+  @override
+  String get youAreFacingQibla => 'اکنون رو به قبله هستید';
+
+  @override
+  String get qiblaCalibration => 'کالیبراسیون قبله';
+
+  @override
+  String get qiblaCalibrationDesc =>
+      'لطفاً تلفن خود را به آرامی به شکل 8 حرکت دهید تا قطب نما کالیبره شود.';
+
+  @override
+  String get findingLocation => 'در حال یافتن مکان...';
+
+  @override
+  String get locationPermissionError =>
+      'امکان دسترسی به مکان وجود ندارد. لطفاً GPS را فعال کنید.';
+
+  @override
+  String get locationPermissionTitle => 'Allow Location Access';
+
+  @override
+  String get locationPermissionDesc =>
+      'We need your location to accurately calculate the Qibla direction based on your current position.';
+
+  @override
+  String get preciseQibla => 'قبله دقیق';
+
+  @override
+  String get exactLocation => 'مکان دقیق شما';
+
+  @override
+  String get alwaysUpToDate => 'همیشه به‌روز';
+
+  @override
+  String get allowLocationBtn => 'اجازه دسترسی';
+
+  @override
+  String get notNow => 'الان نه';
+
+  @override
+  String get startupLocationTitle => 'Location Access';
+
+  @override
+  String startupLocationDescSaved(String locationName) {
+    return 'We need your location for accurate Prayer Times and Qibla direction.\n\nIf you choose not to allow, we will use your last saved location: $locationName.';
+  }
+
+  @override
+  String get startupLocationDescDefault =>
+      'We need your location for accurate Prayer Times and Qibla direction.\n\nIf you choose not to allow, we will use the default location: Mecca, Saudi Arabia.';
+
+  @override
+  String get moreScreenTitle => 'بیشتر';
+
+  @override
+  String get generalSettings => 'عمومی';
+
+  @override
+  String get appearance => 'ظاهر';
+
+  @override
+  String get systemDefault => 'پیش‌فرض سیستم';
+
+  @override
+  String get appLanguage => 'زبان برنامه';
+
+  @override
+  String get alertsSettings => 'هشدارها';
+
+  @override
+  String get notifications => 'اعلان‌ها';
+
+  @override
+  String get adhanAndReminders => 'اذان و یادآوری‌ها';
+
+  @override
+  String get dataAndStorage => 'داده‌ها و ذخیره‌سازی';
+
+  @override
+  String get storage => 'ذخیره‌سازی';
+
+  @override
+  String get storageDesc => 'مدیریت سوره‌های دانلود شده';
+
+  @override
+  String get infoAndSupport => 'اطلاعات و پشتیبانی';
+
+  @override
+  String get privacyAndPermissions => 'حریم خصوصی و مجوزها';
+
+  @override
+  String get aboutBoshra => 'درباره بشری';
+
+  @override
+  String get downloadedOption => 'دانلود شده';
+
+  @override
+  String get totalUsed => 'کل استفاده شده';
+
+  @override
+  String get systemApp => 'سیستم (برنامه)';
+
+  @override
+  String get downloadedSurahs => 'سوره‌های دانلود شده';
+
+  @override
+  String get cache => 'حافظه پنهان';
+
+  @override
+  String get manageDownloads => 'مدیریت دانلودها';
+
+  @override
+  String get clearCache => 'پاک کردن حافظه پنهان';
+
+  @override
+  String get clearAllDownloads => 'پاک کردن تمام دانلودها';
+
+  @override
+  String get clearWarning => 'این کار تمام محتوای دانلود شده را حذف می‌کند.';
+
+  @override
+  String get notEnoughSpace => 'فضای کافی وجود ندارد (محدودیت ۳ گیگابایت).';
+
+  @override
+  String get clearCacheWarning =>
+      'آیا مطمئن هستید؟ داده‌های موقت پاک خواهند شد.';
+
+  @override
+  String get clearAllData => 'پاک کردن تمام داده‌ها';
+
+  @override
+  String get clearDataWarning =>
+      'آیا مطمئن هستید؟ برنامه به حالت اولیه باز می‌گردد.';
+
+  @override
+  String get yesClear => 'بله، پاک کن';
+
+  @override
+  String get cancel => 'لغو';
+
+  @override
+  String get yourPrivacyMatters => 'حریم خصوصی شما برای ما مهم است.';
+
+  @override
+  String get privacyRequestsDesc =>
+      'بشرى فقط مجوزهای موردنیاز برای ارائه قابلیت‌های خود را درخواست می‌کند.';
+
+  @override
+  String get permissions => 'مجوزها';
+
+  @override
+  String get locationPermDesc =>
+      'برای محاسبه دقیق اوقات نماز و تعیین جهت قبله بر اساس موقعیت شما استفاده می‌شود.';
+
+  @override
+  String get statusAllowed => 'مجاز';
+
+  @override
+  String get statusDenied => 'رد شده';
+
+  @override
+  String get notificationsPermDesc =>
+      'برای ارسال اوقات نماز، اعلان اذان و یادآوری اذکار استفاده می‌شوند.';
+
+  @override
+  String get yourData => 'داده‌های شما';
+
+  @override
+  String get yourDataDesc1 =>
+      'بشرى به ایجاد حساب کاربری یا ورود به حساب نیاز ندارد.';
+
+  @override
+  String get yourDataDesc2 =>
+      'تنظیمات، محتوای دانلودشده و ترجیحات شما ممکن است برای ارائه قابلیت‌های برنامه به‌صورت محلی روی دستگاه ذخیره شوند.';
+
+  @override
+  String get privacy => 'حریم خصوصی';
+
+  @override
+  String get privacyPolicyDesc =>
+      'با نحوه جمع‌آوری، استفاده، ذخیره و حفاظت از اطلاعات در بشرى آشنا شوید.';
+
+  @override
+  String get termsAndConditions => 'شرایط و ضوابط';
+
+  @override
+  String get termsDesc => 'شرایط استفاده از بشرى را مطالعه کنید.';
+
+  @override
+  String get dataAndPrivacy => 'داده‌ها و حریم خصوصی';
+
+  @override
+  String get dataPrivacyDesc =>
+      'درباره داده‌هایی که توسط بشرى پردازش می‌شوند و گزینه‌های حریم خصوصی خود بیشتر بدانید.';
+
+  @override
+  String get permissionManagement => 'مدیریت مجوزها';
+
+  @override
+  String get manageLocationPerm => 'مدیریت مجوز موقعیت مکانی';
+
+  @override
+  String get manageLocationDesc =>
+      'برای تغییر دسترسی به موقعیت مکانی، تنظیمات دستگاه را باز کنید.';
+
+  @override
+  String get manageNotificationsPerm => 'مدیریت مجوز اعلان‌ها';
+
+  @override
+  String get manageNotificationsDesc =>
+      'برای تغییر دسترسی به اعلان‌ها، تنظیمات دستگاه را باز کنید.';
+
+  @override
+  String get localData => 'داده‌های محلی';
+
+  @override
+  String get clearLocalDataDesc =>
+      'داده‌های محلی بشرى را از این دستگاه حذف کنید.';
+
+  @override
+  String get clearDownloadsDesc =>
+      'تلاوت‌های قرآن و سایر محتوای دانلودشده برای استفاده آفلاین را حذف کنید.';
+
+  @override
+  String get privacyNote => 'یادداشت حریم خصوصی';
+
+  @override
+  String get privacyNoteDesc =>
+      'بشرى از موقعیت مکانی فقط برای قابلیت‌هایی که به آن نیاز دارند، مانند اوقات نماز و جهت قبله، استفاده می‌کند.';
+
+  @override
+  String get boshraTagline => 'همراه روزانه شما برای قرآن، نماز و ذکر.';
+
+  @override
+  String get boshraAboutDesc =>
+      'بشرى یک برنامه اسلامی است که برای ساده‌تر، آرام‌تر و در دسترس‌تر کردن عبادت روزانه طراحی شده است.';
+
+  @override
+  String get whatYouCanDo => 'با بشرى چه کارهایی می‌توانید انجام دهید؟';
+
+  @override
+  String get quranDesc => 'قرآن را با تجربه‌ای ساده، خوانا و راحت مطالعه کنید.';
+
+  @override
+  String get quranRecitation => 'تلاوت قرآن';
+
+  @override
+  String get quranRecitationDesc => 'به تلاوت قاری مورد علاقه خود گوش دهید.';
+
+  @override
+  String get azkarDesc => 'اذکار روزانه خود را به‌صورت منظم و ساده دنبال کنید.';
+
+  @override
+  String get prayerTimesDesc =>
+      'اوقات دقیق نماز را بر اساس موقعیت مکانی خود دریافت کنید.';
+
+  @override
+  String get qiblaDesc =>
+      'با استفاده از موقعیت مکانی و قطب‌نمای دستگاه، جهت کعبه را پیدا کنید.';
+
+  @override
+  String get reminders => 'یادآوری‌ها';
+
+  @override
+  String get remindersDesc =>
+      'برای حفظ ارتباط با عبادت روزانه، یادآوری‌های مناسب دریافت کنید.';
+
+  @override
+  String get appInfo => 'اطلاعات برنامه';
+
+  @override
+  String get version => 'نسخه';
+
+  @override
+  String get buildNumber => 'Build';
+
+  @override
+  String get moreOptions => 'بیشتر';
+
+  @override
+  String get rateBoshra => 'امتیاز دادن به بشرى';
+
+  @override
+  String get rateBoshraDesc => 'با ثبت نظر خود از بشرى حمایت کنید.';
+
+  @override
+  String get shareBoshra => 'اشتراک‌گذاری بشرى';
+
+  @override
+  String get shareBoshraDesc =>
+      'بشرى را با خانواده و دوستان خود به اشتراک بگذارید.';
+
+  @override
+  String get contactUs => 'تماس با ما';
+
+  @override
+  String get contactUsDesc => 'با Mahmoud Ashraf در ارتباط باشید.';
+
+  @override
+  String get openSourceLicenses => 'مجوزهای متن‌باز';
+
+  @override
+  String get openSourceDesc =>
+      'مجوزهای نرم‌افزارهای متن‌باز استفاده‌شده در بشرى را مشاهده کنید.';
+
+  @override
+  String get madeWithCare =>
+      'با دقت برای کسانی ساخته شده است که به دنبال ارتباطی نزدیک‌تر با قرآن و ذکر هستند.';
+
+  @override
+  String get locationText => 'مکان';
+
+  @override
+  String get privacyPolicyText => 'سیاست حفظ حریم خصوصی';
+
+  @override
+  String get clearLocalDataText => 'پاک کردن داده‌های محلی';
+
+  @override
+  String get prayerTimesText => 'اوقات شرعی';
+
+  @override
+  String get themeLight => 'روشن';
+
+  @override
+  String get themeLightDesc => 'رابط کاربری تمیز و روشن';
+
+  @override
+  String get themeDark => 'تاریک';
+
+  @override
+  String get themeDarkDesc => 'رابط کاربری تاریک و عمیق';
+
+  @override
+  String get themeSystem => 'سیستم';
+
+  @override
+  String get themeSystemDesc => 'پیروی از تنظیمات دستگاه';
+
+  @override
+  String get soundType => 'Notification Type';
+
+  @override
+  String get soundSilent => 'Silent (No sound)';
+
+  @override
+  String get soundShort => 'Short Beep';
+
+  @override
+  String get soundAdhan => 'Full Adhan';
+
+  @override
+  String get testNotificationNow => 'Test Notification Now';
+
+  @override
+  String get prePrayerAlertDesc => 'Alert me before Adhan by';
 }

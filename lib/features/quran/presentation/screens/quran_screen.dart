@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../data/models/quran_models.dart';
 import '../../data/repositories/quran_repository.dart';
+import '../../../../core/services/storage_service.dart';
 import '../widgets/quran_drawer.dart';
 import 'quran_reading_screen.dart';
 import '../widgets/surah_tafsir_bottom_sheet.dart';
@@ -101,12 +102,13 @@ class _QuranScreenState extends State<QuranScreen> {
           ],
         ),
         actions: [
-          IconButton(
-            icon: Icon(Icons.more_vert, color: colorScheme.onSurface),
-            onPressed: () {
-              _showMoreOptionsBottomSheet(context, l10n, colorScheme);
-            },
-          ),
+          if (_readingSurah != null)
+            IconButton(
+              icon: Icon(Icons.more_vert, color: colorScheme.onSurface),
+              onPressed: () {
+                _showMoreOptionsBottomSheet(context, l10n, colorScheme);
+              },
+            ),
         ],
       ),
       body: _readingSurah != null
@@ -127,133 +129,141 @@ class _QuranScreenState extends State<QuranScreen> {
               },
             )
           : SafeArea(
-        child: Column(
-          children: [
-            const Spacer(flex: 1),
-            // Main Image
-            Image.asset(
-              'assets/images/background_quranScreen.png',
-              width: MediaQuery.of(context).size.width * 0.8,
-              fit: BoxFit.contain,
-              errorBuilder: (context, error, stackTrace) {
-                // Return an elegant placeholder or empty space if image is missing
-                return Icon(
-                  Icons.menu_book,
-                  size: MediaQuery.of(context).size.width * 0.4,
-                  color: colorScheme.primary.withValues(alpha: 0.2),
-                );
-              },
-            ),
-            const SizedBox(height: 32),
-            // Title
-            Text(
-              l10n.startQuranJourney,
-              style: TextStyle(
-                fontSize: 28,
-                fontWeight: FontWeight.bold,
-                color: colorScheme.onSurface,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const SizedBox(height: 40),
+              // Main Image
+              Image.asset(
+                'assets/images/background_quranScreen.png',
+                width: MediaQuery.of(context).size.width * 0.8,
+                fit: BoxFit.contain,
+                errorBuilder: (context, error, stackTrace) {
+                  // Return an elegant placeholder or empty space if image is missing
+                  return Icon(
+                    Icons.menu_book,
+                    size: MediaQuery.of(context).size.width * 0.4,
+                    color: colorScheme.primary.withValues(alpha: 0.2),
+                  );
+                },
               ),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 8),
-            // Subtitle
-            Text(
-              l10n.openSurahAndRead,
-              style: TextStyle(
-                fontSize: 16,
-                color: colorScheme.onSurfaceVariant,
+              const SizedBox(height: 32),
+              // Title
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                child: Text(
+                  l10n.startQuranJourney,
+                  style: TextStyle(
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                    color: colorScheme.onSurface,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
               ),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 48),
-            // Buttons
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 48.0),
-              child: Column(
-                children: [
-                  if (_lastReadSurah != null) ...[
+              const SizedBox(height: 8),
+              // Subtitle
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                child: Text(
+                  l10n.openSurahAndRead,
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: colorScheme.onSurfaceVariant,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              const SizedBox(height: 48),
+              // Buttons
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 48.0),
+                child: Column(
+                  children: [
+                    if (_lastReadSurah != null) ...[
+                      SizedBox(
+                        width: double.infinity,
+                        height: 56,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            setState(() {
+                              _readingSurah = _lastReadSurah;
+                              _readingAlignment = _lastReadAlignment;
+                            });
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color(0xFFDDA15E),
+                            foregroundColor: Colors.white,
+                            elevation: 0,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                locale == 'ar' ? 'متابعة القراءة' : 'Continue Reading',
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const SizedBox(width: 8),
+                              const Icon(Icons.menu_book, size: 20),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                    ],
                     SizedBox(
                       width: double.infinity,
                       height: 56,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          setState(() {
-                            _readingSurah = _lastReadSurah;
-                            _readingAlignment = _lastReadAlignment;
-                          });
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFFDDA15E),
-                          foregroundColor: Colors.white,
-                          elevation: 0,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              locale == 'ar' ? 'متابعة القراءة' : 'Continue Reading',
-                              style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
+                      child: Builder(
+                        builder: (context) => ElevatedButton(
+                          onPressed: () {
+                            Scaffold.of(context).openDrawer();
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: _lastReadSurah != null 
+                                ? Colors.transparent 
+                                : (isDark ? colorScheme.primaryContainer : const Color(0xFF354823)),
+                            foregroundColor: _lastReadSurah != null ? colorScheme.primary : Colors.white,
+                            elevation: 0,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30),
+                              side: _lastReadSurah != null 
+                                  ? BorderSide(color: colorScheme.primary, width: 2)
+                                  : BorderSide.none,
                             ),
-                            const SizedBox(width: 8),
-                            const Icon(Icons.menu_book, size: 20),
-                          ],
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                l10n.browseSurahs,
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const SizedBox(width: 8),
+                              Icon(
+                                Icons.adaptive.arrow_forward,
+                                size: 20,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                    const SizedBox(height: 16),
                   ],
-                  SizedBox(
-                    width: double.infinity,
-                    height: 56,
-                    child: Builder(
-                      builder: (context) => ElevatedButton(
-                        onPressed: () {
-                          Scaffold.of(context).openDrawer();
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: _lastReadSurah != null 
-                              ? Colors.transparent 
-                              : (isDark ? colorScheme.primaryContainer : const Color(0xFF354823)),
-                          foregroundColor: _lastReadSurah != null ? colorScheme.primary : Colors.white,
-                          elevation: 0,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30),
-                            side: _lastReadSurah != null 
-                                ? BorderSide(color: colorScheme.primary, width: 2)
-                                : BorderSide.none,
-                          ),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              l10n.browseSurahs,
-                              style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            const SizedBox(width: 8),
-                            Icon(
-                              Icons.adaptive.arrow_forward,
-                              size: 20,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+                ),
               ),
-            ),
-            const Spacer(flex: 2),
-          ],
+              const SizedBox(height: 40),
+            ],
+          ),
         ),
       ),
     );
@@ -276,7 +286,16 @@ class _QuranScreenState extends State<QuranScreen> {
     );
   }
 
-  void _showMoreOptionsBottomSheet(BuildContext context, AppLocalizations l10n, ColorScheme colorScheme) {
+  void _showMoreOptionsBottomSheet(BuildContext context, AppLocalizations l10n, ColorScheme colorScheme) async {
+    if (_currentSurahMeta == null) return;
+    
+    // Check if the current Surah is downloaded
+    final repository = QuranRepository();
+    final downloadedSurahs = await repository.getDownloadedSurahs();
+    final isDownloaded = downloadedSurahs.contains(_currentSurahMeta!.number);
+    
+    if (!context.mounted) return;
+
     showModalBottomSheet(
       context: context,
       shape: const RoundedRectangleBorder(
@@ -290,18 +309,16 @@ class _QuranScreenState extends State<QuranScreen> {
             children: [
               _buildBottomSheetOption(Icons.menu_book, l10n.tafsirOption, colorScheme, () {
                 Navigator.pop(context);
-                if (_currentSurahMeta != null) {
-                  showModalBottomSheet(
-                    context: context,
-                    isScrollControlled: true,
-                    backgroundColor: Colors.transparent,
-                    builder: (context) => SurahTafsirBottomSheet(
-                      surahNumber: _currentSurahMeta!.number,
-                      surahName: _currentSurahMeta!.name,
-                      locale: Localizations.localeOf(context).languageCode,
-                    ),
-                  );
-                }
+                showModalBottomSheet(
+                  context: context,
+                  isScrollControlled: true,
+                  backgroundColor: Colors.transparent,
+                  builder: (context) => SurahTafsirBottomSheet(
+                    surahNumber: _currentSurahMeta!.number,
+                    surahName: _currentSurahMeta!.name,
+                    locale: Localizations.localeOf(context).languageCode,
+                  ),
+                );
               }),
               _buildBottomSheetOption(Icons.headset, l10n.recitationOption, colorScheme, () async {
                 Navigator.pop(context);
@@ -313,41 +330,96 @@ class _QuranScreenState extends State<QuranScreen> {
                     builder: (dialogCtx) => const Center(child: CircularProgressIndicator()),
                   );
                   
-                  final repository = QuranRepository();
-                  final surah = await repository.getSurah(_currentSurahMeta!.number, useUthmani: true);
-                  
-                  if (context.mounted) Navigator.pop(context); // Hide loading
-                  
-                  if (surah != null && context.mounted) {
-                    showModalBottomSheet(
-                      context: context,
-                      isScrollControlled: true,
-                      backgroundColor: Colors.transparent,
-                      builder: (context) => SurahRecitationBottomSheet(
-                        surah: surah,
-                        locale: Localizations.localeOf(context).languageCode,
-                      ),
-                    );
+                  try {
+                    final repository = QuranRepository();
+                    final surah = await repository.getSurah(_currentSurahMeta!.number, useUthmani: true);
+                    
+                    if (context.mounted) Navigator.pop(context); // Hide loading
+                    
+                    if (surah != null && context.mounted) {
+                      showModalBottomSheet(
+                        context: context,
+                        isScrollControlled: true,
+                        backgroundColor: Colors.transparent,
+                        builder: (context) => SurahRecitationBottomSheet(
+                          surah: surah,
+                          locale: Localizations.localeOf(context).languageCode,
+                        ),
+                      );
+                    } else if (surah == null && context.mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Failed to load recitation data')),
+                      );
+                    }
+                  } catch (e) {
+                    if (context.mounted) Navigator.pop(context); // Hide loading on error
+                    if (context.mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('An error occurred. Please check your internet connection.')),
+                      );
+                    }
                   }
                 }
               }),
-              _buildBottomSheetOption(Icons.download, l10n.downloadOption, colorScheme, () {
-                Navigator.pop(context);
-              }),
+              _buildBottomSheetOption(
+                isDownloaded ? Icons.download_done_rounded : Icons.download_rounded, 
+                isDownloaded ? l10n.downloadedOption : l10n.downloadOption, 
+                colorScheme, 
+                () async {
+                  Navigator.pop(context);
+                  if (isDownloaded) return; // Already downloaded, do nothing or show message
+
+                  // Check Storage Space
+                  final storageService = StorageService();
+                  if (!(await storageService.hasEnoughSpace(100 * 1024))) { // Estimate 100KB for text
+                    if (context.mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(l10n.notEnoughSpace),
+                          backgroundColor: colorScheme.error,
+                          duration: const Duration(seconds: 3),
+                        ),
+                      );
+                    }
+                    return;
+                  }
+
+                  // Download the Surah
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text(Localizations.localeOf(context).languageCode == 'ar' ? 'جاري التحميل...' : 'Downloading...')),
+                  );
+                  
+                  try {
+                    await repository.getSurah(_currentSurahMeta!.number, useUthmani: true, saveToCache: true);
+                    if (context.mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(Localizations.localeOf(context).languageCode == 'ar' ? 'تم التحميل بنجاح!' : 'Downloaded successfully!'),
+                          backgroundColor: Colors.green,
+                        ),
+                      );
+                    }
+                  } catch (e) {
+                    if (context.mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text('Failed to download Surah.'), backgroundColor: colorScheme.error),
+                      );
+                    }
+                  }
+                },
+              ),
 
               _buildBottomSheetOption(Icons.info_outline, l10n.infoOption, colorScheme, () {
                 Navigator.pop(context);
-                if (_currentSurahMeta != null) {
-                  showModalBottomSheet(
-                    context: context,
-                    isScrollControlled: true,
-                    backgroundColor: Colors.transparent,
-                    builder: (context) => SurahInfoBottomSheet(
-                      surahMeta: _currentSurahMeta!,
-                      locale: Localizations.localeOf(context).languageCode,
-                    ),
-                  );
-                }
+                showModalBottomSheet(
+                  context: context,
+                  isScrollControlled: true,
+                  backgroundColor: Colors.transparent,
+                  builder: (context) => SurahInfoBottomSheet(
+                    surahMeta: _currentSurahMeta!,
+                    locale: Localizations.localeOf(context).languageCode,
+                  ),
+                );
               }),
             ],
           ),

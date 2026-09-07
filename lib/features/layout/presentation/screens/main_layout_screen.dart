@@ -8,6 +8,10 @@ import '../../../azkar/presentation/screens/azkar_screen.dart';
 import '../../../qibla/presentation/screens/qibla_screen.dart';
 import '../../../radio/presentation/screens/radio_screen.dart';
 import '../../../more/presentation/screens/more_screen.dart';
+import '../widgets/startup_location_dialog.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import '../../../../core/services/location_service.dart';
 
 class MainLayoutScreen extends StatefulWidget {
   const MainLayoutScreen({super.key});
@@ -17,6 +21,7 @@ class MainLayoutScreen extends StatefulWidget {
 }
 
 class _MainLayoutScreenState extends State<MainLayoutScreen> {
+  static bool _hasShownLocationDialog = false;
   int _currentIndex = 0;
 
   late final List<Widget> _screens = [
@@ -32,6 +37,53 @@ class _MainLayoutScreenState extends State<MainLayoutScreen> {
     const RadioScreen(),
     const MoreScreen(),
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _checkLocationPermission();
+    });
+  }
+
+  Future<void> _checkLocationPermission() async {
+    if (_hasShownLocationDialog) return;
+
+    bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    LocationPermission permission = await Geolocator.checkPermission();
+
+    if (!serviceEnabled || permission == LocationPermission.denied || permission == LocationPermission.deniedForever) {
+      _hasShownLocationDialog = true;
+      
+      // Fetch saved location if exists
+      String? savedLocationName;
+      try {
+        final prefs = await SharedPreferences.getInstance();
+        final lat = prefs.getDouble('last_latitude');
+        final lng = prefs.getDouble('last_longitude');
+        if (lat != null && lng != null) {
+          savedLocationName = await LocationService().getLocationName(lat, lng);
+        }
+      } catch (e) {
+        debugPrint('Error fetching saved location for dialog: $e');
+      }
+
+      if (mounted) {
+        showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (context) => StartupLocationDialog(
+            savedLocationName: savedLocationName,
+            onAllow: () {
+              // Can do additional logic here if needed
+            },
+          ),
+        );
+      }
+    } else {
+      _hasShownLocationDialog = true;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

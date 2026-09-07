@@ -1,7 +1,9 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../data/models/quran_models.dart';
 import '../../data/repositories/quran_repository.dart';
+import '../../../../core/services/storage_service.dart';
 
 class QuranDrawer extends StatefulWidget {
   final int selectedSurah;
@@ -23,6 +25,9 @@ class _QuranDrawerState extends State<QuranDrawer> {
   bool _isLoading = true;
   int _selectedTabIndex = 0; // 0: Surahs, 1: Juzs, 2: Hizbs
   String _searchQuery = '';
+  Set<int> _downloadedSurahs = {};
+  Set<int> _downloadingSurahs = {};
+  bool _isOffline = false;
 
   @override
   void initState() {
@@ -32,11 +37,69 @@ class _QuranDrawerState extends State<QuranDrawer> {
 
   Future<void> _loadMetadata() async {
     final meta = await _repository.getQuranMetadata();
+    final downloaded = await _repository.getDownloadedSurahs();
+    
+    bool isOffline = false;
+    try {
+      final result = await InternetAddress.lookup('google.com');
+      if (result.isEmpty || result[0].rawAddress.isEmpty) {
+        isOffline = true;
+      }
+    } catch (_) {
+      isOffline = true;
+    }
+
     if (mounted) {
       setState(() {
         _metaData = meta;
+        _downloadedSurahs = downloaded;
+        _isOffline = isOffline;
         _isLoading = false;
       });
+    }
+  }
+
+  Future<void> _downloadSurah(int surahNumber) async {
+    if (_downloadedSurahs.contains(surahNumber) || _downloadingSurahs.contains(surahNumber)) return;
+    
+    final storageService = StorageService();
+    if (!(await storageService.hasEnoughSpace(100 * 1024))) { // Estimate 100KB for text
+      if (mounted) {
+        final l10n = AppLocalizations.of(context)!;
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(l10n.notEnoughSpace),
+            backgroundColor: Theme.of(context).colorScheme.error,
+            duration: const Duration(seconds: 3),
+          ),
+        );
+      }
+      return;
+    }
+
+    setState(() {
+      _downloadingSurahs.add(surahNumber);
+    });
+    
+    try {
+      // getSurah fetches from API if not cached, and explicitly saves it
+      await _repository.getSurah(surahNumber, useUthmani: true, saveToCache: true);
+      
+      if (mounted) {
+        setState(() {
+          _downloadedSurahs.add(surahNumber);
+          _downloadingSurahs.remove(surahNumber);
+        });
+      }
+    } catch (e) {
+      if (mounted) {
+        setState(() {
+          _downloadingSurahs.remove(surahNumber);
+        });
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Failed to download Surah. Check internet connection.')),
+        );
+      }
     }
   }
 
@@ -127,7 +190,7 @@ class _QuranDrawerState extends State<QuranDrawer> {
                             ],
                           ),
                         )
-                      : _buildListContent(l10n, textColor, secondaryTextColor, isDark),
+                      : _buildListContent(context, l10n, textColor, secondaryTextColor, isDark),
             ),
           ],
         ),
@@ -165,7 +228,9 @@ class _QuranDrawerState extends State<QuranDrawer> {
     );
   }
 
-  Widget _buildListContent(AppLocalizations l10n, Color textColor, Color secondaryTextColor, bool isDark) {
+  Widget _buildListContent(BuildContext context, AppLocalizations l10n, Color textColor, Color secondaryTextColor, bool isDark) {
+    final colorScheme = Theme.of(context).colorScheme;
+    
     if (_selectedTabIndex == 0) {
       // Surahs
       final normalizedQuery = removeDiacritics(_searchQuery.toLowerCase());
@@ -190,11 +255,22 @@ class _QuranDrawerState extends State<QuranDrawer> {
           final surahSubtitle = locale == 'ar' 
               ? '$revelation - $ayahsText' 
               : '${surah.englishNameTranslation} • $revelation - $ayahsText';
+              
+          final isDownloaded = _downloadedSurahs.contains(surah.number);
+          final isClickable = !_isOffline || isDownloaded;
 
           return InkWell(
-            onTap: () {
+            onTap: isClickable ? () {
               Navigator.pop(context);
               widget.onSurahSelected(surah.number);
+            } : () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(locale == 'ar' ? 'هذه السورة غير متاحة بدون إنترنت، يرجى تحميلها أولاً.' : 'This Surah is not available offline. Please download it first.'),
+                  backgroundColor: colorScheme.error,
+                  duration: const Duration(seconds: 2),
+                ),
+              );
             },
             child: Container(
               decoration: isSelected
@@ -236,19 +312,47 @@ class _QuranDrawerState extends State<QuranDrawer> {
                                 ),
                               ),
                               const SizedBox(height: 4),
-                              Text(
-                                surahSubtitle,
-                                style: TextStyle(
-                                  color: secondaryTextColor,
-                                  fontSize: 14,
+                                Text(
+                                  surahSubtitle,
+                                  style: TextStyle(
+                                    color: secondaryTextColor,
+                                    fontSize: 14,
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
+                          // Download Indicator / Button
+                          if (_downloadingSurahs.contains(surah.number))
+                            SizedBox(
+                              width: 24,
+                              height: 24,
+                              child: CircularProgressIndicator(strokeWidth: 2, color: colorScheme.primary),
+                            )
+                          else if (isDownloaded)
+                            Container(
+                              padding: const EdgeInsets.all(4),
+                              decoration: const BoxDecoration(
+                                color: Color(0xFF354823), // Dark olive green as requested
+                                shape: BoxShape.circle,
+                              ),
+                              child: const Icon(
+                                Icons.check,
+                                color: Colors.white,
+                                size: 14,
+                              ),
+                            )
+                          else
+                            IconButton(
+                              onPressed: () => _downloadSurah(surah.number),
+                              icon: Icon(Icons.download_rounded, color: secondaryTextColor, size: 20),
+                              padding: EdgeInsets.zero,
+                              constraints: const BoxConstraints(),
+                              splashRadius: 20,
+                            ),
+                        ],
+                      ),
                     ),
-                  ),
                   if (isSelected)
                     Positioned.directional(
                       textDirection: Directionality.of(context),

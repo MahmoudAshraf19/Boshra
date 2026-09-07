@@ -70,9 +70,11 @@ class QuranApiService {
   Future<String?> getSurahInfo(String surahName, String englishName, String language) async {
     try {
       String url;
-      if (language == 'ar') {
-        // Arabic Wikipedia requires exact title, e.g. "سورة_البقرة"
-        final formattedName = surahName.replaceAll(' ', '_');
+      if (language == 'ar' || language == 'ur' || language == 'fa') {
+        // Use Arabic Wikipedia for Arabic, Urdu, Persian. 
+        // We must strip diacritics (Tashkeel) because Wikipedia URLs don't use them.
+        final strippedName = surahName.replaceAll(RegExp(r'[\u064B-\u065F\u0670]'), '').replaceAll('ٱ', 'ا');
+        final formattedName = strippedName.replaceAll(' ', '_');
         url = 'https://ar.wikipedia.org/api/rest_v1/page/summary/$formattedName';
       } else {
         // English Wikipedia using englishName, e.g. "Al-Baqara"

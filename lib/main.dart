@@ -12,6 +12,8 @@ import 'package:just_audio_background/just_audio_background.dart';
 import 'package:provider/provider.dart';
 import 'features/azkar/presentation/providers/azkar_provider.dart';
 import 'features/radio/presentation/providers/radio_provider.dart';
+import 'core/providers/locale_provider.dart';
+import 'core/providers/theme_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -39,15 +41,19 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider(create: (_) => LocaleProvider()),
+        ChangeNotifierProvider(create: (_) => ThemeProvider()),
         ChangeNotifierProvider(create: (_) => AzkarProvider()),
         ChangeNotifierProvider(create: (_) => RadioProvider()),
       ],
-      child: MaterialApp(
-        title: 'Boshra',
+      child: Consumer2<LocaleProvider, ThemeProvider>(
+        builder: (context, localeProvider, themeProvider, child) {
+          return MaterialApp(
+            title: 'Boshra',
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       debugShowCheckedModeBanner: false,
-      themeMode: ThemeMode.light, // Default to light mode
+      themeMode: themeProvider.themeMode,
       localizationsDelegates: [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
@@ -64,9 +70,11 @@ class MyApp extends StatelessWidget {
         Locale('it'), // Italian
         Locale('ur'), // Urdu
       ],
-      locale: kIsWeb ? DevicePreview.locale(context) : null, // null allows Flutter to auto-detect system language
+      locale: localeProvider.locale,
       builder: DevicePreview.appBuilder,
       home: const SplashScreen(),
+          );
+        },
       ),
     );
   }

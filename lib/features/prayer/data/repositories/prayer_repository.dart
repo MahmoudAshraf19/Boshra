@@ -23,7 +23,7 @@ class PrayerRepository {
   /// Returns PrayerTimesModel for a specific date, attempting to fetch a full month from API if not cached
   Future<PrayerTimesModel?> getPrayerTimesForDate(DateTime date, {bool skipLocationFetch = false}) async {
     final prefs = await SharedPreferences.getInstance();
-    final cacheKey = 'prayer_times_${date.month}_${date.year}';
+    final cacheKey = 'prayer_times_v2_${date.month}_${date.year}';
 
     // 1. Check cache first
     final cachedData = prefs.getString(cacheKey);

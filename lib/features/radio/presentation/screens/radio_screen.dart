@@ -118,18 +118,8 @@ class _RadioScreenState extends State<RadioScreen> {
           SafeArea(
             child: Column(
               children: [
-                // Top AppBar
-                  Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
-                  child: Row(
-                    children: [
-                      IconButton(
-                        icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
-                        onPressed: () => Navigator.pop(context),
-                      ),
-                    ],
-                  ),
-                ),
+                // Top padding instead of AppBar
+                const SizedBox(height: 16),
                 
                 if (provider.isLoading)
                   const Expanded(child: Center(child: CircularProgressIndicator(color: AppColors.lightGoldenAccent)))

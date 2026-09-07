@@ -83,24 +83,13 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                 
                 const SizedBox(height: 16),
                 
-                // "Bushra" text
+                // "Boshra" text
                 const Text(
-                  'Bushra',
+                  'Boshra',
                   style: TextStyle(
                     fontSize: 36,
                     fontWeight: FontWeight.w600,
-                    color: AppColors.lightGoldenAccent,
-                  ),
-                ),
-                
-                const SizedBox(height: 4),
-                
-                // "بشرى" text
-                const Text(
-                  'بشرى',
-                  style: TextStyle(
-                    fontSize: 32,
-                    fontWeight: FontWeight.bold,
+                    fontFamily: 'CormorantGaramond',
                     color: AppColors.lightGoldenAccent,
                   ),
                 ),
@@ -117,7 +106,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                       fontSize: 28,
                       height: 1.5,
                       color: AppColors.lightGoldenAccent,
-                      fontFamily: 'Uthmanic',
+                      fontFamily: 'AmiriQuran',
                     ),
                   ),
                 ),

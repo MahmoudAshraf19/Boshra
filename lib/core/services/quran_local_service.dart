@@ -9,10 +9,27 @@ class QuranLocalService {
   Future<Directory?> _getStorageDirectory() async {
     if (kIsWeb) return null;
     final directory = await getApplicationDocumentsDirectory();
-    final quranDir = Directory('${directory.path}/quran_cache');
+    final quranDir = Directory('${directory.path}/downloads/quran_text');
     if (!await quranDir.exists()) {
       await quranDir.create(recursive: true);
     }
+    
+    // Migrate old cache if it exists
+    final oldDir = Directory('${directory.path}/quran_cache');
+    if (await oldDir.exists()) {
+      try {
+        final files = oldDir.listSync();
+        for (var file in files) {
+          if (file is File) {
+            await file.rename('${quranDir.path}/${file.uri.pathSegments.last}');
+          }
+        }
+        await oldDir.delete(recursive: true);
+      } catch (e) {
+        print('Migration error: $e');
+      }
+    }
+    
     return quranDir;
   }
 
@@ -30,11 +47,38 @@ class QuranLocalService {
     return file.exists();
   }
 
+  /// Get a set of all currently cached Surah numbers for a specific edition.
+  Future<Set<int>> getCachedSurahs(String edition) async {
+    final dir = await _getStorageDirectory();
+    if (dir == null || !(await dir.exists())) return {};
+
+    final cachedSurahs = <int>{};
+    final files = dir.listSync();
+    for (final file in files) {
+      if (file is File) {
+        final filename = file.uri.pathSegments.last;
+        // filename format: surah_{number}_{edition}.json
+        if (filename.startsWith('surah_') && filename.endsWith('_$edition.json')) {
+          final numberStr = filename.replaceAll('surah_', '').replaceAll('_$edition.json', '');
+          final number = int.tryParse(numberStr);
+          if (number != null) {
+            cachedSurahs.add(number);
+          }
+        }
+      }
+    }
+    return cachedSurahs;
+  }
+
   /// Get the file path for Quran metadata
   Future<File?> _getMetadataFile() async {
-    final dir = await _getStorageDirectory();
-    if (dir == null) return null;
-    return File('${dir.path}/quran_metadata.json');
+    if (kIsWeb) return null;
+    final directory = await getApplicationDocumentsDirectory();
+    final appDataDir = Directory('${directory.path}/app_data');
+    if (!await appDataDir.exists()) {
+      await appDataDir.create(recursive: true);
+    }
+    return File('${appDataDir.path}/quran_metadata.json');
   }
 
   /// Save Quran metadata to local storage

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../core/services/notification_service.dart';
 import '../../domain/prayer_settings.dart';
 import '../../domain/prayer_scheduler_service.dart';
 import '../../../../l10n/app_localizations.dart';
@@ -51,6 +52,9 @@ class _PrayerSettingsScreenState extends State<PrayerSettingsScreen> {
 
     final l10n = AppLocalizations.of(context)!;
     final colorScheme = Theme.of(context).colorScheme;
+    
+    // Check if the locale has the new keys, if not fallback safely (just in case)
+    // The keys are generated, so we can access them directly.
 
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -67,86 +71,125 @@ class _PrayerSettingsScreenState extends State<PrayerSettingsScreen> {
         iconTheme: IconThemeData(color: colorScheme.primary),
       ),
       body: ListView(
-        padding: const EdgeInsets.all(24.0),
+        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 24.0),
         children: [
-          _buildSectionHeader(l10n.prePrayerAlertTitle, colorScheme.primary),
+          _buildSectionHeader((l10n as dynamic).prePrayerAlertTitle ?? 'Pre-Prayer Alerts', colorScheme.primary),
           _buildBeforePrayerSlider(l10n, colorScheme),
           
           const SizedBox(height: 32),
           
           _buildSectionHeader(l10n.enablePrayerAlertsTitle, colorScheme.primary),
-          Material(
-            color: colorScheme.surface,
-            borderRadius: BorderRadius.circular(16),
-            elevation: 2,
-            shadowColor: colorScheme.shadow.withValues(alpha: 0.1),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8.0),
-              child: Column(
-                children: [
-                  _buildPrayerToggle(l10n.fajr, _settings!.enabledFajr, colorScheme, (v) {
-                    setState(() => _settings = _settings!.copyWith(enabledFajr: v));
-                    _saveAndReschedule();
-                  }),
-                  _buildDivider(),
-                  _buildPrayerToggle(l10n.dhuhr, _settings!.enabledDhuhr, colorScheme, (v) {
-                    setState(() => _settings = _settings!.copyWith(enabledDhuhr: v));
-                    _saveAndReschedule();
-                  }),
-                  _buildDivider(),
-                  _buildPrayerToggle(l10n.asr, _settings!.enabledAsr, colorScheme, (v) {
-                    setState(() => _settings = _settings!.copyWith(enabledAsr: v));
-                    _saveAndReschedule();
-                  }),
-                  _buildDivider(),
-                  _buildPrayerToggle(l10n.maghrib, _settings!.enabledMaghrib, colorScheme, (v) {
-                    setState(() => _settings = _settings!.copyWith(enabledMaghrib: v));
-                    _saveAndReschedule();
-                  }),
-                  _buildDivider(),
-                  _buildPrayerToggle(l10n.isha, _settings!.enabledIsha, colorScheme, (v) {
-                    setState(() => _settings = _settings!.copyWith(enabledIsha: v));
-                    _saveAndReschedule();
-                  }),
-                ],
-              ),
-            ),
+          
+          _buildPrayerCard(
+            l10n.fajr,
+            _settings!.enabledFajr,
+            _settings!.fajrSound,
+            colorScheme,
+            l10n,
+            (val) {
+              setState(() => _settings = _settings!.copyWith(enabledFajr: val));
+              _saveAndReschedule();
+            },
+            (val) {
+              setState(() => _settings = _settings!.copyWith(fajrSound: val));
+              _saveAndReschedule();
+            },
+          ),
+          
+          _buildPrayerCard(
+            l10n.dhuhr,
+            _settings!.enabledDhuhr,
+            _settings!.dhuhrSound,
+            colorScheme,
+            l10n,
+            (val) {
+              setState(() => _settings = _settings!.copyWith(enabledDhuhr: val));
+              _saveAndReschedule();
+            },
+            (val) {
+              setState(() => _settings = _settings!.copyWith(dhuhrSound: val));
+              _saveAndReschedule();
+            },
+          ),
+          
+          _buildPrayerCard(
+            l10n.asr,
+            _settings!.enabledAsr,
+            _settings!.asrSound,
+            colorScheme,
+            l10n,
+            (val) {
+              setState(() => _settings = _settings!.copyWith(enabledAsr: val));
+              _saveAndReschedule();
+            },
+            (val) {
+              setState(() => _settings = _settings!.copyWith(asrSound: val));
+              _saveAndReschedule();
+            },
+          ),
+          
+          _buildPrayerCard(
+            l10n.maghrib,
+            _settings!.enabledMaghrib,
+            _settings!.maghribSound,
+            colorScheme,
+            l10n,
+            (val) {
+              setState(() => _settings = _settings!.copyWith(enabledMaghrib: val));
+              _saveAndReschedule();
+            },
+            (val) {
+              setState(() => _settings = _settings!.copyWith(maghribSound: val));
+              _saveAndReschedule();
+            },
+          ),
+          
+          _buildPrayerCard(
+            l10n.isha,
+            _settings!.enabledIsha,
+            _settings!.ishaSound,
+            colorScheme,
+            l10n,
+            (val) {
+              setState(() => _settings = _settings!.copyWith(enabledIsha: val));
+              _saveAndReschedule();
+            },
+            (val) {
+              setState(() => _settings = _settings!.copyWith(ishaSound: val));
+              _saveAndReschedule();
+            },
           ),
           
           const SizedBox(height: 32),
           
           ElevatedButton.icon(
             onPressed: () async {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(
-                    Localizations.localeOf(context).languageCode == 'ar'
-                        ? 'سيظهر الإشعار بعد 10 ثواني.. أغلق التطبيق الآن لتتأكد!'
-                        : 'Notification will appear in 10 seconds.. Close the app to test!',
+              // Ensure permissions are requested before testing
+              await NotificationService().requestPermissions();
+              if (mounted) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text((l10n as dynamic).testNotificationNow ?? 'Test Notification Now'),
+                    backgroundColor: colorScheme.primary,
                   ),
-                  backgroundColor: colorScheme.primary,
-                  duration: const Duration(seconds: 4),
-                ),
-              );
+                );
+              }
               await PrayerSchedulerService().scheduleTestNotification(
                 Localizations.localeOf(context).languageCode,
               );
             },
             icon: const Icon(Icons.notifications_active),
-            label: Text(
-              Localizations.localeOf(context).languageCode == 'ar' 
-                  ? 'اختبار إشعار الصلاة (الآن)' 
-                  : 'Test Prayer Notification (Now)'
-            ),
+            label: Text((l10n as dynamic).testNotificationNow ?? 'Test Notification Now'),
             style: ElevatedButton.styleFrom(
               padding: const EdgeInsets.symmetric(vertical: 16),
-              backgroundColor: colorScheme.primaryContainer,
-              foregroundColor: colorScheme.onPrimaryContainer,
+              backgroundColor: colorScheme.secondaryContainer,
+              foregroundColor: colorScheme.onSecondaryContainer,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(16),
               ),
             ),
           ),
+          const SizedBox(height: 40),
         ],
       ),
     );
@@ -158,7 +201,7 @@ class _PrayerSettingsScreenState extends State<PrayerSettingsScreen> {
       child: Text(
         title,
         style: TextStyle(
-          fontSize: 16,
+          fontSize: 18,
           fontWeight: FontWeight.bold,
           color: color,
         ),
@@ -170,7 +213,7 @@ class _PrayerSettingsScreenState extends State<PrayerSettingsScreen> {
     return Container(
       decoration: BoxDecoration(
         color: colorScheme.surface,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
             color: colorScheme.shadow.withValues(alpha: 0.05),
@@ -182,19 +225,39 @@ class _PrayerSettingsScreenState extends State<PrayerSettingsScreen> {
       padding: const EdgeInsets.all(20.0),
       child: Column(
         children: [
-          Text(
-            l10n.minutesBeforeAdhan(_settings!.beforePrayerMinutes),
-            style: TextStyle(
-              fontSize: 15,
-              fontWeight: FontWeight.w600,
-              color: colorScheme.onSurface,
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                (l10n as dynamic).prePrayerAlertDesc ?? 'Alert me before Adhan by',
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                  color: colorScheme.onSurfaceVariant,
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                decoration: BoxDecoration(
+                  color: colorScheme.primaryContainer,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Text(
+                  l10n.minutesBeforeAdhan(_settings!.beforePrayerMinutes),
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    color: colorScheme.onPrimaryContainer,
+                  ),
+                ),
+              ),
+            ],
           ),
           const SizedBox(height: 16),
           SliderTheme(
             data: SliderThemeData(
               activeTrackColor: colorScheme.primary,
-              inactiveTrackColor: colorScheme.primaryContainer,
+              inactiveTrackColor: colorScheme.surfaceContainerHighest,
               thumbColor: colorScheme.primary,
               overlayColor: colorScheme.primary.withValues(alpha: 0.2),
               trackHeight: 6.0,
@@ -203,7 +266,7 @@ class _PrayerSettingsScreenState extends State<PrayerSettingsScreen> {
               value: _settings!.beforePrayerMinutes.toDouble(),
               min: 0,
               max: 60,
-              divisions: 60,
+              divisions: 12, // 5 min increments
               onChanged: (val) {
                 setState(() {
                   _settings = _settings!.copyWith(beforePrayerMinutes: val.toInt());
@@ -219,32 +282,137 @@ class _PrayerSettingsScreenState extends State<PrayerSettingsScreen> {
     );
   }
 
-  Widget _buildPrayerToggle(String name, bool value, ColorScheme colorScheme, ValueChanged<bool> onChanged) {
-    return SwitchListTile(
-      title: Text(
-        name,
-        style: TextStyle(
-          fontWeight: FontWeight.w500,
-          color: colorScheme.onSurface,
+  Widget _buildPrayerCard(
+    String prayerName,
+    bool isEnabled,
+    String soundType,
+    ColorScheme colorScheme,
+    AppLocalizations l10n,
+    ValueChanged<bool> onToggle,
+    ValueChanged<String> onSoundChanged,
+  ) {
+    final dynamic l10nDynamic = l10n;
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 300),
+      margin: const EdgeInsets.only(bottom: 16),
+      decoration: BoxDecoration(
+        color: isEnabled ? colorScheme.surface : colorScheme.surfaceContainerLowest,
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(
+          color: isEnabled ? colorScheme.primary.withValues(alpha: 0.3) : Colors.transparent,
+          width: 1.5,
         ),
+        boxShadow: [
+          if (isEnabled)
+            BoxShadow(
+              color: colorScheme.primary.withValues(alpha: 0.05),
+              blurRadius: 10,
+              offset: const Offset(0, 4),
+            ),
+        ],
       ),
-      value: value,
-      onChanged: onChanged,
-      activeColor: colorScheme.surface,
-      activeTrackColor: colorScheme.primary,
-      inactiveThumbColor: colorScheme.onSurfaceVariant,
-      inactiveTrackColor: colorScheme.surfaceContainerHighest,
-      contentPadding: const EdgeInsets.symmetric(horizontal: 20.0),
+      child: Column(
+        children: [
+          // Top Row: Toggle and Title
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  prayerName,
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: isEnabled ? colorScheme.onSurface : colorScheme.onSurfaceVariant,
+                  ),
+                ),
+                Switch(
+                  value: isEnabled,
+                  onChanged: onToggle,
+                  activeColor: colorScheme.surface,
+                  activeTrackColor: colorScheme.primary,
+                  inactiveThumbColor: colorScheme.onSurfaceVariant,
+                  inactiveTrackColor: colorScheme.surfaceContainerHighest,
+                ),
+              ],
+            ),
+          ),
+          
+          // Bottom Row: Sound Selection (Only if enabled)
+          if (isEnabled)
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+              decoration: BoxDecoration(
+                color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.3),
+                borderRadius: const BorderRadius.vertical(bottom: Radius.circular(20)),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    l10nDynamic.soundType ?? 'Notification Type',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                      color: colorScheme.onSurfaceVariant,
+                    ),
+                  ),
+                  _buildSoundDropdown(soundType, onSoundChanged, colorScheme, l10n),
+                ],
+              ),
+            ),
+        ],
+      ),
     );
   }
 
-  Widget _buildDivider() {
-    return Divider(
-      height: 1,
-      thickness: 1,
-      color: Theme.of(context).colorScheme.outlineVariant.withValues(alpha: 0.5),
-      indent: 20,
-      endIndent: 20,
+  Widget _buildSoundDropdown(
+    String currentValue, 
+    ValueChanged<String> onChanged, 
+    ColorScheme colorScheme,
+    AppLocalizations l10n,
+  ) {
+    final dynamic l10nDynamic = l10n;
+    
+    return Container(
+      height: 36,
+      padding: const EdgeInsets.symmetric(horizontal: 12),
+      decoration: BoxDecoration(
+        color: colorScheme.surface,
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: colorScheme.outlineVariant),
+      ),
+      child: DropdownButtonHideUnderline(
+        child: DropdownButton<String>(
+          value: currentValue,
+          icon: Icon(Icons.arrow_drop_down, color: colorScheme.primary, size: 20),
+          style: TextStyle(
+            fontSize: 13,
+            fontWeight: FontWeight.w600,
+            color: colorScheme.primary,
+          ),
+          onChanged: (String? newValue) {
+            if (newValue != null) {
+              onChanged(newValue);
+            }
+          },
+          items: [
+            DropdownMenuItem(
+              value: 'silent',
+              child: Text(l10nDynamic.soundSilent ?? 'Silent'),
+            ),
+            DropdownMenuItem(
+              value: 'short',
+              child: Text(l10nDynamic.soundShort ?? 'Short Beep'),
+            ),
+            DropdownMenuItem(
+              value: 'adhan',
+              child: Text(l10nDynamic.soundAdhan ?? 'Full Adhan'),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
