@@ -1,3 +1,4 @@
+import '../utils/app_logger.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart';
 import '../../features/azkar/data/models/azkar_model.dart';
@@ -21,7 +22,7 @@ class AzkarLocalService {
       
       return rows.map((row) => AzkarModel.fromJson(row)).toList();
     } catch (e) {
-      print('Error loading Azkar from local JSON: $e');
+      appLog('Error loading Azkar from local JSON: $e');
       return [];
     }
   }

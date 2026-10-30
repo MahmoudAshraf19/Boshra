@@ -1,3 +1,4 @@
+import '../../../../core/utils/app_logger.dart';
 import 'dart:async';
 import 'package:geolocator/geolocator.dart';
 
@@ -42,7 +43,7 @@ class LocationService {
         desiredAccuracy: LocationAccuracy.high,
       );
     } catch (e) {
-      print("Location error: $e");
+      appLog("Location error: $e");
       return null;
     }
   }

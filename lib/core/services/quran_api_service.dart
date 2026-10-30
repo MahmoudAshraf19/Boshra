@@ -1,11 +1,13 @@
+import '../network/dio_factory.dart';
+import '../utils/app_logger.dart';
 import 'package:dio/dio.dart';
 import '../../features/quran/data/models/quran_models.dart';
 
 class QuranApiService {
   final Dio _dio;
 
-  QuranApiService() : _dio = Dio() {
-    _dio.options.baseUrl = 'https://api.alquran.cloud/v1';
+  QuranApiService() : _dio = DioFactory.create() {
+    _dio.options.baseUrl = 'https://api.alquran.cloud';
     _dio.options.connectTimeout = const Duration(seconds: 15);
     _dio.options.receiveTimeout = const Duration(seconds: 15);
   }
@@ -13,12 +15,12 @@ class QuranApiService {
   /// Fetches Quran metadata (Surahs list, Juzs, Hizbs)
   Future<QuranMetaModel?> getQuranMetadata() async {
     try {
-      final response = await _dio.get('/meta');
+      final response = await _dio.get('/v1/meta');
       if (response.statusCode == 200 && response.data != null) {
         return QuranMetaModel.fromJson(response.data['data']);
       }
     } catch (e) {
-      print('Error fetching Quran metadata from API: $e');
+      appLog('Error fetching Quran metadata from API: $e');
     }
     return null;
   }
@@ -27,12 +29,12 @@ class QuranApiService {
   /// Example editions: 'quran-uthmani', 'quran-simple'
   Future<SurahModel?> getSurah(int surahNumber, {String edition = 'quran-uthmani'}) async {
     try {
-      final response = await _dio.get('/surah/$surahNumber/$edition');
+      final response = await _dio.get('/v1/surah/$surahNumber/$edition');
       if (response.statusCode == 200 && response.data != null) {
         return SurahModel.fromJson(response.data['data']);
       }
     } catch (e) {
-      print('Error fetching surah from API: $e');
+      appLog('Error fetching surah from API: $e');
     }
     return null;
   }
@@ -40,12 +42,12 @@ class QuranApiService {
   /// Fetches a random Ayah.
   Future<AyahModel?> getRandomAyah({String edition = 'quran-uthmani'}) async {
     try {
-      final response = await _dio.get('/ayah/random/$edition');
+      final response = await _dio.get('/v1/ayah/random/$edition');
       if (response.statusCode == 200 && response.data != null) {
         return AyahModel.fromJson(response.data['data']);
       }
     } catch (e) {
-      print('Error fetching random ayah from API: $e');
+      appLog('Error fetching random ayah from API: $e');
     }
     return null;
   }
@@ -56,12 +58,12 @@ class QuranApiService {
     try {
       // The API takes /search/{word}/all/{language}
       // 'all' means all surahs. 
-      final response = await _dio.get('/search/$keyword/all/$language');
+      final response = await _dio.get('/v1/search/${Uri.encodeComponent(keyword)}/all/$language');
       if (response.statusCode == 200 && response.data != null) {
         return SearchResultModel.fromJson(response.data['data']);
       }
     } catch (e) {
-      print('Error searching Quran API: $e');
+      appLog('Error searching Quran API: $e');
     }
     return null;
   }
@@ -87,7 +89,7 @@ class QuranApiService {
         return response.data['extract'];
       }
     } catch (e) {
-      print('Error fetching surah info from Wikipedia API: $e');
+      appLog('Error fetching surah info from Wikipedia API: $e');
     }
     return null;
   }

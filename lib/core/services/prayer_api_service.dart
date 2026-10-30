@@ -1,3 +1,5 @@
+import '../network/dio_factory.dart';
+import '../utils/app_logger.dart';
 import 'package:dio/dio.dart';
 import '../../features/prayer/data/models/prayer_times_model.dart';
 import 'package:intl/intl.dart';
@@ -5,8 +7,8 @@ import 'package:intl/intl.dart';
 class PrayerApiService {
   final Dio _dio;
   
-  PrayerApiService() : _dio = Dio() {
-    _dio.options.baseUrl = 'https://api.aladhan.com/v1';
+  PrayerApiService() : _dio = DioFactory.create() {
+    _dio.options.baseUrl = 'https://api.aladhan.com';
     _dio.options.connectTimeout = const Duration(seconds: 10);
     _dio.options.receiveTimeout = const Duration(seconds: 10);
   }
@@ -24,7 +26,7 @@ class PrayerApiService {
       final String dateStr = DateFormat('dd-MM-yyyy').format(now);
 
       final response = await _dio.get(
-        '/timings/$dateStr',
+        '/v1/timings/$dateStr',
         queryParameters: {
           'latitude': latitude,
           'longitude': longitude,
@@ -38,7 +40,7 @@ class PrayerApiService {
       }
       return null;
     } catch (e) {
-      print('Error fetching prayer times: $e');
+      appLog('Error fetching prayer times: $e');
       return null;
     }
   }
@@ -53,7 +55,7 @@ class PrayerApiService {
   }) async {
     try {
       final response = await _dio.get(
-        '/calendar',
+        '/v1/calendar',
         queryParameters: {
           'latitude': latitude,
           'longitude': longitude,
@@ -69,7 +71,7 @@ class PrayerApiService {
       }
       return [];
     } catch (e) {
-      print('Error fetching prayer calendar: $e');
+      appLog('Error fetching prayer calendar: $e');
       return [];
     }
   }

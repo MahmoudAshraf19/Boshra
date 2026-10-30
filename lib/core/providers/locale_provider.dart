@@ -1,3 +1,4 @@
+import '../notifications/notification_coordinator.dart';
 import 'package:flutter/material.dart';
 import '../services/storage_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -25,5 +26,7 @@ class LocaleProvider extends ChangeNotifier {
     await prefs.setString('language_code', languageCode);
     _locale = Locale(languageCode);
     notifyListeners();
+    // Notification texts are localized → re-create them in the new language.
+    NotificationCoordinator.instance.rescheduleAll(force: true);
   }
 }

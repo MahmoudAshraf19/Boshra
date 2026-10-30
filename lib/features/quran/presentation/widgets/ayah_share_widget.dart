@@ -4,18 +4,24 @@ import '../../data/models/quran_models.dart';
 class AyahShareWidget extends StatelessWidget {
   final AyahModel ayah;
   final SurahModel surah;
-  
+  /// Ayah text without the repeated Bismillah (falls back to [ayah.text]).
+  final String? displayText;
+  /// Localized "Ayah N" label.
+  final String? ayahLabel;
+
   const AyahShareWidget({
     super.key,
     required this.ayah,
     required this.surah,
+    this.displayText,
+    this.ayahLabel,
   });
 
   @override
   Widget build(BuildContext context) {
     // We use a fixed standard size (e.g. 4:5 aspect ratio) for sharing
     // 1080 x 1350 is the optimal size for Instagram/Facebook posts
-    return Container(
+    return SizedBox(
       width: 1080,
       height: 1350,
       child: Stack(
@@ -45,10 +51,10 @@ class AyahShareWidget extends StatelessWidget {
                   child: Center(
                     child: FittedBox(
                       fit: BoxFit.scaleDown,
-                      child: Container(
+                      child: SizedBox(
                         width: 880, // 1080 - 200 padding
                         child: Text(
-                          ayah.text,
+                          displayText ?? ayah.text,
                           textAlign: TextAlign.center,
                           textDirection: TextDirection.rtl,
                           style: const TextStyle(
@@ -105,7 +111,7 @@ class AyahShareWidget extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      'الآية ${ayah.numberInSurah}',
+                      ayahLabel ?? '${ayah.numberInSurah}',
                       style: const TextStyle(
                         fontFamily: 'AmiriQuran',
                         fontSize: 32,

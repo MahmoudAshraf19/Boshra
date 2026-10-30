@@ -96,7 +96,7 @@
     }
   },
   "selectedRecitationTitle": "Recitación Seleccionada",
-  "live": "Live",
+  "live": "En vivo",
   "quranScreenTitle": "El Sagrado Corán",
   "startQuranJourney": "Comienza tu viaje con el Corán",
   "openSurahAndRead": "Abre una Sura y comienza a leer",
@@ -116,20 +116,20 @@
   "copyOption": "Copiar",
   "copiedSuccessfully": "Versículo copiado al portapapeles",
   "azkarScreenTitle": "Azkar",
-  "azkarScreenSubtitle": "Close to Allah... in every moment",
-  "azkarCategoryMorning": "Morning Azkar",
-  "azkarCategoryMorningSub": "Remembrances for the morning",
-  "azkarCategoryEvening": "Evening Azkar",
-  "azkarCategoryEveningSub": "Remembrances for the evening",
-  "azkarCategoryPrayer": "After Prayer",
-  "azkarCategoryPrayerSub": "Remembrances after prayer",
-  "azkarCategorySleep": "Sleep Azkar",
-  "azkarCategorySleepSub": "Remembrances before sleep",
-  "azkarCategoryProtection": "Protection Azkar",
-  "azkarCategoryProtectionSub": "For protection and tranquility",
-  "azkarCategoryDaily": "Daily Azkar",
-  "azkarCategoryDailySub": "Various remembrances for the day",
-  "azkarAllCategories": "All Categories",
+  "azkarScreenSubtitle": "Cerca de Allah… en cada momento",
+  "azkarCategoryMorning": "Azkar de la mañana",
+  "azkarCategoryMorningSub": "Invocaciones para la mañana",
+  "azkarCategoryEvening": "Azkar de la tarde",
+  "azkarCategoryEveningSub": "Invocaciones para la tarde",
+  "azkarCategoryPrayer": "Después de la oración",
+  "azkarCategoryPrayerSub": "Invocaciones tras la oración",
+  "azkarCategorySleep": "Azkar para dormir",
+  "azkarCategorySleepSub": "Invocaciones antes de dormir",
+  "azkarCategoryProtection": "Azkar de protección",
+  "azkarCategoryProtectionSub": "Para protección y serenidad",
+  "azkarCategoryDaily": "Azkar diarios",
+  "azkarCategoryDailySub": "Diversas invocaciones para el día",
+  "azkarAllCategories": "Todas las categorías",
   "navRadio": "Radio",
   "quranMessageNotificationTitle": "Mensaje del Corán 🌿",
   "saveBookmark": "Guardar Marcador",
@@ -151,15 +151,15 @@
   "qiblaCalibrationDesc": "Mueva su teléfono lentamente en forma de 8 para calibrar la brújula.",
   "findingLocation": "Buscando ubicación...",
   "locationPermissionError": "No se puede acceder a la ubicación. Habilite el GPS.",
-  "locationPermissionTitle": "Allow Location Access",
-  "locationPermissionDesc": "We need your location to accurately calculate the Qibla direction based on your current position.",
+  "locationPermissionTitle": "Permitir acceso a la ubicación",
+  "locationPermissionDesc": "Necesitamos tu ubicación para calcular con precisión la dirección de la Qibla desde tu posición actual.",
   "preciseQibla": "Qibla precisa",
   "exactLocation": "Tu ubicación exacta",
   "alwaysUpToDate": "Siempre al día",
   "allowLocationBtn": "Permitir acceso",
   "notNow": "Ahora no",
-  "startupLocationTitle": "Location Access",
-  "startupLocationDescSaved": "We need your location for accurate Prayer Times and Qibla direction.\n\nIf you choose not to allow, we will use your last saved location: {locationName}.",
+  "startupLocationTitle": "Acceso a la ubicación",
+  "startupLocationDescSaved": "Necesitamos tu ubicación para ofrecer horarios de oración y dirección de la Qibla precisos.\n\nSi no la permites, usaremos tu última ubicación guardada: {locationName}.",
   "@startupLocationDescSaved": {
     "placeholders": {
       "locationName": {
@@ -167,7 +167,7 @@
       }
     }
   },
-  "startupLocationDescDefault": "We need your location for accurate Prayer Times and Qibla direction.\n\nIf you choose not to allow, we will use the default location: Mecca, Saudi Arabia.",
+  "startupLocationDescDefault": "Necesitamos tu ubicación para ofrecer horarios de oración y dirección de la Qibla precisos.\n\nSi no la permites, usaremos la ubicación predeterminada: La Meca, Arabia Saudita.",
   "moreScreenTitle": "Más",
   "generalSettings": "General",
   "appearance": "Apariencia",
@@ -257,10 +257,77 @@
   "themeDarkDesc": "Interfaz oscura y profunda",
   "themeSystem": "Sistema",
   "themeSystemDesc": "Seguir ajustes del dispositivo",
-  "soundType": "Notification Type",
-  "soundSilent": "Silent (No sound)",
-  "soundShort": "Short Beep",
-  "soundAdhan": "Full Adhan",
-  "testNotificationNow": "Test Notification Now",
-  "prePrayerAlertDesc": "Alert me before Adhan by"
+  "soundType": "Tipo de notificación",
+  "soundSilent": "Silencio (sin sonido)",
+  "soundShort": "Tono corto",
+  "soundAdhan": "Adhan completo",
+  "prePrayerAlertDesc": "Avisarme antes del Adhan",
+  "prayerNotifTitle": "Es hora de la oración de {prayerName}",
+  "@prayerNotifTitle": {
+    "placeholders": {
+      "prayerName": {
+        "type": "String"
+      }
+    }
+  },
+  "prayerNotifBody": "Acude a la oración",
+  "prePrayerNotifTitle": "La oración de {prayerName} se acerca",
+  "@prePrayerNotifTitle": {
+    "placeholders": {
+      "prayerName": {
+        "type": "String"
+      }
+    }
+  },
+  "prePrayerNotifBody": "Faltan {minutes} minutos para el Adhan",
+  "@prePrayerNotifBody": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "notifDisabledTitle": "Las notificaciones están desactivadas",
+  "notifDisabledDesc": "Activa las notificaciones para recibir el Adhan y los recordatorios a tiempo.",
+  "exactAlarmTitle": "Las alarmas exactas están desactivadas",
+  "exactAlarmDesc": "Permite «Alarmas y recordatorios» para que el Adhan llegue a la hora exacta.",
+  "openSettings": "Abrir ajustes",
+  "retry": "Reintentar",
+  "errorGeneric": "Algo salió mal. Inténtalo de nuevo.",
+  "errorNoInternet": "Sin conexión a internet. Revisa tu conexión e inténtalo de nuevo.",
+  "errorLoadFailed": "No se pudo cargar el contenido.",
+  "downloadingProgress": "Descargando…",
+  "downloadSuccess": "Descarga completada",
+  "downloadFailed": "La descarga falló. Inténtalo de nuevo.",
+  "shareFailed": "No se pudo crear la imagen. Inténtalo de nuevo.",
+  "audioLoadFailed": "No se pudo reproducir el audio. Revisa tu conexión.",
+  "radioLoadFailed": "No se pudieron cargar las emisoras",
+  "continueReadingBtn": "Continuar leyendo",
+  "permSetupTitle": "No pierdas ninguna oración",
+  "permSetupSubtitle": "Concede unos permisos una sola vez para que el Adhan y los recordatorios lleguen siempre a tiempo, incluso con la app cerrada.",
+  "permNotifTitle": "Notificaciones",
+  "permNotifDesc": "Para mostrar el Adhan, recordatorios de oración, Azkar y mensajes del Corán.",
+  "permExactTitle": "Alarmas y recordatorios",
+  "permExactDesc": "Permite que Android emita el Adhan en el minuto exacto.",
+  "permBatteryTitle": "Batería sin restricciones",
+  "permBatteryDesc": "Evita que el sistema suspenda la app y descarte notificaciones.",
+  "permAutostartTitle": "Inicio automático y segundo plano",
+  "permAutostartDesc": "Tu teléfono ({brand}) puede bloquear apps en segundo plano. Permite que Boshra se inicie sola y funcione en segundo plano.",
+  "@permAutostartDesc": {
+    "placeholders": {
+      "brand": {
+        "type": "String"
+      }
+    }
+  },
+  "permChannelsTitle": "Categorías de notificación y sonido",
+  "permChannelsDesc": "Algunas categorías de notificación están desactivadas. Actívalas para oír el Adhan.",
+  "permAllowAll": "Permitir todo",
+  "permAllow": "Permitir",
+  "permGranted": "Permitido",
+  "permContinue": "Continuar",
+  "permLater": "Más tarde",
+  "permAllSet": "¡Todo listo! Las notificaciones llegarán de forma fiable.",
+  "permMissingNote": "Algunos permisos siguen desactivados. Las notificaciones pueden retrasarse o no llegar.",
+  "permFix": "Arreglar ahora"
 }

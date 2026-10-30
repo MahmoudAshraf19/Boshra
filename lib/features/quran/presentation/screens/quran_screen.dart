@@ -3,12 +3,14 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../data/models/quran_models.dart';
 import '../../data/repositories/quran_repository.dart';
-import '../../../../core/services/storage_service.dart';
+import '../../data/reader_settings.dart';
+import 'quran_downloads_screen.dart';
 import '../widgets/quran_drawer.dart';
 import 'quran_reading_screen.dart';
 import '../widgets/surah_tafsir_bottom_sheet.dart';
 import '../widgets/surah_recitation_bottom_sheet.dart';
 import '../widgets/surah_info_bottom_sheet.dart';
+import '../../../../core/error/error_handler.dart';
 
 class QuranScreen extends StatefulWidget {
   const QuranScreen({super.key});
@@ -19,10 +21,13 @@ class QuranScreen extends StatefulWidget {
 
 class _QuranScreenState extends State<QuranScreen> {
   int? _lastReadSurah;
+  int? _lastReadAyah;
   double? _lastReadAlignment;
   int? _readingSurah;
   double? _readingAlignment;
   int? _targetAyah;
+  int _navRequest = 0;
+  (int, int)? _bookmark;
   SurahMetaModel? _currentSurahMeta;
   
   @override
@@ -33,8 +38,13 @@ class _QuranScreenState extends State<QuranScreen> {
   
   Future<void> _loadLastReadSurah() async {
     final prefs = await SharedPreferences.getInstance();
+    if (!mounted) return;
+    final bm = await QuranRepository().getBookmark();
+    if (!mounted) return;
     setState(() {
+      _bookmark = bm;
       _lastReadSurah = prefs.getInt('last_read_surah');
+      _lastReadAyah = prefs.getInt('last_read_ayah');
       _lastReadAlignment = prefs.getDouble('last_read_alignment') ?? 0.0;
     });
   }
@@ -66,8 +76,11 @@ class _QuranScreenState extends State<QuranScreen> {
             _readingSurah = surahNumber;
             _readingAlignment = 0.0;
             _targetAyah = ayahNumber;
+            _navRequest++;
           });
         },
+        onOpenDownloads: () => Navigator.of(context).push(
+            MaterialPageRoute(builder: (_) => const QuranDownloadsScreen())),
       ),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -116,6 +129,7 @@ class _QuranScreenState extends State<QuranScreen> {
               initialSurah: _readingSurah!,
               initialAyah: _targetAyah,
               initialAlignment: _readingAlignment ?? 0.0,
+              requestId: _navRequest,
               onVisibleSurahChanged: (meta) {
                 if (meta != null && (_currentSurahMeta == null || _currentSurahMeta!.number != meta.number)) {
                   WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -188,7 +202,9 @@ class _QuranScreenState extends State<QuranScreen> {
                           onPressed: () {
                             setState(() {
                               _readingSurah = _lastReadSurah;
+                              _targetAyah = _lastReadAyah;
                               _readingAlignment = _lastReadAlignment;
+                              _navRequest++;
                             });
                           },
                           style: ElevatedButton.styleFrom(
@@ -203,7 +219,7 @@ class _QuranScreenState extends State<QuranScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                locale == 'ar' ? 'متابعة القراءة' : 'Continue Reading',
+                                l10n.continueReadingBtn,
                                 style: const TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
@@ -213,6 +229,25 @@ class _QuranScreenState extends State<QuranScreen> {
                               const Icon(Icons.menu_book, size: 20),
                             ],
                           ),
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                    ],
+                    if (_bookmark != null) ...[
+                      SizedBox(
+                        width: double.infinity,
+                        height: 48,
+                        child: OutlinedButton.icon(
+                          icon: const Icon(Icons.bookmark),
+                          label: Text(locale == 'ar' ? 'العلامة المرجعية' : 'Bookmark'),
+                          style: OutlinedButton.styleFrom(
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30))),
+                          onPressed: () => setState(() {
+                            _readingSurah = _bookmark!.$1;
+                            _targetAyah = _bookmark!.$2;
+                            _readingAlignment = 0.0;
+                            _navRequest++;
+                          }),
                         ),
                       ),
                       const SizedBox(height: 16),
@@ -286,145 +321,92 @@ class _QuranScreenState extends State<QuranScreen> {
     );
   }
 
-  void _showMoreOptionsBottomSheet(BuildContext context, AppLocalizations l10n, ColorScheme colorScheme) async {
-    if (_currentSurahMeta == null) return;
-    
-    // Check if the current Surah is downloaded
+  Future<void> _showMoreOptionsBottomSheet(
+      BuildContext hostContext, AppLocalizations l10n, ColorScheme colorScheme) async {
+    final meta = _currentSurahMeta;
+    if (meta == null) return;
     final repository = QuranRepository();
-    final downloadedSurahs = await repository.getDownloadedSurahs();
-    final isDownloaded = downloadedSurahs.contains(_currentSurahMeta!.number);
-    
-    if (!context.mounted) return;
+    final locale = Localizations.localeOf(hostContext).languageCode;
 
-    showModalBottomSheet(
-      context: context,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-      ),
-      builder: (context) {
-        return Container(
-          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              _buildBottomSheetOption(Icons.menu_book, l10n.tafsirOption, colorScheme, () {
-                Navigator.pop(context);
-                showModalBottomSheet(
-                  context: context,
-                  isScrollControlled: true,
-                  backgroundColor: Colors.transparent,
-                  builder: (context) => SurahTafsirBottomSheet(
-                    surahNumber: _currentSurahMeta!.number,
-                    surahName: _currentSurahMeta!.name,
-                    locale: Localizations.localeOf(context).languageCode,
+    // IMPORTANT: every follow-up action uses [hostContext] (this screen), never the
+    // bottom-sheet context — that one is already unmounted after Navigator.pop, which
+    // left the old "loading" dialog open forever (the "stuck" Quran screen).
+    Widget option(BuildContext sheetCtx, IconData icon, String title, Future<void> Function() run) {
+      return _buildBottomSheetOption(icon, title, colorScheme, () async {
+        Navigator.pop(sheetCtx);
+        if (!hostContext.mounted) return;
+        await run();
+      });
+    }
+
+    await showModalBottomSheet<void>(
+      context: hostContext,
+      useSafeArea: true,
+      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
+      builder: (sheetCtx) => SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
+        child: Column(mainAxisSize: MainAxisSize.min, children: [
+          option(sheetCtx, Icons.menu_book, l10n.tafsirOption, () async {
+            await showModalBottomSheet<void>(
+              context: hostContext,
+              isScrollControlled: true,
+              useSafeArea: true,
+              backgroundColor: Colors.transparent,
+              builder: (_) => SurahTafsirBottomSheet(
+                  surahNumber: meta.number, surahName: meta.name, locale: locale),
+            );
+          }),
+          option(sheetCtx, Icons.headset, l10n.recitationOption, () async {
+            final surah = repository.getSurahSync(meta.number);
+            await showModalBottomSheet<void>(
+              context: hostContext,
+              isScrollControlled: true,
+              useSafeArea: true,
+              backgroundColor: Colors.transparent,
+              builder: (_) => SurahRecitationBottomSheet(surah: surah, locale: locale),
+            );
+          }),
+          option(sheetCtx, Icons.download_for_offline_rounded,
+              locale == 'ar' ? 'التلاوات والتحميل' : 'Audio & Downloads', () async {
+            await Navigator.of(hostContext).push(
+                MaterialPageRoute(builder: (_) => const QuranDownloadsScreen()));
+          }),
+          option(sheetCtx, Icons.text_fields, locale == 'ar' ? 'حجم الخط' : 'Font size', () async {
+            await showModalBottomSheet<void>(
+              context: hostContext,
+              builder: (_) => SafeArea(
+                child: Padding(
+                  padding: const EdgeInsets.all(24),
+                  child: ValueListenableBuilder<double>(
+                    valueListenable: ReaderSettings.fontSize,
+                    builder: (_, v, __) => Column(mainAxisSize: MainAxisSize.min, children: [
+                      Text(locale == 'ar' ? 'حجم الخط' : 'Font size',
+                          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                      Slider(
+                        value: v,
+                        min: ReaderSettings.minFont,
+                        max: ReaderSettings.maxFont,
+                        divisions: 11,
+                        label: v.round().toString(),
+                        onChanged: ReaderSettings.setFontSize,
+                      ),
+                    ]),
                   ),
-                );
-              }),
-              _buildBottomSheetOption(Icons.headset, l10n.recitationOption, colorScheme, () async {
-                Navigator.pop(context);
-                if (_currentSurahMeta != null) {
-                  // Show loading while fetching the full SurahModel
-                  showDialog(
-                    context: context,
-                    barrierDismissible: false,
-                    builder: (dialogCtx) => const Center(child: CircularProgressIndicator()),
-                  );
-                  
-                  try {
-                    final repository = QuranRepository();
-                    final surah = await repository.getSurah(_currentSurahMeta!.number, useUthmani: true);
-                    
-                    if (context.mounted) Navigator.pop(context); // Hide loading
-                    
-                    if (surah != null && context.mounted) {
-                      showModalBottomSheet(
-                        context: context,
-                        isScrollControlled: true,
-                        backgroundColor: Colors.transparent,
-                        builder: (context) => SurahRecitationBottomSheet(
-                          surah: surah,
-                          locale: Localizations.localeOf(context).languageCode,
-                        ),
-                      );
-                    } else if (surah == null && context.mounted) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Failed to load recitation data')),
-                      );
-                    }
-                  } catch (e) {
-                    if (context.mounted) Navigator.pop(context); // Hide loading on error
-                    if (context.mounted) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('An error occurred. Please check your internet connection.')),
-                      );
-                    }
-                  }
-                }
-              }),
-              _buildBottomSheetOption(
-                isDownloaded ? Icons.download_done_rounded : Icons.download_rounded, 
-                isDownloaded ? l10n.downloadedOption : l10n.downloadOption, 
-                colorScheme, 
-                () async {
-                  Navigator.pop(context);
-                  if (isDownloaded) return; // Already downloaded, do nothing or show message
-
-                  // Check Storage Space
-                  final storageService = StorageService();
-                  if (!(await storageService.hasEnoughSpace(100 * 1024))) { // Estimate 100KB for text
-                    if (context.mounted) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(l10n.notEnoughSpace),
-                          backgroundColor: colorScheme.error,
-                          duration: const Duration(seconds: 3),
-                        ),
-                      );
-                    }
-                    return;
-                  }
-
-                  // Download the Surah
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text(Localizations.localeOf(context).languageCode == 'ar' ? 'جاري التحميل...' : 'Downloading...')),
-                  );
-                  
-                  try {
-                    await repository.getSurah(_currentSurahMeta!.number, useUthmani: true, saveToCache: true);
-                    if (context.mounted) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(Localizations.localeOf(context).languageCode == 'ar' ? 'تم التحميل بنجاح!' : 'Downloaded successfully!'),
-                          backgroundColor: Colors.green,
-                        ),
-                      );
-                    }
-                  } catch (e) {
-                    if (context.mounted) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('Failed to download Surah.'), backgroundColor: colorScheme.error),
-                      );
-                    }
-                  }
-                },
+                ),
               ),
-
-              _buildBottomSheetOption(Icons.info_outline, l10n.infoOption, colorScheme, () {
-                Navigator.pop(context);
-                showModalBottomSheet(
-                  context: context,
-                  isScrollControlled: true,
-                  backgroundColor: Colors.transparent,
-                  builder: (context) => SurahInfoBottomSheet(
-                    surahMeta: _currentSurahMeta!,
-                    locale: Localizations.localeOf(context).languageCode,
-                  ),
-                );
-              }),
-            ],
-          ),
-        );
-      },
+            );
+          }),
+          option(sheetCtx, Icons.info_outline, l10n.infoOption, () async {
+            await showModalBottomSheet<void>(
+              context: hostContext,
+              isScrollControlled: true,
+              useSafeArea: true,
+              backgroundColor: Colors.transparent,
+              builder: (_) => SurahInfoBottomSheet(surahMeta: meta, locale: locale),
+            );
+          }),
+        ]),
+      ),
     );
   }
 }

@@ -652,8 +652,142 @@ class AppLocalizationsAr extends AppLocalizations {
   String get soundAdhan => 'أذان كامل';
 
   @override
-  String get testNotificationNow => 'إرسال إشعار تجريبي الآن';
+  String get prePrayerAlertDesc => 'نبهني قبل الأذان بـ';
 
   @override
-  String get prePrayerAlertDesc => 'نبهني قبل الأذان بـ';
+  String prayerNotifTitle(String prayerName) {
+    return 'حان الآن موعد صلاة $prayerName';
+  }
+
+  @override
+  String get prayerNotifBody => 'حيّ على الصلاة';
+
+  @override
+  String prePrayerNotifTitle(String prayerName) {
+    return 'صلاة $prayerName قريبًا';
+  }
+
+  @override
+  String prePrayerNotifBody(int minutes) {
+    return 'باقي $minutes دقيقة على الأذان';
+  }
+
+  @override
+  String get notifDisabledTitle => 'الإشعارات متوقفة';
+
+  @override
+  String get notifDisabledDesc =>
+      'فعّل الإشعارات ليصلك الأذان والتذكيرات في وقتها.';
+
+  @override
+  String get exactAlarmTitle => 'التنبيهات الدقيقة متوقفة';
+
+  @override
+  String get exactAlarmDesc =>
+      'اسمح بـ «المنبهات والتذكيرات» حتى يصل الأذان في وقته بالضبط.';
+
+  @override
+  String get openSettings => 'فتح الإعدادات';
+
+  @override
+  String get retry => 'إعادة المحاولة';
+
+  @override
+  String get errorGeneric => 'حدث خطأ غير متوقع. حاول مرة أخرى.';
+
+  @override
+  String get errorNoInternet =>
+      'لا يوجد اتصال بالإنترنت. تحقق من الاتصال وحاول مجددًا.';
+
+  @override
+  String get errorLoadFailed => 'تعذّر تحميل المحتوى.';
+
+  @override
+  String get downloadingProgress => 'جارٍ التحميل...';
+
+  @override
+  String get downloadSuccess => 'تم التحميل بنجاح';
+
+  @override
+  String get downloadFailed => 'فشل التحميل. حاول مرة أخرى.';
+
+  @override
+  String get shareFailed => 'تعذّر إنشاء الصورة. حاول مرة أخرى.';
+
+  @override
+  String get audioLoadFailed => 'تعذّر تشغيل الصوت. تحقق من الاتصال.';
+
+  @override
+  String get radioLoadFailed => 'تعذّر جلب الإذاعات';
+
+  @override
+  String get continueReadingBtn => 'متابعة القراءة';
+
+  @override
+  String get permSetupTitle => 'لا تفوّت أي صلاة';
+
+  @override
+  String get permSetupSubtitle =>
+      'اسمح ببعض الأذونات مرة واحدة ليصلك الأذان والتذكيرات في وقتها بالضبط، حتى لو كان التطبيق مغلقًا.';
+
+  @override
+  String get permNotifTitle => 'الإشعارات';
+
+  @override
+  String get permNotifDesc =>
+      'لعرض الأذان وتذكيرات الصلاة والأذكار ورسائل القرآن.';
+
+  @override
+  String get permExactTitle => 'المنبهات والتذكيرات';
+
+  @override
+  String get permExactDesc =>
+      'يسمح لأندرويد بإطلاق الأذان في الدقيقة المحددة بالضبط.';
+
+  @override
+  String get permBatteryTitle => 'بطارية غير مقيّدة';
+
+  @override
+  String get permBatteryDesc =>
+      'يمنع النظام من إيقاف التطبيق وإسقاط الإشعارات لتوفير الطاقة.';
+
+  @override
+  String get permAutostartTitle => 'التشغيل التلقائي والخلفية';
+
+  @override
+  String permAutostartDesc(String brand) {
+    return 'هاتفك ($brand) قد يمنع التطبيقات في الخلفية. اسمح لبشرى بالتشغيل التلقائي والعمل في الخلفية.';
+  }
+
+  @override
+  String get permChannelsTitle => 'أقسام الإشعارات والصوت';
+
+  @override
+  String get permChannelsDesc =>
+      'بعض أقسام الإشعارات متوقفة. فعّلها لتسمع الأذان.';
+
+  @override
+  String get permAllowAll => 'السماح بالكل';
+
+  @override
+  String get permAllow => 'سماح';
+
+  @override
+  String get permGranted => 'تم السماح';
+
+  @override
+  String get permContinue => 'متابعة';
+
+  @override
+  String get permLater => 'لاحقًا';
+
+  @override
+  String get permAllSet => 'كل شيء جاهز! ستصلك الإشعارات بشكل موثوق.';
+
+  @override
+  String get permMissingNote =>
+      'بعض الأذونات ما زالت متوقفة، وقد تتأخر الإشعارات أو لا تصل.';
+
+  @override
+  String get permFix => 'إصلاح الآن';
 }

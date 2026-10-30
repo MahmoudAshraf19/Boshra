@@ -5,6 +5,7 @@ import 'privacy_screen.dart';
 import 'about_screen.dart';
 import 'terms_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:provider/provider.dart';
 import '../../../../core/providers/locale_provider.dart';
 import '../../../../core/providers/theme_provider.dart';
@@ -136,6 +137,36 @@ class MoreScreen extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (_) => const PrivacyScreen()),
+                  );
+                },
+              ),
+              _SettingsTile(
+                iconData: Icons.star_rate_outlined,
+                title: l10n.rateBoshra,
+                subtitle: l10n.rateBoshraDesc,
+                onTap: () {
+                  launchUrl(
+                    Uri.parse('https://play.google.com/store/apps/details?id=com.app.boshra'),
+                    mode: LaunchMode.externalApplication,
+                  );
+                },
+              ),
+              _SettingsTile(
+                iconData: Icons.share_outlined,
+                title: l10n.shareBoshra,
+                subtitle: l10n.shareBoshraDesc,
+                onTap: () {
+                  Share.share('https://play.google.com/store/apps/details?id=com.app.boshra');
+                },
+              ),
+              _SettingsTile(
+                iconData: Icons.chat_outlined,
+                title: l10n.contactUs,
+                subtitle: l10n.contactUsDesc,
+                onTap: () {
+                  launchUrl(
+                    Uri.parse('https://wa.me/201150125129'),
+                    mode: LaunchMode.externalApplication,
                   );
                 },
               ),

@@ -25,25 +25,37 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.platform.boshra"
+        applicationId = "com.app.boshra"
         minSdk = flutter.minSdkVersion
         targetSdk = 36
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }
 
-    signingConfigs {
-        create("release") {
-            keyAlias = keystoreProperties["keyAlias"] as String
-            keyPassword = keystoreProperties["keyPassword"] as String
-            storeFile = file("boshra-upload-key.jks")
-            storePassword = keystoreProperties["storePassword"] as String
+    // Release signing is created ONLY when key.properties exists, so debug builds /
+    // CI / other machines don't crash at configuration time (old code threw an NPE).
+    val hasReleaseKey = keystorePropertiesFile.exists()
+    if (hasReleaseKey) {
+        signingConfigs {
+            create("release") {
+                keyAlias = keystoreProperties.getProperty("keyAlias")
+                keyPassword = keystoreProperties.getProperty("keyPassword")
+                storeFile = file(keystoreProperties.getProperty("storeFile") ?: "boshra-upload-key.jks")
+                storePassword = keystoreProperties.getProperty("storePassword")
+            }
         }
     }
 
     buildTypes {
         release {
-            signingConfig = signingConfigs.getByName("release")
+            signingConfig = if (hasReleaseKey) signingConfigs.getByName("release")
+                            else signingConfigs.getByName("debug")
+            // Shrinking is on for release → these rules keep flutter_local_notifications
+            // (Gson), just_audio and audio_service working. Without them scheduled
+            // notifications silently fail in RELEASE builds while working in debug.
+            isMinifyEnabled = true
+            isShrinkResources = true
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
 }

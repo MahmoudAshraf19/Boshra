@@ -1,3 +1,4 @@
+import '../../../../core/utils/app_logger.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
@@ -5,6 +6,7 @@ import 'package:just_audio_background/just_audio_background.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../data/models/quran_models.dart';
 import '../../data/models/reciter_model.dart';
+import '../../data/audio/ayah_audio.dart';
 import 'package:boshra/core/services/audio_service.dart';
 import '../../../../l10n/app_localizations.dart';
 
@@ -60,6 +62,7 @@ class _SurahRecitationBottomSheetState extends State<SurahRecitationBottomSheet>
       );
     }
     
+    if (!mounted) return;
     _setupAudioListeners();
     await _loadSurahPlaylist(autoPlay: false);
   }
@@ -105,18 +108,17 @@ class _SurahRecitationBottomSheetState extends State<SurahRecitationBottomSheet>
     });
     
     try {
-      final audioSources = widget.surah.ayahs.map((ayah) {
-        final url = 'https://cdn.islamic.network/quran/audio/64/${_selectedReciter.id}/${ayah.number}.mp3';
-        return AudioSource.uri(
-          Uri.parse(url),
-          tag: MediaItem(
-            id: '${widget.surah.number}_${ayah.number}',
-            album: widget.surah.name,
-            title: widget.locale == 'ar' ? 'الآية ${ayah.numberInSurah}' : 'Ayah ${ayah.numberInSurah}',
-            artist: widget.locale == 'ar' ? _selectedReciter.nameAr : _selectedReciter.nameEn,
-          ),
-        );
-      }).toList();
+      // Downloaded ayahs play from disk (works offline); the rest stream.
+      final audioSources = await AyahAudio.playlist(
+        reciterId: _selectedReciter.id,
+        surah: widget.surah.number,
+        tagFor: (n) => MediaItem(
+          id: '${widget.surah.number}_$n',
+          album: widget.surah.name,
+          title: widget.locale == 'ar' ? 'الآية $n' : 'Ayah $n',
+          artist: widget.locale == 'ar' ? _selectedReciter.nameAr : _selectedReciter.nameEn,
+        ),
+      );
       
       final playlist = ConcatenatingAudioSource(children: audioSources);
       
@@ -136,14 +138,14 @@ class _SurahRecitationBottomSheetState extends State<SurahRecitationBottomSheet>
         _audioPlayer.play();
       }
     } catch (e) {
-      print('❌ [Surah Audio Error] Failed to load playlist: $e');
+      appLog('❌ [Surah Audio Error] Failed to load playlist: $e');
       if (mounted) {
         setState(() {
           _isLoading = false;
         });
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(widget.locale == 'ar' ? 'عذراً، فشل تحميل الصوت لهذا القارئ.' : 'Sorry, failed to load audio for this reciter.'),
+            content: Text(AppLocalizations.of(context)!.audioLoadFailed),
             backgroundColor: Theme.of(context).colorScheme.error,
           ),
         );

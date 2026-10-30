@@ -659,8 +659,143 @@ class AppLocalizationsEn extends AppLocalizations {
   String get soundAdhan => 'Full Adhan';
 
   @override
-  String get testNotificationNow => 'Test Notification Now';
+  String get prePrayerAlertDesc => 'Alert me before Adhan by';
 
   @override
-  String get prePrayerAlertDesc => 'Alert me before Adhan by';
+  String prayerNotifTitle(String prayerName) {
+    return 'It’s time for $prayerName prayer';
+  }
+
+  @override
+  String get prayerNotifBody => 'Hasten to the prayer';
+
+  @override
+  String prePrayerNotifTitle(String prayerName) {
+    return '$prayerName prayer is near';
+  }
+
+  @override
+  String prePrayerNotifBody(int minutes) {
+    return '$minutes minutes left until the Adhan';
+  }
+
+  @override
+  String get notifDisabledTitle => 'Notifications are turned off';
+
+  @override
+  String get notifDisabledDesc =>
+      'Turn notifications on so the Adhan and reminders reach you on time.';
+
+  @override
+  String get exactAlarmTitle => 'Exact alarms are off';
+
+  @override
+  String get exactAlarmDesc =>
+      'Allow “Alarms & reminders” so the Adhan arrives at the exact time.';
+
+  @override
+  String get openSettings => 'Open Settings';
+
+  @override
+  String get retry => 'Retry';
+
+  @override
+  String get errorGeneric => 'Something went wrong. Please try again.';
+
+  @override
+  String get errorNoInternet =>
+      'No internet connection. Check your connection and try again.';
+
+  @override
+  String get errorLoadFailed => 'Couldn’t load the content.';
+
+  @override
+  String get downloadingProgress => 'Downloading…';
+
+  @override
+  String get downloadSuccess => 'Downloaded successfully';
+
+  @override
+  String get downloadFailed => 'Download failed. Please try again.';
+
+  @override
+  String get shareFailed => 'Couldn’t create the image. Please try again.';
+
+  @override
+  String get audioLoadFailed =>
+      'Couldn’t play the audio. Check your connection.';
+
+  @override
+  String get radioLoadFailed => 'Couldn’t load radio stations';
+
+  @override
+  String get continueReadingBtn => 'Continue Reading';
+
+  @override
+  String get permSetupTitle => 'Never miss a prayer';
+
+  @override
+  String get permSetupSubtitle =>
+      'Allow a few permissions once so the Adhan and reminders always arrive on time — even when the app is closed.';
+
+  @override
+  String get permNotifTitle => 'Notifications';
+
+  @override
+  String get permNotifDesc =>
+      'To show the Adhan, prayer reminders, Azkar and Quran messages.';
+
+  @override
+  String get permExactTitle => 'Alarms & reminders';
+
+  @override
+  String get permExactDesc =>
+      'Lets Android deliver the Adhan at the exact minute.';
+
+  @override
+  String get permBatteryTitle => 'Unrestricted battery';
+
+  @override
+  String get permBatteryDesc =>
+      'Stops the system from putting the app to sleep and dropping notifications.';
+
+  @override
+  String get permAutostartTitle => 'Auto-start & background';
+
+  @override
+  String permAutostartDesc(String brand) {
+    return 'Your phone brand ($brand) may block background apps. Allow Boshra to auto-start and run in the background.';
+  }
+
+  @override
+  String get permChannelsTitle => 'Notification categories & sound';
+
+  @override
+  String get permChannelsDesc =>
+      'Some notification categories are turned off. Turn them on to hear the Adhan.';
+
+  @override
+  String get permAllowAll => 'Allow all';
+
+  @override
+  String get permAllow => 'Allow';
+
+  @override
+  String get permGranted => 'Allowed';
+
+  @override
+  String get permContinue => 'Continue';
+
+  @override
+  String get permLater => 'Later';
+
+  @override
+  String get permAllSet => 'All set! Notifications will arrive reliably.';
+
+  @override
+  String get permMissingNote =>
+      'Some permissions are still off. Notifications may be late or missing.';
+
+  @override
+  String get permFix => 'Fix now';
 }

@@ -261,6 +261,73 @@
   "soundSilent": "Silent (No sound)",
   "soundShort": "Short Beep",
   "soundAdhan": "Full Adhan",
-  "testNotificationNow": "Test Notification Now",
-  "prePrayerAlertDesc": "Alert me before Adhan by"
+  "prePrayerAlertDesc": "Alert me before Adhan by",
+  "prayerNotifTitle": "It’s time for {prayerName} prayer",
+  "@prayerNotifTitle": {
+    "placeholders": {
+      "prayerName": {
+        "type": "String"
+      }
+    }
+  },
+  "prayerNotifBody": "Hasten to the prayer",
+  "prePrayerNotifTitle": "{prayerName} prayer is near",
+  "@prePrayerNotifTitle": {
+    "placeholders": {
+      "prayerName": {
+        "type": "String"
+      }
+    }
+  },
+  "prePrayerNotifBody": "{minutes} minutes left until the Adhan",
+  "@prePrayerNotifBody": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "notifDisabledTitle": "Notifications are turned off",
+  "notifDisabledDesc": "Turn notifications on so the Adhan and reminders reach you on time.",
+  "exactAlarmTitle": "Exact alarms are off",
+  "exactAlarmDesc": "Allow “Alarms & reminders” so the Adhan arrives at the exact time.",
+  "openSettings": "Open Settings",
+  "retry": "Retry",
+  "errorGeneric": "Something went wrong. Please try again.",
+  "errorNoInternet": "No internet connection. Check your connection and try again.",
+  "errorLoadFailed": "Couldn’t load the content.",
+  "downloadingProgress": "Downloading…",
+  "downloadSuccess": "Downloaded successfully",
+  "downloadFailed": "Download failed. Please try again.",
+  "shareFailed": "Couldn’t create the image. Please try again.",
+  "audioLoadFailed": "Couldn’t play the audio. Check your connection.",
+  "radioLoadFailed": "Couldn’t load radio stations",
+  "continueReadingBtn": "Continue Reading",
+  "permSetupTitle": "Never miss a prayer",
+  "permSetupSubtitle": "Allow a few permissions once so the Adhan and reminders always arrive on time — even when the app is closed.",
+  "permNotifTitle": "Notifications",
+  "permNotifDesc": "To show the Adhan, prayer reminders, Azkar and Quran messages.",
+  "permExactTitle": "Alarms & reminders",
+  "permExactDesc": "Lets Android deliver the Adhan at the exact minute.",
+  "permBatteryTitle": "Unrestricted battery",
+  "permBatteryDesc": "Stops the system from putting the app to sleep and dropping notifications.",
+  "permAutostartTitle": "Auto-start & background",
+  "permAutostartDesc": "Your phone brand ({brand}) may block background apps. Allow Boshra to auto-start and run in the background.",
+  "@permAutostartDesc": {
+    "placeholders": {
+      "brand": {
+        "type": "String"
+      }
+    }
+  },
+  "permChannelsTitle": "Notification categories & sound",
+  "permChannelsDesc": "Some notification categories are turned off. Turn them on to hear the Adhan.",
+  "permAllowAll": "Allow all",
+  "permAllow": "Allow",
+  "permGranted": "Allowed",
+  "permContinue": "Continue",
+  "permLater": "Later",
+  "permAllSet": "All set! Notifications will arrive reliably.",
+  "permMissingNote": "Some permissions are still off. Notifications may be late or missing.",
+  "permFix": "Fix now"
 }

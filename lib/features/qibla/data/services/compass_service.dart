@@ -1,3 +1,4 @@
+import '../../../../core/utils/app_logger.dart';
 import 'dart:async';
 import 'package:flutter_compass/flutter_compass.dart';
 
@@ -10,7 +11,7 @@ class CompassService {
   Stream<double?> get accuracyStream => _accuracyController.stream;
 
   void start() {
-    print('🕋 [CompassService] Starting flutter_compass listener...');
+    appLog('🕋 [CompassService] Starting flutter_compass listener...');
     _subscription = FlutterCompass.events?.listen((event) {
       // Removed print event for cleaner logs
       if (event.heading != null) {
@@ -19,7 +20,7 @@ class CompassService {
       }
       _accuracyController.add(event.accuracy);
     }, onError: (e) {
-      print('🕋 [CompassService] ERROR: $e');
+      appLog('🕋 [CompassService] ERROR: $e');
     });
   }
 

@@ -1,3 +1,4 @@
+import '../utils/app_logger.dart';
 import 'package:just_audio/just_audio.dart';
 
 class GlobalAudioPlayer {
@@ -15,7 +16,7 @@ class AudioService {
       await _audioPlayer.setUrl(url);
       await _audioPlayer.play();
     } catch (e) {
-      print("Error playing audio: $e");
+      appLog("Error playing audio: $e");
     }
   }
 
@@ -38,7 +39,7 @@ class AudioService {
       await _audioPlayer.setAudioSource(playlist);
       await _audioPlayer.play();
     } catch (e) {
-      print("Error playing playlist: $e");
+      appLog("Error playing playlist: $e");
     }
   }
 

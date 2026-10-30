@@ -1,3 +1,4 @@
+import '../../../../core/utils/app_logger.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../l10n/app_localizations.dart';
@@ -35,7 +36,7 @@ class _ContinueReadingCardState extends State<ContinueReadingCard> {
         _surahName = meta.surahs[_lastReadSurah - 1].name;
       }
     } catch (e) {
-      print('Error loading bookmark: $e');
+      appLog('Error loading bookmark: $e');
     } finally {
       if (mounted) {
         setState(() {

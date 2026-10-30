@@ -1,3 +1,4 @@
+import '../../../../core/utils/app_logger.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import '../../../../l10n/app_localizations.dart';
@@ -42,7 +43,7 @@ class _SelectedRecitationCardState extends State<SelectedRecitationCard> {
         _surahName = meta.surahs[_lastSurah - 1].name;
       }
     } catch (e) {
-      print('Error loading recitation: $e');
+      appLog('Error loading recitation: $e');
     } finally {
       if (mounted) {
         setState(() {

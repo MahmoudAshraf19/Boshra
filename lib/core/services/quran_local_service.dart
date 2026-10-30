@@ -1,3 +1,4 @@
+import '../utils/app_logger.dart';
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/foundation.dart';
@@ -6,8 +7,11 @@ import '../../features/quran/data/models/quran_models.dart';
 
 class QuranLocalService {
   /// Gets the directory where we will store the Quran JSON files.
+  Directory? _dirMemo;
+
   Future<Directory?> _getStorageDirectory() async {
     if (kIsWeb) return null;
+    if (_dirMemo != null) return _dirMemo;
     final directory = await getApplicationDocumentsDirectory();
     final quranDir = Directory('${directory.path}/downloads/quran_text');
     if (!await quranDir.exists()) {
@@ -26,10 +30,11 @@ class QuranLocalService {
         }
         await oldDir.delete(recursive: true);
       } catch (e) {
-        print('Migration error: $e');
+        appLog('Migration error: $e');
       }
     }
     
+    _dirMemo = quranDir;
     return quranDir;
   }
 
@@ -99,7 +104,7 @@ class QuranLocalService {
         return QuranMetaModel.fromJson(jsonMap);
       }
     } catch (e) {
-      print('Error reading local metadata: $e');
+      appLog('Error reading local metadata: $e');
     }
     return null;
   }
@@ -109,7 +114,11 @@ class QuranLocalService {
     final file = await _getSurahFile(surah.number, edition);
     if (file == null) return;
     final jsonString = jsonEncode(surah.toJson());
-    await file.writeAsString(jsonString);
+    // Atomic: write to a temp file then rename, so a killed app / full disk can never
+    // leave a half-written JSON that is later reported as "downloaded".
+    final tmp = File('${file.path}.tmp');
+    await tmp.writeAsString(jsonString, flush: true);
+    await tmp.rename(file.path);
   }
 
   /// Get Surah from local storage.
@@ -122,7 +131,11 @@ class QuranLocalService {
         return SurahModel.fromJson(jsonMap);
       }
     } catch (e) {
-      print('Error reading local surah: $e');
+      appLog('Error reading local surah (deleting corrupt file): $e');
+      try {
+        final f = await _getSurahFile(surahNumber, edition);
+        if (f != null && await f.exists()) await f.delete();
+      } catch (_) {}
     }
     return null;
   }

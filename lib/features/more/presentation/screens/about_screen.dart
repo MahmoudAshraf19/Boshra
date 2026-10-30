@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:boshra/l10n/app_localizations.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:share_plus/share_plus.dart';
 
 class AboutScreen extends StatefulWidget {
   const AboutScreen({super.key});
@@ -28,10 +29,10 @@ class _AboutScreenState extends State<AboutScreen> {
     });
   }
 
-  Future<void> _launchUrl(String urlString) async {
+  Future<void> _launchUrl(String urlString, {LaunchMode mode = LaunchMode.platformDefault}) async {
     final url = Uri.parse(urlString);
     if (await canLaunchUrl(url)) {
-      await launchUrl(url);
+      await launchUrl(url, mode: mode);
     }
   }
 
@@ -176,7 +177,10 @@ class _AboutScreenState extends State<AboutScreen> {
                 title: l10n.rateBoshra,
                 icon: Icons.star_border,
                 onTap: () {
-                  // TODO: App Store link
+                  _launchUrl(
+                    'https://play.google.com/store/apps/details?id=com.app.boshra',
+                    mode: LaunchMode.externalApplication,
+                  );
                 },
               ),
               const Divider(height: 1),
@@ -184,14 +188,19 @@ class _AboutScreenState extends State<AboutScreen> {
                 title: l10n.shareBoshra,
                 icon: Icons.share,
                 onTap: () {
-                  // TODO: Share logic
+                  Share.share('https://play.google.com/store/apps/details?id=com.app.boshra');
                 },
               ),
               const Divider(height: 1),
               _ActionTile(
                 title: l10n.contactUs,
-                icon: Icons.mail_outline,
-                onTap: () => _launchUrl('mailto:mahmoudashraf.eng19@gmail.com'),
+                icon: Icons.chat_outlined,
+                onTap: () {
+                  _launchUrl(
+                    'https://wa.me/201150125129',
+                    mode: LaunchMode.externalApplication,
+                  );
+                },
               ),
               const Divider(height: 1),
               _ActionTile(

@@ -1,3 +1,5 @@
+import 'dart:async';
+import '../../../../core/utils/app_logger.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/services/radio_player_service.dart';
 import '../../data/models/radio_model.dart';
@@ -24,10 +26,18 @@ class RadioProvider extends ChangeNotifier {
   double _volume = 1.0;
   double get volume => _volume;
 
+  StreamSubscription<bool>? _playingSub;
+
   RadioProvider() {
-    _playerService.player.playingStream.listen((_) {
+    _playingSub = _playerService.player.playingStream.listen((_) {
       notifyListeners();
     });
+  }
+
+  @override
+  void dispose() {
+    _playingSub?.cancel();
+    super.dispose();
   }
 
   Future<void> loadRadios() async {
@@ -44,12 +54,17 @@ class RadioProvider extends ChangeNotifier {
         _selectedRadio = _radios.first;
       }
     } catch (e) {
-      _error = 'حدث خطأ أثناء جلب الإذاعات';
-      print(e);
+      _error = 'load_failed'; // localized in the UI
+      appLog(e);
     } finally {
       _isLoading = false;
       notifyListeners();
     }
+  }
+
+  Future<void> retryLoad() async {
+    _radios = [];
+    await loadRadios();
   }
 
   void selectRadio(RadioModel radio) {

@@ -1,3 +1,4 @@
+import '../../../../core/utils/app_logger.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import '../../data/models/azkar_model.dart';
@@ -33,7 +34,7 @@ class AzkarProvider extends ChangeNotifier {
       
     } catch (e) {
       _error = 'Failed to load Azkar: $e';
-      print(_error);
+      appLog(_error);
     } finally {
       _isLoading = false;
       notifyListeners();

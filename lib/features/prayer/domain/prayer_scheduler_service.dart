@@ -1,217 +1,126 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/timezone.dart' as tz;
-import 'dart:ui';
+import '../../../core/notifications/notification_ids.dart';
 import '../../../core/services/notification_service.dart';
-import '../data/repositories/prayer_repository.dart';
+import '../../../core/utils/app_logger.dart';
+import '../../../l10n/app_localizations.dart';
 import '../data/models/prayer_times_model.dart';
+import '../data/repositories/prayer_repository.dart';
 import 'prayer_settings.dart';
 
+class PrayerPlanResult {
+  final List<NotificationPlan> plans;
+  /// false when some day could not be loaded (offline, no cache) — the caller must
+  /// then NOT delete previously scheduled prayers.
+  final bool complete;
+  const PrayerPlanResult(this.plans, this.complete);
+}
+
+/// Builds (does not schedule) the prayer notification plan.
+/// Texts come from the app's ARB files in the USER'S APP LANGUAGE.
 class PrayerSchedulerService {
-  final NotificationService _notificationService = NotificationService();
-  final PrayerRepository _prayerRepository = PrayerRepository();
+  static const _tag = 'PrayerPlan';
+  final PrayerRepository _repo = PrayerRepository();
 
-  Future<void> schedulePrayersForNextDays(int days) async {
-    if (kIsWeb) return; // Not supported on web
+  /// Android allows ~500 alarms/app (we use ≤ ~320). iOS keeps only 64 → 4 days.
+  int get _days => kIsWeb ? 0 : (defaultTargetPlatform == TargetPlatform.iOS ? 4 : 30);
 
-    await _notificationService.flutterLocalNotificationsPlugin.cancelAll();
-    
-    final settings = await PrayerSettings.load();
-    final now = DateTime.now();
-
-    for (int i = 0; i < days; i++) {
-      final date = now.add(Duration(days: i));
-      final prayerTimesModel = await _prayerRepository.getPrayerTimesForDate(date);
-      
-      if (prayerTimesModel != null) {
-        await _scheduleDayPrayers(date, prayerTimesModel, settings);
+  Future<PrayerPlanResult> buildPlan(AppLocalizations l10n, {bool background = false}) async {
+    final out = <NotificationPlan>[];
+    if (_days == 0) return const PrayerPlanResult([], false);
+    bool complete = true;
+    try {
+      final settings = await PrayerSettings.load();
+      final today = DateTime.now();
+      for (int i = 0; i < _days; i++) {
+        final date = DateTime(today.year, today.month, today.day + i);
+        PrayerTimesModel? model;
+        try {
+          model = await _repo.getPrayerTimesForDate(date, savedLocationOnly: background);
+        } catch (e, s) {
+          AppLogger.e(_tag, e, s, 'day $date');
+        }
+        if (model == null) {
+          complete = false;
+          continue;
+        }
+        out.addAll(_planDay(date, model, settings, l10n));
       }
+    } catch (e, s) {
+      AppLogger.e(_tag, e, s, 'buildPlan');
+      complete = false;
     }
+    AppLogger.d(_tag, 'planned ${out.length} (complete=$complete)');
+    return PrayerPlanResult(out, complete);
   }
 
-  Future<void> scheduleTestNotification(String langCode) async {
-    final now = DateTime.now().add(const Duration(seconds: 10));
-    final settings = await PrayerSettings.load();
-    await _schedulePrayer(999999, 'Test / اختبار', now, settings, 'adhan', langCode);
-  }
+  List<NotificationPlan> _planDay(DateTime date, PrayerTimesModel model,
+      PrayerSettings st, AppLocalizations l10n) {
+    final t = model.timings;
+    final entries = <_Prayer>[
+      _Prayer(0, l10n.fajr, t.fajr, st.enabledFajr, st.fajrSound),
+      _Prayer(1, l10n.dhuhr, t.dhuhr, st.enabledDhuhr, st.dhuhrSound),
+      _Prayer(2, l10n.asr, t.asr, st.enabledAsr, st.asrSound),
+      _Prayer(3, l10n.maghrib, t.maghrib, st.enabledMaghrib, st.maghribSound),
+      _Prayer(4, l10n.isha, t.isha, st.enabledIsha, st.ishaSound),
+    ];
+    final plans = <NotificationPlan>[];
+    final now = DateTime.now();
+    for (final p in entries) {
+      if (!p.enabled) continue;
+      final time = _parseTime(date, p.raw, model.meta.timezone);
+      if (time == null) continue;
 
-  Future<void> _scheduleDayPrayers(DateTime date, PrayerTimesModel model, PrayerSettings settings) async {
-    final int dayBaseId = date.year * 10000 + date.month * 100 + date.day;
-    final timings = model.timings;
-    
-    // Parse times
-    final fajrTime = _parseTime(date, timings.fajr);
-    final dhuhrTime = _parseTime(date, timings.dhuhr);
-    final asrTime = _parseTime(date, timings.asr);
-    final maghribTime = _parseTime(date, timings.maghrib);
-    final ishaTime = _parseTime(date, timings.isha);
-
-    final langCode = PlatformDispatcher.instance.locale.languageCode;
-    
-    String getPrayerName(String key) {
-      if (langCode == 'ar') {
-        switch (key) {
-          case 'Fajr': return 'الفجر';
-          case 'Dhuhr': return 'الظهر';
-          case 'Asr': return 'العصر';
-          case 'Maghrib': return 'المغرب';
-          case 'Isha': return 'العشاء';
+      if (time.isAfter(now)) {
+        plans.add(NotificationPlan(
+          id: NotificationIds.prayer(date, p.index),
+          title: l10n.prayerNotifTitle(p.name),
+          body: l10n.prayerNotifBody,
+          when: time,
+          sound: notificationSoundFromString(p.sound),
+        ));
+      }
+      if (st.beforePrayerMinutes > 0) {
+        final pre = time.subtract(Duration(minutes: st.beforePrayerMinutes));
+        if (pre.isAfter(now)) {
+          plans.add(NotificationPlan(
+            id: NotificationIds.prayer(date, p.index, pre: true),
+            title: l10n.prePrayerNotifTitle(p.name),
+            body: l10n.prePrayerNotifBody(st.beforePrayerMinutes),
+            when: pre,
+            sound: NotificationSound.short,
+          ));
         }
       }
-      return key; // Default to English/API names
     }
-
-    if (settings.enabledFajr && fajrTime != null) {
-      await _schedulePrayer(dayBaseId + 1, getPrayerName('Fajr'), fajrTime, settings, settings.fajrSound, langCode);
-    }
-    if (settings.enabledDhuhr && dhuhrTime != null) {
-      await _schedulePrayer(dayBaseId + 2, getPrayerName('Dhuhr'), dhuhrTime, settings, settings.dhuhrSound, langCode);
-    }
-    if (settings.enabledAsr && asrTime != null) {
-      await _schedulePrayer(dayBaseId + 3, getPrayerName('Asr'), asrTime, settings, settings.asrSound, langCode);
-    }
-    if (settings.enabledMaghrib && maghribTime != null) {
-      await _schedulePrayer(dayBaseId + 4, getPrayerName('Maghrib'), maghribTime, settings, settings.maghribSound, langCode);
-    }
-    if (settings.enabledIsha && ishaTime != null) {
-      await _schedulePrayer(dayBaseId + 5, getPrayerName('Isha'), ishaTime, settings, settings.ishaSound, langCode);
-    }
+    return plans;
   }
 
-  Future<void> _schedulePrayer(int baseId, String prayerName, DateTime time, PrayerSettings settings, String soundType, String langCode) async {
-    String title = langCode == 'ar' ? 'حان الآن موعد صلاة $prayerName' : 'It is time for $prayerName prayer';
-    String body = langCode == 'ar' ? 'حي على الصلاة' : 'Hasten to the prayer';
-    
-    await _scheduleSingleNotification(
-      id: baseId,
-      title: title,
-      body: body,
-      time: time,
-      soundType: soundType,
-    );
-    
-    if (settings.beforePrayerMinutes > 0) {
-      String preTitle = langCode == 'ar' ? 'صلاة $prayerName' : '$prayerName Prayer';
-      String preBody = langCode == 'ar' 
-          ? 'باقي ${settings.beforePrayerMinutes} دقيقة على الأذان'
-          : '${settings.beforePrayerMinutes} minutes left until Adhan';
-          
-      await _scheduleSingleNotification(
-        id: baseId + 100,
-        title: preTitle,
-        body: preBody,
-        time: time.subtract(Duration(minutes: settings.beforePrayerMinutes)),
-        soundType: 'short', // pre-prayer alert is always short beep
-      );
-    }
-  }
-
-  DateTime? _parseTime(DateTime date, String timeString) {
-    try {
-      final cleanTime = timeString.split(' ')[0]; // "04:58"
-      final parts = cleanTime.split(':');
-      if (parts.length == 2) {
-        return DateTime(
-          date.year,
-          date.month,
-          date.day,
-          int.parse(parts[0]),
-          int.parse(parts[1]),
-        );
-      }
-    } catch (e) {
-      print('Error parsing time: $e');
-    }
-    return null;
-  }
-
-  Future<void> _scheduleSingleNotification({
-    required int id,
-    required String title,
-    required String body,
-    required DateTime time,
-    required String soundType,
-  }) async {
-    if (time.isBefore(DateTime.now())) return;
-
-    final tz.TZDateTime scheduledDate = tz.TZDateTime.from(time, tz.local);
-
-    AndroidNotificationDetails androidDetails;
-    DarwinNotificationDetails iOSDetails;
-
-    if (soundType == 'adhan') {
-      androidDetails = const AndroidNotificationDetails(
-        'adhan_channel_v1',
-        'Adhan Notifications',
-        channelDescription: 'Full Adhan sound for prayers',
-        importance: Importance.max,
-        priority: Priority.high,
-        sound: RawResourceAndroidNotificationSound('adhan'),
-        playSound: true,
-        audioAttributesUsage: AudioAttributesUsage.alarm,
-      );
-      iOSDetails = const DarwinNotificationDetails(
-        sound: 'adhan.mp3',
-        presentSound: true,
-      );
-    } else if (soundType == 'short') {
-      androidDetails = const AndroidNotificationDetails(
-        'notification_channel_v1',
-        'Standard Notifications',
-        channelDescription: 'Standard beep for prayers and alerts',
-        importance: Importance.max,
-        priority: Priority.high,
-        sound: RawResourceAndroidNotificationSound('notification'),
-        playSound: true,
-      );
-      iOSDetails = const DarwinNotificationDetails(
-        sound: 'notification.mp3',
-        presentSound: true,
-      );
-    } else { // silent
-      androidDetails = const AndroidNotificationDetails(
-        'silent_channel_v1',
-        'Silent Notifications',
-        channelDescription: 'Silent notifications for prayers',
-        importance: Importance.max,
-        priority: Priority.high,
-        playSound: false,
-        enableVibration: true,
-      );
-      iOSDetails = const DarwinNotificationDetails(
-        presentSound: false,
-      );
-    }
-
-    final NotificationDetails platformChannelSpecifics = NotificationDetails(
-      android: androidDetails,
-      iOS: iOSDetails,
-    );
-
-    try {
-      await _notificationService.flutterLocalNotificationsPlugin.zonedSchedule(
-        id: id,
-        title: title,
-        body: body,
-        scheduledDate: scheduledDate,
-        notificationDetails: platformChannelSpecifics,
-        androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
-      );
-    } catch (e) {
-      print('🔥 Failed to schedule exact alarm: $e. Falling back to inexact.');
-      // Fallback for Android 14+ if exact alarm permission is denied
+  /// "04:58" / "04:58 (EET)" → the exact INSTANT.
+  /// The API returns the time in the timezone of the *coordinates* (meta.timezone).
+  /// The old code read it as the phone's local time, so whenever the saved/fallback
+  /// location (e.g. Makkah) was in a different zone than the phone, every prayer
+  /// fired at the wrong time.
+  DateTime? _parseTime(DateTime date, String raw, String zoneName) {
+    final m = RegExp(r'(\d{1,2}):(\d{2})').firstMatch(raw);
+    if (m == null) return null;
+    final h = int.parse(m.group(1)!), min = int.parse(m.group(2)!);
+    if (h > 23 || min > 59) return null;
+    if (zoneName.isNotEmpty) {
       try {
-        await _notificationService.flutterLocalNotificationsPlugin.zonedSchedule(
-          id: id,
-          title: title,
-          body: body,
-          scheduledDate: scheduledDate,
-          notificationDetails: platformChannelSpecifics,
-          androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
-        );
-      } catch (fallbackError) {
-        print('🔥 Fallback also failed: $fallbackError');
-      }
+        final loc = tz.getLocation(zoneName);
+        return tz.TZDateTime(loc, date.year, date.month, date.day, h, min);
+      } catch (_) {/* unknown zone → fall back to device zone */}
     }
+    return DateTime(date.year, date.month, date.day, h, min);
   }
+}
+
+class _Prayer {
+  final int index;
+  final String name;
+  final String raw;
+  final bool enabled;
+  final String sound;
+  _Prayer(this.index, this.name, this.raw, this.enabled, this.sound);
 }

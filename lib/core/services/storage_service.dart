@@ -1,3 +1,4 @@
+import '../utils/app_logger.dart';
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart' show rootBundle;
@@ -98,7 +99,7 @@ class StorageService {
         }
       }
     } catch (e) {
-      print('Error calculating size for ${dir.path}: $e');
+      appLog('Error calculating size for ${dir.path}: $e');
     }
     return totalSize;
   }
@@ -127,7 +128,7 @@ class StorageService {
         await quranTextDir.delete(recursive: true);
       }
     } catch (e) {
-      print('Error clearing downloads: $e');
+      appLog('Error clearing downloads: $e');
     }
   }
 
@@ -146,7 +147,7 @@ class StorageService {
         }
       }
     } catch (e) {
-      print('Error clearing cache: $e');
+      appLog('Error clearing cache: $e');
     }
   }
   
@@ -169,7 +170,7 @@ class StorageService {
         await supportDir.delete(recursive: true);
       }
     } catch (e) {
-      print('Error clearing preferences: $e');
+      appLog('Error clearing preferences: $e');
     }
   }
 }

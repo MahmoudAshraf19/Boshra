@@ -1,22 +1,69 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
-import '../../../../l10n/app_localizations.dart';
+import '../../../../core/utils/app_logger.dart';
 import '../../data/models/quran_models.dart';
+import '../../data/quran_meta.dart';
+import '../../data/reader_settings.dart';
 import '../../data/repositories/quran_repository.dart';
-import '../widgets/surah_item_widget.dart';
+import '../../data/surah_loader.dart';
+import '../widgets/ayah_chunk_widget.dart';
+
+/// One row of the virtual Mushaf (≈ 800 light rows for the whole Quran).
+class _Row {
+  final int surah;
+  final int startAyah; // 0 → header row
+  final int endAyah;
+  const _Row.header(this.surah)
+      : startAyah = 0,
+        endAyah = 0;
+  const _Row.chunk(this.surah, this.startAyah, this.endAyah);
+  bool get isHeader => startAyah == 0;
+}
+
+final List<_Row> _rows = () {
+  final rows = <_Row>[];
+  for (var s = 1; s <= 114; s++) {
+    rows.add(_Row.header(s));
+    final n = QuranMeta.ayahCount(s);
+    for (var a = 1; a <= n; a += kAyahsPerChunk) {
+      rows.add(_Row.chunk(s, a, (a + kAyahsPerChunk - 1).clamp(1, n)));
+    }
+  }
+  return rows;
+}();
+
+/// Row index of the first row of each surah (O(1) lookups).
+final List<int> _headerIndex = () {
+  final idx = List<int>.filled(115, 0);
+  for (var i = 0; i < _rows.length; i++) {
+    if (_rows[i].isHeader) idx[_rows[i].surah] = i;
+  }
+  return idx;
+}();
+
+int _rowIndexFor(int surah, [int? ayah]) {
+  final s = surah.clamp(1, 114);
+  final i = _headerIndex[s];
+  if (ayah == null || ayah <= 1) return i;
+  final a = ayah.clamp(1, QuranMeta.ayahCount(s));
+  return i + 1 + (a - 1) ~/ kAyahsPerChunk;
+}
 
 class QuranReadingWidget extends StatefulWidget {
   final int initialSurah;
   final int? initialAyah;
-  final double initialAlignment;
+  final double initialAlignment; // kept for API compatibility
+  /// Change this value to force a jump even when surah/ayah are unchanged.
+  final int requestId;
   final Function(SurahMetaModel?) onVisibleSurahChanged;
 
   const QuranReadingWidget({
-    super.key, 
-    required this.initialSurah, 
+    super.key,
+    required this.initialSurah,
     this.initialAyah,
     this.initialAlignment = 0.0,
+    this.requestId = 0,
     required this.onVisibleSurahChanged,
   });
 
@@ -26,125 +73,109 @@ class QuranReadingWidget extends StatefulWidget {
 
 class _QuranReadingWidgetState extends State<QuranReadingWidget> {
   final QuranRepository _repository = QuranRepository();
-  final ItemScrollController _itemScrollController = ItemScrollController();
-  final ItemPositionsListener _itemPositionsListener = ItemPositionsListener.create();
-  
-  int _currentSurahIndex = 1; 
-  QuranMetaModel? _metaData;
+  late final SurahLoader _loader = SurahLoader(_repository);
+  final ItemScrollController _scroll = ItemScrollController();
+  final ItemPositionsListener _positions = ItemPositionsListener.create();
+
+  late final int _startIndex;
+  int _currentSurah = 1;
+  int _currentAyah = 1;
+  int _lastNotifiedSurah = 0;
+  Timer? _saveTimer;
+  int? _highlightAyah;
 
   @override
   void initState() {
     super.initState();
-    _currentSurahIndex = widget.initialSurah;
-    _initializeData();
-    
-    _itemPositionsListener.itemPositions.addListener(_onItemPositionsChanged);
-    
-    // Jump to the selected Surah immediately
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (_itemScrollController.isAttached) {
-        _itemScrollController.jumpTo(
-          index: widget.initialSurah - 1, 
-          alignment: widget.initialAlignment,
-        );
-      }
-    });
+    ReaderSettings.load();
+    _currentSurah = widget.initialSurah.clamp(1, 114);
+    _currentAyah = widget.initialAyah ?? 1;
+    _highlightAyah = widget.initialAyah;
+    _startIndex = _rowIndexFor(widget.initialSurah, widget.initialAyah);
+    _positions.itemPositions.addListener(_onPositions);
+    WidgetsBinding.instance.addPostFrameCallback((_) => _notifySurah());
   }
-  
+
   @override
-  void didUpdateWidget(QuranReadingWidget oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (oldWidget.initialSurah != widget.initialSurah || oldWidget.initialAyah != widget.initialAyah) {
-      _currentSurahIndex = widget.initialSurah;
-      if (_itemScrollController.isAttached) {
-        _itemScrollController.jumpTo(
-          index: widget.initialSurah - 1, 
-          alignment: widget.initialAlignment,
-        );
+  void didUpdateWidget(QuranReadingWidget old) {
+    super.didUpdateWidget(old);
+    if (old.initialSurah != widget.initialSurah ||
+        old.initialAyah != widget.initialAyah ||
+        old.requestId != widget.requestId) {
+      _currentSurah = widget.initialSurah.clamp(1, 114);
+      _currentAyah = widget.initialAyah ?? 1;
+      setState(() => _highlightAyah = widget.initialAyah);
+      if (_scroll.isAttached) {
+        _scroll.jumpTo(index: _rowIndexFor(widget.initialSurah, widget.initialAyah));
       }
+      _notifySurah();
     }
   }
 
-  Future<void> _initializeData() async {
-    _saveLastReadSurah(_currentSurahIndex, widget.initialAlignment);
-    _metaData = await _repository.getQuranMetadata();
-
-    if (_metaData != null && _metaData!.surahs.isNotEmpty) {
-      final index = _currentSurahIndex - 1;
-      if (index >= 0 && index < _metaData!.surahs.length) {
-        widget.onVisibleSurahChanged(_metaData!.surahs[index]);
-      }
-    }
-    
-    if (mounted) setState(() {}); // re-render to pass metaData if needed (though not strictly necessary)
+  @override
+  void dispose() {
+    _positions.itemPositions.removeListener(_onPositions);
+    _saveTimer?.cancel();
+    _persistNow(); // flush last position
+    super.dispose();
   }
 
-  void _onItemPositionsChanged() {
-    final positions = _itemPositionsListener.itemPositions.value;
-    if (positions.isNotEmpty) {
-      // Find the item that occupies the top half of the screen
-      int? visibleIndex;
-      double minLeadingEdge = double.infinity;
-      
-      for (final position in positions) {
-        // We consider an item "visible" as the main one if its leading edge is closest to 0
-        // or if it covers the 0 point (leading < 0 and trailing > 0)
-        if (position.itemTrailingEdge > 0.1) { // It has to be somewhat visible on screen
-           if (position.itemLeadingEdge < minLeadingEdge && position.itemLeadingEdge < 0.5) {
-             minLeadingEdge = position.itemLeadingEdge;
-             visibleIndex = position.index;
-           }
-        }
-      }
-      
-      if (visibleIndex != null) {
-        final surahNumber = visibleIndex + 1;
-        
-        // Find exact alignment (itemLeadingEdge) of the visible item
-        final position = positions.firstWhere((p) => p.index == visibleIndex);
-        
-        if (_currentSurahIndex != surahNumber) {
-           _currentSurahIndex = surahNumber;
-           
-           if (_metaData != null && _metaData!.surahs.isNotEmpty) {
-             widget.onVisibleSurahChanged(_metaData!.surahs[visibleIndex]);
-           }
-        }
-        
-        // Save the surah AND the exact scroll percentage
-        _saveLastReadSurah(surahNumber, position.itemLeadingEdge);
-      }
-    }
+  void _notifySurah() {
+    if (!mounted || _lastNotifiedSurah == _currentSurah) return;
+    _lastNotifiedSurah = _currentSurah;
+    widget.onVisibleSurahChanged(_repository.getSurahMeta(_currentSurah));
   }
 
-  Future<void> _saveLastReadSurah(int surahNumber, double alignment) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setInt('last_read_surah', surahNumber);
-    await prefs.setDouble('last_read_alignment', alignment);
+  void _onPositions() {
+    final pos = _positions.itemPositions.value;
+    if (pos.isEmpty) return;
+    ItemPosition? top;
+    for (final p in pos) {
+      if (p.itemTrailingEdge > 0.05 && (top == null || p.index < top.index)) top = p;
+    }
+    if (top == null) return;
+    final row = _rows[top.index.clamp(0, _rows.length - 1)];
+    _currentAyah = row.isHeader ? 1 : row.startAyah;
+    if (row.surah != _currentSurah) {
+      _currentSurah = row.surah;
+      _notifySurah();
+    }
+    _scheduleSave();
+  }
+
+  void _scheduleSave() {
+    _saveTimer?.cancel();
+    _saveTimer = Timer(const Duration(milliseconds: 900), _persistNow);
+  }
+
+  Future<void> _persistNow() async {
+    try {
+      await _repository.saveLastRead(_currentSurah, _currentAyah);
+    } catch (e, s) {
+      AppLogger.e('QuranReader', e, s, 'save position');
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
-    final theme = Theme.of(context);
-    final isDark = theme.brightness == Brightness.dark;
-    final locale = Localizations.localeOf(context).languageCode;
-
     return ScrollablePositionedList.builder(
-      itemCount: 114,
-      itemScrollController: _itemScrollController,
-      itemPositionsListener: _itemPositionsListener,
-      initialScrollIndex: widget.initialSurah - 1,
+      itemCount: _rows.length,
+      itemScrollController: _scroll,
+      itemPositionsListener: _positions,
+      initialScrollIndex: _startIndex,
+      padding: const EdgeInsets.only(bottom: 48),
       itemBuilder: (context, index) {
-        final surahNumber = index + 1;
-        return SurahItemWidget(
-          surahNumber: surahNumber,
-          targetAyahToScroll: surahNumber == widget.initialSurah ? widget.initialAyah : null,
-          repository: _repository,
-          theme: theme,
-          isDark: isDark,
-          l10n: l10n,
-          locale: locale,
+        final r = _rows[index];
+        if (r.isHeader) {
+          return SurahHeaderItem(key: ValueKey('h${r.surah}'), surahNumber: r.surah, loader: _loader);
+        }
+        return AyahChunkItem(
+          key: ValueKey('c${r.surah}_${r.startAyah}'),
+          surahNumber: r.surah,
+          startAyah: r.startAyah,
+          endAyah: r.endAyah,
+          loader: _loader,
+          highlightAyah: (r.surah == widget.initialSurah) ? _highlightAyah : null,
         );
       },
     );

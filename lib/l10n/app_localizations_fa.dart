@@ -52,7 +52,7 @@ class AppLocalizationsFa extends AppLocalizations {
   String get navQibla => 'قبله';
 
   @override
-  String get navRadio => 'Radio';
+  String get navRadio => 'رادیو';
 
   @override
   String get navMore => 'بیشتر';
@@ -179,7 +179,7 @@ class AppLocalizationsFa extends AppLocalizations {
   String get selectedRecitationTitle => 'تلاوت منتخب';
 
   @override
-  String get live => 'Live';
+  String get live => 'زنده';
 
   @override
   String get quranScreenTitle => 'قرآن کریم';
@@ -238,49 +238,49 @@ class AppLocalizationsFa extends AppLocalizations {
   String get copiedSuccessfully => 'آیه در کلیپ‌بورد کپی شد';
 
   @override
-  String get azkarScreenTitle => 'Azkar';
+  String get azkarScreenTitle => 'اذکار';
 
   @override
-  String get azkarScreenSubtitle => 'Close to Allah... in every moment';
+  String get azkarScreenSubtitle => 'نزدیک به خدا… در هر لحظه';
 
   @override
-  String get azkarCategoryMorning => 'Morning Azkar';
+  String get azkarCategoryMorning => 'اذکار صبحگاه';
 
   @override
-  String get azkarCategoryMorningSub => 'Remembrances for the morning';
+  String get azkarCategoryMorningSub => 'ذکرهای صبحگاهی';
 
   @override
-  String get azkarCategoryEvening => 'Evening Azkar';
+  String get azkarCategoryEvening => 'اذکار شامگاه';
 
   @override
-  String get azkarCategoryEveningSub => 'Remembrances for the evening';
+  String get azkarCategoryEveningSub => 'ذکرهای شامگاهی';
 
   @override
-  String get azkarCategoryPrayer => 'After Prayer';
+  String get azkarCategoryPrayer => 'پس از نماز';
 
   @override
-  String get azkarCategoryPrayerSub => 'Remembrances after prayer';
+  String get azkarCategoryPrayerSub => 'ذکرهای پس از نماز';
 
   @override
-  String get azkarCategorySleep => 'Sleep Azkar';
+  String get azkarCategorySleep => 'اذکار خواب';
 
   @override
-  String get azkarCategorySleepSub => 'Remembrances before sleep';
+  String get azkarCategorySleepSub => 'ذکرهای پیش از خواب';
 
   @override
-  String get azkarCategoryProtection => 'Protection Azkar';
+  String get azkarCategoryProtection => 'اذکار حفاظت';
 
   @override
-  String get azkarCategoryProtectionSub => 'For protection and tranquility';
+  String get azkarCategoryProtectionSub => 'برای حفاظت و آرامش';
 
   @override
-  String get azkarCategoryDaily => 'Daily Azkar';
+  String get azkarCategoryDaily => 'اذکار روزانه';
 
   @override
-  String get azkarCategoryDailySub => 'Various remembrances for the day';
+  String get azkarCategoryDailySub => 'ذکرهای گوناگون برای روز';
 
   @override
-  String get azkarAllCategories => 'All Categories';
+  String get azkarAllCategories => 'همه دسته‌ها';
 
   @override
   String get quranMessageNotificationTitle => 'پیامی از قرآن 🌿';
@@ -317,11 +317,11 @@ class AppLocalizationsFa extends AppLocalizations {
       'امکان دسترسی به مکان وجود ندارد. لطفاً GPS را فعال کنید.';
 
   @override
-  String get locationPermissionTitle => 'Allow Location Access';
+  String get locationPermissionTitle => 'اجازه دسترسی به موقعیت';
 
   @override
   String get locationPermissionDesc =>
-      'We need your location to accurately calculate the Qibla direction based on your current position.';
+      'برای محاسبه دقیق جهت قبله از موقعیت فعلی شما به مکان‌یابی نیاز داریم.';
 
   @override
   String get preciseQibla => 'قبله دقیق';
@@ -339,16 +339,16 @@ class AppLocalizationsFa extends AppLocalizations {
   String get notNow => 'الان نه';
 
   @override
-  String get startupLocationTitle => 'Location Access';
+  String get startupLocationTitle => 'دسترسی به موقعیت';
 
   @override
   String startupLocationDescSaved(String locationName) {
-    return 'We need your location for accurate Prayer Times and Qibla direction.\n\nIf you choose not to allow, we will use your last saved location: $locationName.';
+    return 'برای دقیق بودن اوقات نماز و جهت قبله به موقعیت شما نیاز داریم.\n\nدر صورت عدم اجازه، از آخرین موقعیت ذخیره‌شده یعنی $locationName استفاده می‌کنیم.';
   }
 
   @override
   String get startupLocationDescDefault =>
-      'We need your location for accurate Prayer Times and Qibla direction.\n\nIf you choose not to allow, we will use the default location: Mecca, Saudi Arabia.';
+      'برای دقیق بودن اوقات نماز و جهت قبله به موقعیت شما نیاز داریم.\n\nدر صورت عدم اجازه، از موقعیت پیش‌فرض یعنی مکه مکرمه، عربستان سعودی استفاده می‌کنیم.';
 
   @override
   String get moreScreenTitle => 'بیشتر';
@@ -639,20 +639,154 @@ class AppLocalizationsFa extends AppLocalizations {
   String get themeSystemDesc => 'پیروی از تنظیمات دستگاه';
 
   @override
-  String get soundType => 'Notification Type';
+  String get soundType => 'نوع اعلان';
 
   @override
-  String get soundSilent => 'Silent (No sound)';
+  String get soundSilent => 'بی‌صدا';
 
   @override
-  String get soundShort => 'Short Beep';
+  String get soundShort => 'صدای کوتاه';
 
   @override
-  String get soundAdhan => 'Full Adhan';
+  String get soundAdhan => 'اذان کامل';
 
   @override
-  String get testNotificationNow => 'Test Notification Now';
+  String get prePrayerAlertDesc => 'پیش از اذان به من هشدار بده';
 
   @override
-  String get prePrayerAlertDesc => 'Alert me before Adhan by';
+  String prayerNotifTitle(String prayerName) {
+    return 'وقت نماز $prayerName فرا رسید';
+  }
+
+  @override
+  String get prayerNotifBody => 'به سوی نماز بشتاب';
+
+  @override
+  String prePrayerNotifTitle(String prayerName) {
+    return 'نماز $prayerName نزدیک است';
+  }
+
+  @override
+  String prePrayerNotifBody(int minutes) {
+    return '$minutes دقیقه تا اذان باقی مانده است';
+  }
+
+  @override
+  String get notifDisabledTitle => 'اعلان‌ها خاموش هستند';
+
+  @override
+  String get notifDisabledDesc =>
+      'اعلان‌ها را روشن کنید تا اذان و یادآورها به‌موقع برسند.';
+
+  @override
+  String get exactAlarmTitle => 'هشدارهای دقیق خاموش است';
+
+  @override
+  String get exactAlarmDesc =>
+      '«هشدارها و یادآورها» را مجاز کنید تا اذان دقیقاً سر وقت برسد.';
+
+  @override
+  String get openSettings => 'باز کردن تنظیمات';
+
+  @override
+  String get retry => 'تلاش دوباره';
+
+  @override
+  String get errorGeneric => 'مشکلی پیش آمد. دوباره تلاش کنید.';
+
+  @override
+  String get errorNoInternet =>
+      'اتصال اینترنت وجود ندارد. اتصال خود را بررسی و دوباره تلاش کنید.';
+
+  @override
+  String get errorLoadFailed => 'بارگذاری محتوا ممکن نشد.';
+
+  @override
+  String get downloadingProgress => 'در حال دانلود…';
+
+  @override
+  String get downloadSuccess => 'دانلود با موفقیت انجام شد';
+
+  @override
+  String get downloadFailed => 'دانلود ناموفق بود. دوباره تلاش کنید.';
+
+  @override
+  String get shareFailed => 'ساخت تصویر ممکن نشد. دوباره تلاش کنید.';
+
+  @override
+  String get audioLoadFailed => 'پخش صدا ممکن نشد. اتصال را بررسی کنید.';
+
+  @override
+  String get radioLoadFailed => 'بارگذاری ایستگاه‌ها ممکن نشد';
+
+  @override
+  String get continueReadingBtn => 'ادامه مطالعه';
+
+  @override
+  String get permSetupTitle => 'هیچ نمازی را از دست نده';
+
+  @override
+  String get permSetupSubtitle =>
+      'چند مجوز را یک بار بدهید تا اذان و یادآورها همیشه سر وقت برسند، حتی وقتی برنامه بسته است.';
+
+  @override
+  String get permNotifTitle => 'اعلان‌ها';
+
+  @override
+  String get permNotifDesc =>
+      'برای نمایش اذان، یادآور نماز، اذکار و پیام‌های قرآنی.';
+
+  @override
+  String get permExactTitle => 'هشدارها و یادآورها';
+
+  @override
+  String get permExactDesc =>
+      'به اندروید اجازه می‌دهد اذان را دقیقاً در دقیقهٔ مشخص پخش کند.';
+
+  @override
+  String get permBatteryTitle => 'باتری بدون محدودیت';
+
+  @override
+  String get permBatteryDesc =>
+      'از خواباندن برنامه و حذف اعلان‌ها توسط سیستم جلوگیری می‌کند.';
+
+  @override
+  String get permAutostartTitle => 'اجرای خودکار و پس‌زمینه';
+
+  @override
+  String permAutostartDesc(String brand) {
+    return 'گوشی شما ($brand) ممکن است برنامه‌های پس‌زمینه را مسدود کند. اجازه دهید بشرى خودکار اجرا شود و در پس‌زمینه کار کند.';
+  }
+
+  @override
+  String get permChannelsTitle => 'دسته‌های اعلان و صدا';
+
+  @override
+  String get permChannelsDesc =>
+      'برخی دسته‌های اعلان خاموش هستند. برای شنیدن اذان آن‌ها را روشن کنید.';
+
+  @override
+  String get permAllowAll => 'اجازه به همه';
+
+  @override
+  String get permAllow => 'اجازه';
+
+  @override
+  String get permGranted => 'مجاز';
+
+  @override
+  String get permContinue => 'ادامه';
+
+  @override
+  String get permLater => 'بعداً';
+
+  @override
+  String get permAllSet => 'همه چیز آماده است! اعلان‌ها به‌طور مطمئن می‌رسند.';
+
+  @override
+  String get permMissingNote =>
+      'برخی مجوزها هنوز خاموش‌اند. ممکن است اعلان‌ها دیر برسند یا نرسند.';
+
+  @override
+  String get permFix => 'رفع مشکل';
 }

@@ -261,6 +261,73 @@
   "soundSilent": "صامت (بدون صوت)",
   "soundShort": "تنبيه قصير",
   "soundAdhan": "أذان كامل",
-  "testNotificationNow": "إرسال إشعار تجريبي الآن",
-  "prePrayerAlertDesc": "نبهني قبل الأذان بـ"
+  "prePrayerAlertDesc": "نبهني قبل الأذان بـ",
+  "prayerNotifTitle": "حان الآن موعد صلاة {prayerName}",
+  "@prayerNotifTitle": {
+    "placeholders": {
+      "prayerName": {
+        "type": "String"
+      }
+    }
+  },
+  "prayerNotifBody": "حيّ على الصلاة",
+  "prePrayerNotifTitle": "صلاة {prayerName} قريبًا",
+  "@prePrayerNotifTitle": {
+    "placeholders": {
+      "prayerName": {
+        "type": "String"
+      }
+    }
+  },
+  "prePrayerNotifBody": "باقي {minutes} دقيقة على الأذان",
+  "@prePrayerNotifBody": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "notifDisabledTitle": "الإشعارات متوقفة",
+  "notifDisabledDesc": "فعّل الإشعارات ليصلك الأذان والتذكيرات في وقتها.",
+  "exactAlarmTitle": "التنبيهات الدقيقة متوقفة",
+  "exactAlarmDesc": "اسمح بـ «المنبهات والتذكيرات» حتى يصل الأذان في وقته بالضبط.",
+  "openSettings": "فتح الإعدادات",
+  "retry": "إعادة المحاولة",
+  "errorGeneric": "حدث خطأ غير متوقع. حاول مرة أخرى.",
+  "errorNoInternet": "لا يوجد اتصال بالإنترنت. تحقق من الاتصال وحاول مجددًا.",
+  "errorLoadFailed": "تعذّر تحميل المحتوى.",
+  "downloadingProgress": "جارٍ التحميل...",
+  "downloadSuccess": "تم التحميل بنجاح",
+  "downloadFailed": "فشل التحميل. حاول مرة أخرى.",
+  "shareFailed": "تعذّر إنشاء الصورة. حاول مرة أخرى.",
+  "audioLoadFailed": "تعذّر تشغيل الصوت. تحقق من الاتصال.",
+  "radioLoadFailed": "تعذّر جلب الإذاعات",
+  "continueReadingBtn": "متابعة القراءة",
+  "permSetupTitle": "لا تفوّت أي صلاة",
+  "permSetupSubtitle": "اسمح ببعض الأذونات مرة واحدة ليصلك الأذان والتذكيرات في وقتها بالضبط، حتى لو كان التطبيق مغلقًا.",
+  "permNotifTitle": "الإشعارات",
+  "permNotifDesc": "لعرض الأذان وتذكيرات الصلاة والأذكار ورسائل القرآن.",
+  "permExactTitle": "المنبهات والتذكيرات",
+  "permExactDesc": "يسمح لأندرويد بإطلاق الأذان في الدقيقة المحددة بالضبط.",
+  "permBatteryTitle": "بطارية غير مقيّدة",
+  "permBatteryDesc": "يمنع النظام من إيقاف التطبيق وإسقاط الإشعارات لتوفير الطاقة.",
+  "permAutostartTitle": "التشغيل التلقائي والخلفية",
+  "permAutostartDesc": "هاتفك ({brand}) قد يمنع التطبيقات في الخلفية. اسمح لبشرى بالتشغيل التلقائي والعمل في الخلفية.",
+  "@permAutostartDesc": {
+    "placeholders": {
+      "brand": {
+        "type": "String"
+      }
+    }
+  },
+  "permChannelsTitle": "أقسام الإشعارات والصوت",
+  "permChannelsDesc": "بعض أقسام الإشعارات متوقفة. فعّلها لتسمع الأذان.",
+  "permAllowAll": "السماح بالكل",
+  "permAllow": "سماح",
+  "permGranted": "تم السماح",
+  "permContinue": "متابعة",
+  "permLater": "لاحقًا",
+  "permAllSet": "كل شيء جاهز! ستصلك الإشعارات بشكل موثوق.",
+  "permMissingNote": "بعض الأذونات ما زالت متوقفة، وقد تتأخر الإشعارات أو لا تصل.",
+  "permFix": "إصلاح الآن"
 }

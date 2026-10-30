@@ -1,3 +1,4 @@
+import '../utils/app_logger.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:just_audio_background/just_audio_background.dart';
 import '../../features/radio/data/models/radio_model.dart';
@@ -39,7 +40,7 @@ class RadioPlayerService {
       await _player.setAudioSource(audioSource);
       await _player.play();
     } catch (e) {
-      print("Error playing audio: $e");
+      appLog("Error playing audio: $e");
     }
   }
 

@@ -1304,17 +1304,251 @@ abstract class AppLocalizations {
   /// **'Full Adhan'**
   String get soundAdhan;
 
-  /// No description provided for @testNotificationNow.
-  ///
-  /// In en, this message translates to:
-  /// **'Test Notification Now'**
-  String get testNotificationNow;
-
   /// No description provided for @prePrayerAlertDesc.
   ///
   /// In en, this message translates to:
   /// **'Alert me before Adhan by'**
   String get prePrayerAlertDesc;
+
+  /// No description provided for @prayerNotifTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'It’s time for {prayerName} prayer'**
+  String prayerNotifTitle(String prayerName);
+
+  /// No description provided for @prayerNotifBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Hasten to the prayer'**
+  String get prayerNotifBody;
+
+  /// No description provided for @prePrayerNotifTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{prayerName} prayer is near'**
+  String prePrayerNotifTitle(String prayerName);
+
+  /// No description provided for @prePrayerNotifBody.
+  ///
+  /// In en, this message translates to:
+  /// **'{minutes} minutes left until the Adhan'**
+  String prePrayerNotifBody(int minutes);
+
+  /// No description provided for @notifDisabledTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications are turned off'**
+  String get notifDisabledTitle;
+
+  /// No description provided for @notifDisabledDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn notifications on so the Adhan and reminders reach you on time.'**
+  String get notifDisabledDesc;
+
+  /// No description provided for @exactAlarmTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Exact alarms are off'**
+  String get exactAlarmTitle;
+
+  /// No description provided for @exactAlarmDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow “Alarms & reminders” so the Adhan arrives at the exact time.'**
+  String get exactAlarmDesc;
+
+  /// No description provided for @openSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Open Settings'**
+  String get openSettings;
+
+  /// No description provided for @retry.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get retry;
+
+  /// No description provided for @errorGeneric.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong. Please try again.'**
+  String get errorGeneric;
+
+  /// No description provided for @errorNoInternet.
+  ///
+  /// In en, this message translates to:
+  /// **'No internet connection. Check your connection and try again.'**
+  String get errorNoInternet;
+
+  /// No description provided for @errorLoadFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn’t load the content.'**
+  String get errorLoadFailed;
+
+  /// No description provided for @downloadingProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Downloading…'**
+  String get downloadingProgress;
+
+  /// No description provided for @downloadSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Downloaded successfully'**
+  String get downloadSuccess;
+
+  /// No description provided for @downloadFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Download failed. Please try again.'**
+  String get downloadFailed;
+
+  /// No description provided for @shareFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn’t create the image. Please try again.'**
+  String get shareFailed;
+
+  /// No description provided for @audioLoadFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn’t play the audio. Check your connection.'**
+  String get audioLoadFailed;
+
+  /// No description provided for @radioLoadFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn’t load radio stations'**
+  String get radioLoadFailed;
+
+  /// No description provided for @continueReadingBtn.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue Reading'**
+  String get continueReadingBtn;
+
+  /// No description provided for @permSetupTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Never miss a prayer'**
+  String get permSetupTitle;
+
+  /// No description provided for @permSetupSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow a few permissions once so the Adhan and reminders always arrive on time — even when the app is closed.'**
+  String get permSetupSubtitle;
+
+  /// No description provided for @permNotifTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications'**
+  String get permNotifTitle;
+
+  /// No description provided for @permNotifDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'To show the Adhan, prayer reminders, Azkar and Quran messages.'**
+  String get permNotifDesc;
+
+  /// No description provided for @permExactTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Alarms & reminders'**
+  String get permExactTitle;
+
+  /// No description provided for @permExactDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Lets Android deliver the Adhan at the exact minute.'**
+  String get permExactDesc;
+
+  /// No description provided for @permBatteryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Unrestricted battery'**
+  String get permBatteryTitle;
+
+  /// No description provided for @permBatteryDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Stops the system from putting the app to sleep and dropping notifications.'**
+  String get permBatteryDesc;
+
+  /// No description provided for @permAutostartTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Auto-start & background'**
+  String get permAutostartTitle;
+
+  /// No description provided for @permAutostartDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Your phone brand ({brand}) may block background apps. Allow Boshra to auto-start and run in the background.'**
+  String permAutostartDesc(String brand);
+
+  /// No description provided for @permChannelsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Notification categories & sound'**
+  String get permChannelsTitle;
+
+  /// No description provided for @permChannelsDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Some notification categories are turned off. Turn them on to hear the Adhan.'**
+  String get permChannelsDesc;
+
+  /// No description provided for @permAllowAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow all'**
+  String get permAllowAll;
+
+  /// No description provided for @permAllow.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow'**
+  String get permAllow;
+
+  /// No description provided for @permGranted.
+  ///
+  /// In en, this message translates to:
+  /// **'Allowed'**
+  String get permGranted;
+
+  /// No description provided for @permContinue.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get permContinue;
+
+  /// No description provided for @permLater.
+  ///
+  /// In en, this message translates to:
+  /// **'Later'**
+  String get permLater;
+
+  /// No description provided for @permAllSet.
+  ///
+  /// In en, this message translates to:
+  /// **'All set! Notifications will arrive reliably.'**
+  String get permAllSet;
+
+  /// No description provided for @permMissingNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Some permissions are still off. Notifications may be late or missing.'**
+  String get permMissingNote;
+
+  /// No description provided for @permFix.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix now'**
+  String get permFix;
 }
 
 class _AppLocalizationsDelegate

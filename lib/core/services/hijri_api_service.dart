@@ -1,3 +1,5 @@
+import '../network/dio_factory.dart';
+import '../utils/app_logger.dart';
 import 'package:dio/dio.dart';
 
 class HijriDateModel {
@@ -51,8 +53,8 @@ class HijriDateModel {
 class HijriApiService {
   final Dio _dio;
 
-  HijriApiService() : _dio = Dio() {
-    _dio.options.baseUrl = 'https://api.aladhan.com/v1';
+  HijriApiService() : _dio = DioFactory.create() {
+    _dio.options.baseUrl = 'https://api.aladhan.com';
     _dio.options.connectTimeout = const Duration(seconds: 10);
     _dio.options.receiveTimeout = const Duration(seconds: 10);
   }
@@ -61,12 +63,12 @@ class HijriApiService {
   /// Date format should be DD-MM-YYYY
   Future<HijriDateModel?> convertDate(String dateStr) async {
     try {
-      final response = await _dio.get('/gToH/$dateStr');
+      final response = await _dio.get('/v1/gToH/$dateStr');
       if (response.statusCode == 200 && response.data != null) {
         return HijriDateModel.fromJson(response.data['data']['hijri']);
       }
     } catch (e) {
-      print('Error converting date: $e');
+      appLog('Error converting date: $e');
     }
     return null;
   }

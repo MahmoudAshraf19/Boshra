@@ -1,3 +1,4 @@
+import '../../../prayer/presentation/widgets/notification_permission_banner.dart';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import '../../../../l10n/app_localizations.dart';
@@ -9,7 +10,7 @@ import '../widgets/quick_access_card.dart';
 import '../widgets/continue_reading_card.dart';
 import '../widgets/selected_recitation_card.dart';
 import 'package:intl/intl.dart';
-import '../../../../core/services/notification_service.dart';
+import '../../../../core/notifications/notification_coordinator.dart';
 import '../../../prayer/presentation/screens/prayer_settings_screen.dart';
 import '../../../quran/data/repositories/quran_repository.dart';
 import '../../../azkar/presentation/screens/azkar_details_screen.dart';
@@ -36,11 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
     _controller = HomeController();
     
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      final l10n = AppLocalizations.of(context);
-      if (l10n != null) {
-        NotificationService().scheduleDailyAzkarNotifications(l10n);
-        NotificationService().scheduleDailyQuranMessage(l10n);
-      }
+      NotificationCoordinator.instance.rescheduleAll();
     });
   }
 
@@ -306,6 +303,7 @@ class _HomeScreenState extends State<HomeScreen> {
           // The rest of the Home Screen Content
           SliverList(
             delegate: SliverChildListDelegate([
+              const NotificationPermissionBanner(),
               const SizedBox(height: 20),
               
               AnimatedBuilder(

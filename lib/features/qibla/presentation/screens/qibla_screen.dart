@@ -1,3 +1,4 @@
+import '../../../../core/utils/app_logger.dart';
 import 'package:flutter/material.dart';
 import '../controllers/qibla_controller.dart';
 import '../widgets/qibla_compass_widget.dart';
@@ -42,7 +43,7 @@ class _QiblaScreenState extends State<QiblaScreen> {
         }
       }
     } catch (e) {
-      print('Error fetching placemark: $e');
+      appLog('Error fetching placemark: $e');
     }
   }
 

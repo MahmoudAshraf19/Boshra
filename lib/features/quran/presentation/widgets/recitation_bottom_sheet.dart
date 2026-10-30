@@ -1,3 +1,5 @@
+import '../../../../l10n/app_localizations.dart';
+import '../../../../core/utils/app_logger.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
@@ -5,6 +7,7 @@ import 'package:just_audio_background/just_audio_background.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../data/models/quran_models.dart';
 import '../../data/models/reciter_model.dart';
+import '../../data/audio/ayah_audio.dart';
 import 'package:boshra/core/services/audio_service.dart';
 
 class RecitationBottomSheet extends StatefulWidget {
@@ -59,6 +62,7 @@ class _RecitationBottomSheetState extends State<RecitationBottomSheet> {
       );
     }
     
+    if (!mounted) return;
     _setupAudioListeners();
     await _loadAudio(autoPlay: false);
   }
@@ -73,9 +77,15 @@ class _RecitationBottomSheetState extends State<RecitationBottomSheet> {
               _audioPlayer.seek(Duration.zero);
               _audioPlayer.play();
             } else {
-               _audioPlayer.stop();
-               _audioPlayer.seek(Duration.zero);
-               _isPlaying = false;
+              final i = widget.surah.ayahs.indexWhere((a) => a.number == _currentAyah.number);
+              if (i >= 0 && i < widget.surah.ayahs.length - 1) {
+                // continue with the next ayah automatically
+                Future.microtask(_playNextAyah);
+              } else {
+                _audioPlayer.stop();
+                _audioPlayer.seek(Duration.zero);
+                _isPlaying = false;
+              }
             }
           }
         });
@@ -96,14 +106,15 @@ class _RecitationBottomSheetState extends State<RecitationBottomSheet> {
   }
 
   Future<void> _loadAudio({bool autoPlay = false}) async {
-    // Some reciters don't have 128kbps quality, so we use 64kbps for maximum compatibility.
-    final url = 'https://cdn.islamic.network/quran/audio/64/${_selectedReciter.id}/${_currentAyah.number}.mp3';
-    print('🌐 [Audio Request] Loading MP3: $url');
+    // Plays from disk when the ayah is downloaded, otherwise streams.
+    // AyahModel.number is the GLOBAL ayah number (1..6236) the CDN expects.
     try {
-      final audioSource = AudioSource.uri(
-        Uri.parse(url),
+      final audioSource = await AyahAudio.source(
+        reciterId: _selectedReciter.id,
+        surah: widget.surah.number,
+        ayahInSurah: _currentAyah.numberInSurah,
         tag: MediaItem(
-          id: '${widget.surah.number}_${_currentAyah.number}',
+          id: '${widget.surah.number}_${_currentAyah.numberInSurah}',
           album: widget.surah.name,
           title: widget.locale == 'ar' ? 'الآية ${_currentAyah.numberInSurah}' : 'Ayah ${_currentAyah.numberInSurah}',
           artist: widget.locale == 'ar' ? _selectedReciter.nameAr : _selectedReciter.nameEn,
@@ -111,7 +122,7 @@ class _RecitationBottomSheetState extends State<RecitationBottomSheet> {
       );
       await _audioPlayer.stop();
       await _audioPlayer.setAudioSource(audioSource);
-      print('🟢 [Audio Success] MP3 Loaded successfully!');
+      appLog('🟢 [Audio Success] MP3 Loaded successfully!');
       
       // Save last recitation state
       final prefs = await SharedPreferences.getInstance();
@@ -125,14 +136,14 @@ class _RecitationBottomSheetState extends State<RecitationBottomSheet> {
         _audioPlayer.play();
       }
     } catch (e, stacktrace) {
-      print('❌ [Audio Error] Failed to load MP3 for ${_selectedReciter.id}');
-      print('🔥 [Audio Exception] $e');
-      print('📉 [Audio Stacktrace] $stacktrace');
+      appLog('❌ [Audio Error] Failed to load MP3 for ${_selectedReciter.id}');
+      appLog('🔥 [Audio Exception] $e');
+      appLog('📉 [Audio Stacktrace] $stacktrace');
       
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(widget.locale == 'ar' ? 'عذراً، فشل تحميل الصوت لهذا القارئ.' : 'Sorry, failed to load audio for this reciter.'),
+            content: Text(AppLocalizations.of(context)!.audioLoadFailed),
             backgroundColor: Theme.of(context).colorScheme.error,
           ),
         );

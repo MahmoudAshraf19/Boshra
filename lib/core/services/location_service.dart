@@ -1,3 +1,4 @@
+import '../utils/app_logger.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -49,7 +50,7 @@ class LocationService {
         return await _getLastKnownPosition();
       } 
     } catch (e) {
-      print('Geolocator permission error: $e');
+      appLog('Geolocator permission error: $e');
       return await _getLastKnownPosition();
     }
 
@@ -120,7 +121,7 @@ class LocationService {
         }
       }
     } catch (e) {
-      print('Error reverse geocoding: $e');
+      appLog('Error reverse geocoding: $e');
     }
     
     return null;

@@ -1,10 +1,12 @@
+import '../network/dio_factory.dart';
+import '../utils/app_logger.dart';
 import 'package:dio/dio.dart';
 import '../../features/radio/data/models/radio_model.dart';
 
 class RadioApiService {
   final Dio _dio;
 
-  RadioApiService() : _dio = Dio() {
+  RadioApiService() : _dio = DioFactory.create() {
     _dio.options.baseUrl = 'https://data-rosy.vercel.app';
     _dio.options.connectTimeout = const Duration(seconds: 15);
     _dio.options.receiveTimeout = const Duration(seconds: 15);
@@ -28,7 +30,7 @@ class RadioApiService {
         return radiosJson.map((r) => RadioModel.fromJson(r)).toList();
       }
     } catch (e) {
-      print('Error fetching radios: $e');
+      appLog('Error fetching radios: $e');
     }
     return [];
   }

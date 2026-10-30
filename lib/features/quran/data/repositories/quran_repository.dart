@@ -1,7 +1,26 @@
+import 'dart:async';
+import 'dart:math';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../models/quran_models.dart';
+import '../quran_hizb_service.dart';
+import '../quran_meta.dart';
+import '../quran_text_source.dart';
+import '../audio/audio_download_manager.dart';
 import '../../../../core/services/quran_api_service.dart';
 import '../../../../core/services/quran_local_service.dart';
 import '../../../../core/services/tafsir_api_service.dart';
+
+/// Two clearly separated responsibilities:
+///
+///  1. BROWSE / READ  → [getSurahSync], [getQuranMetadata]
+///     Instant and always offline: the text ships with the app.
+///     Never touches the network or the disk.
+///
+///  2. DOWNLOAD / OFFLINE → [AudioDownloadManager]
+///     Only audio needs downloading. Use the manager directly.
+///
+/// Network is used only for things that truly need it: search, tafsir,
+/// translations, surah info and streaming audio that isn't downloaded yet.
 class QuranRepository {
   final QuranApiService _apiService;
   final QuranLocalService _localService;
@@ -15,88 +34,110 @@ class QuranRepository {
         _localService = localService ?? QuranLocalService(),
         _tafsirApiService = tafsirApiService ?? TafsirApiService();
 
-  /// Fetches Quran metadata (Surahs, Juzs, Hizbs).
-  /// Checks local cache first, if not found fetches from API and caches it.
+  // ───────────────────────── browse / read (offline, instant) ─────────────────────────
+
+  static QuranMetaModel? _metaMemo;
+
+  /// 114 surahs + 30 juz (exact) + hizbs. Synchronous part is instant; hizb
+  /// positions are upgraded from the cache when available.
   Future<QuranMetaModel?> getQuranMetadata() async {
-    // 1. Check local cache
-    final localMeta = await _localService.getMetadata();
-    if (localMeta != null && localMeta.surahs.isNotEmpty && localMeta.juzs.isNotEmpty) {
-      return localMeta;
-    }
-
-    // 2. Fetch from API
-    final apiMeta = await _apiService.getQuranMetadata();
-    
-    // 3. Save to cache
-    if (apiMeta != null && apiMeta.surahs.isNotEmpty) {
-      await _localService.saveMetadata(apiMeta);
-    }
-    
-    return apiMeta;
+    _metaMemo ??= QuranMetaModel(
+      surahs: [for (var s = 1; s <= 114; s++) QuranTextSource.meta(s)],
+      juzs: [
+        for (var j = 0; j < 30; j++)
+          JuzMetaModel(
+              number: j + 1,
+              surah: QuranMeta.juzStarts[j].$1,
+              ayah: QuranMeta.juzStarts[j].$2),
+      ],
+    );
+    final hizbs = await QuranHizbService.load();
+    return QuranMetaModel(
+        surahs: _metaMemo!.surahs, juzs: _metaMemo!.juzs, hizbs: hizbs);
   }
 
-  /// Gets a Surah. Checks local cache first, if not found fetches from API.
-  /// If [saveToCache] is true, it will explicitly save the fetched Surah locally.
-  Future<SurahModel?> getSurah(int surahNumber, {bool useUthmani = true, bool saveToCache = false}) async {
-    final edition = useUthmani ? 'quran-uthmani' : 'quran-simple';
+  /// Instant metadata of one surah (for the reader's app-bar).
+  SurahMetaModel getSurahMeta(int n) => QuranTextSource.meta(n.clamp(1, 114));
 
-    // 1. Check local cache
-    final localSurah = await _localService.getSurah(surahNumber, edition);
-    if (localSurah != null) {
-      return localSurah;
-    }
+  /// Instant, offline, never null for 1..114.
+  SurahModel getSurahSync(int surahNumber, {bool useUthmani = true}) =>
+      QuranTextSource.surah(surahNumber,
+          edition: useUthmani ? 'quran-uthmani' : 'quran-simple');
 
-    // 2. If not in cache, fetch from API
-    final apiSurah = await _apiService.getSurah(surahNumber, edition: edition);
-    
-    // 3. Save to cache ONLY if explicitly requested (e.g. from Download button)
-    if (apiSurah != null && saveToCache) {
-      await _localService.saveSurah(apiSurah, edition);
-    }
-
-    return apiSurah;
+  /// Kept for call-sites that still `await` it. Resolves immediately.
+  /// [saveToCache] is ignored on purpose: text needs no download.
+  Future<SurahModel?> getSurah(int surahNumber,
+      {bool useUthmani = true, bool saveToCache = false}) async {
+    if (surahNumber < 1 || surahNumber > 114) return null;
+    return getSurahSync(surahNumber, useUthmani: useUthmani);
   }
 
-  /// Get a set of all currently downloaded (cached) Surah numbers.
-  Future<Set<int>> getDownloadedSurahs({bool useUthmani = true}) async {
-    final edition = useUthmani ? 'quran-uthmani' : 'quran-simple';
-    return await _localService.getCachedSurahs(edition);
-  }
-
-  /// Gets a random Ayah. Always fetches fresh from API.
+  /// Offline random ayah (was API-only, so it failed without internet).
   Future<AyahModel?> getRandomAyah({bool useUthmani = true}) async {
-    final edition = useUthmani ? 'quran-uthmani' : 'quran-simple';
-    return await _apiService.getRandomAyah(edition: edition);
+    final g = Random().nextInt(QuranMeta.totalAyahs) + 1;
+    return QuranTextSource.ayahByGlobal(g);
   }
 
-  /// Gets a Surah in a specific language translation (e.g. 'en.asad').
+  // ───────────────────────── last read / bookmark ─────────────────────────
+
+  Future<void> saveLastRead(int surah, int ayah) async {
+    final p = await SharedPreferences.getInstance();
+    await p.setInt('last_read_surah', surah);
+    await p.setInt('last_read_ayah', ayah);
+  }
+
+  Future<void> saveBookmark(int surah, int ayah) async {
+    final p = await SharedPreferences.getInstance();
+    await p.setInt('bookmark_surah', surah);
+    await p.setInt('bookmark_ayah', ayah);
+  }
+
+  Future<(int, int)?> getBookmark() async {
+    final p = await SharedPreferences.getInstance();
+    final s = p.getInt('bookmark_surah');
+    final a = p.getInt('bookmark_ayah');
+    return (s == null || a == null) ? null : (s, a);
+  }
+
+  // ───────────────────────── download / offline (audio) ─────────────────────────
+
+  Future<String> selectedReciterId() async {
+    final p = await SharedPreferences.getInstance();
+    return p.getString('selected_reciter_id') ?? 'ar.abdulsamad';
+  }
+
+  /// Surahs whose audio is fully on the device for the selected reciter.
+  Future<Set<int>> getDownloadedSurahs({bool useUthmani = true}) async {
+    final id = await selectedReciterId();
+    await AudioDownloadManager.instance.ensureReciter(id);
+    return AudioDownloadManager.instance.completeSurahs(id);
+  }
+
+  /// Starts an audio download (non-blocking). Prefer the manager directly.
+  Future<bool> downloadSurah(int surahNumber, {bool useUthmani = true}) async {
+    final id = await selectedReciterId();
+    await AudioDownloadManager.instance.enqueueSurah(id, surahNumber);
+    return true;
+  }
+
+  // ───────────────────────── network features ─────────────────────────
+
   Future<SurahModel?> getSurahTranslation(int surahNumber, String translationEdition) async {
-    // Check cache first
-    final localSurah = await _localService.getSurah(surahNumber, translationEdition);
-    if (localSurah != null) return localSurah;
-
-    // Fetch from API
-    final apiSurah = await _apiService.getSurah(surahNumber, edition: translationEdition);
-    if (apiSurah != null) {
-      await _localService.saveSurah(apiSurah, translationEdition);
-    }
-    return apiSurah;
+    final local = await _localService.getSurah(surahNumber, translationEdition);
+    if (local != null) return local;
+    final api = await _apiService.getSurah(surahNumber, edition: translationEdition);
+    if (api != null) await _localService.saveSurah(api, translationEdition);
+    return api;
   }
 
-  /// Gets a Surah as an audio edition (e.g. 'ar.alafasy') to get the audio links for each Ayah.
-  Future<SurahModel?> getSurahAudio(int surahNumber, String reciterEdition) async {
-    // Audio links might change or expire, but generally we can cache them or fetch fresh.
-    // For safety, let's fetch fresh for audio URLs.
-    return await _apiService.getSurah(surahNumber, edition: reciterEdition);
-  }
+  Future<SurahModel?> getSurahAudio(int surahNumber, String reciterEdition) =>
+      _apiService.getSurah(surahNumber, edition: reciterEdition);
 
-  /// Searches for a keyword in the Quran.
-  Future<SearchResultModel?> search(String keyword, {String language = 'ar'}) async {
-    return await _apiService.search(keyword, language: language);
-  }
+  Future<SearchResultModel?> search(String keyword, {String language = 'ar'}) =>
+      _apiService.search(keyword, language: language);
 
-  /// Gets Tafsir for a specific Ayah
-  Future<String?> getAyahTafsir(int surahNumber, int ayahNumberInSurah, String editionKey, bool isUmmahApi) async {
-    return await _tafsirApiService.getAyahTafsir(surahNumber, ayahNumberInSurah, editionKey, isUmmahApi);
-  }
+  Future<String?> getAyahTafsir(
+          int surahNumber, int ayahNumberInSurah, String editionKey, bool isUmmahApi) =>
+      _tafsirApiService.getAyahTafsir(
+          surahNumber, ayahNumberInSurah, editionKey, isUmmahApi);
 }

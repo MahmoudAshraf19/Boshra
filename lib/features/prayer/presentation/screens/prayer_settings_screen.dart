@@ -1,7 +1,7 @@
+import '../../../../core/notifications/notification_coordinator.dart';
+import '../widgets/notification_permission_banner.dart';
 import 'package:flutter/material.dart';
-import '../../../../core/services/notification_service.dart';
 import '../../domain/prayer_settings.dart';
-import '../../domain/prayer_scheduler_service.dart';
 import '../../../../l10n/app_localizations.dart';
 
 class PrayerSettingsScreen extends StatefulWidget {
@@ -33,7 +33,7 @@ class _PrayerSettingsScreenState extends State<PrayerSettingsScreen> {
     if (_settings != null) {
       await _settings!.save();
       // Reschedule prayers with new settings
-      await PrayerSchedulerService().schedulePrayersForNextDays(3);
+      await NotificationCoordinator.instance.rescheduleAll(force: true);
     }
   }
 
@@ -73,6 +73,7 @@ class _PrayerSettingsScreenState extends State<PrayerSettingsScreen> {
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 24.0),
         children: [
+          const NotificationPermissionBanner(),
           _buildSectionHeader((l10n as dynamic).prePrayerAlertTitle ?? 'Pre-Prayer Alerts', colorScheme.primary),
           _buildBeforePrayerSlider(l10n, colorScheme),
           
@@ -162,33 +163,6 @@ class _PrayerSettingsScreenState extends State<PrayerSettingsScreen> {
           
           const SizedBox(height: 32),
           
-          ElevatedButton.icon(
-            onPressed: () async {
-              // Ensure permissions are requested before testing
-              await NotificationService().requestPermissions();
-              if (mounted) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text((l10n as dynamic).testNotificationNow ?? 'Test Notification Now'),
-                    backgroundColor: colorScheme.primary,
-                  ),
-                );
-              }
-              await PrayerSchedulerService().scheduleTestNotification(
-                Localizations.localeOf(context).languageCode,
-              );
-            },
-            icon: const Icon(Icons.notifications_active),
-            label: Text((l10n as dynamic).testNotificationNow ?? 'Test Notification Now'),
-            style: ElevatedButton.styleFrom(
-              padding: const EdgeInsets.symmetric(vertical: 16),
-              backgroundColor: colorScheme.secondaryContainer,
-              foregroundColor: colorScheme.onSecondaryContainer,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16),
-              ),
-            ),
-          ),
           const SizedBox(height: 40),
         ],
       ),

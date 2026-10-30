@@ -1,3 +1,5 @@
+import '../../../../core/utils/app_logger.dart';
+import '../../../../core/notifications/notification_coordinator.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
@@ -12,6 +14,8 @@ import '../../../../core/services/quran_api_service.dart';
 import '../../../quran/data/models/quran_models.dart';
 
 class HomeController extends ChangeNotifier {
+  static HomeController? instance;
+
   final PrayerRepository _prayerRepo = PrayerRepository();
   final LocationService _locationService = LocationService();
   final HijriApiService _hijriService = HijriApiService();
@@ -28,7 +32,16 @@ class HomeController extends ChangeNotifier {
   Timer? _timer;
 
   HomeController() {
+    instance = this;
     _init();
+  }
+
+  Future<void> refreshData() async {
+    isLoading = true;
+    notifyListeners();
+    await _syncDataInBackground();
+    isLoading = false;
+    notifyListeners();
   }
 
   Future<void> _init() async {
@@ -84,19 +97,18 @@ class HomeController extends ChangeNotifier {
           locationName = name;
           prefs.setString('cached_location_name', name);
         }
-        PrayerSchedulerService().schedulePrayersForNextDays(3);
       } else {
         if (locationName == '...') locationName = 'Makkah (Default)';
-        PrayerSchedulerService().schedulePrayersForNextDays(3);
       }
     } catch (e) {
-      print('Location sync error: $e');
+      appLog('Location sync error: $e');
       if (locationName == '...') locationName = 'Makkah (Default)';
-      PrayerSchedulerService().schedulePrayersForNextDays(3);
     }
     
     // 2. Fetch Prayer Times fresh (now with location)
     prayerTimes = await _prayerRepo.getTodayPrayerTimes();
+    // Location may have changed → (re)schedule notifications once, serialized.
+    NotificationCoordinator.instance.rescheduleAll(force: true);
     
     // 3. Fetch Hijri Date
     final todayStr = DateFormat('dd-MM-yyyy').format(DateTime.now());
@@ -229,6 +241,7 @@ class HomeController extends ChangeNotifier {
 
   @override
   void dispose() {
+    if (instance == this) instance = null;
     _timer?.cancel();
     super.dispose();
   }

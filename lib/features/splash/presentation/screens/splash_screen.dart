@@ -4,7 +4,6 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../features/onboarding/presentation/screens/onboarding_screen.dart';
 import '../../../../features/layout/presentation/screens/main_layout_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../../../../core/services/notification_service.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -26,11 +25,6 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
         setState(() {});
       });
       
-    // Request notification permissions safely after UI is built
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      NotificationService().requestPermissions();
-    });
-    
     _animationController.forward().then((_) async {
       final prefs = await SharedPreferences.getInstance();
       final hasSeenOnboarding = prefs.getBool('has_seen_onboarding') ?? false;

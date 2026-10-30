@@ -96,7 +96,7 @@
     }
   },
   "selectedRecitationTitle": "चयनित कुरान पाठ",
-  "live": "Live",
+  "live": "लाइव",
   "quranScreenTitle": "पवित्र कुरान",
   "startQuranJourney": "कुरान के साथ अपनी यात्रा शुरू करें",
   "openSurahAndRead": "एक सूरह खोलें और पढ़ना शुरू करें",
@@ -115,22 +115,22 @@
   "infoOption": "जानकारी",
   "copyOption": "कॉपी",
   "copiedSuccessfully": "आयत क्लिपबोर्ड पर कॉपी हो गई",
-  "azkarScreenTitle": "Azkar",
-  "azkarScreenSubtitle": "Close to Allah... in every moment",
-  "azkarCategoryMorning": "Morning Azkar",
-  "azkarCategoryMorningSub": "Remembrances for the morning",
-  "azkarCategoryEvening": "Evening Azkar",
-  "azkarCategoryEveningSub": "Remembrances for the evening",
-  "azkarCategoryPrayer": "After Prayer",
-  "azkarCategoryPrayerSub": "Remembrances after prayer",
-  "azkarCategorySleep": "Sleep Azkar",
-  "azkarCategorySleepSub": "Remembrances before sleep",
-  "azkarCategoryProtection": "Protection Azkar",
-  "azkarCategoryProtectionSub": "For protection and tranquility",
-  "azkarCategoryDaily": "Daily Azkar",
-  "azkarCategoryDailySub": "Various remembrances for the day",
-  "azkarAllCategories": "All Categories",
-  "navRadio": "Radio",
+  "azkarScreenTitle": "अज़कार",
+  "azkarScreenSubtitle": "अल्लाह के क़रीब… हर पल",
+  "azkarCategoryMorning": "सुबह के अज़कार",
+  "azkarCategoryMorningSub": "सुबह के ज़िक्र",
+  "azkarCategoryEvening": "शाम के अज़कार",
+  "azkarCategoryEveningSub": "शाम के ज़िक्र",
+  "azkarCategoryPrayer": "नमाज़ के बाद",
+  "azkarCategoryPrayerSub": "नमाज़ के बाद के ज़िक्र",
+  "azkarCategorySleep": "सोने के अज़कार",
+  "azkarCategorySleepSub": "सोने से पहले के ज़िक्र",
+  "azkarCategoryProtection": "सुरक्षा के अज़कार",
+  "azkarCategoryProtectionSub": "सुरक्षा और सुकून के लिए",
+  "azkarCategoryDaily": "दैनिक अज़कार",
+  "azkarCategoryDailySub": "दिनभर के लिए विभिन्न ज़िक्र",
+  "azkarAllCategories": "सभी श्रेणियाँ",
+  "navRadio": "रेडियो",
   "quranMessageNotificationTitle": "कुरान से संदेश 🌿",
   "saveBookmark": "बुकमार्क सहेजें",
   "bookmarkSavedSuccessfully": "सूरह {surahName} आयत {ayahNumber} पर बुकमार्क सहेजा गया",
@@ -151,15 +151,15 @@
   "qiblaCalibrationDesc": "कंपास को कैलिब्रेट करने के लिए कृपया अपने फोन को 8 की आकृति में धीरे-धीरे घुमाएं।",
   "findingLocation": "स्थान खोजा जा रहा है...",
   "locationPermissionError": "स्थान तक पहुंचने में असमर्थ। कृपया GPS चालू करें।",
-  "locationPermissionTitle": "Allow Location Access",
-  "locationPermissionDesc": "We need your location to accurately calculate the Qibla direction based on your current position.",
+  "locationPermissionTitle": "लोकेशन एक्सेस की अनुमति दें",
+  "locationPermissionDesc": "आपकी मौजूदा स्थिति से क़िब्ला की सही दिशा निकालने के लिए हमें आपकी लोकेशन चाहिए।",
   "preciseQibla": "सटीक क़िबला",
   "exactLocation": "आपका सटीक स्थान",
   "alwaysUpToDate": "हमेशा अपडेट",
   "allowLocationBtn": "अनुमति दें",
   "notNow": "अभी नहीं",
-  "startupLocationTitle": "Location Access",
-  "startupLocationDescSaved": "We need your location for accurate Prayer Times and Qibla direction.\n\nIf you choose not to allow, we will use your last saved location: {locationName}.",
+  "startupLocationTitle": "लोकेशन एक्सेस",
+  "startupLocationDescSaved": "सटीक नमाज़ के समय और क़िब्ला दिशा के लिए हमें आपकी लोकेशन चाहिए।\n\nअनुमति न देने पर हम आपकी आख़िरी सहेजी गई लोकेशन इस्तेमाल करेंगे: {locationName}।",
   "@startupLocationDescSaved": {
     "placeholders": {
       "locationName": {
@@ -167,7 +167,7 @@
       }
     }
   },
-  "startupLocationDescDefault": "We need your location for accurate Prayer Times and Qibla direction.\n\nIf you choose not to allow, we will use the default location: Mecca, Saudi Arabia.",
+  "startupLocationDescDefault": "सटीक नमाज़ के समय और क़िब्ला दिशा के लिए हमें आपकी लोकेशन चाहिए।\n\nअनुमति न देने पर हम डिफ़ॉल्ट लोकेशन इस्तेमाल करेंगे: मक्का, सऊदी अरब।",
   "moreScreenTitle": "अधिक",
   "generalSettings": "सामान्य",
   "appearance": "दिखावट",
@@ -257,10 +257,77 @@
   "themeDarkDesc": "गहरा और आरामदायक इंटरफ़ेस",
   "themeSystem": "सिस्टम",
   "themeSystemDesc": "डिवाइस सेटिंग्स का पालन करें",
-  "soundType": "Notification Type",
-  "soundSilent": "Silent (No sound)",
-  "soundShort": "Short Beep",
-  "soundAdhan": "Full Adhan",
-  "testNotificationNow": "Test Notification Now",
-  "prePrayerAlertDesc": "Alert me before Adhan by"
+  "soundType": "सूचना का प्रकार",
+  "soundSilent": "मौन (बिना आवाज़)",
+  "soundShort": "छोटी बीप",
+  "soundAdhan": "पूरी अज़ान",
+  "prePrayerAlertDesc": "अज़ान से पहले मुझे सूचित करें",
+  "prayerNotifTitle": "{prayerName} की नमाज़ का समय हो गया",
+  "@prayerNotifTitle": {
+    "placeholders": {
+      "prayerName": {
+        "type": "String"
+      }
+    }
+  },
+  "prayerNotifBody": "नमाज़ की तरफ़ आइए",
+  "prePrayerNotifTitle": "{prayerName} की नमाज़ क़रीब है",
+  "@prePrayerNotifTitle": {
+    "placeholders": {
+      "prayerName": {
+        "type": "String"
+      }
+    }
+  },
+  "prePrayerNotifBody": "अज़ान में {minutes} मिनट बाक़ी हैं",
+  "@prePrayerNotifBody": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "notifDisabledTitle": "सूचनाएँ बंद हैं",
+  "notifDisabledDesc": "सूचनाएँ चालू करें ताकि अज़ान और रिमाइंडर समय पर मिलें।",
+  "exactAlarmTitle": "सटीक अलार्म बंद हैं",
+  "exactAlarmDesc": "«अलार्म और रिमाइंडर» की अनुमति दें ताकि अज़ान ठीक समय पर आए।",
+  "openSettings": "सेटिंग्स खोलें",
+  "retry": "दोबारा कोशिश करें",
+  "errorGeneric": "कुछ गड़बड़ हो गई। कृपया दोबारा कोशिश करें।",
+  "errorNoInternet": "इंटरनेट कनेक्शन नहीं है। कनेक्शन जाँचकर दोबारा कोशिश करें।",
+  "errorLoadFailed": "सामग्री लोड नहीं हो सकी।",
+  "downloadingProgress": "डाउनलोड हो रहा है…",
+  "downloadSuccess": "सफलतापूर्वक डाउनलोड हुआ",
+  "downloadFailed": "डाउनलोड विफल रहा। दोबारा कोशिश करें।",
+  "shareFailed": "छवि नहीं बन सकी। दोबारा कोशिश करें।",
+  "audioLoadFailed": "ऑडियो नहीं चल सका। कनेक्शन जाँचें।",
+  "radioLoadFailed": "स्टेशन लोड नहीं हो सके",
+  "continueReadingBtn": "पढ़ना जारी रखें",
+  "permSetupTitle": "कोई नमाज़ न छूटे",
+  "permSetupSubtitle": "एक बार कुछ अनुमतियाँ दे दें ताकि अज़ान और रिमाइंडर हमेशा सही समय पर आएँ — ऐप बंद होने पर भी।",
+  "permNotifTitle": "सूचनाएँ",
+  "permNotifDesc": "अज़ान, नमाज़ के रिमाइंडर, अज़कार और क़ुरआन संदेश दिखाने के लिए।",
+  "permExactTitle": "अलार्म और रिमाइंडर",
+  "permExactDesc": "Android को ठीक उसी मिनट पर अज़ान देने की अनुमति देता है।",
+  "permBatteryTitle": "बिना प्रतिबंध बैटरी",
+  "permBatteryDesc": "सिस्टम को ऐप सुलाने और सूचनाएँ गिराने से रोकता है।",
+  "permAutostartTitle": "ऑटो-स्टार्ट और बैकग्राउंड",
+  "permAutostartDesc": "आपका फ़ोन ({brand}) बैकग्राउंड ऐप रोक सकता है। बशरा को ऑटो-स्टार्ट और बैकग्राउंड में चलने दें।",
+  "@permAutostartDesc": {
+    "placeholders": {
+      "brand": {
+        "type": "String"
+      }
+    }
+  },
+  "permChannelsTitle": "सूचना श्रेणियाँ और आवाज़",
+  "permChannelsDesc": "कुछ सूचना श्रेणियाँ बंद हैं। अज़ान सुनने के लिए उन्हें चालू करें।",
+  "permAllowAll": "सब की अनुमति दें",
+  "permAllow": "अनुमति",
+  "permGranted": "अनुमति मिली",
+  "permContinue": "जारी रखें",
+  "permLater": "बाद में",
+  "permAllSet": "सब तैयार! सूचनाएँ भरोसेमंद तरीके से आएँगी।",
+  "permMissingNote": "कुछ अनुमतियाँ अभी बंद हैं। सूचनाएँ देर से आ सकती हैं या नहीं आ सकतीं।",
+  "permFix": "अभी ठीक करें"
 }

@@ -1,3 +1,4 @@
+import '../../../../core/error/error_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
@@ -35,7 +36,7 @@ class _RadioScreenState extends State<RadioScreen> {
               Container(width: 40, height: 5, decoration: BoxDecoration(color: Colors.grey.withOpacity(0.3), borderRadius: BorderRadius.circular(10))),
               const SizedBox(height: 16),
               Text(
-                AppLocalizations.of(context)!.localeName == 'ar' ? 'القنوات الإذاعية' : 'Radio Channels',
+                AppLocalizations.of(context)!.quranRadio,
                 style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 16),
@@ -124,7 +125,7 @@ class _RadioScreenState extends State<RadioScreen> {
                 if (provider.isLoading)
                   const Expanded(child: Center(child: CircularProgressIndicator(color: AppColors.lightGoldenAccent)))
                 else if (provider.error != null)
-                  Expanded(child: Center(child: Text(provider.error!, style: const TextStyle(color: Colors.white))))
+                  Expanded(child: ErrorRetryView(message: AppLocalizations.of(context)!.radioLoadFailed, onRetry: provider.retryLoad))
                 else if (provider.selectedRadio != null) ...[
                   // Spacer to push content down
                   const Spacer(flex: 3),

@@ -184,7 +184,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get selectedRecitationTitle => 'Recitación Seleccionada';
 
   @override
-  String get live => 'Live';
+  String get live => 'En vivo';
 
   @override
   String get quranScreenTitle => 'El Sagrado Corán';
@@ -246,46 +246,46 @@ class AppLocalizationsEs extends AppLocalizations {
   String get azkarScreenTitle => 'Azkar';
 
   @override
-  String get azkarScreenSubtitle => 'Close to Allah... in every moment';
+  String get azkarScreenSubtitle => 'Cerca de Allah… en cada momento';
 
   @override
-  String get azkarCategoryMorning => 'Morning Azkar';
+  String get azkarCategoryMorning => 'Azkar de la mañana';
 
   @override
-  String get azkarCategoryMorningSub => 'Remembrances for the morning';
+  String get azkarCategoryMorningSub => 'Invocaciones para la mañana';
 
   @override
-  String get azkarCategoryEvening => 'Evening Azkar';
+  String get azkarCategoryEvening => 'Azkar de la tarde';
 
   @override
-  String get azkarCategoryEveningSub => 'Remembrances for the evening';
+  String get azkarCategoryEveningSub => 'Invocaciones para la tarde';
 
   @override
-  String get azkarCategoryPrayer => 'After Prayer';
+  String get azkarCategoryPrayer => 'Después de la oración';
 
   @override
-  String get azkarCategoryPrayerSub => 'Remembrances after prayer';
+  String get azkarCategoryPrayerSub => 'Invocaciones tras la oración';
 
   @override
-  String get azkarCategorySleep => 'Sleep Azkar';
+  String get azkarCategorySleep => 'Azkar para dormir';
 
   @override
-  String get azkarCategorySleepSub => 'Remembrances before sleep';
+  String get azkarCategorySleepSub => 'Invocaciones antes de dormir';
 
   @override
-  String get azkarCategoryProtection => 'Protection Azkar';
+  String get azkarCategoryProtection => 'Azkar de protección';
 
   @override
-  String get azkarCategoryProtectionSub => 'For protection and tranquility';
+  String get azkarCategoryProtectionSub => 'Para protección y serenidad';
 
   @override
-  String get azkarCategoryDaily => 'Daily Azkar';
+  String get azkarCategoryDaily => 'Azkar diarios';
 
   @override
-  String get azkarCategoryDailySub => 'Various remembrances for the day';
+  String get azkarCategoryDailySub => 'Diversas invocaciones para el día';
 
   @override
-  String get azkarAllCategories => 'All Categories';
+  String get azkarAllCategories => 'Todas las categorías';
 
   @override
   String get quranMessageNotificationTitle => 'Mensaje del Corán 🌿';
@@ -322,11 +322,11 @@ class AppLocalizationsEs extends AppLocalizations {
       'No se puede acceder a la ubicación. Habilite el GPS.';
 
   @override
-  String get locationPermissionTitle => 'Allow Location Access';
+  String get locationPermissionTitle => 'Permitir acceso a la ubicación';
 
   @override
   String get locationPermissionDesc =>
-      'We need your location to accurately calculate the Qibla direction based on your current position.';
+      'Necesitamos tu ubicación para calcular con precisión la dirección de la Qibla desde tu posición actual.';
 
   @override
   String get preciseQibla => 'Qibla precisa';
@@ -344,16 +344,16 @@ class AppLocalizationsEs extends AppLocalizations {
   String get notNow => 'Ahora no';
 
   @override
-  String get startupLocationTitle => 'Location Access';
+  String get startupLocationTitle => 'Acceso a la ubicación';
 
   @override
   String startupLocationDescSaved(String locationName) {
-    return 'We need your location for accurate Prayer Times and Qibla direction.\n\nIf you choose not to allow, we will use your last saved location: $locationName.';
+    return 'Necesitamos tu ubicación para ofrecer horarios de oración y dirección de la Qibla precisos.\n\nSi no la permites, usaremos tu última ubicación guardada: $locationName.';
   }
 
   @override
   String get startupLocationDescDefault =>
-      'We need your location for accurate Prayer Times and Qibla direction.\n\nIf you choose not to allow, we will use the default location: Mecca, Saudi Arabia.';
+      'Necesitamos tu ubicación para ofrecer horarios de oración y dirección de la Qibla precisos.\n\nSi no la permites, usaremos la ubicación predeterminada: La Meca, Arabia Saudita.';
 
   @override
   String get moreScreenTitle => 'Más';
@@ -647,20 +647,156 @@ class AppLocalizationsEs extends AppLocalizations {
   String get themeSystemDesc => 'Seguir ajustes del dispositivo';
 
   @override
-  String get soundType => 'Notification Type';
+  String get soundType => 'Tipo de notificación';
 
   @override
-  String get soundSilent => 'Silent (No sound)';
+  String get soundSilent => 'Silencio (sin sonido)';
 
   @override
-  String get soundShort => 'Short Beep';
+  String get soundShort => 'Tono corto';
 
   @override
-  String get soundAdhan => 'Full Adhan';
+  String get soundAdhan => 'Adhan completo';
 
   @override
-  String get testNotificationNow => 'Test Notification Now';
+  String get prePrayerAlertDesc => 'Avisarme antes del Adhan';
 
   @override
-  String get prePrayerAlertDesc => 'Alert me before Adhan by';
+  String prayerNotifTitle(String prayerName) {
+    return 'Es hora de la oración de $prayerName';
+  }
+
+  @override
+  String get prayerNotifBody => 'Acude a la oración';
+
+  @override
+  String prePrayerNotifTitle(String prayerName) {
+    return 'La oración de $prayerName se acerca';
+  }
+
+  @override
+  String prePrayerNotifBody(int minutes) {
+    return 'Faltan $minutes minutos para el Adhan';
+  }
+
+  @override
+  String get notifDisabledTitle => 'Las notificaciones están desactivadas';
+
+  @override
+  String get notifDisabledDesc =>
+      'Activa las notificaciones para recibir el Adhan y los recordatorios a tiempo.';
+
+  @override
+  String get exactAlarmTitle => 'Las alarmas exactas están desactivadas';
+
+  @override
+  String get exactAlarmDesc =>
+      'Permite «Alarmas y recordatorios» para que el Adhan llegue a la hora exacta.';
+
+  @override
+  String get openSettings => 'Abrir ajustes';
+
+  @override
+  String get retry => 'Reintentar';
+
+  @override
+  String get errorGeneric => 'Algo salió mal. Inténtalo de nuevo.';
+
+  @override
+  String get errorNoInternet =>
+      'Sin conexión a internet. Revisa tu conexión e inténtalo de nuevo.';
+
+  @override
+  String get errorLoadFailed => 'No se pudo cargar el contenido.';
+
+  @override
+  String get downloadingProgress => 'Descargando…';
+
+  @override
+  String get downloadSuccess => 'Descarga completada';
+
+  @override
+  String get downloadFailed => 'La descarga falló. Inténtalo de nuevo.';
+
+  @override
+  String get shareFailed => 'No se pudo crear la imagen. Inténtalo de nuevo.';
+
+  @override
+  String get audioLoadFailed =>
+      'No se pudo reproducir el audio. Revisa tu conexión.';
+
+  @override
+  String get radioLoadFailed => 'No se pudieron cargar las emisoras';
+
+  @override
+  String get continueReadingBtn => 'Continuar leyendo';
+
+  @override
+  String get permSetupTitle => 'No pierdas ninguna oración';
+
+  @override
+  String get permSetupSubtitle =>
+      'Concede unos permisos una sola vez para que el Adhan y los recordatorios lleguen siempre a tiempo, incluso con la app cerrada.';
+
+  @override
+  String get permNotifTitle => 'Notificaciones';
+
+  @override
+  String get permNotifDesc =>
+      'Para mostrar el Adhan, recordatorios de oración, Azkar y mensajes del Corán.';
+
+  @override
+  String get permExactTitle => 'Alarmas y recordatorios';
+
+  @override
+  String get permExactDesc =>
+      'Permite que Android emita el Adhan en el minuto exacto.';
+
+  @override
+  String get permBatteryTitle => 'Batería sin restricciones';
+
+  @override
+  String get permBatteryDesc =>
+      'Evita que el sistema suspenda la app y descarte notificaciones.';
+
+  @override
+  String get permAutostartTitle => 'Inicio automático y segundo plano';
+
+  @override
+  String permAutostartDesc(String brand) {
+    return 'Tu teléfono ($brand) puede bloquear apps en segundo plano. Permite que Boshra se inicie sola y funcione en segundo plano.';
+  }
+
+  @override
+  String get permChannelsTitle => 'Categorías de notificación y sonido';
+
+  @override
+  String get permChannelsDesc =>
+      'Algunas categorías de notificación están desactivadas. Actívalas para oír el Adhan.';
+
+  @override
+  String get permAllowAll => 'Permitir todo';
+
+  @override
+  String get permAllow => 'Permitir';
+
+  @override
+  String get permGranted => 'Permitido';
+
+  @override
+  String get permContinue => 'Continuar';
+
+  @override
+  String get permLater => 'Más tarde';
+
+  @override
+  String get permAllSet =>
+      '¡Todo listo! Las notificaciones llegarán de forma fiable.';
+
+  @override
+  String get permMissingNote =>
+      'Algunos permisos siguen desactivados. Las notificaciones pueden retrasarse o no llegar.';
+
+  @override
+  String get permFix => 'Arreglar ahora';
 }

@@ -96,7 +96,7 @@
     }
   },
   "selectedRecitationTitle": "منتخب تلاوت",
-  "live": "Live",
+  "live": "براہِ راست",
   "quranScreenTitle": "قرآن مجید",
   "startQuranJourney": "قرآن کے ساتھ اپنے سفر کا آغاز کریں",
   "openSurahAndRead": "کوئی سورت کھولیں اور پڑھنا شروع کریں",
@@ -115,22 +115,22 @@
   "infoOption": "معلومات",
   "copyOption": "کاپی",
   "copiedSuccessfully": "آیت کلپ بورڈ پر کاپی ہو گئی",
-  "azkarScreenTitle": "Azkar",
-  "azkarScreenSubtitle": "Close to Allah... in every moment",
-  "azkarCategoryMorning": "Morning Azkar",
-  "azkarCategoryMorningSub": "Remembrances for the morning",
-  "azkarCategoryEvening": "Evening Azkar",
-  "azkarCategoryEveningSub": "Remembrances for the evening",
-  "azkarCategoryPrayer": "After Prayer",
-  "azkarCategoryPrayerSub": "Remembrances after prayer",
-  "azkarCategorySleep": "Sleep Azkar",
-  "azkarCategorySleepSub": "Remembrances before sleep",
-  "azkarCategoryProtection": "Protection Azkar",
-  "azkarCategoryProtectionSub": "For protection and tranquility",
-  "azkarCategoryDaily": "Daily Azkar",
-  "azkarCategoryDailySub": "Various remembrances for the day",
-  "azkarAllCategories": "All Categories",
-  "navRadio": "Radio",
+  "azkarScreenTitle": "اذکار",
+  "azkarScreenSubtitle": "اللہ کے قریب… ہر لمحہ",
+  "azkarCategoryMorning": "صبح کے اذکار",
+  "azkarCategoryMorningSub": "صبح کے اذکار",
+  "azkarCategoryEvening": "شام کے اذکار",
+  "azkarCategoryEveningSub": "شام کے اذکار",
+  "azkarCategoryPrayer": "نماز کے بعد",
+  "azkarCategoryPrayerSub": "نماز کے بعد کے اذکار",
+  "azkarCategorySleep": "سونے کے اذکار",
+  "azkarCategorySleepSub": "سونے سے پہلے کے اذکار",
+  "azkarCategoryProtection": "حفاظت کے اذکار",
+  "azkarCategoryProtectionSub": "حفاظت اور سکون کے لیے",
+  "azkarCategoryDaily": "روزانہ اذکار",
+  "azkarCategoryDailySub": "دن بھر کے لیے مختلف اذکار",
+  "azkarAllCategories": "تمام زمرے",
+  "navRadio": "ریڈیو",
   "quranMessageNotificationTitle": "قرآن کا پیغام 🌿",
   "saveBookmark": "بک مارک محفوظ کریں",
   "bookmarkSavedSuccessfully": "سورہ {surahName} آیت {ayahNumber} پر بک مارک محفوظ کیا گیا",
@@ -151,15 +151,15 @@
   "qiblaCalibrationDesc": "براہ کرم قطب نما کو کیلیبریٹ کرنے کے لیے اپنے فون کو آہستہ آہستہ 8 کی شکل میں حرکت دیں۔",
   "findingLocation": "مقام تلاش کیا جا رہا ہے...",
   "locationPermissionError": "مقام تک رسائی حاصل کرنے سے قاصر۔ براہ کرم GPS آن کریں۔",
-  "locationPermissionTitle": "Allow Location Access",
-  "locationPermissionDesc": "We need your location to accurately calculate the Qibla direction based on your current position.",
+  "locationPermissionTitle": "لوکیشن تک رسائی کی اجازت دیں",
+  "locationPermissionDesc": "آپ کی موجودہ جگہ سے قبلے کی درست سمت معلوم کرنے کے لیے ہمیں آپ کی لوکیشن درکار ہے۔",
   "preciseQibla": "درست قبلہ",
   "exactLocation": "آپ کا درست مقام",
   "alwaysUpToDate": "ہمیشہ اپ ڈیٹ",
   "allowLocationBtn": "اجازت دیں",
   "notNow": "ابھی نہیں",
-  "startupLocationTitle": "Location Access",
-  "startupLocationDescSaved": "We need your location for accurate Prayer Times and Qibla direction.\n\nIf you choose not to allow, we will use your last saved location: {locationName}.",
+  "startupLocationTitle": "لوکیشن تک رسائی",
+  "startupLocationDescSaved": "درست اوقاتِ نماز اور قبلے کی سمت کے لیے ہمیں آپ کی لوکیشن درکار ہے۔\n\nاجازت نہ دینے کی صورت میں ہم آپ کی آخری محفوظ شدہ لوکیشن استعمال کریں گے: {locationName}۔",
   "@startupLocationDescSaved": {
     "placeholders": {
       "locationName": {
@@ -167,7 +167,7 @@
       }
     }
   },
-  "startupLocationDescDefault": "We need your location for accurate Prayer Times and Qibla direction.\n\nIf you choose not to allow, we will use the default location: Mecca, Saudi Arabia.",
+  "startupLocationDescDefault": "درست اوقاتِ نماز اور قبلے کی سمت کے لیے ہمیں آپ کی لوکیشن درکار ہے۔\n\nاجازت نہ دینے کی صورت میں ہم ڈیفالٹ لوکیشن استعمال کریں گے: مکہ مکرمہ، سعودی عرب۔",
   "moreScreenTitle": "مزید",
   "generalSettings": "عمومی",
   "appearance": "ظاہری شکل",
@@ -257,10 +257,77 @@
   "themeDarkDesc": "گہرا اور تاریک انٹرفیس",
   "themeSystem": "سسٹم",
   "themeSystemDesc": "ڈیوائس کی ترتیبات کے مطابق",
-  "soundType": "Notification Type",
-  "soundSilent": "Silent (No sound)",
-  "soundShort": "Short Beep",
-  "soundAdhan": "Full Adhan",
-  "testNotificationNow": "Test Notification Now",
-  "prePrayerAlertDesc": "Alert me before Adhan by"
+  "soundType": "اطلاع کی قسم",
+  "soundSilent": "خاموش (بغیر آواز)",
+  "soundShort": "مختصر آواز",
+  "soundAdhan": "مکمل اذان",
+  "prePrayerAlertDesc": "اذان سے پہلے مجھے اطلاع دیں",
+  "prayerNotifTitle": "{prayerName} کی نماز کا وقت ہو گیا",
+  "@prayerNotifTitle": {
+    "placeholders": {
+      "prayerName": {
+        "type": "String"
+      }
+    }
+  },
+  "prayerNotifBody": "نماز کی طرف آئیے",
+  "prePrayerNotifTitle": "{prayerName} کی نماز قریب ہے",
+  "@prePrayerNotifTitle": {
+    "placeholders": {
+      "prayerName": {
+        "type": "String"
+      }
+    }
+  },
+  "prePrayerNotifBody": "اذان میں {minutes} منٹ باقی ہیں",
+  "@prePrayerNotifBody": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "notifDisabledTitle": "اطلاعات بند ہیں",
+  "notifDisabledDesc": "اطلاعات آن کریں تاکہ اذان اور یاد دہانیاں وقت پر ملیں۔",
+  "exactAlarmTitle": "درست الارم بند ہیں",
+  "exactAlarmDesc": "«الارم اور یاد دہانیاں» کی اجازت دیں تاکہ اذان عین وقت پر آئے۔",
+  "openSettings": "سیٹنگز کھولیں",
+  "retry": "دوبارہ کوشش کریں",
+  "errorGeneric": "کچھ غلط ہو گیا۔ براہ کرم دوبارہ کوشش کریں۔",
+  "errorNoInternet": "انٹرنیٹ کنکشن نہیں ہے۔ کنکشن چیک کر کے دوبارہ کوشش کریں۔",
+  "errorLoadFailed": "مواد لوڈ نہیں ہو سکا۔",
+  "downloadingProgress": "ڈاؤن لوڈ ہو رہا ہے…",
+  "downloadSuccess": "کامیابی سے ڈاؤن لوڈ ہو گیا",
+  "downloadFailed": "ڈاؤن لوڈ ناکام ہوا۔ دوبارہ کوشش کریں۔",
+  "shareFailed": "تصویر نہیں بن سکی۔ دوبارہ کوشش کریں۔",
+  "audioLoadFailed": "آڈیو نہیں چل سکی۔ کنکشن چیک کریں۔",
+  "radioLoadFailed": "اسٹیشن لوڈ نہیں ہو سکے",
+  "continueReadingBtn": "پڑھنا جاری رکھیں",
+  "permSetupTitle": "کوئی نماز نہ چھوٹے",
+  "permSetupSubtitle": "ایک بار چند اجازتیں دے دیں تاکہ اذان اور یاد دہانیاں ہمیشہ عین وقت پر آئیں — ایپ بند ہونے پر بھی۔",
+  "permNotifTitle": "اطلاعات",
+  "permNotifDesc": "اذان، نماز کی یاد دہانی، اذکار اور قرآنی پیغامات دکھانے کے لیے۔",
+  "permExactTitle": "الارم اور یاد دہانیاں",
+  "permExactDesc": "اینڈرائیڈ کو عین مقررہ منٹ پر اذان دینے کی اجازت دیتا ہے۔",
+  "permBatteryTitle": "بغیر پابندی بیٹری",
+  "permBatteryDesc": "سسٹم کو ایپ سلانے اور اطلاعات گرانے سے روکتا ہے۔",
+  "permAutostartTitle": "آٹو اسٹارٹ اور بیک گراؤنڈ",
+  "permAutostartDesc": "آپ کا فون ({brand}) بیک گراؤنڈ ایپس روک سکتا ہے۔ بشریٰ کو آٹو اسٹارٹ اور بیک گراؤنڈ میں چلنے دیں۔",
+  "@permAutostartDesc": {
+    "placeholders": {
+      "brand": {
+        "type": "String"
+      }
+    }
+  },
+  "permChannelsTitle": "اطلاعی زمرے اور آواز",
+  "permChannelsDesc": "کچھ اطلاعی زمرے بند ہیں۔ اذان سننے کے لیے انہیں آن کریں۔",
+  "permAllowAll": "سب کی اجازت دیں",
+  "permAllow": "اجازت",
+  "permGranted": "اجازت مل گئی",
+  "permContinue": "جاری رکھیں",
+  "permLater": "بعد میں",
+  "permAllSet": "سب تیار! اطلاعات بھروسے سے ملیں گی۔",
+  "permMissingNote": "کچھ اجازتیں ابھی بند ہیں۔ اطلاعات دیر سے آ سکتی ہیں یا نہیں آئیں گی۔",
+  "permFix": "ابھی درست کریں"
 }
