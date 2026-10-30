@@ -1,6 +1,6 @@
 # Boshra 🌿 - Your Companion on the Path of Goodness
 
-![Boshra App Cover](assets/images/cover_quran.png) <!-- Replace with actual banner if available -->
+![Boshra App Cover](assets/images/splash_logo.png) <!-- Replace with actual banner if available -->
 
 Boshra (بشرى) is a comprehensive, elegantly designed Islamic application built with Flutter. It aims to be your ultimate companion in daily worship, providing an immersive, spiritually enriching experience with a focus on beautiful aesthetics, dynamic interactions, and multi-language support.
 
