@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
-import '../../../../l10n/app_localizations.dart';
-import '../../../../core/constants/app_assets.dart';
-import '../../../../core/theme/app_colors.dart';
-import '../../../../core/theme/app_theme.dart';
-import '../../../../features/layout/presentation/screens/main_layout_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../../../core/constants/app_assets.dart';
+import '../../../../core/notifications/notification_coordinator.dart';
+import '../../../../core/permissions/permission_center.dart';
+import '../../../../core/services/telemetry.dart';
+import '../../../../core/theme/app_colors.dart';
+import '../../../../features/layout/presentation/screens/main_layout_screen.dart';
+import '../../../prayer/presentation/widgets/city_picker_sheet.dart';
 
+/// First-run onboarding: 3 screens, each explains WHY and asks for ONE thing, in order:
+///   1) Location (accurate prayer times)  2) Notifications + exact alarms (Adhan on time)
+///   3) Background (battery / auto-start)  → then the app.
+/// Nothing is forced: every step can be skipped, and the status is re-checked when the
+/// user comes back from Android settings.
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
 
@@ -13,20 +20,58 @@ class OnboardingScreen extends StatefulWidget {
   State<OnboardingScreen> createState() => _OnboardingScreenState();
 }
 
-class _OnboardingScreenState extends State<OnboardingScreen> {
+class _OnboardingScreenState extends State<OnboardingScreen> with WidgetsBindingObserver {
   final PageController _pageController = PageController();
   int _currentPage = 0;
+  bool _busy = false;
+  ReliabilityStatus? _st;
+
+  bool get _ar => Localizations.localeOf(context).languageCode == 'ar';
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+    Telemetry.log('onboarding_start');
+    _refresh();
+  }
 
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
     _pageController.dispose();
     super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) _refresh();
+  }
+
+  Future<void> _refresh() async {
+    final st = await PermissionCenter.check(force: true);
+    if (mounted) setState(() => _st = st);
+  }
+
+  bool _granted(int page) {
+    final st = _st;
+    if (st == null) return false;
+    switch (page) {
+      case 0:
+        return st.location;
+      case 1:
+        return st.notifications && st.exactAlarm;
+      default:
+        return st.battery && !st.needsAutostart;
+    }
   }
 
   Future<void> _finishOnboarding() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool('has_seen_onboarding', true);
-    
+    final st = await PermissionCenter.logState('onboarding_end');
+    Telemetry.log('onboarding_done', {'location': st.location, 'notif': st.notifications});
+    NotificationCoordinator.instance.rescheduleAll(force: true); // first schedule right away
     if (mounted) {
       Navigator.pushReplacement(
         context,
@@ -35,57 +80,99 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     }
   }
 
-  void _onNext() {
+  void _next() {
     if (_currentPage < 2) {
-      _pageController.nextPage(
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeInOut,
-      );
+      _pageController.nextPage(duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
     } else {
       _finishOnboarding();
     }
   }
 
-  void _onSkip() {
-    _finishOnboarding();
+  Future<void> _act() async {
+    if (_busy) return;
+    if (_granted(_currentPage)) return _next();
+    setState(() => _busy = true);
+    try {
+      switch (_currentPage) {
+        case 0:
+          await PermissionCenter.requestLocation();
+          break;
+        case 1:
+          await PermissionCenter.requestNotifications();
+          final st = await PermissionCenter.check(force: true);
+          if (st.notifications && !st.exactAlarm) await PermissionCenter.requestExactAlarm();
+          break;
+        default:
+          await PermissionCenter.requestBatteryExemption();
+          final st = await PermissionCenter.check(force: true);
+          if (st.needsAutostart) {
+            await PermissionCenter.openAutostart();
+            await PermissionCenter.markAutostartDone();
+          }
+      }
+    } finally {
+      await _refresh();
+      await PermissionCenter.logState('onboarding_p${_currentPage + 1}');
+      if (mounted) setState(() => _busy = false);
+    }
+  }
+
+  Future<void> _pickCity() async {
+    final changed = await CityPickerSheet.show(context);
+    if (changed) {
+      await _refresh();
+      Telemetry.log('onboarding_manual_city');
+      _next();
+    }
+  }
+
+  List<_OnboardingData> _pages() => [
+        _OnboardingData(
+          title: _ar ? 'موقعك… لمواعيد صلاة دقيقة' : 'Your location, for exact prayer times',
+          description: _ar
+              ? 'بنحتاج موقعك علشان نحسب مواعيد الصلاة والقبلة لمدينتك بالظبط. مش بنتتبّع تحركاتك، وتقدر بدل كده تختار مدينتك يدويًا.'
+              : 'We use your location to compute prayer times and Qibla for your city. We never track your movements, and you can pick your city manually instead.',
+          image: AppAssets.onboarding1,
+        ),
+        _OnboardingData(
+          title: _ar ? 'الأذان في وقته بالثانية' : 'The Adhan right on time',
+          description: _ar
+              ? 'علشان الأذان والتذكيرات يظهروا ويشتغلوا حتى والتطبيق مقفول، محتاجين إذن الإشعارات وإذن "المنبّهات والتذكيرات" (أندرويد 12+).'
+              : 'So the Adhan and reminders show and play even when the app is closed, we need the Notifications permission and "Alarms & reminders" (Android 12+).',
+          image: AppAssets.onboarding2,
+        ),
+        _OnboardingData(
+          title: _ar ? 'يشتغل في الخلفية بدون توقف' : 'Works in the background, always',
+          description: _ar
+              ? 'بعض الموبايلات (شاومي، أوبو، سامسونج، هواوي…) بتقفل التطبيقات لتوفير البطارية فالأذان ممكن ما يشتغلش. السماح بالعمل في الخلفية بيمنع ده تمامًا.'
+              : 'Some phones (Xiaomi, Oppo, Samsung, Huawei…) kill apps to save battery, which can silence the Adhan. Allowing background activity prevents that.',
+          image: AppAssets.onboarding3,
+        ),
+      ];
+
+  String _actionLabel(int page) {
+    final ok = _granted(page);
+    if (page == 2 && ok) return _ar ? 'ابدأ رحلتك' : 'Start your journey';
+    if (ok) return _ar ? 'تم ✓ — التالي' : 'Done ✓ — Next';
+    switch (page) {
+      case 0:
+        return _ar ? 'السماح بالموقع' : 'Allow location';
+      case 1:
+        return _ar ? 'تفعيل الإشعارات والمنبّهات' : 'Enable notifications & alarms';
+      default:
+        return _ar ? 'السماح بالعمل في الخلفية' : 'Allow background activity';
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
-    
-    // Fallbacks just in case l10n is not generated yet during initial build
-    final title1 = l10n?.onboarding1Title ?? 'بُشرى… رفيقك في طريق الخير';
-    final desc1 = l10n?.onboarding1Desc ?? 'اجعل يومك أقرب إلى الله، بخطوات بسيطة وعبادات حاضرة معك في كل وقت.';
-    
-    final title2 = l10n?.onboarding2Title ?? 'كل ما تحتاجه لعبادتك، في مكان واحد';
-    final desc2 = l10n?.onboarding2Desc ?? 'القرآن، أوقات الصلاة، الأذكار، القبلة، والأدعية… بتجربة بسيطة تساعدك على الاستمرار.';
-    
-    final title3 = l10n?.onboarding3Title ?? 'خطوة صغيرة كل يوم… تصنع أثرًا كبيرًا';
-    final desc3 = l10n?.onboarding3Desc ?? 'ابنِ عاداتك الإيمانية، واغتنم لحظات يومك بما يقربك إلى الله.';
-
-    final pages = [
-      _OnboardingData(
-        title: title1,
-        description: desc1,
-        image: AppAssets.onboarding1,
-      ),
-      _OnboardingData(
-        title: title2,
-        description: desc2,
-        image: AppAssets.onboarding2,
-      ),
-      _OnboardingData(
-        title: title3,
-        description: desc3,
-        image: AppAssets.onboarding3,
-      ),
-    ];
-
-    final isLastPage = _currentPage == pages.length - 1;
+    final pages = _pages();
+    final cs = Theme.of(context).colorScheme;
+    final ok = _granted(_currentPage);
+    final isLast = _currentPage == pages.length - 1;
 
     return Scaffold(
-      backgroundColor: AppColors.lightBackground, // Cream background
+      backgroundColor: AppColors.lightBackground,
       body: SafeArea(
         child: Column(
           children: [
@@ -93,110 +180,85 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               child: PageView.builder(
                 controller: _pageController,
                 itemCount: pages.length,
-                onPageChanged: (index) {
-                  setState(() {
-                    _currentPage = index;
-                  });
-                },
-                itemBuilder: (context, index) {
-                  return _OnboardingPageWidget(data: pages[index]);
-                },
+                physics: const NeverScrollableScrollPhysics(), // go on only via the buttons
+                onPageChanged: (i) => setState(() => _currentPage = i),
+                itemBuilder: (_, i) => _OnboardingPageWidget(data: pages[i]),
               ),
             ),
-            
-            // Dot Indicators
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: List.generate(
                 pages.length,
-                (index) => AnimatedContainer(
+                (i) => AnimatedContainer(
                   duration: const Duration(milliseconds: 300),
                   margin: const EdgeInsets.symmetric(horizontal: 4),
                   height: 8,
-                  width: _currentPage == index ? 24 : 8,
+                  width: _currentPage == i ? 24 : 8,
                   decoration: BoxDecoration(
-                    color: _currentPage == index 
-                        ? Theme.of(context).colorScheme.primaryContainer 
-                        : Theme.of(context).colorScheme.primaryContainer.withValues(alpha: 0.2),
+                    color: _currentPage == i
+                        ? cs.primaryContainer
+                        : cs.primaryContainer.withValues(alpha: 0.2),
                     borderRadius: BorderRadius.circular(4),
                   ),
                 ),
               ),
             ),
-            
-            const SizedBox(height: 24),
-            
-            // Buttons
+            const SizedBox(height: 20),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24.0),
-              child: Column(
-                children: [
-                  // Next / Start Button
-                  SizedBox(
-                    width: double.infinity,
-                    height: 56,
-                    child: ElevatedButton(
-                      onPressed: _onNext,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-                        foregroundColor: Theme.of(context).colorScheme.onPrimary,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        elevation: 0,
-                      ),
-                      child: Text(
-                        isLastPage 
-                            ? (l10n?.startJourney ?? 'ابدأ رحلتك')
-                            : (l10n?.next ?? 'التالي'),
-                        style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: Column(children: [
+                SizedBox(
+                  width: double.infinity,
+                  height: 56,
+                  child: ElevatedButton(
+                    onPressed: _busy ? null : _act,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: ok ? Colors.green.shade700 : cs.primaryContainer,
+                      foregroundColor: cs.onPrimary,
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                      elevation: 0,
                     ),
+                    child: _busy
+                        ? const SizedBox(
+                            width: 22, height: 22, child: CircularProgressIndicator(strokeWidth: 2.4, color: Colors.white))
+                        : Text(_actionLabel(_currentPage),
+                            style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w600)),
                   ),
-                  
-                  const SizedBox(height: 12),
-                  
-                  // Skip Button
-                  SizedBox(
-                    width: double.infinity,
-                    height: 56,
-                    child: isLastPage 
-                      ? const SizedBox() // Hide on last page
-                      : OutlinedButton(
-                          onPressed: _onSkip,
+                ),
+                const SizedBox(height: 8),
+                SizedBox(
+                  height: 48,
+                  width: double.infinity,
+                  child: _currentPage == 0 && !ok
+                      ? OutlinedButton.icon(
+                          onPressed: _busy ? null : _pickCity,
+                          icon: const Icon(Icons.location_city_rounded),
+                          label: Text(_ar ? 'اختيار المدينة يدويًا' : 'Choose city manually'),
                           style: OutlinedButton.styleFrom(
-                            foregroundColor: Theme.of(context).textTheme.bodyMedium?.color,
-                            backgroundColor: Colors.transparent,
-                            elevation: 0,
-                            padding: const EdgeInsets.symmetric(
-                              vertical: 16,
-                              horizontal: 24,
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
+                        )
+                      : (ok || isLast && ok)
+                          ? const SizedBox()
+                          : TextButton(
+                              onPressed: _busy
+                                  ? null
+                                  : () {
+                                      Telemetry.log('onboarding_skip', {'page': _currentPage + 1});
+                                      _next();
+                                    },
+                              child: Text(_ar ? 'لاحقًا' : 'Later'),
                             ),
-                            side: const BorderSide(
-                              color: AppColors.lightDivider, 
-                              width: 1,
-                            ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                          ),
-                          child: Text(
-                            l10n?.skip ?? 'تخطي',
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w600,
-                              color: Theme.of(context).textTheme.bodyMedium?.color,
-                            ),
-                          ),
-                        ),
+                ),
+                if (_currentPage == 0 && !ok)
+                  TextButton(
+                    onPressed: _busy ? null : () {
+                      Telemetry.log('onboarding_skip', {'page': 1});
+                      _next();
+                    },
+                    child: Text(_ar ? 'لاحقًا' : 'Later'),
                   ),
-                  
-                  const SizedBox(height: 24),
-                ],
-              ),
+                const SizedBox(height: 16),
+              ]),
             ),
           ],
         ),

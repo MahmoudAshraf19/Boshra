@@ -30,7 +30,7 @@ class LanguageBottomSheet extends StatelessWidget {
   }
 
   void _onLanguageSelected(BuildContext context, String langCode) async {
-    final currentCode = parentContext.read<LocaleProvider>().locale?.languageCode ?? 'en';
+    final currentCode = parentContext.read<LocaleProvider>().locale.languageCode;
     if (currentCode == langCode) {
       Navigator.pop(context);
       return;
@@ -63,7 +63,7 @@ class LanguageBottomSheet extends StatelessWidget {
     final isDark = theme.brightness == Brightness.dark;
     
     // Fallback to English if not set
-    final currentLang = context.watch<LocaleProvider>().locale?.languageCode ?? 'en';
+    final currentLang = context.watch<LocaleProvider>().locale.languageCode;
 
     return Container(
       decoration: BoxDecoration(

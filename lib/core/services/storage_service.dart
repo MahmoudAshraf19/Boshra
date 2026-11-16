@@ -26,11 +26,24 @@ class StorageInfo {
 class StorageService {
   // Max storage limit: 3 GB
   static const int maxStorageBytes = 3 * 1024 * 1024 * 1024;
+  static StorageInfo? _cachedInfo;
+  static DateTime? _cachedInfoTime;
 
-  /// Returns total sizes of various app directories
-  Future<StorageInfo> getStorageInfo() async {
+  static StorageInfo? get cachedInfo => _cachedInfo;
+
+  /// Returns total sizes of various app directories (cached for 30s)
+  Future<StorageInfo> getStorageInfo({bool force = false}) async {
+    if (!force && _cachedInfo != null && _cachedInfoTime != null) {
+      if (DateTime.now().difference(_cachedInfoTime!) < const Duration(seconds: 30)) {
+        return _cachedInfo!;
+      }
+    }
+
     if (kIsWeb) {
-      return const StorageInfo(systemBytes: 0, downloadedSurahsBytes: 0, azkarBytes: 0, appDataBytes: 0, cacheBytes: 0);
+      const info = StorageInfo(systemBytes: 0, downloadedSurahsBytes: 0, azkarBytes: 0, appDataBytes: 0, cacheBytes: 0);
+      _cachedInfo = info;
+      _cachedInfoTime = DateTime.now();
+      return info;
     }
 
     final docDir = await getApplicationDocumentsDirectory();
@@ -53,13 +66,10 @@ class StorageService {
     final appDataDir = Directory('${docDir.path}/app_data');
     final appDataBytes = await _getDirectorySize(appDataDir);
 
-    // 2. Azkar (From bundled assets)
-    int azkarBytes = 0;
-    azkarBytes += await _getAssetSize('assets/data/azkar.json');
-    azkarBytes += await _getAssetSize('assets/data/azkar_en.json');
-    azkarBytes += await _getAssetSize('assets/data/boshra_120_quran_verses.json');
+    // 3. Azkar (Bundled asset data, approx 1.3 MB fixed, avoids heavy heap load)
+    const int azkarBytes = 1350000;
 
-    // 3. General App Cache (Temporary directory & OS Code Cache)
+    // 4. General App Cache (Temporary directory & OS Code Cache)
     int cacheBytes = await _getDirectorySize(tempDir);
     try {
       if (Platform.isAndroid) {
@@ -68,23 +78,16 @@ class StorageService {
       }
     } catch (_) {}
 
-    return StorageInfo(
+    final info = StorageInfo(
       systemBytes: systemBytes,
       downloadedSurahsBytes: downloadedSurahsBytes,
       azkarBytes: azkarBytes,
       appDataBytes: appDataBytes,
       cacheBytes: cacheBytes,
     );
-  }
-
-  /// Calculates size of an asset bundle file
-  Future<int> _getAssetSize(String assetPath) async {
-    try {
-      final data = await rootBundle.load(assetPath);
-      return data.lengthInBytes;
-    } catch (e) {
-      return 0;
-    }
+    _cachedInfo = info;
+    _cachedInfoTime = DateTime.now();
+    return info;
   }
 
   /// Calculates size of a directory recursively

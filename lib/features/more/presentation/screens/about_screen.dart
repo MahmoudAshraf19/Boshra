@@ -12,21 +12,30 @@ class AboutScreen extends StatefulWidget {
 }
 
 class _AboutScreenState extends State<AboutScreen> {
-  String _version = '';
-  String _buildNumber = '';
+  static String? _cachedVersion;
+  static String? _cachedBuildNumber;
+
+  late String _version = _cachedVersion ?? '';
+  late String _buildNumber = _cachedBuildNumber ?? '';
 
   @override
   void initState() {
     super.initState();
-    _loadPackageInfo();
+    if (_cachedVersion == null) {
+      _loadPackageInfo();
+    }
   }
 
   Future<void> _loadPackageInfo() async {
     final info = await PackageInfo.fromPlatform();
-    setState(() {
-      _version = info.version;
-      _buildNumber = info.buildNumber;
-    });
+    _cachedVersion = info.version;
+    _cachedBuildNumber = info.buildNumber;
+    if (mounted) {
+      setState(() {
+        _version = info.version;
+        _buildNumber = info.buildNumber;
+      });
+    }
   }
 
   Future<void> _launchUrl(String urlString, {LaunchMode mode = LaunchMode.platformDefault}) async {
@@ -59,6 +68,8 @@ class _AboutScreenState extends State<AboutScreen> {
         ),
       ),
       body: ListView(
+        cacheExtent: 800,
+        physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
         padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
         children: [
           // LOGO AND HEADER
@@ -138,8 +149,26 @@ class _AboutScreenState extends State<AboutScreen> {
               const Divider(height: 1),
               _FeatureTile(
                 title: l10n.quranRecitation,
-                subtitle: l10n.quranRecitationDesc,
+                subtitle: Localizations.localeOf(context).languageCode == 'ar'
+                    ? 'تلاوات خاشعة لكبار القراء (المنشاوي، عبد الباسط، الحصري...) مع التفسير والتحميل'
+                    : 'Soulful recitations by renowned reciters with Tafsir & offline download',
                 icon: Icons.headset,
+              ),
+              const Divider(height: 1),
+              _FeatureTile(
+                title: Localizations.localeOf(context).languageCode == 'ar' ? 'الإذاعات الإسلامية' : 'Islamic Radios',
+                subtitle: Localizations.localeOf(context).languageCode == 'ar'
+                    ? 'بث مباشر لأكثر من 165 محطة إذاعية وقرآنية على مدار الساعة'
+                    : 'Live streaming of 165+ Quran and Islamic radio stations 24/7',
+                icon: Icons.radio_rounded,
+              ),
+              const Divider(height: 1),
+              _FeatureTile(
+                title: l10n.prayerTimesText,
+                subtitle: Localizations.localeOf(context).languageCode == 'ar'
+                    ? 'مواقيت دقيقة مع 9 مؤذنين، تنبيهات قبل الصلاة، وبانر إيقاف الأذان'
+                    : 'Accurate prayer times with 9 Muadhins, pre-prayer alerts & quick stop banner',
+                icon: Icons.access_time,
               ),
               const Divider(height: 1),
               _FeatureTile(
@@ -149,9 +178,11 @@ class _AboutScreenState extends State<AboutScreen> {
               ),
               const Divider(height: 1),
               _FeatureTile(
-                title: l10n.prayerTimesText,
-                subtitle: l10n.prayerTimesDesc,
-                icon: Icons.access_time,
+                title: Localizations.localeOf(context).languageCode == 'ar' ? 'السبحة الإلكترونية' : 'Smart Tasbeeh',
+                subtitle: Localizations.localeOf(context).languageCode == 'ar'
+                    ? 'عداد تسبيح ذكي مع تفاعل حركي وحفظ أعداد الأذكار'
+                    : 'Interactive Tasbeeh counter with haptic feedback & saved counts',
+                icon: Icons.fingerprint_rounded,
               ),
               const Divider(height: 1),
               _FeatureTile(

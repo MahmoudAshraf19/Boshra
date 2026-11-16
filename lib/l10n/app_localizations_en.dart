@@ -798,4 +798,887 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get permFix => 'Fix now';
+
+  @override
+  String get adhanStopAction => 'Stop Adhan';
+
+  @override
+  String get adhanBannerTitle => 'Adhan banner';
+
+  @override
+  String get adhanBannerDesc =>
+      'Appears at the top of the screen and on the lock screen at Adhan time, with a button to stop it.';
+
+  @override
+  String get adhanBannerPreview => 'Banner preview';
+
+  @override
+  String get adhanBannerVerse =>
+      'Indeed, prayer has been decreed upon the believers at specified times.';
+
+  @override
+  String get notifSettingsTitle => 'Notifications & Adhan';
+
+  @override
+  String get modeSilent => 'Silent';
+
+  @override
+  String get modeShort => 'Short alert';
+
+  @override
+  String get modeAdhan => 'Full Adhan';
+
+  @override
+  String get modeSilentDesc => 'Notification without sound';
+
+  @override
+  String get modeShortDesc => 'Regular notification sound';
+
+  @override
+  String get modeAdhanDesc => 'Full Adhan with a Stop button';
+
+  @override
+  String minutesShort(int minutes) {
+    return '$minutes min';
+  }
+
+  @override
+  String get remindersSection => 'Daily reminders';
+
+  @override
+  String afterFajrDesc(int minutes) {
+    return '$minutes min after Fajr';
+  }
+
+  @override
+  String afterAsrDesc(int minutes) {
+    return '$minutes min after Asr (before sunset)';
+  }
+
+  @override
+  String get ayahReminderTitle => 'Ayah of the day';
+
+  @override
+  String get ayahReminderDesc => 'A new verse every day at the time you choose';
+
+  @override
+  String get reminderTime => 'Time';
+
+  @override
+  String get muadhinTitle => 'Muadhin';
+
+  @override
+  String get atAdhanTime => 'At Adhan time';
+
+  @override
+  String get advancedSection => 'Accuracy & calculation';
+
+  @override
+  String get calcMethodTitle => 'Calculation method';
+
+  @override
+  String get calcMethodAuto => 'Automatic (by your location)';
+
+  @override
+  String get asrSchoolTitle => 'Asr calculation';
+
+  @override
+  String get asrStandard => 'Standard (Shafi’i, Maliki, Hanbali)';
+
+  @override
+  String get asrHanafi => 'Hanafi';
+
+  @override
+  String get adjustTimesTitle => 'Fine-tune times (minutes)';
+
+  @override
+  String get testAdhanButton => 'Test the Adhan now';
+
+  @override
+  String get locationFallbackWarning =>
+      'Your location is unavailable, so times are calculated for Makkah. Turn on location for accurate times.';
+
+  @override
+  String get sadaqaJariyaTitle => 'Ongoing Charity';
+
+  @override
+  String get sadaqaHadith =>
+      '“Whoever guides someone to goodness will have a reward like one who did it.”';
+
+  @override
+  String get narratedByMuslim => 'Narrated by Muslim';
+
+  @override
+  String get yourInviteCode => 'Your invite code';
+
+  @override
+  String get codeCopied => 'Code copied';
+
+  @override
+  String get shareAppButton => 'Share the app';
+
+  @override
+  String get shareViaWhatsApp => 'Share via WhatsApp';
+
+  @override
+  String get startFirstShare => 'Make your first share 🌱';
+
+  @override
+  String sharedTimesCount(Object count) {
+    return 'You shared the app $count time(s) — may Allah accept it';
+  }
+
+  @override
+  String get haveFriendCode => 'Have a friend\'s invite code?';
+
+  @override
+  String recordedInviteFrom(Object code) {
+    return 'Recorded invite $code — may Allah reward them';
+  }
+
+  @override
+  String get invalidInviteCode => 'Invalid code (e.g. BSH-AB3K9)';
+
+  @override
+  String get ownInviteCodeError => 'That is your own code 🙂';
+
+  @override
+  String inviteShareMessage(Object code, Object link) {
+    return 'I use \"Boshra\" for Adhan, Quran and Azkar — I recommend it 🌙\nShare it as an ongoing charity — “Whoever guides someone to goodness will have a reward like one who did it.”\n\n$link\nInvite code: $code';
+  }
+
+  @override
+  String get diagTitle => 'Will the Adhan ring?';
+
+  @override
+  String get diagAllGood =>
+      'All good — the Adhan will ring on time insha\'Allah';
+
+  @override
+  String diagCanImprove(Object count) {
+    return 'The Adhan should ring, but $count item(s) can be improved';
+  }
+
+  @override
+  String diagProblemsFound(Object count) {
+    return '$count problem(s) may stop the Adhan — fix with the buttons below';
+  }
+
+  @override
+  String get diagFix => 'Fix';
+
+  @override
+  String get diagTestAdhanNow => 'Test Adhan now';
+
+  @override
+  String get diagReschedule => 'Re-schedule';
+
+  @override
+  String get diagRecentEvents => 'Recent events';
+
+  @override
+  String get diagNoEvents => 'No events yet';
+
+  @override
+  String get diagCopyReport => 'Copy report for support';
+
+  @override
+  String get diagReportCopied => 'Support report copied';
+
+  @override
+  String get diagNotifications => 'Notifications';
+
+  @override
+  String get diagNotifEnabled => 'Enabled';
+
+  @override
+  String get diagNotifBlocked => 'Blocked — the Adhan cannot show';
+
+  @override
+  String get diagEnable => 'Enable';
+
+  @override
+  String get diagChannels => 'Notification channels';
+
+  @override
+  String get diagChannelsAllEnabled => 'All enabled';
+
+  @override
+  String get diagChannelMuted => 'A channel is muted in system settings';
+
+  @override
+  String get diagOpenSettings => 'Open settings';
+
+  @override
+  String get diagExactAlarms => 'Exact alarms';
+
+  @override
+  String get diagExactAlarmsAllowed => 'Allowed — Adhan fires on the second';
+
+  @override
+  String get diagExactAlarmsNotAllowed => 'Not allowed — the Adhan may be late';
+
+  @override
+  String get diagAllow => 'Allow';
+
+  @override
+  String get diagBattery => 'Battery optimisation';
+
+  @override
+  String get diagBatteryExempt => 'App is exempt';
+
+  @override
+  String get diagBatteryMayKill => 'The system may stop the app in background';
+
+  @override
+  String get diagExempt => 'Exempt';
+
+  @override
+  String get diagPrayerMode => 'Prayer mode';
+
+  @override
+  String get diagPrayerModeFullSilence =>
+      'Full silence ready (DND access granted)';
+
+  @override
+  String get diagPrayerModeVibrateOnly =>
+      'Without \"Do Not Disturb access\" we can only switch to vibrate';
+
+  @override
+  String get diagGrantPermission => 'Grant access';
+
+  @override
+  String get diagAutostart => 'Auto-start';
+
+  @override
+  String diagAutostartConfigured(Object brand) {
+    return 'Configured ($brand)';
+  }
+
+  @override
+  String diagAutostartNeeds(Object brand) {
+    return '$brand kills background apps — enable auto-start';
+  }
+
+  @override
+  String get diagOpen => 'Open';
+
+  @override
+  String get diagLocation => 'Location';
+
+  @override
+  String diagLocationManual(Object city) {
+    return 'Manual city: $city';
+  }
+
+  @override
+  String get diagLocationApprox => 'Approximate';
+
+  @override
+  String get diagLocationUnknown => 'Unknown — using a default city';
+
+  @override
+  String get diagLocationGpsOff => 'Location service (GPS) is off';
+
+  @override
+  String get diagLocationDenied => 'Location permission denied';
+
+  @override
+  String get diagLocationPermanentlyDenied =>
+      'Permission permanently denied — open settings';
+
+  @override
+  String get diagLocationNoFix =>
+      'Device could not get a fix (weak signal / Location accuracy off)';
+
+  @override
+  String get diagLocationMock =>
+      'A mock location is active on the device — ignored';
+
+  @override
+  String get diagLocationTzMismatch =>
+      'Fix contradicts the device time zone (mock location?)';
+
+  @override
+  String get diagFixLocation => 'Fix location';
+
+  @override
+  String get diagSetLocation => 'Set';
+
+  @override
+  String get diagLastScheduling => 'Last scheduling';
+
+  @override
+  String get diagNeverScheduled => 'Never scheduled yet';
+
+  @override
+  String get diagScheduleNow => 'Schedule now';
+
+  @override
+  String diagScheduleAlertsCount(Object count) {
+    return '$count alerts';
+  }
+
+  @override
+  String get diagScheduleIncomplete => 'incomplete (offline calc)';
+
+  @override
+  String get diagScheduleError => 'error';
+
+  @override
+  String get diagNextAdhan => 'Next Adhan';
+
+  @override
+  String get diagAllPrayersSilent =>
+      'All prayers are set to short/silent (no full Adhan)';
+
+  @override
+  String diagArmedAdhansCount(Object count) {
+    return '$count Adhans armed in the system';
+  }
+
+  @override
+  String get diagNoAdhanArmed =>
+      'No Adhan is armed in the alarm system! Tap schedule';
+
+  @override
+  String get diagOfflineMode => 'Offline mode';
+
+  @override
+  String diagOfflineMonthsCached(Object count) {
+    return '$count months cached — works without internet';
+  }
+
+  @override
+  String diagOfflineMonthsOnly(Object count) {
+    return 'Only $count month cached (auto-completes online)';
+  }
+
+  @override
+  String get diagInternet => 'Internet';
+
+  @override
+  String get diagInternetConnected => 'Reaching the prayer-times server';
+
+  @override
+  String get diagInternetUnavailable =>
+      'Unavailable now — cached times are enough';
+
+  @override
+  String get diagTestAdhanTitle => 'Adhan test';
+
+  @override
+  String get diagTestAdhanBody => 'If you hear this, everything works';
+
+  @override
+  String get diagStop => 'Stop';
+
+  @override
+  String get diagAgoJustNow => 'just now';
+
+  @override
+  String diagAgoMinutes(Object m) {
+    return '$m min ago';
+  }
+
+  @override
+  String diagAgoHours(Object h) {
+    return '$h h ago';
+  }
+
+  @override
+  String diagAgoDays(Object d) {
+    return '$d d ago';
+  }
+
+  @override
+  String get zakatCalculatorTitle => 'Zakat Calculator';
+
+  @override
+  String get zakatCurrency => 'Currency';
+
+  @override
+  String get zakatTodayPricesGram => 'Today\'s prices (per gram)';
+
+  @override
+  String get zakatRefresh => 'Refresh';
+
+  @override
+  String get zakatEditManually => 'Edit manually';
+
+  @override
+  String get zakatCouldNotLoadPrices =>
+      'Could not load prices (offline). Tap ✏️ to enter the per-gram price.';
+
+  @override
+  String get zakatGold24 => 'Gold 24k';
+
+  @override
+  String get zakatGold21 => 'Gold 21k';
+
+  @override
+  String get zakatGold18 => 'Gold 18k';
+
+  @override
+  String get zakatSilver => 'Silver';
+
+  @override
+  String get zakatGram => 'g';
+
+  @override
+  String get zakatUsingManualPrices => '✏️ Using your manual prices';
+
+  @override
+  String zakatWorldPriceStamp(Object date) {
+    return 'World price × exchange rate — updated $date';
+  }
+
+  @override
+  String get zakatPriceOld => ' (old)';
+
+  @override
+  String get zakatNisab => 'Nisab';
+
+  @override
+  String get zakatGoldNisab => 'Gold (85 g)';
+
+  @override
+  String get zakatSilverNisab => 'Silver (595 g)';
+
+  @override
+  String get zakatNisabExplanation =>
+      'Use the nisab your trusted scholarly authority uses. The silver nisab is lower in value, so it covers more people.';
+
+  @override
+  String get zakatYourWealth => 'Your wealth';
+
+  @override
+  String get zakatCashSavings => 'Cash, savings & bank accounts';
+
+  @override
+  String get zakatSharesInvestments => 'Shares & investments';
+
+  @override
+  String get zakatTradeGoods => 'Trade goods (market value)';
+
+  @override
+  String get zakatMoneyOwedToYou => 'Money owed to you (reliable)';
+
+  @override
+  String get zakatDebtsDue => 'Debts you owe now (deducted)';
+
+  @override
+  String get zakatJewelleryNote =>
+      'Scholars differ on zakat for worn jewellery; it is counted here — leave the gold fields empty if you follow the other view.';
+
+  @override
+  String get zakatTotalZakatableWealth => 'Total zakatable wealth';
+
+  @override
+  String get zakatEnterPriceForNisab =>
+      'Enter the gold/silver price to compute the nisab';
+
+  @override
+  String zakatNisabValue(Object amount, Object cur) {
+    return 'Nisab: $amount $cur';
+  }
+
+  @override
+  String get zakatDue25 => 'Zakat due (2.5%)';
+
+  @override
+  String get zakatHawlCondition =>
+      'Provided a full lunar year has passed over it.';
+
+  @override
+  String zakatNotEligibleShort(Object amount, Object cur) {
+    return 'Below the nisab ($amount $cur short) — no zakat is due now.';
+  }
+
+  @override
+  String get zakatCopyResult => 'Copy result';
+
+  @override
+  String get zakatResultCopied => 'Result copied';
+
+  @override
+  String get zakatYearlyReminder => 'Yearly zakat reminder';
+
+  @override
+  String get zakatReminderExplanation =>
+      'Pick the date your wealth reached the nisab. We remind you a week before the lunar year completes and on the day, every year (≈354 days).';
+
+  @override
+  String get zakatSetDate => 'Set date';
+
+  @override
+  String zakatNextDue(Object date) {
+    return 'Next due: $date';
+  }
+
+  @override
+  String get zakatScholarsDisclaimer =>
+      'Note: general guidance only. For special cases (stocks, companies, debts, trade property…) ask a scholar.';
+
+  @override
+  String zakatManualPricesTitle(Object cur) {
+    return 'Manual local prices ($cur)';
+  }
+
+  @override
+  String get zakatManualPricesDesc =>
+      'Your local jeweller price may differ from the world price. Enter your own per-gram price, or leave empty to use the automatic one.';
+
+  @override
+  String get zakatGold24PerGram => 'Gold 24k per gram';
+
+  @override
+  String get zakatSilverPerGram => 'Silver per gram';
+
+  @override
+  String get zakatPickHawlHelp => 'Date your wealth reached the nisab';
+
+  @override
+  String zakatSummaryShare(
+    Object cur,
+    Object due,
+    Object nisabType,
+    Object nisabVal,
+    Object total,
+  ) {
+    return 'Zakat — Boshra\nZakatable wealth: $total $cur\nNisab ($nisabType): $nisabVal $cur\nZakat due (2.5%): $due $cur';
+  }
+
+  @override
+  String get trackerTitle => 'Prayer tracker';
+
+  @override
+  String get trackerTimeNotStarted => 'Its time has not started yet 🌙';
+
+  @override
+  String get trackerLearningHabits => '🧠 Learning your habits';
+
+  @override
+  String get trackerLearningDesc =>
+      'Log your prayers for at least 5 days, and we will suggest personalized improvements (analyzed only on your device).';
+
+  @override
+  String trackerFajrSlips(Object days, Object missed) {
+    return '🌅 Fajr slips away: $missed of the last $days days';
+  }
+
+  @override
+  String trackerSleepReminderActive(Object time) {
+    return 'Your early-sleep reminder is on at $time every night 🌿';
+  }
+
+  @override
+  String get trackerSleepReminderSuggest =>
+      'Missing Fajr is usually about sleeping late. Want a nightly reminder to sleep early?';
+
+  @override
+  String trackerTurnOnTime(Object time) {
+    return 'Turn on ($time)';
+  }
+
+  @override
+  String get trackerNotNow => 'Not now';
+
+  @override
+  String get trackerChangeTime => 'Change time';
+
+  @override
+  String get trackerTurnOff => 'Turn off';
+
+  @override
+  String get trackerPickAnotherTime => 'Pick another time';
+
+  @override
+  String trackerPrayerNearEnd(Object prayer) {
+    return '⏰ $prayer is usually near the end of its time';
+  }
+
+  @override
+  String trackerPrayerNearEndDesc(Object prayer) {
+    return 'Your gentle reminder for $prayer now arrives earlier (mid-window instead of near the end).';
+  }
+
+  @override
+  String get trackerGreatConsistency => '✨ Great consistency';
+
+  @override
+  String trackerWeakestPrayer(Object prayer) {
+    return '🌿 Your weakest prayer: $prayer';
+  }
+
+  @override
+  String get trackerNoPrayerSlipping =>
+      'No prayer is slipping repeatedly. Keep going!';
+
+  @override
+  String trackerPrayerMissedCount(Object days, Object missed) {
+    return 'Missed $missed times in the last $days days. The gentle reminder helps.';
+  }
+
+  @override
+  String get trackerTurnOffNudge => 'Turn off gentle reminder';
+
+  @override
+  String get trackerTurnOnNudge => 'Turn on gentle reminder';
+
+  @override
+  String get trackerStopLearning => 'Stop learning my habits';
+
+  @override
+  String get trackerStartLearning => 'Learn my habits';
+
+  @override
+  String get trackerStartStreakToday => 'Start your streak today';
+
+  @override
+  String trackerStreakDays(Object count) {
+    return '$count-day streak, all five prayers';
+  }
+
+  @override
+  String trackerBestStreakStats(Object best, Object pct) {
+    return 'Best streak: $best — this week: $pct%';
+  }
+
+  @override
+  String get trackerToday => 'Today';
+
+  @override
+  String get trackerYesterday => 'Yesterday';
+
+  @override
+  String get trackerYourGarden => 'Your garden 🌳';
+
+  @override
+  String get trackerGardenDesc =>
+      'Every prayer has a tree that grows with each day you keep it';
+
+  @override
+  String get trackerDayUnit => 'd';
+
+  @override
+  String get trackerTodayPrayers => 'Today\'s prayers';
+
+  @override
+  String trackerPrayersOnDate(Object date) {
+    return 'Prayers $date';
+  }
+
+  @override
+  String get trackerPrayedMark => 'Prayed ✓';
+
+  @override
+  String get trackerNotMarked => 'Not marked';
+
+  @override
+  String get trackerThisWeek => 'This week';
+
+  @override
+  String trackerTotalPrayedCount(Object count) {
+    return 'Total logged: $count prayers';
+  }
+
+  @override
+  String get gardenTitle => 'My garden';
+
+  @override
+  String get gardenHomeCardTitle => 'Your prayer garden 🌳';
+
+  @override
+  String get gardenEnterFull => 'Enter your full garden 🌿';
+
+  @override
+  String get gardenTooEarlySeed => 'Too early… the seed is waiting 🌱';
+
+  @override
+  String get gardenChooseMonth => 'Choose the month';
+
+  @override
+  String get gardenOf => 'Garden of';
+
+  @override
+  String get gardenHijriSuffix => 'AH';
+
+  @override
+  String gardenPerfectDaysCount(Object count) {
+    return '$count perfect days';
+  }
+
+  @override
+  String gardenBestStreakCount(Object count) {
+    return 'Best streak $count';
+  }
+
+  @override
+  String get gardenBlessedForest => 'A blessed forest';
+
+  @override
+  String gardenWeekNumber(Object num) {
+    return 'Week $num';
+  }
+
+  @override
+  String get gardenMsgFlourishing => 'Masha Allah! A flourishing garden 🌳🌳🌳';
+
+  @override
+  String get gardenMsgKeepGoing =>
+      'A lovely garden — keep going and it becomes a forest 🌿';
+
+  @override
+  String get gardenMsgWaterToday =>
+      'Every prayer waters a tree. Start today 💧';
+
+  @override
+  String get gardenMsgWaitingFirst =>
+      'The garden is waiting… your first prayer plants the first tree 🌱';
+
+  @override
+  String plantStatusPrayedAt(Object time) {
+    return 'Prayed ✓ at $time';
+  }
+
+  @override
+  String get plantStatusPrayed => 'Prayed ✓';
+
+  @override
+  String get plantStatusPending => 'Its time has come — not logged yet 💧';
+
+  @override
+  String get plantStatusMissed => 'Not logged — the tree needs water';
+
+  @override
+  String get plantStatusUpcoming => 'Its time has not come yet 🌱';
+
+  @override
+  String plantStreakFruit(Object prayer, Object streak) {
+    return 'A fruit-bearing tree! $streak days in a row on $prayer 🍎';
+  }
+
+  @override
+  String plantStreakWeekPlus(Object prayer, Object streak) {
+    return '$streak days in a row on $prayer 🔥';
+  }
+
+  @override
+  String plantStreakDayNum(Object prayer, Object streak) {
+    return 'Day $streak of your streak on $prayer';
+  }
+
+  @override
+  String get plantWaterConsistency =>
+      'Every prayer grows the tree — consistency is its water 💧';
+
+  @override
+  String get plantUndo => 'Undo';
+
+  @override
+  String get plantWaterAction => 'I prayed it — water the tree 💧';
+
+  @override
+  String get plantStageSeed => 'Seed';
+
+  @override
+  String get plantStageSprout => 'Sprout';
+
+  @override
+  String get plantStageSapling => 'Sapling';
+
+  @override
+  String get plantStageYoungTree => 'Young tree';
+
+  @override
+  String get plantStageTree => 'Tree';
+
+  @override
+  String get plantStageFruitTree => 'Fruit tree';
+
+  @override
+  String get treeCherryBlossom => 'Cherry blossom';
+
+  @override
+  String get treeDatePalm => 'Date palm';
+
+  @override
+  String get treeOrangeTree => 'Orange tree';
+
+  @override
+  String get treePomegranate => 'Pomegranate';
+
+  @override
+  String get treeCypress => 'Cypress';
+
+  @override
+  String get weeklySummaryTitle => 'Weekly summary';
+
+  @override
+  String get weeklyShareAsImage => 'Share as image';
+
+  @override
+  String get weeklyNoPrayersLogged =>
+      'No prayers logged this week yet. Start from your garden on Home 🌱';
+
+  @override
+  String get weeklyShareYourTree => 'Share your weekly tree';
+
+  @override
+  String get weeklyNotificationHint =>
+      'Every Friday evening you get a notification with your weekly summary.';
+
+  @override
+  String get weeklyImageError => 'Could not create the image, try again';
+
+  @override
+  String get weeklyCardTitle => 'My weekly summary';
+
+  @override
+  String get weeklyCardTreeSubtitle => 'My prayer tree this week 🌳';
+
+  @override
+  String weeklyCardPercentLogged(Object pct) {
+    return '$pct% of my prayers logged';
+  }
+
+  @override
+  String weeklyCardStrongest(Object prayer) {
+    return 'Strongest: $prayer';
+  }
+
+  @override
+  String weeklyCardWeakest(Object prayer) {
+    return 'Weakest: $prayer';
+  }
+
+  @override
+  String weeklyCardStreak(Object count) {
+    return '🔥 $count-day streak, all five prayers';
+  }
+
+  @override
+  String get weeklyCardAppBranding => 'Boshra — Adhan, Azkar & Quran';
+
+  @override
+  String weeklySentencePrayed(Object max, Object total) {
+    return 'You prayed $total of $max';
+  }
+
+  @override
+  String weeklySentenceStrongest(Object prayer) {
+    return 'strongest: $prayer';
+  }
+
+  @override
+  String weeklySentenceWeakest(Object prayer) {
+    return 'weakest: $prayer';
+  }
+
+  @override
+  String get amLabel => 'AM';
+
+  @override
+  String get pmLabel => 'PM';
 }

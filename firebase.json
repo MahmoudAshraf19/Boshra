@@ -18,7 +18,7 @@
   ],
   "hosting": {
     "site": "boshra-privacy-policy",
-    "public": "dist",
+    "public": "build/web",
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -26,7 +26,7 @@
     ],
     "rewrites": [
       {
-        "source": "**",
+        "source": "!/privacy.html",
         "destination": "/index.html"
       }
     ]

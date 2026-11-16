@@ -1549,6 +1549,1506 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Fix now'**
   String get permFix;
+
+  /// No description provided for @adhanStopAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop Adhan'**
+  String get adhanStopAction;
+
+  /// No description provided for @adhanBannerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Adhan banner'**
+  String get adhanBannerTitle;
+
+  /// No description provided for @adhanBannerDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Appears at the top of the screen and on the lock screen at Adhan time, with a button to stop it.'**
+  String get adhanBannerDesc;
+
+  /// No description provided for @adhanBannerPreview.
+  ///
+  /// In en, this message translates to:
+  /// **'Banner preview'**
+  String get adhanBannerPreview;
+
+  /// No description provided for @adhanBannerVerse.
+  ///
+  /// In en, this message translates to:
+  /// **'Indeed, prayer has been decreed upon the believers at specified times.'**
+  String get adhanBannerVerse;
+
+  /// No description provided for @notifSettingsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications & Adhan'**
+  String get notifSettingsTitle;
+
+  /// No description provided for @modeSilent.
+  ///
+  /// In en, this message translates to:
+  /// **'Silent'**
+  String get modeSilent;
+
+  /// No description provided for @modeShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Short alert'**
+  String get modeShort;
+
+  /// No description provided for @modeAdhan.
+  ///
+  /// In en, this message translates to:
+  /// **'Full Adhan'**
+  String get modeAdhan;
+
+  /// No description provided for @modeSilentDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Notification without sound'**
+  String get modeSilentDesc;
+
+  /// No description provided for @modeShortDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Regular notification sound'**
+  String get modeShortDesc;
+
+  /// No description provided for @modeAdhanDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Full Adhan with a Stop button'**
+  String get modeAdhanDesc;
+
+  /// No description provided for @minutesShort.
+  ///
+  /// In en, this message translates to:
+  /// **'{minutes} min'**
+  String minutesShort(int minutes);
+
+  /// No description provided for @remindersSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily reminders'**
+  String get remindersSection;
+
+  /// No description provided for @afterFajrDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'{minutes} min after Fajr'**
+  String afterFajrDesc(int minutes);
+
+  /// No description provided for @afterAsrDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'{minutes} min after Asr (before sunset)'**
+  String afterAsrDesc(int minutes);
+
+  /// No description provided for @ayahReminderTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Ayah of the day'**
+  String get ayahReminderTitle;
+
+  /// No description provided for @ayahReminderDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'A new verse every day at the time you choose'**
+  String get ayahReminderDesc;
+
+  /// No description provided for @reminderTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Time'**
+  String get reminderTime;
+
+  /// No description provided for @muadhinTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Muadhin'**
+  String get muadhinTitle;
+
+  /// No description provided for @atAdhanTime.
+  ///
+  /// In en, this message translates to:
+  /// **'At Adhan time'**
+  String get atAdhanTime;
+
+  /// No description provided for @advancedSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Accuracy & calculation'**
+  String get advancedSection;
+
+  /// No description provided for @calcMethodTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Calculation method'**
+  String get calcMethodTitle;
+
+  /// No description provided for @calcMethodAuto.
+  ///
+  /// In en, this message translates to:
+  /// **'Automatic (by your location)'**
+  String get calcMethodAuto;
+
+  /// No description provided for @asrSchoolTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Asr calculation'**
+  String get asrSchoolTitle;
+
+  /// No description provided for @asrStandard.
+  ///
+  /// In en, this message translates to:
+  /// **'Standard (Shafi’i, Maliki, Hanbali)'**
+  String get asrStandard;
+
+  /// No description provided for @asrHanafi.
+  ///
+  /// In en, this message translates to:
+  /// **'Hanafi'**
+  String get asrHanafi;
+
+  /// No description provided for @adjustTimesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Fine-tune times (minutes)'**
+  String get adjustTimesTitle;
+
+  /// No description provided for @testAdhanButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Test the Adhan now'**
+  String get testAdhanButton;
+
+  /// No description provided for @locationFallbackWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'Your location is unavailable, so times are calculated for Makkah. Turn on location for accurate times.'**
+  String get locationFallbackWarning;
+
+  /// No description provided for @sadaqaJariyaTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Ongoing Charity'**
+  String get sadaqaJariyaTitle;
+
+  /// No description provided for @sadaqaHadith.
+  ///
+  /// In en, this message translates to:
+  /// **'“Whoever guides someone to goodness will have a reward like one who did it.”'**
+  String get sadaqaHadith;
+
+  /// No description provided for @narratedByMuslim.
+  ///
+  /// In en, this message translates to:
+  /// **'Narrated by Muslim'**
+  String get narratedByMuslim;
+
+  /// No description provided for @yourInviteCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Your invite code'**
+  String get yourInviteCode;
+
+  /// No description provided for @codeCopied.
+  ///
+  /// In en, this message translates to:
+  /// **'Code copied'**
+  String get codeCopied;
+
+  /// No description provided for @shareAppButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Share the app'**
+  String get shareAppButton;
+
+  /// No description provided for @shareViaWhatsApp.
+  ///
+  /// In en, this message translates to:
+  /// **'Share via WhatsApp'**
+  String get shareViaWhatsApp;
+
+  /// No description provided for @startFirstShare.
+  ///
+  /// In en, this message translates to:
+  /// **'Make your first share 🌱'**
+  String get startFirstShare;
+
+  /// No description provided for @sharedTimesCount.
+  ///
+  /// In en, this message translates to:
+  /// **'You shared the app {count} time(s) — may Allah accept it'**
+  String sharedTimesCount(Object count);
+
+  /// No description provided for @haveFriendCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Have a friend\'s invite code?'**
+  String get haveFriendCode;
+
+  /// No description provided for @recordedInviteFrom.
+  ///
+  /// In en, this message translates to:
+  /// **'Recorded invite {code} — may Allah reward them'**
+  String recordedInviteFrom(Object code);
+
+  /// No description provided for @invalidInviteCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid code (e.g. BSH-AB3K9)'**
+  String get invalidInviteCode;
+
+  /// No description provided for @ownInviteCodeError.
+  ///
+  /// In en, this message translates to:
+  /// **'That is your own code 🙂'**
+  String get ownInviteCodeError;
+
+  /// No description provided for @inviteShareMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'I use \"Boshra\" for Adhan, Quran and Azkar — I recommend it 🌙\nShare it as an ongoing charity — “Whoever guides someone to goodness will have a reward like one who did it.”\n\n{link}\nInvite code: {code}'**
+  String inviteShareMessage(Object code, Object link);
+
+  /// No description provided for @diagTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Will the Adhan ring?'**
+  String get diagTitle;
+
+  /// No description provided for @diagAllGood.
+  ///
+  /// In en, this message translates to:
+  /// **'All good — the Adhan will ring on time insha\'Allah'**
+  String get diagAllGood;
+
+  /// No description provided for @diagCanImprove.
+  ///
+  /// In en, this message translates to:
+  /// **'The Adhan should ring, but {count} item(s) can be improved'**
+  String diagCanImprove(Object count);
+
+  /// No description provided for @diagProblemsFound.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} problem(s) may stop the Adhan — fix with the buttons below'**
+  String diagProblemsFound(Object count);
+
+  /// No description provided for @diagFix.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix'**
+  String get diagFix;
+
+  /// No description provided for @diagTestAdhanNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Test Adhan now'**
+  String get diagTestAdhanNow;
+
+  /// No description provided for @diagReschedule.
+  ///
+  /// In en, this message translates to:
+  /// **'Re-schedule'**
+  String get diagReschedule;
+
+  /// No description provided for @diagRecentEvents.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent events'**
+  String get diagRecentEvents;
+
+  /// No description provided for @diagNoEvents.
+  ///
+  /// In en, this message translates to:
+  /// **'No events yet'**
+  String get diagNoEvents;
+
+  /// No description provided for @diagCopyReport.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy report for support'**
+  String get diagCopyReport;
+
+  /// No description provided for @diagReportCopied.
+  ///
+  /// In en, this message translates to:
+  /// **'Support report copied'**
+  String get diagReportCopied;
+
+  /// No description provided for @diagNotifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications'**
+  String get diagNotifications;
+
+  /// No description provided for @diagNotifEnabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Enabled'**
+  String get diagNotifEnabled;
+
+  /// No description provided for @diagNotifBlocked.
+  ///
+  /// In en, this message translates to:
+  /// **'Blocked — the Adhan cannot show'**
+  String get diagNotifBlocked;
+
+  /// No description provided for @diagEnable.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable'**
+  String get diagEnable;
+
+  /// No description provided for @diagChannels.
+  ///
+  /// In en, this message translates to:
+  /// **'Notification channels'**
+  String get diagChannels;
+
+  /// No description provided for @diagChannelsAllEnabled.
+  ///
+  /// In en, this message translates to:
+  /// **'All enabled'**
+  String get diagChannelsAllEnabled;
+
+  /// No description provided for @diagChannelMuted.
+  ///
+  /// In en, this message translates to:
+  /// **'A channel is muted in system settings'**
+  String get diagChannelMuted;
+
+  /// No description provided for @diagOpenSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Open settings'**
+  String get diagOpenSettings;
+
+  /// No description provided for @diagExactAlarms.
+  ///
+  /// In en, this message translates to:
+  /// **'Exact alarms'**
+  String get diagExactAlarms;
+
+  /// No description provided for @diagExactAlarmsAllowed.
+  ///
+  /// In en, this message translates to:
+  /// **'Allowed — Adhan fires on the second'**
+  String get diagExactAlarmsAllowed;
+
+  /// No description provided for @diagExactAlarmsNotAllowed.
+  ///
+  /// In en, this message translates to:
+  /// **'Not allowed — the Adhan may be late'**
+  String get diagExactAlarmsNotAllowed;
+
+  /// No description provided for @diagAllow.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow'**
+  String get diagAllow;
+
+  /// No description provided for @diagBattery.
+  ///
+  /// In en, this message translates to:
+  /// **'Battery optimisation'**
+  String get diagBattery;
+
+  /// No description provided for @diagBatteryExempt.
+  ///
+  /// In en, this message translates to:
+  /// **'App is exempt'**
+  String get diagBatteryExempt;
+
+  /// No description provided for @diagBatteryMayKill.
+  ///
+  /// In en, this message translates to:
+  /// **'The system may stop the app in background'**
+  String get diagBatteryMayKill;
+
+  /// No description provided for @diagExempt.
+  ///
+  /// In en, this message translates to:
+  /// **'Exempt'**
+  String get diagExempt;
+
+  /// No description provided for @diagPrayerMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Prayer mode'**
+  String get diagPrayerMode;
+
+  /// No description provided for @diagPrayerModeFullSilence.
+  ///
+  /// In en, this message translates to:
+  /// **'Full silence ready (DND access granted)'**
+  String get diagPrayerModeFullSilence;
+
+  /// No description provided for @diagPrayerModeVibrateOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'Without \"Do Not Disturb access\" we can only switch to vibrate'**
+  String get diagPrayerModeVibrateOnly;
+
+  /// No description provided for @diagGrantPermission.
+  ///
+  /// In en, this message translates to:
+  /// **'Grant access'**
+  String get diagGrantPermission;
+
+  /// No description provided for @diagAutostart.
+  ///
+  /// In en, this message translates to:
+  /// **'Auto-start'**
+  String get diagAutostart;
+
+  /// No description provided for @diagAutostartConfigured.
+  ///
+  /// In en, this message translates to:
+  /// **'Configured ({brand})'**
+  String diagAutostartConfigured(Object brand);
+
+  /// No description provided for @diagAutostartNeeds.
+  ///
+  /// In en, this message translates to:
+  /// **'{brand} kills background apps — enable auto-start'**
+  String diagAutostartNeeds(Object brand);
+
+  /// No description provided for @diagOpen.
+  ///
+  /// In en, this message translates to:
+  /// **'Open'**
+  String get diagOpen;
+
+  /// No description provided for @diagLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Location'**
+  String get diagLocation;
+
+  /// No description provided for @diagLocationManual.
+  ///
+  /// In en, this message translates to:
+  /// **'Manual city: {city}'**
+  String diagLocationManual(Object city);
+
+  /// No description provided for @diagLocationApprox.
+  ///
+  /// In en, this message translates to:
+  /// **'Approximate'**
+  String get diagLocationApprox;
+
+  /// No description provided for @diagLocationUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown — using a default city'**
+  String get diagLocationUnknown;
+
+  /// No description provided for @diagLocationGpsOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Location service (GPS) is off'**
+  String get diagLocationGpsOff;
+
+  /// No description provided for @diagLocationDenied.
+  ///
+  /// In en, this message translates to:
+  /// **'Location permission denied'**
+  String get diagLocationDenied;
+
+  /// No description provided for @diagLocationPermanentlyDenied.
+  ///
+  /// In en, this message translates to:
+  /// **'Permission permanently denied — open settings'**
+  String get diagLocationPermanentlyDenied;
+
+  /// No description provided for @diagLocationNoFix.
+  ///
+  /// In en, this message translates to:
+  /// **'Device could not get a fix (weak signal / Location accuracy off)'**
+  String get diagLocationNoFix;
+
+  /// No description provided for @diagLocationMock.
+  ///
+  /// In en, this message translates to:
+  /// **'A mock location is active on the device — ignored'**
+  String get diagLocationMock;
+
+  /// No description provided for @diagLocationTzMismatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix contradicts the device time zone (mock location?)'**
+  String get diagLocationTzMismatch;
+
+  /// No description provided for @diagFixLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix location'**
+  String get diagFixLocation;
+
+  /// No description provided for @diagSetLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Set'**
+  String get diagSetLocation;
+
+  /// No description provided for @diagLastScheduling.
+  ///
+  /// In en, this message translates to:
+  /// **'Last scheduling'**
+  String get diagLastScheduling;
+
+  /// No description provided for @diagNeverScheduled.
+  ///
+  /// In en, this message translates to:
+  /// **'Never scheduled yet'**
+  String get diagNeverScheduled;
+
+  /// No description provided for @diagScheduleNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Schedule now'**
+  String get diagScheduleNow;
+
+  /// No description provided for @diagScheduleAlertsCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} alerts'**
+  String diagScheduleAlertsCount(Object count);
+
+  /// No description provided for @diagScheduleIncomplete.
+  ///
+  /// In en, this message translates to:
+  /// **'incomplete (offline calc)'**
+  String get diagScheduleIncomplete;
+
+  /// No description provided for @diagScheduleError.
+  ///
+  /// In en, this message translates to:
+  /// **'error'**
+  String get diagScheduleError;
+
+  /// No description provided for @diagNextAdhan.
+  ///
+  /// In en, this message translates to:
+  /// **'Next Adhan'**
+  String get diagNextAdhan;
+
+  /// No description provided for @diagAllPrayersSilent.
+  ///
+  /// In en, this message translates to:
+  /// **'All prayers are set to short/silent (no full Adhan)'**
+  String get diagAllPrayersSilent;
+
+  /// No description provided for @diagArmedAdhansCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} Adhans armed in the system'**
+  String diagArmedAdhansCount(Object count);
+
+  /// No description provided for @diagNoAdhanArmed.
+  ///
+  /// In en, this message translates to:
+  /// **'No Adhan is armed in the alarm system! Tap schedule'**
+  String get diagNoAdhanArmed;
+
+  /// No description provided for @diagOfflineMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Offline mode'**
+  String get diagOfflineMode;
+
+  /// No description provided for @diagOfflineMonthsCached.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} months cached — works without internet'**
+  String diagOfflineMonthsCached(Object count);
+
+  /// No description provided for @diagOfflineMonthsOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'Only {count} month cached (auto-completes online)'**
+  String diagOfflineMonthsOnly(Object count);
+
+  /// No description provided for @diagInternet.
+  ///
+  /// In en, this message translates to:
+  /// **'Internet'**
+  String get diagInternet;
+
+  /// No description provided for @diagInternetConnected.
+  ///
+  /// In en, this message translates to:
+  /// **'Reaching the prayer-times server'**
+  String get diagInternetConnected;
+
+  /// No description provided for @diagInternetUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Unavailable now — cached times are enough'**
+  String get diagInternetUnavailable;
+
+  /// No description provided for @diagTestAdhanTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Adhan test'**
+  String get diagTestAdhanTitle;
+
+  /// No description provided for @diagTestAdhanBody.
+  ///
+  /// In en, this message translates to:
+  /// **'If you hear this, everything works'**
+  String get diagTestAdhanBody;
+
+  /// No description provided for @diagStop.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop'**
+  String get diagStop;
+
+  /// No description provided for @diagAgoJustNow.
+  ///
+  /// In en, this message translates to:
+  /// **'just now'**
+  String get diagAgoJustNow;
+
+  /// No description provided for @diagAgoMinutes.
+  ///
+  /// In en, this message translates to:
+  /// **'{m} min ago'**
+  String diagAgoMinutes(Object m);
+
+  /// No description provided for @diagAgoHours.
+  ///
+  /// In en, this message translates to:
+  /// **'{h} h ago'**
+  String diagAgoHours(Object h);
+
+  /// No description provided for @diagAgoDays.
+  ///
+  /// In en, this message translates to:
+  /// **'{d} d ago'**
+  String diagAgoDays(Object d);
+
+  /// No description provided for @zakatCalculatorTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Zakat Calculator'**
+  String get zakatCalculatorTitle;
+
+  /// No description provided for @zakatCurrency.
+  ///
+  /// In en, this message translates to:
+  /// **'Currency'**
+  String get zakatCurrency;
+
+  /// No description provided for @zakatTodayPricesGram.
+  ///
+  /// In en, this message translates to:
+  /// **'Today\'s prices (per gram)'**
+  String get zakatTodayPricesGram;
+
+  /// No description provided for @zakatRefresh.
+  ///
+  /// In en, this message translates to:
+  /// **'Refresh'**
+  String get zakatRefresh;
+
+  /// No description provided for @zakatEditManually.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit manually'**
+  String get zakatEditManually;
+
+  /// No description provided for @zakatCouldNotLoadPrices.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not load prices (offline). Tap ✏️ to enter the per-gram price.'**
+  String get zakatCouldNotLoadPrices;
+
+  /// No description provided for @zakatGold24.
+  ///
+  /// In en, this message translates to:
+  /// **'Gold 24k'**
+  String get zakatGold24;
+
+  /// No description provided for @zakatGold21.
+  ///
+  /// In en, this message translates to:
+  /// **'Gold 21k'**
+  String get zakatGold21;
+
+  /// No description provided for @zakatGold18.
+  ///
+  /// In en, this message translates to:
+  /// **'Gold 18k'**
+  String get zakatGold18;
+
+  /// No description provided for @zakatSilver.
+  ///
+  /// In en, this message translates to:
+  /// **'Silver'**
+  String get zakatSilver;
+
+  /// No description provided for @zakatGram.
+  ///
+  /// In en, this message translates to:
+  /// **'g'**
+  String get zakatGram;
+
+  /// No description provided for @zakatUsingManualPrices.
+  ///
+  /// In en, this message translates to:
+  /// **'✏️ Using your manual prices'**
+  String get zakatUsingManualPrices;
+
+  /// No description provided for @zakatWorldPriceStamp.
+  ///
+  /// In en, this message translates to:
+  /// **'World price × exchange rate — updated {date}'**
+  String zakatWorldPriceStamp(Object date);
+
+  /// No description provided for @zakatPriceOld.
+  ///
+  /// In en, this message translates to:
+  /// **' (old)'**
+  String get zakatPriceOld;
+
+  /// No description provided for @zakatNisab.
+  ///
+  /// In en, this message translates to:
+  /// **'Nisab'**
+  String get zakatNisab;
+
+  /// No description provided for @zakatGoldNisab.
+  ///
+  /// In en, this message translates to:
+  /// **'Gold (85 g)'**
+  String get zakatGoldNisab;
+
+  /// No description provided for @zakatSilverNisab.
+  ///
+  /// In en, this message translates to:
+  /// **'Silver (595 g)'**
+  String get zakatSilverNisab;
+
+  /// No description provided for @zakatNisabExplanation.
+  ///
+  /// In en, this message translates to:
+  /// **'Use the nisab your trusted scholarly authority uses. The silver nisab is lower in value, so it covers more people.'**
+  String get zakatNisabExplanation;
+
+  /// No description provided for @zakatYourWealth.
+  ///
+  /// In en, this message translates to:
+  /// **'Your wealth'**
+  String get zakatYourWealth;
+
+  /// No description provided for @zakatCashSavings.
+  ///
+  /// In en, this message translates to:
+  /// **'Cash, savings & bank accounts'**
+  String get zakatCashSavings;
+
+  /// No description provided for @zakatSharesInvestments.
+  ///
+  /// In en, this message translates to:
+  /// **'Shares & investments'**
+  String get zakatSharesInvestments;
+
+  /// No description provided for @zakatTradeGoods.
+  ///
+  /// In en, this message translates to:
+  /// **'Trade goods (market value)'**
+  String get zakatTradeGoods;
+
+  /// No description provided for @zakatMoneyOwedToYou.
+  ///
+  /// In en, this message translates to:
+  /// **'Money owed to you (reliable)'**
+  String get zakatMoneyOwedToYou;
+
+  /// No description provided for @zakatDebtsDue.
+  ///
+  /// In en, this message translates to:
+  /// **'Debts you owe now (deducted)'**
+  String get zakatDebtsDue;
+
+  /// No description provided for @zakatJewelleryNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Scholars differ on zakat for worn jewellery; it is counted here — leave the gold fields empty if you follow the other view.'**
+  String get zakatJewelleryNote;
+
+  /// No description provided for @zakatTotalZakatableWealth.
+  ///
+  /// In en, this message translates to:
+  /// **'Total zakatable wealth'**
+  String get zakatTotalZakatableWealth;
+
+  /// No description provided for @zakatEnterPriceForNisab.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the gold/silver price to compute the nisab'**
+  String get zakatEnterPriceForNisab;
+
+  /// No description provided for @zakatNisabValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Nisab: {amount} {cur}'**
+  String zakatNisabValue(Object amount, Object cur);
+
+  /// No description provided for @zakatDue25.
+  ///
+  /// In en, this message translates to:
+  /// **'Zakat due (2.5%)'**
+  String get zakatDue25;
+
+  /// No description provided for @zakatHawlCondition.
+  ///
+  /// In en, this message translates to:
+  /// **'Provided a full lunar year has passed over it.'**
+  String get zakatHawlCondition;
+
+  /// No description provided for @zakatNotEligibleShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Below the nisab ({amount} {cur} short) — no zakat is due now.'**
+  String zakatNotEligibleShort(Object amount, Object cur);
+
+  /// No description provided for @zakatCopyResult.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy result'**
+  String get zakatCopyResult;
+
+  /// No description provided for @zakatResultCopied.
+  ///
+  /// In en, this message translates to:
+  /// **'Result copied'**
+  String get zakatResultCopied;
+
+  /// No description provided for @zakatYearlyReminder.
+  ///
+  /// In en, this message translates to:
+  /// **'Yearly zakat reminder'**
+  String get zakatYearlyReminder;
+
+  /// No description provided for @zakatReminderExplanation.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick the date your wealth reached the nisab. We remind you a week before the lunar year completes and on the day, every year (≈354 days).'**
+  String get zakatReminderExplanation;
+
+  /// No description provided for @zakatSetDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Set date'**
+  String get zakatSetDate;
+
+  /// No description provided for @zakatNextDue.
+  ///
+  /// In en, this message translates to:
+  /// **'Next due: {date}'**
+  String zakatNextDue(Object date);
+
+  /// No description provided for @zakatScholarsDisclaimer.
+  ///
+  /// In en, this message translates to:
+  /// **'Note: general guidance only. For special cases (stocks, companies, debts, trade property…) ask a scholar.'**
+  String get zakatScholarsDisclaimer;
+
+  /// No description provided for @zakatManualPricesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Manual local prices ({cur})'**
+  String zakatManualPricesTitle(Object cur);
+
+  /// No description provided for @zakatManualPricesDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Your local jeweller price may differ from the world price. Enter your own per-gram price, or leave empty to use the automatic one.'**
+  String get zakatManualPricesDesc;
+
+  /// No description provided for @zakatGold24PerGram.
+  ///
+  /// In en, this message translates to:
+  /// **'Gold 24k per gram'**
+  String get zakatGold24PerGram;
+
+  /// No description provided for @zakatSilverPerGram.
+  ///
+  /// In en, this message translates to:
+  /// **'Silver per gram'**
+  String get zakatSilverPerGram;
+
+  /// No description provided for @zakatPickHawlHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Date your wealth reached the nisab'**
+  String get zakatPickHawlHelp;
+
+  /// No description provided for @zakatSummaryShare.
+  ///
+  /// In en, this message translates to:
+  /// **'Zakat — Boshra\nZakatable wealth: {total} {cur}\nNisab ({nisabType}): {nisabVal} {cur}\nZakat due (2.5%): {due} {cur}'**
+  String zakatSummaryShare(
+    Object cur,
+    Object due,
+    Object nisabType,
+    Object nisabVal,
+    Object total,
+  );
+
+  /// No description provided for @trackerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Prayer tracker'**
+  String get trackerTitle;
+
+  /// No description provided for @trackerTimeNotStarted.
+  ///
+  /// In en, this message translates to:
+  /// **'Its time has not started yet 🌙'**
+  String get trackerTimeNotStarted;
+
+  /// No description provided for @trackerLearningHabits.
+  ///
+  /// In en, this message translates to:
+  /// **'🧠 Learning your habits'**
+  String get trackerLearningHabits;
+
+  /// No description provided for @trackerLearningDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Log your prayers for at least 5 days, and we will suggest personalized improvements (analyzed only on your device).'**
+  String get trackerLearningDesc;
+
+  /// No description provided for @trackerFajrSlips.
+  ///
+  /// In en, this message translates to:
+  /// **'🌅 Fajr slips away: {missed} of the last {days} days'**
+  String trackerFajrSlips(Object days, Object missed);
+
+  /// No description provided for @trackerSleepReminderActive.
+  ///
+  /// In en, this message translates to:
+  /// **'Your early-sleep reminder is on at {time} every night 🌿'**
+  String trackerSleepReminderActive(Object time);
+
+  /// No description provided for @trackerSleepReminderSuggest.
+  ///
+  /// In en, this message translates to:
+  /// **'Missing Fajr is usually about sleeping late. Want a nightly reminder to sleep early?'**
+  String get trackerSleepReminderSuggest;
+
+  /// No description provided for @trackerTurnOnTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn on ({time})'**
+  String trackerTurnOnTime(Object time);
+
+  /// No description provided for @trackerNotNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Not now'**
+  String get trackerNotNow;
+
+  /// No description provided for @trackerChangeTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Change time'**
+  String get trackerChangeTime;
+
+  /// No description provided for @trackerTurnOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn off'**
+  String get trackerTurnOff;
+
+  /// No description provided for @trackerPickAnotherTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick another time'**
+  String get trackerPickAnotherTime;
+
+  /// No description provided for @trackerPrayerNearEnd.
+  ///
+  /// In en, this message translates to:
+  /// **'⏰ {prayer} is usually near the end of its time'**
+  String trackerPrayerNearEnd(Object prayer);
+
+  /// No description provided for @trackerPrayerNearEndDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Your gentle reminder for {prayer} now arrives earlier (mid-window instead of near the end).'**
+  String trackerPrayerNearEndDesc(Object prayer);
+
+  /// No description provided for @trackerGreatConsistency.
+  ///
+  /// In en, this message translates to:
+  /// **'✨ Great consistency'**
+  String get trackerGreatConsistency;
+
+  /// No description provided for @trackerWeakestPrayer.
+  ///
+  /// In en, this message translates to:
+  /// **'🌿 Your weakest prayer: {prayer}'**
+  String trackerWeakestPrayer(Object prayer);
+
+  /// No description provided for @trackerNoPrayerSlipping.
+  ///
+  /// In en, this message translates to:
+  /// **'No prayer is slipping repeatedly. Keep going!'**
+  String get trackerNoPrayerSlipping;
+
+  /// No description provided for @trackerPrayerMissedCount.
+  ///
+  /// In en, this message translates to:
+  /// **'Missed {missed} times in the last {days} days. The gentle reminder helps.'**
+  String trackerPrayerMissedCount(Object days, Object missed);
+
+  /// No description provided for @trackerTurnOffNudge.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn off gentle reminder'**
+  String get trackerTurnOffNudge;
+
+  /// No description provided for @trackerTurnOnNudge.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn on gentle reminder'**
+  String get trackerTurnOnNudge;
+
+  /// No description provided for @trackerStopLearning.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop learning my habits'**
+  String get trackerStopLearning;
+
+  /// No description provided for @trackerStartLearning.
+  ///
+  /// In en, this message translates to:
+  /// **'Learn my habits'**
+  String get trackerStartLearning;
+
+  /// No description provided for @trackerStartStreakToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Start your streak today'**
+  String get trackerStartStreakToday;
+
+  /// No description provided for @trackerStreakDays.
+  ///
+  /// In en, this message translates to:
+  /// **'{count}-day streak, all five prayers'**
+  String trackerStreakDays(Object count);
+
+  /// No description provided for @trackerBestStreakStats.
+  ///
+  /// In en, this message translates to:
+  /// **'Best streak: {best} — this week: {pct}%'**
+  String trackerBestStreakStats(Object best, Object pct);
+
+  /// No description provided for @trackerToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get trackerToday;
+
+  /// No description provided for @trackerYesterday.
+  ///
+  /// In en, this message translates to:
+  /// **'Yesterday'**
+  String get trackerYesterday;
+
+  /// No description provided for @trackerYourGarden.
+  ///
+  /// In en, this message translates to:
+  /// **'Your garden 🌳'**
+  String get trackerYourGarden;
+
+  /// No description provided for @trackerGardenDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Every prayer has a tree that grows with each day you keep it'**
+  String get trackerGardenDesc;
+
+  /// No description provided for @trackerDayUnit.
+  ///
+  /// In en, this message translates to:
+  /// **'d'**
+  String get trackerDayUnit;
+
+  /// No description provided for @trackerTodayPrayers.
+  ///
+  /// In en, this message translates to:
+  /// **'Today\'s prayers'**
+  String get trackerTodayPrayers;
+
+  /// No description provided for @trackerPrayersOnDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Prayers {date}'**
+  String trackerPrayersOnDate(Object date);
+
+  /// No description provided for @trackerPrayedMark.
+  ///
+  /// In en, this message translates to:
+  /// **'Prayed ✓'**
+  String get trackerPrayedMark;
+
+  /// No description provided for @trackerNotMarked.
+  ///
+  /// In en, this message translates to:
+  /// **'Not marked'**
+  String get trackerNotMarked;
+
+  /// No description provided for @trackerThisWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'This week'**
+  String get trackerThisWeek;
+
+  /// No description provided for @trackerTotalPrayedCount.
+  ///
+  /// In en, this message translates to:
+  /// **'Total logged: {count} prayers'**
+  String trackerTotalPrayedCount(Object count);
+
+  /// No description provided for @gardenTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'My garden'**
+  String get gardenTitle;
+
+  /// No description provided for @gardenHomeCardTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your prayer garden 🌳'**
+  String get gardenHomeCardTitle;
+
+  /// No description provided for @gardenEnterFull.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your full garden 🌿'**
+  String get gardenEnterFull;
+
+  /// No description provided for @gardenTooEarlySeed.
+  ///
+  /// In en, this message translates to:
+  /// **'Too early… the seed is waiting 🌱'**
+  String get gardenTooEarlySeed;
+
+  /// No description provided for @gardenChooseMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose the month'**
+  String get gardenChooseMonth;
+
+  /// No description provided for @gardenOf.
+  ///
+  /// In en, this message translates to:
+  /// **'Garden of'**
+  String get gardenOf;
+
+  /// No description provided for @gardenHijriSuffix.
+  ///
+  /// In en, this message translates to:
+  /// **'AH'**
+  String get gardenHijriSuffix;
+
+  /// No description provided for @gardenPerfectDaysCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} perfect days'**
+  String gardenPerfectDaysCount(Object count);
+
+  /// No description provided for @gardenBestStreakCount.
+  ///
+  /// In en, this message translates to:
+  /// **'Best streak {count}'**
+  String gardenBestStreakCount(Object count);
+
+  /// No description provided for @gardenBlessedForest.
+  ///
+  /// In en, this message translates to:
+  /// **'A blessed forest'**
+  String get gardenBlessedForest;
+
+  /// No description provided for @gardenWeekNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Week {num}'**
+  String gardenWeekNumber(Object num);
+
+  /// No description provided for @gardenMsgFlourishing.
+  ///
+  /// In en, this message translates to:
+  /// **'Masha Allah! A flourishing garden 🌳🌳🌳'**
+  String get gardenMsgFlourishing;
+
+  /// No description provided for @gardenMsgKeepGoing.
+  ///
+  /// In en, this message translates to:
+  /// **'A lovely garden — keep going and it becomes a forest 🌿'**
+  String get gardenMsgKeepGoing;
+
+  /// No description provided for @gardenMsgWaterToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Every prayer waters a tree. Start today 💧'**
+  String get gardenMsgWaterToday;
+
+  /// No description provided for @gardenMsgWaitingFirst.
+  ///
+  /// In en, this message translates to:
+  /// **'The garden is waiting… your first prayer plants the first tree 🌱'**
+  String get gardenMsgWaitingFirst;
+
+  /// No description provided for @plantStatusPrayedAt.
+  ///
+  /// In en, this message translates to:
+  /// **'Prayed ✓ at {time}'**
+  String plantStatusPrayedAt(Object time);
+
+  /// No description provided for @plantStatusPrayed.
+  ///
+  /// In en, this message translates to:
+  /// **'Prayed ✓'**
+  String get plantStatusPrayed;
+
+  /// No description provided for @plantStatusPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Its time has come — not logged yet 💧'**
+  String get plantStatusPending;
+
+  /// No description provided for @plantStatusMissed.
+  ///
+  /// In en, this message translates to:
+  /// **'Not logged — the tree needs water'**
+  String get plantStatusMissed;
+
+  /// No description provided for @plantStatusUpcoming.
+  ///
+  /// In en, this message translates to:
+  /// **'Its time has not come yet 🌱'**
+  String get plantStatusUpcoming;
+
+  /// No description provided for @plantStreakFruit.
+  ///
+  /// In en, this message translates to:
+  /// **'A fruit-bearing tree! {streak} days in a row on {prayer} 🍎'**
+  String plantStreakFruit(Object prayer, Object streak);
+
+  /// No description provided for @plantStreakWeekPlus.
+  ///
+  /// In en, this message translates to:
+  /// **'{streak} days in a row on {prayer} 🔥'**
+  String plantStreakWeekPlus(Object prayer, Object streak);
+
+  /// No description provided for @plantStreakDayNum.
+  ///
+  /// In en, this message translates to:
+  /// **'Day {streak} of your streak on {prayer}'**
+  String plantStreakDayNum(Object prayer, Object streak);
+
+  /// No description provided for @plantWaterConsistency.
+  ///
+  /// In en, this message translates to:
+  /// **'Every prayer grows the tree — consistency is its water 💧'**
+  String get plantWaterConsistency;
+
+  /// No description provided for @plantUndo.
+  ///
+  /// In en, this message translates to:
+  /// **'Undo'**
+  String get plantUndo;
+
+  /// No description provided for @plantWaterAction.
+  ///
+  /// In en, this message translates to:
+  /// **'I prayed it — water the tree 💧'**
+  String get plantWaterAction;
+
+  /// No description provided for @plantStageSeed.
+  ///
+  /// In en, this message translates to:
+  /// **'Seed'**
+  String get plantStageSeed;
+
+  /// No description provided for @plantStageSprout.
+  ///
+  /// In en, this message translates to:
+  /// **'Sprout'**
+  String get plantStageSprout;
+
+  /// No description provided for @plantStageSapling.
+  ///
+  /// In en, this message translates to:
+  /// **'Sapling'**
+  String get plantStageSapling;
+
+  /// No description provided for @plantStageYoungTree.
+  ///
+  /// In en, this message translates to:
+  /// **'Young tree'**
+  String get plantStageYoungTree;
+
+  /// No description provided for @plantStageTree.
+  ///
+  /// In en, this message translates to:
+  /// **'Tree'**
+  String get plantStageTree;
+
+  /// No description provided for @plantStageFruitTree.
+  ///
+  /// In en, this message translates to:
+  /// **'Fruit tree'**
+  String get plantStageFruitTree;
+
+  /// No description provided for @treeCherryBlossom.
+  ///
+  /// In en, this message translates to:
+  /// **'Cherry blossom'**
+  String get treeCherryBlossom;
+
+  /// No description provided for @treeDatePalm.
+  ///
+  /// In en, this message translates to:
+  /// **'Date palm'**
+  String get treeDatePalm;
+
+  /// No description provided for @treeOrangeTree.
+  ///
+  /// In en, this message translates to:
+  /// **'Orange tree'**
+  String get treeOrangeTree;
+
+  /// No description provided for @treePomegranate.
+  ///
+  /// In en, this message translates to:
+  /// **'Pomegranate'**
+  String get treePomegranate;
+
+  /// No description provided for @treeCypress.
+  ///
+  /// In en, this message translates to:
+  /// **'Cypress'**
+  String get treeCypress;
+
+  /// No description provided for @weeklySummaryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Weekly summary'**
+  String get weeklySummaryTitle;
+
+  /// No description provided for @weeklyShareAsImage.
+  ///
+  /// In en, this message translates to:
+  /// **'Share as image'**
+  String get weeklyShareAsImage;
+
+  /// No description provided for @weeklyNoPrayersLogged.
+  ///
+  /// In en, this message translates to:
+  /// **'No prayers logged this week yet. Start from your garden on Home 🌱'**
+  String get weeklyNoPrayersLogged;
+
+  /// No description provided for @weeklyShareYourTree.
+  ///
+  /// In en, this message translates to:
+  /// **'Share your weekly tree'**
+  String get weeklyShareYourTree;
+
+  /// No description provided for @weeklyNotificationHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Every Friday evening you get a notification with your weekly summary.'**
+  String get weeklyNotificationHint;
+
+  /// No description provided for @weeklyImageError.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not create the image, try again'**
+  String get weeklyImageError;
+
+  /// No description provided for @weeklyCardTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'My weekly summary'**
+  String get weeklyCardTitle;
+
+  /// No description provided for @weeklyCardTreeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'My prayer tree this week 🌳'**
+  String get weeklyCardTreeSubtitle;
+
+  /// No description provided for @weeklyCardPercentLogged.
+  ///
+  /// In en, this message translates to:
+  /// **'{pct}% of my prayers logged'**
+  String weeklyCardPercentLogged(Object pct);
+
+  /// No description provided for @weeklyCardStrongest.
+  ///
+  /// In en, this message translates to:
+  /// **'Strongest: {prayer}'**
+  String weeklyCardStrongest(Object prayer);
+
+  /// No description provided for @weeklyCardWeakest.
+  ///
+  /// In en, this message translates to:
+  /// **'Weakest: {prayer}'**
+  String weeklyCardWeakest(Object prayer);
+
+  /// No description provided for @weeklyCardStreak.
+  ///
+  /// In en, this message translates to:
+  /// **'🔥 {count}-day streak, all five prayers'**
+  String weeklyCardStreak(Object count);
+
+  /// No description provided for @weeklyCardAppBranding.
+  ///
+  /// In en, this message translates to:
+  /// **'Boshra — Adhan, Azkar & Quran'**
+  String get weeklyCardAppBranding;
+
+  /// No description provided for @weeklySentencePrayed.
+  ///
+  /// In en, this message translates to:
+  /// **'You prayed {total} of {max}'**
+  String weeklySentencePrayed(Object max, Object total);
+
+  /// No description provided for @weeklySentenceStrongest.
+  ///
+  /// In en, this message translates to:
+  /// **'strongest: {prayer}'**
+  String weeklySentenceStrongest(Object prayer);
+
+  /// No description provided for @weeklySentenceWeakest.
+  ///
+  /// In en, this message translates to:
+  /// **'weakest: {prayer}'**
+  String weeklySentenceWeakest(Object prayer);
+
+  /// No description provided for @amLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'AM'**
+  String get amLabel;
+
+  /// No description provided for @pmLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'PM'**
+  String get pmLabel;
 }
 
 class _AppLocalizationsDelegate

@@ -14,8 +14,9 @@ class TermsScreen extends StatelessWidget {
     final colorScheme = Theme.of(context).colorScheme;
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final bgColor = isDark ? const Color(0xFF1C221A) : Theme.of(context).scaffoldBackgroundColor;
-    
-    final currentLang = context.watch<LocaleProvider>().locale?.languageCode ?? 'en';
+    final cardBg = isDark ? colorScheme.surfaceContainerHighest.withValues(alpha: 0.5) : Colors.white;
+
+    final currentLang = context.watch<LocaleProvider>().locale.languageCode;
     final termsMarkdown = TermsData.localizedTerms[currentLang] ?? TermsData.localizedTerms['en']!;
 
     return Scaffold(
@@ -33,41 +34,34 @@ class TermsScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: Container(
-        margin: const EdgeInsets.all(24.0),
-        decoration: BoxDecoration(
-          color: isDark ? colorScheme.surfaceContainerHighest.withValues(alpha: 0.5) : Colors.white,
-          borderRadius: BorderRadius.circular(24),
-          boxShadow: const [],
-        ),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(24),
-          child: Markdown(
-            data: termsMarkdown,
-            selectable: true,
-            padding: const EdgeInsets.all(24.0),
-            styleSheet: MarkdownStyleSheet(
-              p: TextStyle(
-                fontSize: 15,
-                height: 1.6,
-                color: colorScheme.onSurface,
-              ),
-              h2: TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-                color: colorScheme.primary,
-                height: 1.5,
-              ),
-              h3: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
-                color: colorScheme.primary.withValues(alpha: 0.8),
-                height: 1.5,
-              ),
-              listBullet: TextStyle(
-                color: colorScheme.primary,
-                fontSize: 16,
-              ),
+      body: Material(
+        color: cardBg,
+        child: Markdown(
+          data: termsMarkdown,
+          selectable: false,
+          physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+          padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 20.0),
+          styleSheet: MarkdownStyleSheet(
+            p: TextStyle(
+              fontSize: 15,
+              height: 1.6,
+              color: colorScheme.onSurface,
+            ),
+            h2: TextStyle(
+              fontSize: 22,
+              fontWeight: FontWeight.bold,
+              color: colorScheme.primary,
+              height: 1.5,
+            ),
+            h3: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w600,
+              color: colorScheme.primary.withValues(alpha: 0.8),
+              height: 1.5,
+            ),
+            listBullet: TextStyle(
+              color: colorScheme.primary,
+              fontSize: 16,
             ),
           ),
         ),

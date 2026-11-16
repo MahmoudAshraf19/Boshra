@@ -10,7 +10,6 @@ import 'quran_reading_screen.dart';
 import '../widgets/surah_tafsir_bottom_sheet.dart';
 import '../widgets/surah_recitation_bottom_sheet.dart';
 import '../widgets/surah_info_bottom_sheet.dart';
-import '../../../../core/error/error_handler.dart';
 
 class QuranScreen extends StatefulWidget {
   const QuranScreen({super.key});

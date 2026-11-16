@@ -36,10 +36,28 @@ class AudioDownloadManager extends ChangeNotifier {
   static const int _parallel = 4;
   static const int _retries = 3;
   static const String _cdn = 'https://cdn.islamic.network/quran/audio/64';
+  static const String _cdn128 = 'https://cdn.islamic.network/quran/audio/128';
   /// Rough size of one ayah at 64 kbps, used only for the free-space check.
   static const int estimatedBytesPerAyah = 70 * 1024;
 
-  final HttpClient _client = HttpClient()
+  /// Returns the proper audio URL. Minshawi and several other reciters are hosted at 128 kbps.
+  static String urlFor(String reciterId, int globalAyah) {
+    final is128 = reciterId == 'ar.minshawi' ||
+        reciterId == 'ar.alafasy' ||
+        reciterId == 'ar.husary' ||
+        reciterId == 'ar.husarymujawwad' ||
+        reciterId == 'ar.mahermuaiqly' ||
+        reciterId == 'ar.shaatree' ||
+        reciterId == 'ar.ahmedajamy' ||
+        reciterId == 'ar.hudhaify' ||
+        reciterId == 'ar.muhammadayyoub' ||
+        reciterId == 'ar.muhammadjibreel';
+    final base = is128 ? _cdn128 : _cdn;
+    return '$base/$reciterId/$globalAyah.mp3';
+  }
+
+  HttpClient? _client;
+  HttpClient get _httpClient => _client ??= HttpClient()
     ..connectionTimeout = const Duration(seconds: 15)
     ..maxConnectionsPerHost = 6;
 
@@ -54,12 +72,14 @@ class AudioDownloadManager extends ChangeNotifier {
 
   // ───────────────────────── setup ─────────────────────────
   Future<void> init() => _initFuture ??= () async {
+        if (kIsWeb) return;
         final docs = await getApplicationDocumentsDirectory();
         _root = '${docs.path}/quran_audio';
         await Directory(_root!).create(recursive: true);
       }();
 
   Future<void> ensureReciter(String reciterId) async {
+    if (kIsWeb) return;
     await init();
     await (_scans[reciterId] ??= _scan(reciterId));
   }
@@ -88,13 +108,12 @@ class AudioDownloadManager extends ChangeNotifier {
   }
 
   // ───────────────────────── queries (sync, after ensureReciter) ─────────────────────────
-  static String urlFor(String reciterId, int globalAyah) => '$_cdn/$reciterId/$globalAyah.mp3';
 
   File _file(String reciterId, int global) => File('$_root/$reciterId/$global.mp3');
 
   /// The local file for this ayah if it is on the device, else null.
   File? localFile(String reciterId, int global) {
-    if (_root == null) return null;
+    if (kIsWeb || _root == null) return null;
     final have = _have[reciterId];
     return (have != null && have.contains(global)) ? _file(reciterId, global) : null;
   }
@@ -121,6 +140,7 @@ class AudioDownloadManager extends ChangeNotifier {
   bool get hasActiveJobs => _jobs.values.any((j) => !j.failed);
 
   Future<int> bytesUsed(String reciterId) async {
+    if (kIsWeb) return 0;
     await init();
     var total = 0;
     final dir = Directory('$_root/$reciterId');
@@ -261,7 +281,7 @@ class AudioDownloadManager extends ChangeNotifier {
     for (var attempt = 0; attempt < _retries; attempt++) {
       if (job.cancelled) return false;
       try {
-        final req = await _client
+        final req = await _httpClient
             .getUrl(Uri.parse(urlFor(job.reciterId, global)))
             .timeout(const Duration(seconds: 15));
         final res = await req.close().timeout(const Duration(seconds: 20));

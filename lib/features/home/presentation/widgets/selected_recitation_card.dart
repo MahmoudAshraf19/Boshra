@@ -1,6 +1,5 @@
 import '../../../../core/utils/app_logger.dart';
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import '../../../../l10n/app_localizations.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';

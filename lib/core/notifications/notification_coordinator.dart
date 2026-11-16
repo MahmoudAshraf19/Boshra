@@ -1,9 +1,14 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../features/prayer/domain/prayer_scheduler_service.dart';
+import '../../features/prayer/domain/reminder_settings.dart';
 import '../../l10n/app_localizations.dart';
 import '../services/notification_service.dart';
 import '../utils/app_logger.dart';
+import '../services/telemetry.dart';
+import '../../features/prayer/data/repositories/prayer_repository.dart';
+import 'adhan_banner_controller.dart';
 import 'notification_plan_builders.dart';
 
 /// Single place that keeps the OS notifications in sync with the app state.
@@ -71,16 +76,42 @@ class NotificationCoordinator {
       final l10n = await currentL10n();
 
       final prayer = await PrayerSchedulerService().buildPlan(l10n, background: background);
+      final reminders = await ReminderSettings.load(fresh: true);
       final plans = <NotificationPlan>[
-        ...NotificationPlanBuilders.azkar(l10n),
-        ...await NotificationPlanBuilders.quran(l10n),
-        ...prayer.plans,
+        ...await NotificationPlanBuilders.ayah(l10n, reminders),
+        ...prayer.plans, // prayers + pre-prayer + Azkar
       ];
-      await ns.applyPlan(plans, cancelStalePrayers: prayer.complete);
+      await ns.applyPlan(
+        plans,
+        cancelStalePrayers: prayer.complete,
+        enabledSlots: prayer.enabledSlots,
+        adhanSlots: prayer.adhanSlots,
+        preEnabled: prayer.preEnabled,
+      );
+      // In-app banner (only does something while the app UI is open).
+      AdhanBannerController.instance.schedule(plans);
       _lastRun = DateTime.now();
-      return true;
+      // For the Diagnostics screen: when/what was last scheduled.
+      try {
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setInt('diag_last_schedule_ms', _lastRun!.millisecondsSinceEpoch);
+        await prefs.setInt('diag_last_plan_count', plans.length);
+        await prefs.setBool('diag_last_complete', prayer.complete);
+        await prefs.setBool('diag_last_background', background);
+        await prefs.setBool('diag_last_error', false);
+      } catch (_) {}
+      Telemetry.log(prayer.complete ? 'schedule_ok' : 'schedule_incomplete',
+          {'plans': plans.length, 'bg': background});
+      // Keep the next months cached so the app also works fully offline (never blocks).
+      unawaited(PrayerRepository().prefetchMonths());
+      // Incomplete plan in the background → ask WorkManager to retry with back-off.
+      return prayer.complete || !background;
     } catch (e, s) {
       AppLogger.e(_tag, e, s, 'run failed');
+      Telemetry.log('schedule_failed', {'err': e.runtimeType.toString(), 'bg': background});
+      try {
+        (await SharedPreferences.getInstance()).setBool('diag_last_error', true);
+      } catch (_) {}
       return false;
     }
   }

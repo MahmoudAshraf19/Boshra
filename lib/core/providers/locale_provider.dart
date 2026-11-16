@@ -1,6 +1,5 @@
 import '../notifications/notification_coordinator.dart';
 import 'package:flutter/material.dart';
-import '../services/storage_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LocaleProvider extends ChangeNotifier {

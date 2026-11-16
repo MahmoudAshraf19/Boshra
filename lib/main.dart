@@ -14,6 +14,9 @@ import 'core/providers/theme_provider.dart';
 import 'core/services/notification_service.dart';
 import 'core/theme/app_theme.dart';
 import 'core/utils/app_logger.dart';
+import 'core/navigation/app_navigator.dart';
+import 'core/services/telemetry.dart';
+import 'core/widgets/adhan_banner_host.dart';
 import 'features/azkar/presentation/providers/azkar_provider.dart';
 import 'features/radio/presentation/providers/radio_provider.dart';
 import 'features/splash/presentation/screens/splash_screen.dart';
@@ -24,6 +27,9 @@ Future<void> main() async {
   await runZonedGuarded<Future<void>>(() async {
     WidgetsFlutterBinding.ensureInitialized();
     AppErrorHandler.install();
+    // Every logged error also goes to the local black-box (+ Crashlytics when you plug it in).
+    AppLogger.onError = Telemetry.recordError;
+    Telemetry.log('app_start');
 
     // Each start-up step is isolated: a failure in one must never block the app.
     await _safe('JustAudioBackground', () => JustAudioBackground.init(
@@ -70,6 +76,7 @@ class MyApp extends StatelessWidget {
             onGenerateTitle: (ctx) => AppLocalizations.of(ctx)?.appTitle ?? 'Boshra',
             theme: AppTheme.lightTheme,
             darkTheme: AppTheme.darkTheme,
+            navigatorKey: appNavigatorKey,
             debugShowCheckedModeBanner: false,
             themeMode: themeProvider.themeMode,
             localizationsDelegates: const [
@@ -80,7 +87,9 @@ class MyApp extends StatelessWidget {
             ],
             supportedLocales: AppLocalizations.supportedLocales,
             locale: localeProvider.locale,
-            builder: DevicePreview.appBuilder,
+            // AdhanBannerHost = in-app Adhan banner (above every screen).
+            builder: (context, child) =>
+                AdhanBannerHost(child: DevicePreview.appBuilder(context, child)),
             home: const SplashScreen(),
           );
         },

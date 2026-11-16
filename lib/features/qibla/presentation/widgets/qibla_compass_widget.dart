@@ -14,7 +14,6 @@ class QiblaCompassWidget extends StatefulWidget {
 
 class _QiblaCompassWidgetState extends State<QiblaCompassWidget> {
   double _lastValidHeading = 0.0;
-  double _turns = 0.0;
 
   @override
   Widget build(BuildContext context) {

@@ -13,20 +13,20 @@ By downloading, accessing, or using Boshra, you acknowledge that you have read a
 If you do not agree with these Terms, please discontinue using the application.
 
 ### 2. About Boshra
-Boshra is an Islamic application designed to provide access to Quran reading, Quran recitations, Azkar, prayer times, Qibla direction, reminders, and related features.
-Boshra is provided for personal, informational, educational, and religious-use purposes.
+Boshra is an ad-free Islamic application designed to provide access to Quran reading in Ottoman script, Quran audio recitations by renowned reciters, Tafsir, Fortress of the Muslim (Azkar) with an interactive counter, accurate prayer times with customizable Adhan notifications and 9 renowned Muadhin options, pre-prayer alerts, Qibla compass direction, 165+ live Islamic radio stations streaming 24/7, and daily Islamic reminders.
+Boshra is provided purely for personal, informational, educational, and religious-use purposes without any commercial monetization.
 
-### 3. Prayer Times
+### 3. Prayer Times and Adhan Notifications
 Prayer times provided by Boshra are calculated using your location and the selected calculation settings.
+Boshra offers full Adhan audio notifications with customizable Muadhin voices (including Sheikh Mohamed Refat, Abdul Basit, Al-Hussary, Ali Mulla, Al-Minshawi, Essam Bukhari, Naji Qazzaz, Sayed El-Naqshabandy, and Nayef Fida), alongside optional pre-prayer reminders and dismissible heads-up banners.
 Prayer times may vary depending on:
-* Your geographic location.
-* Calculation method.
-* Madhab or Asr calculation settings.
-* Local observation and adjustments.
-* Device location accuracy.
+* Your geographic location and device location accuracy.
+* Calculation method and Juristic (Madhab) settings.
+* Local observation, mosque timetables, and regional adjustments.
+* Device battery optimization and exact alarm permissions.
 
-Prayer times should therefore be considered informational and may not always exactly match the timetable of your local mosque or religious authority.
-You are responsible for selecting the appropriate calculation settings for your location.
+Prayer times should be considered informational and verified with your local mosque or religious authority when needed.
+You are responsible for selecting the appropriate calculation settings and granting the necessary alarm permissions on your device.
 
 ### 4. Qibla Direction
 Boshra may use your device's location and compass sensors to determine the direction of the Qibla.
@@ -35,19 +35,20 @@ Boshra does not guarantee that the displayed direction will always be perfectly 
 For important religious decisions, verify the direction using an appropriate trusted source when necessary.
 
 ### 5. Quran, Recitations, and Religious Content
-Boshra may provide Quran text, translations, Tafsir, recitations, Azkar, and other religious content.
+Boshra provides Quran text in the authentic Ottoman script, translations, Tafsir, audio recitations by leading reciters, Azkar, and other religious content.
 Every reasonable effort is made to provide accurate and reliable content. However, Boshra does not represent itself as a religious authority or as a substitute for qualified scholars or trusted religious institutions.
 Translations and Tafsir may differ between sources and should be understood in their proper context.
 
-### 6. Third-Party Content and Services
-Some content, audio files, APIs, libraries, or other services used by Boshra may be provided by third parties.
+### 6. Third-Party Content, Live Radio Streams, and Audio
+Some content, audio files, APIs, libraries, and radio streams used by Boshra are provided by third parties and trusted Islamic public relays (including mp3quran, islamic.network, and everyayah).
+Live Islamic Radio broadcasts are streamed directly from their respective public stations; Boshra acts solely as a convenient client directory.
 Third-party services may have their own terms, licenses, and privacy policies.
-Boshra does not claim ownership of third-party content unless explicitly stated and only uses such content where it has the necessary rights, licenses, or permissions.
+Boshra does not claim ownership of third-party audio or streams and only utilizes content where authorized or made publicly available for free religious broadcast.
 
 ### 7. Downloads and Offline Content
-Boshra may allow you to download Quran recitations or other supported content for offline use.
-Downloaded files are intended for personal use through the application and must not be redistributed, resold, publicly republished, or used in violation of applicable copyright or licensing restrictions.
-Available downloads may vary by device, region, content provider, or licensing conditions.
+Boshra allows you to download complete Quran Surah recitations to your device's local storage for offline spiritual listening without an internet connection.
+Downloaded files are intended strictly for your personal, non-commercial use through the application and must not be redistributed, resold, or exploited in violation of copyright or licensing restrictions.
+You can manage or delete downloaded recitations at any time through the Data and Storage settings.
 
 ### 8. Intellectual Property
 The Boshra application, including its original design, branding, interface, software, graphics, logos, and original content, is protected by applicable intellectual property laws.
@@ -104,41 +105,36 @@ These Terms shall be governed by and interpreted in accordance with the laws app
 إذا كنت لا توافق على هذه الشروط، يرجى التوقف عن استخدام التطبيق.
 
 ### 2. عن بشرى
-بشرى تطبيق إسلامي يهدف إلى توفير القرآن الكريم وتلاواته والأذكار ومواقيت الصلاة واتجاه القبلة والتنبيهات والميزات ذات الصلة.
-يُقدم بشرى لأغراض الاستخدام الشخصي والمعلوماتي والتعليمي والديني.
+بشرى تطبيق إسلامي شامل ومجاني لوجه الله تعالى، يهدف إلى توفير قراءة القرآن الكريم بالرسم العثماني وتفسيره الميسر، والاستماع لتلاوات خاشعة بأصوات كبار القراء مع إمكانية تنزيل السور والاستماع دون إنترنت، وحصن المسلم وأذكار اليوم والليلة مع عداد تسبيح تفاعلي، ومواقيت الصلاة الدقيقة مع 9 مؤذنين كبار وبانر إيقاف الأذان، وتنبيهات ما قبل الصلاة، وبوصلة اتجاه القبلة، وبث حي ومباشر لأكثر من 165 إذاعة إسلامية وقرآنية على مدار الساعة.
+يُقدم بشرى لأغراض الاستخدام الشخصي والمعلوماتي والتعليمي والديني وخالٍ تماماً من أي إعلانات أو أهداف تجارية.
 
-### 3. مواقيت الصلاة
-يتم حساب مواقيت الصلاة في بشرى باستخدام موقعك وإعدادات الحساب المختارة.
+### 3. مواقيت الصلاة وتنبيهات الأذان
+يتم حساب مواقيت الصلاة في بشرى باستخدام موقعك وإعدادات الحساب الفقهية المعتمدة.
+يوفر بشرى ميزة تشغيل الأذان الصوتي كاملاً في أوقات الصلوات، مع إمكانية تخصيص صوت المؤذن من بين 9 من كبار المؤذنين (بما في ذلك الشيخ محمد رفعت، عبد الباسط عبد الصمد، الحصري، علي ملا، المنشاوي، عصام بخاري، ناجي قزاز، النقشبندي، ونايف فدا)، مع إتاحة بانر التنبيه السريع لإيقاف الأذان وتنبيهات ما قبل الصلاة.
 قد تختلف المواقيت بحسب:
-* موقعك الجغرافي.
-* طريقة حساب المواقيت.
-* المذهب أو إعدادات حساب العصر.
-* الرصد والتعديلات المحلية.
-* دقة تحديد موقع الجهاز.
+* موقعك الجغرافي ودقة تحديد الموقع في الجهاز.
+* طريقة الحساب المتبعة ومذهب حساب صلاة العصر.
+* الرصد المحلي ومواقيت المساجد في منطقتك.
+* إعدادات تحسين البطارية ومنح صلاحية المنبهات الدقيقة في جهازك.
 
-لذلك فإن مواقيت الصلاة المعروضة في بشرى هي معلومات إرشادية، وقد لا تتطابق دائمًا بشكل كامل مع مواقيت المسجد المحلي أو الجهة الدينية المختصة.
-أنت مسؤول عن اختيار إعدادات الحساب المناسبة لموقعك.
+لذلك فإن مواقيت الصلاة المعروضة في بشرى هي معلومات إرشادية موثوقة ويُنصح بالتحقق من المسجد المحلي عند الحاجة، كما تقع على عاتقك مسؤولية ضبط إعدادات الحساب ومنح الصلاحيات اللازمة للتنبيهات.
 
 ### 4. اتجاه القبلة
-قد يستخدم بشرى موقع جهازك ومستشعر البوصلة لتحديد اتجاه القبلة.
+قد يستخدم بشرى موقع جهازك ومستشعر البوصلة لتحديد اتجاه القبلة نحو الكعبة المشرفة.
 قد تتأثر دقة البوصلة بالظروف المحيطة أو التداخل المغناطيسي أو إمكانيات الجهاز أو عدم معايرته بشكل صحيح.
-لذلك لا يضمن بشرى أن يكون الاتجاه المعروض دقيقًا بشكل كامل في جميع الظروف.
-عند الحاجة، يمكنك التحقق من الاتجاه باستخدام مصدر موثوق ومناسب.
+لذلك لا يضمن بشرى أن يكون الاتجاه المعروض دقيقًا بشكل كامل في جميع الظروف؛ وعند الحاجة، يمكنك التحقق من الاتجاه باستخدام مصدر موثوق ومناسب.
 
 ### 5. القرآن والتلاوات والمحتوى الديني
-قد يوفر بشرى نص القرآن الكريم والترجمات والتفاسير والتلاوات والأذكار وغيرها من المحتوى الديني.
-نبذل جهودًا معقولة لتقديم محتوى دقيق وموثوق، لكن بشرى لا يمثل جهة دينية رسمية ولا يُعد بديلًا عن العلماء المتخصصين أو المؤسسات الدينية الموثوقة.
-قد تختلف الترجمات والتفاسير بين المصادر ويجب فهمها في سياقها الصحيح.
+يوفر بشرى نص القرآن الكريم بالرسم العثماني الموثوق، والترجمات، والتفاسير الميسرة، وتلاوات كبار القراء، والأذكار النبوية.
+نبذل جهودًا متواصلة لتقديم محتوى دقيق ومراجع، لكن بشرى لا يمثل جهة إفتاء رسمية ولا يُعد بديلًا عن العلماء المتخصصين أو المؤسسات الدينية المعتمدة.
 
-### 6. المحتوى والخدمات المقدمة من أطراف أخرى
-قد يستخدم بشرى بعض المحتويات أو الملفات الصوتية أو واجهات API أو المكتبات أو الخدمات المقدمة من جهات خارجية.
-وقد يكون لهذه الجهات شروط استخدام وتراخيص وسياسات خصوصية خاصة بها.
-لا يدعي بشرى ملكية المحتوى المقدم من الأطراف الأخرى، ويستخدمه فقط عندما تتوفر الحقوق أو التراخيص أو الأذونات اللازمة.
+### 6. المحتوى الصوتي وبث الإذاعات الإسلامية
+تعتمد تلاوات القرآن الكريم والبث المباشر لأكثر من 165 إذاعة إسلامية على روابط وبثوث عامة وموثوقة (مثل mp3quran وشبكات البث الإسلامي المفتوحة).
+تطبيق بشرى يعمل كدليل ومشغل وسيط لتيسير الاستماع والانتفاع بهذه التلاوات والإذاعات الدينية دون أي استغلال تجاري، وتخضع خدمات البث للحقوق والسياسات الخاصة بمصادرها الأصلية.
 
-### 7. التنزيلات والمحتوى دون اتصال
-قد يتيح بشرى تنزيل التلاوات أو بعض المحتوى المدعوم لاستخدامه دون اتصال بالإنترنت.
-هذه الملفات مخصصة للاستخدام الشخصي من خلال التطبيق، ولا يجوز إعادة توزيعها أو بيعها أو إعادة نشرها بشكل عام أو استخدامها بما يخالف حقوق النشر أو شروط الترخيص المعمول بها.
-قد تختلف المحتويات المتاحة للتنزيل حسب الجهاز أو المنطقة أو مزود المحتوى أو شروط الترخيص.
+### 7. التنزيلات والاستماع دون إنترنت
+يتيح بشرى تنزيل تلاوات السور كاملة إلى ذاكرة التخزين المحلية بجهازك، للاستماع إليها في أي وقت دون اتصال بالإنترنت.
+هذه الملفات الصوتية مخصصة للاستخدام الشخصي الروحاني من خلال التطبيق، ويُمنع استغلالها تجارياً، ويمكنك إدارة وحذف الملفات المحملة بحرية في أي وقت من شاشة "البيانات والتخزين".
 
 ### 8. الملكية الفكرية
 تخضع برمجيات بشرى وتصميمه وهويته البصرية وواجهته ورسوماته وشعاره ومحتواه الأصلي للقوانين المعمول بها في مجال الملكية الفكرية.

@@ -3,7 +3,6 @@ import '../../../../l10n/app_localizations.dart';
 import '../../../../core/theme/app_colors.dart';
 
 import '../../../qibla/presentation/screens/qibla_screen.dart';
-import '../../../quran/presentation/widgets/recitation_bottom_sheet.dart';
 
 class QuickAccessCard extends StatelessWidget {
   final Function(int)? onTabChange;

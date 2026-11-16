@@ -14,12 +14,26 @@ class ReciterModel {
   });
 }
 
-// A curated list of high-quality reciters supported by api.alquran.cloud (type: versebyverse)
+// A curated list of high-quality reciters with Sheikh Al-Minshawi as #1 and Default.
 const List<ReciterModel> availableReciters = [
   ReciterModel(
+    id: 'ar.minshawi', 
+    nameAr: 'محمد صديق المنشاوي (مرتل)', 
+    nameEn: 'Mohamed Siddiq Al-Minshawi (Murattal)', 
+    narrationAr: 'رواية حفص عن عاصم (مرتل)', 
+    narrationEn: 'Hafs from Asim (Murattal)'
+  ),
+  ReciterModel(
+    id: 'ar.minshawimujawwad', 
+    nameAr: 'محمد صديق المنشاوي (مجود)', 
+    nameEn: 'Mohamed Siddiq Al-Minshawi (Mujawwad)', 
+    narrationAr: 'رواية حفص عن عاصم (مجود)', 
+    narrationEn: 'Hafs from Asim (Mujawwad)'
+  ),
+  ReciterModel(
     id: 'ar.abdulsamad', 
-    nameAr: 'عبد الباسط عبد الصمد', 
-    nameEn: 'Abdul Basit', 
+    nameAr: 'عبد الباسط عبد الصمد (مرتل)', 
+    nameEn: 'Abdul Basit (Murattal)', 
     narrationAr: 'رواية حفص عن عاصم', 
     narrationEn: 'Hafs from Asim'
   ),
@@ -32,10 +46,17 @@ const List<ReciterModel> availableReciters = [
   ),
   ReciterModel(
     id: 'ar.husary', 
-    nameAr: 'محمود خليل الحصري', 
-    nameEn: 'Mahmoud Al-Husary', 
+    nameAr: 'محمود خليل الحصري (مرتل)', 
+    nameEn: 'Mahmoud Al-Husary (Murattal)', 
     narrationAr: 'رواية حفص عن عاصم', 
     narrationEn: 'Hafs from Asim'
+  ),
+  ReciterModel(
+    id: 'ar.husarymujawwad', 
+    nameAr: 'محمود خليل الحصري (مجود)', 
+    nameEn: 'Mahmoud Al-Husary (Mujawwad)', 
+    narrationAr: 'رواية حفص عن عاصم (مجود)', 
+    narrationEn: 'Hafs from Asim (Mujawwad)'
   ),
   ReciterModel(
     id: 'ar.mahermuaiqly', 
@@ -76,6 +97,34 @@ const List<ReciterModel> availableReciters = [
     id: 'ar.hudhaify', 
     nameAr: 'علي بن عبدالرحمن الحذيفي', 
     nameEn: 'Ali Al-Hudhaify', 
+    narrationAr: 'رواية حفص عن عاصم', 
+    narrationEn: 'Hafs from Asim'
+  ),
+  ReciterModel(
+    id: 'ar.muhammadayyoub', 
+    nameAr: 'محمد أيوب', 
+    nameEn: 'Muhammad Ayyub', 
+    narrationAr: 'رواية حفص عن عاصم', 
+    narrationEn: 'Hafs from Asim'
+  ),
+  ReciterModel(
+    id: 'ar.muhammadjibreel', 
+    nameAr: 'محمد جبريل', 
+    nameEn: 'Muhammad Jibreel', 
+    narrationAr: 'رواية حفص عن عاصم', 
+    narrationEn: 'Hafs from Asim'
+  ),
+  ReciterModel(
+    id: 'ar.hanirifai', 
+    nameAr: 'هاني الرفاعي', 
+    nameEn: 'Hani Ar-Rifai', 
+    narrationAr: 'رواية حفص عن عاصم', 
+    narrationEn: 'Hafs from Asim'
+  ),
+  ReciterModel(
+    id: 'ar.abdullahbasfar', 
+    nameAr: 'عبد الله بصفر', 
+    nameEn: 'Abdullah Basfar', 
     narrationAr: 'رواية حفص عن عاصم', 
     narrationEn: 'Hafs from Asim'
   ),

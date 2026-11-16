@@ -1,6 +1,7 @@
 import '../../../prayer/presentation/widgets/notification_permission_banner.dart';
-import 'dart:ui';
 import 'package:flutter/material.dart';
+import '../../../../core/theme/sky_theme.dart';
+import '../../../tracker/presentation/widgets/prayer_garden_card.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../controllers/home_controller.dart';
@@ -9,9 +10,7 @@ import '../widgets/daily_wird_card.dart';
 import '../widgets/quick_access_card.dart';
 import '../widgets/continue_reading_card.dart';
 import '../widgets/selected_recitation_card.dart';
-import 'package:intl/intl.dart';
 import '../../../../core/notifications/notification_coordinator.dart';
-import '../../../prayer/presentation/screens/prayer_settings_screen.dart';
 import '../../../quran/data/repositories/quran_repository.dart';
 import '../../../azkar/presentation/screens/azkar_details_screen.dart';
 import '../../../azkar/presentation/providers/azkar_provider.dart';
@@ -74,41 +73,27 @@ class _HomeScreenState extends State<HomeScreen> {
                   final bool isCollapsed = constraints.biggest.height <= kToolbarHeight + 60;
                   if (!isCollapsed) return const SizedBox.shrink();
                   
-                  final headerMainColor = isDark ? Colors.black87 : Colors.white;
-                  final headerSubColor = isDark ? Colors.black54 : Colors.white70;
-                  final headerAccentColor = isDark ? const Color(0xFF8B5A2B) : AppColors.lightGoldenAccent;
-                  
                   return AnimatedBuilder(
                     animation: _controller,
                     builder: (context, _) {
-                      return Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      return Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Column(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                l10n.greeting,
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Theme.of(context).colorScheme.primaryContainer,
-                                ),
-                              ),
-                              Text(
-                                _controller.locationName,
-                                style: TextStyle(
-                                  fontSize: 10,
-                                  color: Theme.of(context).textTheme.bodyMedium?.color,
-                                ),
-                              ),
-                            ],
+                          Text(
+                            l10n.greeting,
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Theme.of(context).colorScheme.primaryContainer,
+                            ),
                           ),
-                          Icon(
-                            Icons.radio,
-                            color: Theme.of(context).colorScheme.primaryContainer,
-                            size: 20,
+                          Text(
+                            _controller.locationName,
+                            style: TextStyle(
+                              fontSize: 10,
+                              color: Theme.of(context).textTheme.bodyMedium?.color,
+                            ),
                           ),
                         ],
                       );
@@ -134,6 +119,16 @@ class _HomeScreenState extends State<HomeScreen> {
                         fit: BoxFit.cover,
                       ),
                       
+                      // Living sky: gradient + sun/moon on the real arc of the day + season (toggle in More)
+                      AnimatedBuilder(
+                        animation: _controller,
+                        builder: (context, _) {
+                          final pt = _controller.prayerTimes;
+                          if (pt == null) return const SizedBox.shrink();
+                          return SkyBackdrop(timings: pt.timings, dark: isDark);
+                        },
+                      ),
+
                       // Gradient Overlay for readability
                       DecoratedBox(
                         decoration: BoxDecoration(
@@ -304,7 +299,18 @@ class _HomeScreenState extends State<HomeScreen> {
           SliverList(
             delegate: SliverChildListDelegate([
               const NotificationPermissionBanner(),
-              const SizedBox(height: 20),
+              const SizedBox(height: 12),
+              // Prayer garden: one tree per prayer that grows with your streak, tap to mark "prayed"
+              AnimatedBuilder(
+                animation: _controller,
+                builder: (context, _) {
+                  final pt = _controller.prayerTimes;
+                  if (pt == null) return const SizedBox.shrink();
+                  final x = pt.timings;
+                  return PrayerGardenCard(times: [x.fajr, x.dhuhr, x.asr, x.maghrib, x.isha]);
+                },
+              ),
+              const SizedBox(height: 4),
               
               AnimatedBuilder(
                 animation: _controller,

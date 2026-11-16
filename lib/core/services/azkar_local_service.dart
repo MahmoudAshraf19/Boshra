@@ -7,15 +7,10 @@ class AzkarLocalService {
   /// Loads and parses the Azkar from the local JSON file.
   Future<List<AzkarModel>> getAzkar(String languageCode) async {
     try {
-      // Try to load the language specific file
-      String jsonString;
-      try {
-        jsonString = await rootBundle.loadString('assets/data/azkar_$languageCode.json');
-      } catch (_) {
-        // Fallback to Arabic if the language file doesn't exist yet
-        jsonString = await rootBundle.loadString('assets/data/azkar.json');
-      }
-      
+      final assetPath = (languageCode == 'en')
+          ? 'assets/data/azkar_en.json'
+          : 'assets/data/azkar.json';
+      final jsonString = await rootBundle.loadString(assetPath);
       final Map<String, dynamic> data = json.decode(jsonString);
       
       final List<dynamic> rows = data['rows'] ?? [];

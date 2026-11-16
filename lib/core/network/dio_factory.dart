@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import '../utils/app_logger.dart';
 
 /// Dio with sane defaults + automatic retry (exponential back-off) for
@@ -12,7 +13,10 @@ class DioFactory {
       connectTimeout: const Duration(seconds: 12),
       receiveTimeout: const Duration(seconds: 20),
       sendTimeout: const Duration(seconds: 12),
-      headers: {'Accept': 'application/json', 'User-Agent': 'Boshra/1.0 (Flutter)'},
+      headers: {
+        'Accept': 'application/json',
+        if (!kIsWeb) 'User-Agent': 'Boshra/1.0 (Flutter)',
+      },
     ));
     dio.interceptors.add(_RetryInterceptor(dio, maxRetries));
     return dio;

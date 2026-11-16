@@ -197,7 +197,6 @@ class _RecitationBottomSheetState extends State<RecitationBottomSheet> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final isDark = theme.brightness == Brightness.dark;
     final isArabic = widget.locale == 'ar';
     
     // Main UI Colors from Theme

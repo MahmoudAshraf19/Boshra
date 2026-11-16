@@ -46,3 +46,7 @@ app.*.map.json
 # Keystore files
 android/key.properties
 android/app/*.jks
+
+# Independent subprojects
+Boshra main website/
+

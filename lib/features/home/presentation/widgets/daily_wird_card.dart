@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../../../../l10n/app_localizations.dart';
-import '../../../../core/theme/app_colors.dart';
 
 class DailyWirdCard extends StatelessWidget {
   final VoidCallback onContinue;

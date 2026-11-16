@@ -114,7 +114,6 @@ class _SurahTafsirBottomSheetState extends State<SurahTafsirBottomSheet> {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final l10n = AppLocalizations.of(context)!;
-    final selectedTafsirName = _availableTafsirs[_selectedTafsirIndex]['name']!;
 
     return DraggableScrollableSheet(
       initialChildSize: 0.95,

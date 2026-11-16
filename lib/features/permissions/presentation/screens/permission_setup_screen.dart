@@ -24,7 +24,7 @@ class PermissionSetupScreen extends StatefulWidget {
   State<PermissionSetupScreen> createState() => _PermissionSetupScreenState();
 }
 
-enum _Kind { notifications, exact, channels, battery, autostart }
+enum _Kind { location, notifications, exact, channels, battery, autostart }
 
 class _PermissionSetupScreenState extends State<PermissionSetupScreen> with WidgetsBindingObserver {
   ReliabilityStatus? _s;
@@ -56,12 +56,18 @@ class _PermissionSetupScreenState extends State<PermissionSetupScreen> with Widg
   }
 
   Future<void> _refresh() async {
-    final s = await PermissionCenter.check();
+    // ALWAYS the real OS state: a cached value made granted permissions look
+    // "not allowed" after returning from Settings.
+    final s = await PermissionCenter.check(force: true);
     if (mounted) setState(() => _s = s);
   }
 
+  bool get _ar => Localizations.localeOf(context).languageCode == 'ar';
+
   bool _granted(_Kind k, ReliabilityStatus s) {
     switch (k) {
+      case _Kind.location:
+        return s.location;
       case _Kind.notifications:
         return s.notifications;
       case _Kind.exact:
@@ -76,15 +82,20 @@ class _PermissionSetupScreenState extends State<PermissionSetupScreen> with Widg
   }
 
   List<_Kind> _visible(ReliabilityStatus s) => [
+        _Kind.location,
         _Kind.notifications,
         _Kind.exact,
         if (!s.channelsOk) _Kind.channels,
         _Kind.battery,
-        if (s.brand.isNotEmpty && (s.needsAutostart)) _Kind.autostart,
+        // Kept visible after it's done so the user sees the ✓ "Allowed" mark.
+        if (s.autostartApplicable) _Kind.autostart,
       ];
 
   Future<void> _run(_Kind k) async {
     switch (k) {
+      case _Kind.location:
+        await PermissionCenter.requestLocation();
+        break;
       case _Kind.notifications:
         await PermissionCenter.requestNotifications();
         break;
@@ -103,23 +114,45 @@ class _PermissionSetupScreenState extends State<PermissionSetupScreen> with Widg
     }
   }
 
-  /// Runs one step. If it sent the user to a Settings page, waits (max 3 min) until
-  /// they come back, so "Allow all" never stacks several Settings screens.
+  /// Runs ONE step. If it sent the user to a Settings page / system dialog, waits
+  /// (max 3 min) until they come back, then re-reads the real state, so
+  /// "Allow all" never stacks several Settings screens.
   Future<void> _step(_Kind k) async {
-    _resumeWaiter = Completer<void>();
+    final waiter = Completer<void>();
+    _resumeWaiter = waiter;
     await _run(k);
+    // Give Android time to move us to the background (dialog / Settings).
     await Future.delayed(const Duration(milliseconds: 700));
-    if (_life != AppLifecycleState.resumed) {
-      await _resumeWaiter?.future.timeout(const Duration(minutes: 3), onTimeout: () {});
+    if (_life != AppLifecycleState.resumed && !waiter.isCompleted) {
+      await waiter.future.timeout(const Duration(minutes: 3), onTimeout: () {});
     }
     _resumeWaiter = null;
+    if (k == _Kind.autostart) {
+      // No Android API can read the vendor auto-start switch: the user went
+      // there and came back → recorded as done.
+      await PermissionCenter.markAutostartDone();
+    }
+    // Some ROMs publish the new state a moment after resuming.
     await _refresh();
+    await Future.delayed(const Duration(milliseconds: 400));
+    await _refresh();
+  }
+
+  Future<void> _stepOne(_Kind k) async {
+    if (_busy) return;
+    setState(() => _busy = true);
+    try {
+      await _step(k);
+    } finally {
+      if (mounted) setState(() => _busy = false);
+    }
   }
 
   Future<void> _allowAll() async {
     if (_busy) return;
     setState(() => _busy = true);
     try {
+      await _refresh();
       for (final k in _Kind.values) {
         final s = _s;
         if (s == null || !_visible(s).contains(k) || _granted(k, s)) continue;
@@ -139,6 +172,8 @@ class _PermissionSetupScreenState extends State<PermissionSetupScreen> with Widg
 
   String _title(AppLocalizations l, _Kind k) {
     switch (k) {
+      case _Kind.location:
+        return _ar ? 'الموقع (لمواعيد صلاة دقيقة)' : 'Location (accurate prayer times)';
       case _Kind.notifications:
         return l.permNotifTitle;
       case _Kind.exact:
@@ -154,6 +189,10 @@ class _PermissionSetupScreenState extends State<PermissionSetupScreen> with Widg
 
   String _desc(AppLocalizations l, _Kind k, ReliabilityStatus s) {
     switch (k) {
+      case _Kind.location:
+        return _ar
+            ? 'لحساب مواعيد الصلاة والقبلة حسب مدينتك. تقدر بدلاً من ذلك تختار المدينة يدويًا من إعدادات الصلاة.'
+            : 'Used to compute prayer times and Qibla for your city. You can pick a city manually in prayer settings instead.';
       case _Kind.notifications:
         return l.permNotifDesc;
       case _Kind.exact:
@@ -170,6 +209,8 @@ class _PermissionSetupScreenState extends State<PermissionSetupScreen> with Widg
 
   IconData _icon(_Kind k) {
     switch (k) {
+      case _Kind.location:
+        return Icons.location_on_rounded;
       case _Kind.notifications:
         return Icons.notifications_active_rounded;
       case _Kind.exact:
@@ -281,7 +322,7 @@ class _PermissionSetupScreenState extends State<PermissionSetupScreen> with Widg
             Text(l10n.permGranted, style: TextStyle(color: cs.primary, fontSize: 12, fontWeight: FontWeight.bold))
           else
             FilledButton.tonal(
-              onPressed: _busy ? null : () => _step(k),
+              onPressed: _busy ? null : () => _stepOne(k),
               child: Text(l10n.permAllow),
             ),
         ]),

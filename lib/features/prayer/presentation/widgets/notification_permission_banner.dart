@@ -13,13 +13,15 @@ class NotificationPermissionBanner extends StatefulWidget {
 }
 
 class _State extends State<NotificationPermissionBanner> with WidgetsBindingObserver {
-  ReliabilityStatus? _s;
+  ReliabilityStatus? _s = PermissionCenter.cachedStatus;
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
-    _refresh();
+    if (_s == null) {
+      _refresh();
+    }
   }
 
   @override
@@ -30,11 +32,11 @@ class _State extends State<NotificationPermissionBanner> with WidgetsBindingObse
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    if (state == AppLifecycleState.resumed) _refresh();
+    if (state == AppLifecycleState.resumed) _refresh(force: true);
   }
 
-  Future<void> _refresh() async {
-    final s = await PermissionCenter.check();
+  Future<void> _refresh({bool force = false}) async {
+    final s = await PermissionCenter.check(force: force);
     if (mounted) setState(() => _s = s);
   }
 

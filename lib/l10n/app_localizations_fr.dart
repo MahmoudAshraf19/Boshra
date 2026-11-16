@@ -802,4 +802,896 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get permFix => 'Corriger';
+
+  @override
+  String get adhanStopAction => 'Arrêter l’adhan';
+
+  @override
+  String get adhanBannerTitle => 'Bannière de l’adhan';
+
+  @override
+  String get adhanBannerDesc =>
+      'S’affiche en haut de l’écran et sur l’écran de verrouillage à l’heure de l’adhan, avec un bouton pour l’arrêter.';
+
+  @override
+  String get adhanBannerPreview => 'Aperçu de la bannière';
+
+  @override
+  String get adhanBannerVerse =>
+      'En vérité, la prière est prescrite aux croyants à des heures déterminées.';
+
+  @override
+  String get notifSettingsTitle => 'Notifications et Adhan';
+
+  @override
+  String get modeSilent => 'Silencieux';
+
+  @override
+  String get modeShort => 'Alerte courte';
+
+  @override
+  String get modeAdhan => 'Adhan complet';
+
+  @override
+  String get modeSilentDesc => 'Notification sans son';
+
+  @override
+  String get modeShortDesc => 'Son de notification normal';
+
+  @override
+  String get modeAdhanDesc => 'Adhan complet avec bouton d’arrêt';
+
+  @override
+  String minutesShort(int minutes) {
+    return '$minutes min';
+  }
+
+  @override
+  String get remindersSection => 'Rappels quotidiens';
+
+  @override
+  String afterFajrDesc(int minutes) {
+    return '$minutes min après le Fajr';
+  }
+
+  @override
+  String afterAsrDesc(int minutes) {
+    return '$minutes min après l’Asr (avant le coucher du soleil)';
+  }
+
+  @override
+  String get ayahReminderTitle => 'Verset du jour';
+
+  @override
+  String get ayahReminderDesc =>
+      'Un nouveau verset chaque jour à l’heure de votre choix';
+
+  @override
+  String get reminderTime => 'Heure';
+
+  @override
+  String get muadhinTitle => 'Muezzin';
+
+  @override
+  String get atAdhanTime => 'À l’heure de l’Adhan';
+
+  @override
+  String get advancedSection => 'Précision et calcul';
+
+  @override
+  String get calcMethodTitle => 'Méthode de calcul';
+
+  @override
+  String get calcMethodAuto => 'Automatique (selon votre position)';
+
+  @override
+  String get asrSchoolTitle => 'Calcul de l’Asr';
+
+  @override
+  String get asrStandard => 'Standard (chafi’ite, malikite, hanbalite)';
+
+  @override
+  String get asrHanafi => 'Hanafite';
+
+  @override
+  String get adjustTimesTitle => 'Réglage fin des horaires (minutes)';
+
+  @override
+  String get testAdhanButton => 'Tester l’Adhan maintenant';
+
+  @override
+  String get locationFallbackWarning =>
+      'Votre position est indisponible : les horaires sont calculés pour La Mecque. Activez la localisation pour des horaires précis.';
+
+  @override
+  String get sadaqaJariyaTitle => 'Aumône continue (Sadaqa Jariya)';
+
+  @override
+  String get sadaqaHadith =>
+      '« Celui qui guide vers un bien a la même récompense que celui qui l\'a accompli. »';
+
+  @override
+  String get narratedByMuslim => 'Rapporté par Mouslim';
+
+  @override
+  String get yourInviteCode => 'Votre code d\'invitation';
+
+  @override
+  String get codeCopied => 'Code copié';
+
+  @override
+  String get shareAppButton => 'Partager l\'application';
+
+  @override
+  String get shareViaWhatsApp => 'Partager via WhatsApp';
+
+  @override
+  String get startFirstShare => 'Faites votre premier partage 🌱';
+
+  @override
+  String sharedTimesCount(Object count) {
+    return 'Vous avez partagé l\'application $count fois — qu\'Allah accepte';
+  }
+
+  @override
+  String get haveFriendCode => 'Avez-vous le code d\'un ami ?';
+
+  @override
+  String recordedInviteFrom(Object code) {
+    return 'Invitation enregistrée de $code — qu\'Allah le récompense';
+  }
+
+  @override
+  String get invalidInviteCode => 'Code invalide (ex: BSH-AB3K9)';
+
+  @override
+  String get ownInviteCodeError => 'C\'est votre propre code 🙂';
+
+  @override
+  String inviteShareMessage(Object code, Object link) {
+    return 'J\'utilise l\'application « Boshra » pour l\'Adhan, le Coran et les Invocations — je vous la recommande 🌙\nPartagez-la comme aumône continue (Sadaqa Jariya) — « Celui qui guide vers un bien a la même récompense que celui qui l\'a accompli. »\n\n$link\nCode d\'invitation : $code';
+  }
+
+  @override
+  String get diagTitle => 'L\'Adhan va-t-il sonner ?';
+
+  @override
+  String get diagAllGood =>
+      'Tout est en ordre — l\'Adhan sonnera à l\'heure insha\'Allah';
+
+  @override
+  String diagCanImprove(Object count) {
+    return 'L\'Adhan devrait sonner, mais $count point(s) peuvent être améliorés';
+  }
+
+  @override
+  String diagProblemsFound(Object count) {
+    return '$count problème(s) peuvent bloquer l\'Adhan — réparez avec les boutons ci-dessous';
+  }
+
+  @override
+  String get diagFix => 'Réparer';
+
+  @override
+  String get diagTestAdhanNow => 'Tester l\'Adhan maintenant';
+
+  @override
+  String get diagReschedule => 'Re-planifier';
+
+  @override
+  String get diagRecentEvents => 'Événements récents';
+
+  @override
+  String get diagNoEvents => 'Aucun événement pour le moment';
+
+  @override
+  String get diagCopyReport => 'Copier le rapport pour le support';
+
+  @override
+  String get diagReportCopied => 'Rapport de support copié';
+
+  @override
+  String get diagNotifications => 'Notifications';
+
+  @override
+  String get diagNotifEnabled => 'Activées';
+
+  @override
+  String get diagNotifBlocked =>
+      'Bloquées — l\'Adhan ne pourra pas s\'afficher';
+
+  @override
+  String get diagEnable => 'Activer';
+
+  @override
+  String get diagChannels => 'Canaux de notification';
+
+  @override
+  String get diagChannelsAllEnabled => 'Tous activés';
+
+  @override
+  String get diagChannelMuted =>
+      'Un canal est mis en sourdine dans les paramètres du système';
+
+  @override
+  String get diagOpenSettings => 'Ouvrir les paramètres';
+
+  @override
+  String get diagExactAlarms => 'Alarmes précises';
+
+  @override
+  String get diagExactAlarmsAllowed =>
+      'Autorisé — l\'Adhan sonne à la seconde exacte';
+
+  @override
+  String get diagExactAlarmsNotAllowed =>
+      'Non autorisé — l\'Adhan risque d\'être en retard';
+
+  @override
+  String get diagAllow => 'Autoriser';
+
+  @override
+  String get diagBattery => 'Optimisation de batterie';
+
+  @override
+  String get diagBatteryExempt => 'Application exemptée';
+
+  @override
+  String get diagBatteryMayKill =>
+      'Le système risque d\'arrêter l\'app en arrière-plan';
+
+  @override
+  String get diagExempt => 'Exempter';
+
+  @override
+  String get diagPrayerMode => 'Mode prière';
+
+  @override
+  String get diagPrayerModeFullSilence =>
+      'Silence total prêt (accès Ne pas déranger accordé)';
+
+  @override
+  String get diagPrayerModeVibrateOnly =>
+      'Sans accès « Ne pas déranger », nous ne pouvons passer qu\'en vibreur';
+
+  @override
+  String get diagGrantPermission => 'Accorder l\'accès';
+
+  @override
+  String get diagAutostart => 'Démarrage automatique';
+
+  @override
+  String diagAutostartConfigured(Object brand) {
+    return 'Configuré ($brand)';
+  }
+
+  @override
+  String diagAutostartNeeds(Object brand) {
+    return 'L\'appareil $brand ferme les applications — activez le démarrage automatique';
+  }
+
+  @override
+  String get diagOpen => 'Ouvrir';
+
+  @override
+  String get diagLocation => 'Localisation';
+
+  @override
+  String diagLocationManual(Object city) {
+    return 'Ville manuelle : $city';
+  }
+
+  @override
+  String get diagLocationApprox => 'Approximatif';
+
+  @override
+  String get diagLocationUnknown =>
+      'Inconnu — utilisation d\'une ville par défaut';
+
+  @override
+  String get diagLocationGpsOff =>
+      'Le service de localisation (GPS) est désactivé';
+
+  @override
+  String get diagLocationDenied => 'Autorisation de localisation refusée';
+
+  @override
+  String get diagLocationPermanentlyDenied =>
+      'Autorisation refusée définitivement — ouvrez les paramètres';
+
+  @override
+  String get diagLocationNoFix =>
+      'Impossible de déterminer la position (signal faible)';
+
+  @override
+  String get diagLocationMock => 'Une fausse localisation est active — ignorée';
+
+  @override
+  String get diagLocationTzMismatch =>
+      'La position contredit le fuseau horaire de l\'appareil';
+
+  @override
+  String get diagFixLocation => 'Corriger la position';
+
+  @override
+  String get diagSetLocation => 'Définir';
+
+  @override
+  String get diagLastScheduling => 'Dernière planification';
+
+  @override
+  String get diagNeverScheduled => 'Pas encore planifié';
+
+  @override
+  String get diagScheduleNow => 'Planifier maintenant';
+
+  @override
+  String diagScheduleAlertsCount(Object count) {
+    return '$count alertes';
+  }
+
+  @override
+  String get diagScheduleIncomplete => 'incomplet (calcul hors ligne)';
+
+  @override
+  String get diagScheduleError => 'erreur';
+
+  @override
+  String get diagNextAdhan => 'Prochain Adhan';
+
+  @override
+  String get diagAllPrayersSilent =>
+      'Toutes les prières sont sur silencieux ou notification courte';
+
+  @override
+  String diagArmedAdhansCount(Object count) {
+    return '$count Adhans programmés dans le système';
+  }
+
+  @override
+  String get diagNoAdhanArmed =>
+      'Aucun Adhan n\'est armé dans les alarmes ! Appuyez sur planifier';
+
+  @override
+  String get diagOfflineMode => 'Mode hors ligne';
+
+  @override
+  String diagOfflineMonthsCached(Object count) {
+    return '$count mois en cache — fonctionne sans internet';
+  }
+
+  @override
+  String diagOfflineMonthsOnly(Object count) {
+    return 'Seulement $count mois en cache (se complètera en ligne)';
+  }
+
+  @override
+  String get diagInternet => 'Internet';
+
+  @override
+  String get diagInternetConnected => 'Connecté au serveur des horaires';
+
+  @override
+  String get diagInternetUnavailable =>
+      'Indisponible actuellement — les horaires en cache suffisent';
+
+  @override
+  String get diagTestAdhanTitle => 'Test de l\'Adhan';
+
+  @override
+  String get diagTestAdhanBody => 'Si vous entendez cela, tout fonctionne';
+
+  @override
+  String get diagStop => 'Arrêter';
+
+  @override
+  String get diagAgoJustNow => 'à l\'instant';
+
+  @override
+  String diagAgoMinutes(Object m) {
+    return 'il y a $m min';
+  }
+
+  @override
+  String diagAgoHours(Object h) {
+    return 'il y a $h h';
+  }
+
+  @override
+  String diagAgoDays(Object d) {
+    return 'il y a $d j';
+  }
+
+  @override
+  String get zakatCalculatorTitle => 'Calculateur de Zakat';
+
+  @override
+  String get zakatCurrency => 'Devise';
+
+  @override
+  String get zakatTodayPricesGram => 'Prix du jour (au gramme)';
+
+  @override
+  String get zakatRefresh => 'Actualiser';
+
+  @override
+  String get zakatEditManually => 'Modifier manuellement';
+
+  @override
+  String get zakatCouldNotLoadPrices =>
+      'Impossible de charger les cours (hors ligne). Appuyez sur ✏️ pour saisir le prix au gramme.';
+
+  @override
+  String get zakatGold24 => 'Or 24 carats';
+
+  @override
+  String get zakatGold21 => 'Or 21 carats';
+
+  @override
+  String get zakatGold18 => 'Or 18 carats';
+
+  @override
+  String get zakatSilver => 'Argent';
+
+  @override
+  String get zakatGram => 'g';
+
+  @override
+  String get zakatUsingManualPrices => '✏️ Utilisation de vos prix manuels';
+
+  @override
+  String zakatWorldPriceStamp(Object date) {
+    return 'Cours mondial × taux de change — mis à jour $date';
+  }
+
+  @override
+  String get zakatPriceOld => ' (ancien)';
+
+  @override
+  String get zakatNisab => 'Nissab';
+
+  @override
+  String get zakatGoldNisab => 'Or (85 g)';
+
+  @override
+  String get zakatSilverNisab => 'Argent (595 g)';
+
+  @override
+  String get zakatNisabExplanation =>
+      'Utilisez le nissab préconisé par votre autorité religieuse de confiance. Le nissab d\'argent étant plus bas, il concerne davantage de donateurs.';
+
+  @override
+  String get zakatYourWealth => 'Vos biens';
+
+  @override
+  String get zakatCashSavings => 'Espèces, épargne et comptes bancaires';
+
+  @override
+  String get zakatSharesInvestments => 'Actions, investissements et fonds';
+
+  @override
+  String get zakatTradeGoods => 'Marchandises commerciales (valeur marchande)';
+
+  @override
+  String get zakatMoneyOwedToYou => 'Argent qu\'on vous doit (recouvrable)';
+
+  @override
+  String get zakatDebtsDue => 'Dettes immédiates que vous devez (déduites)';
+
+  @override
+  String get zakatJewelleryNote =>
+      'Les savants divergent sur la Zakat des bijoux portés ; si vous suivez l\'avis dispensateur, laissez les champs vides.';
+
+  @override
+  String get zakatTotalZakatableWealth =>
+      'Total des biens assujettis à la Zakat';
+
+  @override
+  String get zakatEnterPriceForNisab =>
+      'Saisissez le cours de l\'or ou de l\'argent pour calculer le nissab';
+
+  @override
+  String zakatNisabValue(Object amount, Object cur) {
+    return 'Nissab : $amount $cur';
+  }
+
+  @override
+  String get zakatDue25 => 'Zakat due (2,5%)';
+
+  @override
+  String get zakatHawlCondition =>
+      'À condition qu\'une année lunaire complète (Hawl) se soit écoulée.';
+
+  @override
+  String zakatNotEligibleShort(Object amount, Object cur) {
+    return 'En dessous du nissab (il manque $amount $cur) — aucune Zakat due pour le moment.';
+  }
+
+  @override
+  String get zakatCopyResult => 'Copier le résultat';
+
+  @override
+  String get zakatResultCopied => 'Résultat copié';
+
+  @override
+  String get zakatYearlyReminder => 'Rappel annuel de Zakat';
+
+  @override
+  String get zakatReminderExplanation =>
+      'Choisissez la date où vos biens ont atteint le nissab. Nous vous rappellerons une semaine avant et le jour même chaque année lunaire.';
+
+  @override
+  String get zakatSetDate => 'Définir la date';
+
+  @override
+  String zakatNextDue(Object date) {
+    return 'Prochaine échéance : $date';
+  }
+
+  @override
+  String get zakatScholarsDisclaimer =>
+      'Remarque : guide indicatif. Pour les cas particuliers (actions complexes, immobilier commercial...), consultez un savant.';
+
+  @override
+  String zakatManualPricesTitle(Object cur) {
+    return 'Prix locaux manuels ($cur)';
+  }
+
+  @override
+  String get zakatManualPricesDesc =>
+      'Le cours chez votre bijoutier local peut différer du cours mondial. Saisissez votre prix au gramme ou laissez vide.';
+
+  @override
+  String get zakatGold24PerGram => 'Or 24 carats par gramme';
+
+  @override
+  String get zakatSilverPerGram => 'Argent par gramme';
+
+  @override
+  String get zakatPickHawlHelp => 'Date où vos biens ont atteint le nissab';
+
+  @override
+  String zakatSummaryShare(
+    Object cur,
+    Object due,
+    Object nisabType,
+    Object nisabVal,
+    Object total,
+  ) {
+    return 'Zakat — Boshra\nTotal des biens imposables : $total $cur\nNissab ($nisabType) : $nisabVal $cur\nZakat due (2,5%) : $due $cur';
+  }
+
+  @override
+  String get trackerTitle => 'Suivi des prières';
+
+  @override
+  String get trackerTimeNotStarted =>
+      'L\'heure de cette prière n\'a pas encore commencé 🌙';
+
+  @override
+  String get trackerLearningHabits => '🧠 Apprentissage de vos habitudes';
+
+  @override
+  String get trackerLearningDesc =>
+      'Enregistrez vos prières pendant au moins 5 jours et nous vous suggérerons des améliorations sur mesure (analyse 100% locale).';
+
+  @override
+  String trackerFajrSlips(Object days, Object missed) {
+    return '🌅 Le Fajr vous échappe : $missed fois sur les $days derniers jours';
+  }
+
+  @override
+  String trackerSleepReminderActive(Object time) {
+    return 'Votre rappel pour dormir tôt est actif à $time chaque soir 🌿';
+  }
+
+  @override
+  String get trackerSleepReminderSuggest =>
+      'Manquer le Fajr est souvent dû au coucher tardif. Voulez-vous un rappel pour dormir tôt chaque soir ?';
+
+  @override
+  String trackerTurnOnTime(Object time) {
+    return 'Activer ($time)';
+  }
+
+  @override
+  String get trackerNotNow => 'Pas maintenant';
+
+  @override
+  String get trackerChangeTime => 'Changer l\'heure';
+
+  @override
+  String get trackerTurnOff => 'Désactiver';
+
+  @override
+  String get trackerPickAnotherTime => 'Choisir une autre heure';
+
+  @override
+  String trackerPrayerNearEnd(Object prayer) {
+    return '⏰ $prayer est souvent accomplie vers la fin de son heure';
+  }
+
+  @override
+  String trackerPrayerNearEndDesc(Object prayer) {
+    return 'Le rappel doux pour $prayer arrive désormais plus tôt (au milieu plutôt qu\'à la fin).';
+  }
+
+  @override
+  String get trackerGreatConsistency => '✨ Excellente régularité';
+
+  @override
+  String trackerWeakestPrayer(Object prayer) {
+    return '🌿 Prière la moins régulière : $prayer';
+  }
+
+  @override
+  String get trackerNoPrayerSlipping =>
+      'Aucune prière ne vous échappe régulièrement. Continuez ainsi !';
+
+  @override
+  String trackerPrayerMissedCount(Object days, Object missed) {
+    return 'Manquée $missed fois sur les $days derniers jours. Le rappel doux vous aide.';
+  }
+
+  @override
+  String get trackerTurnOffNudge => 'Désactiver le rappel doux';
+
+  @override
+  String get trackerTurnOnNudge => 'Activer le rappel doux';
+
+  @override
+  String get trackerStopLearning => 'Arrêter l\'analyse des habitudes';
+
+  @override
+  String get trackerStartLearning => 'Analyser mes habitudes';
+
+  @override
+  String get trackerStartStreakToday => 'Commencez votre série aujourd\'hui';
+
+  @override
+  String trackerStreakDays(Object count) {
+    return 'Série de $count jours, les cinq prières';
+  }
+
+  @override
+  String trackerBestStreakStats(Object best, Object pct) {
+    return 'Meilleure série : $best — cette semaine : $pct%';
+  }
+
+  @override
+  String get trackerToday => 'Aujourd\'hui';
+
+  @override
+  String get trackerYesterday => 'Hier';
+
+  @override
+  String get trackerYourGarden => 'Votre jardin 🌳';
+
+  @override
+  String get trackerGardenDesc =>
+      'Chaque prière a son arbre qui grandit à mesure que vous êtes assidu';
+
+  @override
+  String get trackerDayUnit => 'j';
+
+  @override
+  String get trackerTodayPrayers => 'Prières d\'aujourd\'hui';
+
+  @override
+  String trackerPrayersOnDate(Object date) {
+    return 'Prières du $date';
+  }
+
+  @override
+  String get trackerPrayedMark => 'Priée ✓';
+
+  @override
+  String get trackerNotMarked => 'Non marquée';
+
+  @override
+  String get trackerThisWeek => 'Cette semaine';
+
+  @override
+  String trackerTotalPrayedCount(Object count) {
+    return 'Total enregistré : $count prières';
+  }
+
+  @override
+  String get gardenTitle => 'Mon jardin';
+
+  @override
+  String get gardenHomeCardTitle => 'Votre jardin de prières 🌳';
+
+  @override
+  String get gardenEnterFull => 'Entrer dans votre jardin complet 🌿';
+
+  @override
+  String get gardenTooEarlySeed => 'Trop tôt… la graine attend 🌱';
+
+  @override
+  String get gardenChooseMonth => 'Choisir le mois';
+
+  @override
+  String get gardenOf => 'Jardin de';
+
+  @override
+  String get gardenHijriSuffix => 'H';
+
+  @override
+  String gardenPerfectDaysCount(Object count) {
+    return '$count jours parfaits';
+  }
+
+  @override
+  String gardenBestStreakCount(Object count) {
+    return 'Meilleure série $count';
+  }
+
+  @override
+  String get gardenBlessedForest => 'Une forêt bénie';
+
+  @override
+  String gardenWeekNumber(Object num) {
+    return 'Semaine $num';
+  }
+
+  @override
+  String get gardenMsgFlourishing => 'Machallah ! Un jardin florissant 🌳🌳🌳';
+
+  @override
+  String get gardenMsgKeepGoing =>
+      'Un beau jardin — continuez pour en faire une forêt 🌿';
+
+  @override
+  String get gardenMsgWaterToday =>
+      'Chaque prière arrose un arbre. Commencez dès aujourd\'hui 💧';
+
+  @override
+  String get gardenMsgWaitingFirst =>
+      'Le jardin vous attend… votre première prière plante le premier arbre 🌱';
+
+  @override
+  String plantStatusPrayedAt(Object time) {
+    return 'Priée ✓ à $time';
+  }
+
+  @override
+  String get plantStatusPrayed => 'Priée ✓';
+
+  @override
+  String get plantStatusPending => 'Son heure est entrée — pas encore notée 💧';
+
+  @override
+  String get plantStatusMissed => 'Non notée — l\'arbre a besoin d\'eau';
+
+  @override
+  String get plantStatusUpcoming => 'Son heure n\'est pas encore venue 🌱';
+
+  @override
+  String plantStreakFruit(Object prayer, Object streak) {
+    return 'Un arbre fruitier ! $streak jours d\'affilée pour $prayer 🍎';
+  }
+
+  @override
+  String plantStreakWeekPlus(Object prayer, Object streak) {
+    return '$streak jours consécutifs pour $prayer 🔥';
+  }
+
+  @override
+  String plantStreakDayNum(Object prayer, Object streak) {
+    return 'Jour $streak de votre série sur $prayer';
+  }
+
+  @override
+  String get plantWaterConsistency =>
+      'Chaque prière fait grandir l\'arbre — votre assiduité est son eau 💧';
+
+  @override
+  String get plantUndo => 'Annuler';
+
+  @override
+  String get plantWaterAction => 'Je l\'ai priée — arroser l\'arbre 💧';
+
+  @override
+  String get plantStageSeed => 'Graine';
+
+  @override
+  String get plantStageSprout => 'Pousse';
+
+  @override
+  String get plantStageSapling => 'Jeune pousse';
+
+  @override
+  String get plantStageYoungTree => 'Jeune arbre';
+
+  @override
+  String get plantStageTree => 'Arbre';
+
+  @override
+  String get plantStageFruitTree => 'Arbre fruitier';
+
+  @override
+  String get treeCherryBlossom => 'Cerisier en fleur';
+
+  @override
+  String get treeDatePalm => 'Palmier dattier';
+
+  @override
+  String get treeOrangeTree => 'Oranger';
+
+  @override
+  String get treePomegranate => 'Grenadier';
+
+  @override
+  String get treeCypress => 'Cyprès';
+
+  @override
+  String get weeklySummaryTitle => 'Bilan hebdomadaire';
+
+  @override
+  String get weeklyShareAsImage => 'Partager comme image';
+
+  @override
+  String get weeklyNoPrayersLogged =>
+      'Aucune prière enregistrée cette semaine. Commencez depuis votre jardin sur l\'accueil 🌱';
+
+  @override
+  String get weeklyShareYourTree => 'Partager votre arbre de la semaine';
+
+  @override
+  String get weeklyNotificationHint =>
+      'Chaque vendredi soir après l\'Isha, recevez une notification avec votre résumé hebdomadaire.';
+
+  @override
+  String get weeklyImageError => 'Impossible de créer l\'image, réessayez';
+
+  @override
+  String get weeklyCardTitle => 'Mon bilan hebdomadaire';
+
+  @override
+  String get weeklyCardTreeSubtitle => 'Mon arbre de prières cette semaine 🌳';
+
+  @override
+  String weeklyCardPercentLogged(Object pct) {
+    return '$pct% de mes prières accomplies à l\'heure';
+  }
+
+  @override
+  String weeklyCardStrongest(Object prayer) {
+    return 'Prière la plus assidue : $prayer';
+  }
+
+  @override
+  String weeklyCardWeakest(Object prayer) {
+    return 'Moins assidue : $prayer';
+  }
+
+  @override
+  String weeklyCardStreak(Object count) {
+    return '🔥 $count jours consécutifs, toutes les prières';
+  }
+
+  @override
+  String get weeklyCardAppBranding => 'Boshra — Adhan, Invocations & Coran';
+
+  @override
+  String weeklySentencePrayed(Object max, Object total) {
+    return 'Vous avez accompli $total prières sur $max';
+  }
+
+  @override
+  String weeklySentenceStrongest(Object prayer) {
+    return 'la plus régulière : $prayer';
+  }
+
+  @override
+  String weeklySentenceWeakest(Object prayer) {
+    return 'la moins régulière : $prayer';
+  }
+
+  @override
+  String get amLabel => 'AM';
+
+  @override
+  String get pmLabel => 'PM';
 }

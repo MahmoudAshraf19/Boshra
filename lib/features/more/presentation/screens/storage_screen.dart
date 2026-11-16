@@ -13,8 +13,8 @@ class StorageScreen extends StatefulWidget {
 
 class _StorageScreenState extends State<StorageScreen> {
   final StorageService _storageService = StorageService();
-  StorageInfo? _storageInfo;
-  bool _isLoading = true;
+  StorageInfo? _storageInfo = StorageService.cachedInfo;
+  late bool _isLoading = _storageInfo == null;
 
   @override
   void initState() {
@@ -23,12 +23,13 @@ class _StorageScreenState extends State<StorageScreen> {
   }
 
   Future<void> _loadStorageInfo() async {
-    setState(() => _isLoading = true);
     final info = await _storageService.getStorageInfo();
-    setState(() {
-      _storageInfo = info;
-      _isLoading = false;
-    });
+    if (mounted) {
+      setState(() {
+        _storageInfo = info;
+        _isLoading = false;
+      });
+    }
   }
 
   String _formatBytes(int bytes) {
@@ -63,6 +64,7 @@ class _StorageScreenState extends State<StorageScreen> {
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
           : SingleChildScrollView(
+              physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
               padding: const EdgeInsets.all(24.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,

@@ -33,7 +33,6 @@ class _SurahRecitationBottomSheetState extends State<SurahRecitationBottomSheet>
   Duration _position = Duration.zero;
   double _playbackSpeed = 1.0;
   bool _isLooping = false;
-  bool _isMuted = false;
   
   int _currentIndex = 0;
   bool _isLoading = true;
@@ -94,7 +93,7 @@ class _SurahRecitationBottomSheetState extends State<SurahRecitationBottomSheet>
     });
     
     _currentIndexSubscription = _audioPlayer.currentIndexStream.listen((index) {
-      if (mounted && index != null) {
+      if (mounted && index != null && index >= 0 && index < widget.surah.ayahs.length) {
         setState(() {
           _currentIndex = index;
         });
@@ -172,23 +171,17 @@ class _SurahRecitationBottomSheetState extends State<SurahRecitationBottomSheet>
     }
   }
 
-  String _formatDuration(Duration d) {
-    String twoDigits(int n) => n.toString().padLeft(2, '0');
-    final minutes = twoDigits(d.inMinutes.remainder(60));
-    final seconds = twoDigits(d.inSeconds.remainder(60));
-    return '$minutes:$seconds';
-  }
-
   double _getOverallProgress() {
     final total = widget.surah.ayahs.length.toDouble();
     if (total == 0) return 0.0;
+    final safeIndex = _currentIndex.clamp(0, widget.surah.ayahs.length - 1);
     
     double currentAyahProgress = 0.0;
     if (_duration.inMilliseconds > 0) {
       currentAyahProgress = _position.inMilliseconds / _duration.inMilliseconds;
     }
     
-    return (_currentIndex + currentAyahProgress).clamp(0.0, total);
+    return (safeIndex + currentAyahProgress).clamp(0.0, total);
   }
 
   @override
@@ -206,7 +199,10 @@ class _SurahRecitationBottomSheetState extends State<SurahRecitationBottomSheet>
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final l10n = AppLocalizations.of(context)!;
-    final currentAyah = widget.surah.ayahs[_currentIndex];
+    final safeIndex = (widget.surah.ayahs.isNotEmpty && _currentIndex >= 0 && _currentIndex < widget.surah.ayahs.length)
+        ? _currentIndex
+        : 0;
+    final currentAyah = widget.surah.ayahs.isNotEmpty ? widget.surah.ayahs[safeIndex] : null;
 
     return Container(
       padding: const EdgeInsets.all(24),
@@ -252,8 +248,8 @@ class _SurahRecitationBottomSheetState extends State<SurahRecitationBottomSheet>
               const SizedBox(height: 4),
               Text(
                 widget.locale == 'ar'
-                    ? 'الآية ${currentAyah.numberInSurah} من ${widget.surah.ayahs.length}'
-                    : 'Ayah ${currentAyah.numberInSurah} of ${widget.surah.ayahs.length}',
+                    ? 'الآية ${currentAyah?.numberInSurah ?? 1} من ${widget.surah.ayahs.length}'
+                    : 'Ayah ${currentAyah?.numberInSurah ?? 1} of ${widget.surah.ayahs.length}',
                 style: TextStyle(
                   fontSize: 14,
                   color: colorScheme.onSurfaceVariant,
@@ -318,7 +314,9 @@ class _SurahRecitationBottomSheetState extends State<SurahRecitationBottomSheet>
               border: Border.all(color: colorScheme.outlineVariant),
             ),
             child: Text(
-              '${currentAyah.text} ﴿${currentAyah.numberInSurah}﴾',
+              currentAyah != null
+                  ? '${currentAyah.text} ﴿${currentAyah.numberInSurah}﴾'
+                  : widget.surah.name,
               textAlign: TextAlign.center,
               textDirection: TextDirection.rtl,
               maxLines: 3,
@@ -370,8 +368,8 @@ class _SurahRecitationBottomSheetState extends State<SurahRecitationBottomSheet>
                     children: [
                       Text(
                         widget.locale == 'ar' 
-                            ? 'الآية ${currentAyah.numberInSurah}'
-                            : 'Ayah ${currentAyah.numberInSurah}',
+                            ? 'الآية ${currentAyah?.numberInSurah ?? 1}'
+                            : 'Ayah ${currentAyah?.numberInSurah ?? 1}',
                         style: TextStyle(fontSize: 12, color: colorScheme.onSurfaceVariant),
                       ),
                       Text(

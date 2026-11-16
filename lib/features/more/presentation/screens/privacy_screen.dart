@@ -1,20 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:boshra/l10n/app_localizations.dart';
 import 'package:app_settings/app_settings.dart';
-import 'package:url_launcher/url_launcher.dart';
-import '../../../../core/services/storage_service.dart';
-import '../../../../features/splash/presentation/screens/splash_screen.dart';
 import 'terms_screen.dart';
 
 class PrivacyScreen extends StatelessWidget {
   const PrivacyScreen({super.key});
-
-  Future<void> _launchUrl(String urlString) async {
-    final url = Uri.parse(urlString);
-    if (await canLaunchUrl(url)) {
-      await launchUrl(url);
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +29,8 @@ class PrivacyScreen extends StatelessWidget {
         ),
       ),
       body: ListView(
+        cacheExtent: 800,
+        physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
         padding: const EdgeInsets.all(24.0),
         children: [
           Text(
@@ -68,16 +60,38 @@ class PrivacyScreen extends StatelessWidget {
                 icon: Icons.location_on,
                 title: l10n.locationText,
                 subtitle: l10n.locationPermDesc,
-                status: l10n.statusAllowed, // In a real app, dynamically check status
+                status: l10n.statusAllowed,
                 iconColor: const Color(0xFF4CAF50),
               ),
               const Divider(height: 1),
               _PermissionTile(
                 icon: Icons.notifications_active,
                 title: l10n.notifications,
-                subtitle: l10n.notificationsPermDesc,
+                subtitle: Localizations.localeOf(context).languageCode == 'ar'
+                    ? 'لإرسال تنبيهات الأذان والأذكار اليومية في أوقاتها المحددة'
+                    : 'To deliver timely Adhan prayer alerts and daily Azkar reminders',
                 status: l10n.statusAllowed,
                 iconColor: const Color(0xFF2196F3),
+              ),
+              const Divider(height: 1),
+              _PermissionTile(
+                icon: Icons.alarm,
+                title: Localizations.localeOf(context).languageCode == 'ar' ? 'المنبهات الدقيقة' : 'Exact Alarms',
+                subtitle: Localizations.localeOf(context).languageCode == 'ar'
+                    ? 'لضمان انطلاق صوت الأذان في التوقيت الفعلي الدقيق حتى عند إغلاق التطبيق'
+                    : 'Ensures Adhan triggers at the exact second even when the device is idle',
+                status: l10n.statusAllowed,
+                iconColor: const Color(0xFFFF9800),
+              ),
+              const Divider(height: 1),
+              _PermissionTile(
+                icon: Icons.folder_outlined,
+                title: Localizations.localeOf(context).languageCode == 'ar' ? 'ذاكرة التخزين' : 'Device Storage',
+                subtitle: Localizations.localeOf(context).languageCode == 'ar'
+                    ? 'لحفظ تلاوات السور المحملة على جهازك لتشغيلها دون اتصال'
+                    : 'To store downloaded Quran recitations for offline playback',
+                status: l10n.statusAllowed,
+                iconColor: const Color(0xFF9C27B0),
               ),
             ],
           ),
@@ -111,6 +125,22 @@ class PrivacyScreen extends StatelessWidget {
                   Expanded(
                     child: Text(
                       l10n.yourDataDesc2,
+                      style: const TextStyle(fontSize: 15),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 16),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Icon(Icons.block, color: colorScheme.primary, size: 24),
+                  const SizedBox(width: 16),
+                  Expanded(
+                    child: Text(
+                      Localizations.localeOf(context).languageCode == 'ar'
+                          ? 'تطبيق بشرى خالٍ تماماً من الإعلانات ومن أي أدوات تتبع تجارية أو تحليلات ربحية؛ التطبيق صدقة جارية ولوجه الله تعالى.'
+                          : 'Boshra is 100% ad-free with zero commercial trackers or monetization analytics; provided purely for religious benefit.',
                       style: const TextStyle(fontSize: 15),
                     ),
                   ),
@@ -329,14 +359,12 @@ class _ActionTile extends StatelessWidget {
   final String subtitle;
   final IconData icon;
   final VoidCallback onTap;
-  final Color? textColor;
 
   const _ActionTile({
     required this.title,
     required this.subtitle,
     required this.icon,
     required this.onTap,
-    this.textColor,
   });
 
   @override
@@ -347,7 +375,7 @@ class _ActionTile extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         child: Row(
           children: [
-            Icon(icon, color: textColor ?? Theme.of(context).colorScheme.primary),
+            Icon(icon, color: Theme.of(context).colorScheme.primary),
             const SizedBox(width: 16),
             Expanded(
               child: Column(
@@ -358,7 +386,7 @@ class _ActionTile extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
-                      color: textColor ?? Theme.of(context).colorScheme.onSurface,
+                      color: Theme.of(context).colorScheme.onSurface,
                     ),
                   ),
                   const SizedBox(height: 2),

@@ -11,9 +11,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:timezone/data/latest_all.dart' as tzdata;
 import 'package:timezone/timezone.dart' as tz;
 
-import '../../l10n/app_localizations.dart';
+import '../constants/adhan_reciters.dart';
+import '../notifications/adhan_notification_actions.dart';
 import '../notifications/notification_ids.dart';
 import '../utils/app_logger.dart';
+import 'adhan_native_service.dart';
 
 /// What the OS currently allows us to do.
 class NotificationPermissionStatus {
@@ -56,15 +58,25 @@ class NotificationService {
 
   static const _tag = 'Notifications';
 
+  /// Accent colour of the notification (olive green – app brand).
+  static const _brandColor = Color(0xFF606C38);
+  /// res/drawable/ic_stat_adhan.xml – monochrome crescent for the status bar.
+  static const _smallIcon = 'ic_stat_adhan';
+  /// res/drawable-nodpi/adhan_large_icon.png – gold crescent medallion.
+  static const _largeIcon = 'adhan_large_icon';
+
   // Channel IDs are versioned: Android freezes sound/importance after creation.
-  static const _chAdhan = 'adhan_channel_v4';
   static const _chShort = 'prayer_short_channel_v4';
-  static const _chSilent = 'prayer_silent_channel_v4';
+  static const _chSilent = 'prayer_silent_channel_v5'; // v5: vibration off
   static const _chAzkar = 'daily_azkar_channel_v4';
   static const _chQuran = 'quran_messages_channel_v4';
+  static const _chFriday = 'friday_jumuah_channel_v1';
 
   /// Channels the app really uses (for health checks).
-  static const managedChannelIds = [_chAdhan, _chShort, _chSilent, _chAzkar, _chQuran];
+  static final managedChannelIds = [
+    for (final r in AdhanReciters.all) r.channelId,
+    _chShort, _chSilent, _chAzkar, _chQuran, _chFriday,
+  ];
 
   final FlutterLocalNotificationsPlugin plugin = FlutterLocalNotificationsPlugin();
   // Kept for source compatibility with older call sites.
@@ -91,10 +103,15 @@ class NotificationService {
 
   // ---- init ----------------------------------------------------------------
   Future<void> init() async {
-    if (_initialized || kIsWeb) return;
+    if (_initialized) return;
     try {
       tzdata.initializeTimeZones();
       await _configureLocalTimeZone();
+      if (kIsWeb) {
+        _initialized = true;
+        AppLogger.d(_tag, 'initialized web (tz=$_tzName)');
+        return;
+      }
 
       const android = AndroidInitializationSettings('@mipmap/ic_launcher');
       const darwin = DarwinInitializationSettings(
@@ -105,6 +122,8 @@ class NotificationService {
       await plugin.initialize(
         settings: const InitializationSettings(
             android: android, iOS: darwin, macOS: darwin),
+        // "Stop Adhan" button: works with the app open, closed or the phone locked.
+        onDidReceiveNotificationResponse: handleAdhanNotificationResponse,
       );
       await _createAndroidChannels();
       _initialized = true;
@@ -149,14 +168,15 @@ class NotificationService {
     final a = plugin.resolvePlatformSpecificImplementation<
         AndroidFlutterLocalNotificationsPlugin>();
     if (a == null) return;
-    const adhan = RawResourceAndroidNotificationSound('adhan');
     const beep = RawResourceAndroidNotificationSound('notification');
     final channels = <AndroidNotificationChannel>[
-      const AndroidNotificationChannel(_chAdhan, 'Adhan',
-          description: 'Full Adhan at prayer time',
-          importance: Importance.max,
-          sound: adhan,
-          audioAttributesUsage: AudioAttributesUsage.alarm),
+      // One channel per Muadhin: Android freezes a channel's sound after creation.
+      for (final r in AdhanReciters.all)
+        AndroidNotificationChannel(r.channelId, 'Adhan – ${r.nameEn}',
+            description: 'Full Adhan at prayer time',
+            importance: Importance.max,
+            sound: RawResourceAndroidNotificationSound(r.rawName),
+            audioAttributesUsage: AudioAttributesUsage.alarm),
       const AndroidNotificationChannel(_chShort, 'Prayer alerts',
           description: 'Short alert for prayers and pre-prayer reminders',
           importance: Importance.max,
@@ -164,11 +184,16 @@ class NotificationService {
       const AndroidNotificationChannel(_chSilent, 'Silent prayer alerts',
           description: 'Prayer alerts without sound',
           importance: Importance.high,
-          playSound: false),
+          playSound: false,
+          enableVibration: false),
       const AndroidNotificationChannel(_chAzkar, 'Daily Azkar',
           description: 'Morning and evening Azkar reminders',
           importance: Importance.high,
           sound: beep),
+      const AndroidNotificationChannel(_chFriday, 'Friday – Salawat & Al-Kahf',
+          description: 'Friday reminders: blessings upon the Prophet and Surat Al-Kahf',
+          importance: Importance.max,
+          sound: RawResourceAndroidNotificationSound('friday_chime')),
       const AndroidNotificationChannel(_chQuran, 'Quran messages',
           description: 'A daily verse from the Quran',
           importance: Importance.defaultImportance,
@@ -245,6 +270,7 @@ class NotificationService {
 
   /// Opens the app's system settings page (used when permission was denied permanently).
   Future<void> openAppSettings() async {
+    if (kIsWeb) return;
     try {
       await Geolocator.openAppSettings();
     } catch (e, s) {
@@ -272,38 +298,65 @@ class NotificationService {
 
   // ---- low-level scheduling ------------------------------------------------
   NotificationDetails _details(String channelId, NotificationSound sound,
-      {String body = '', String? channelName}) {
+      {String body = '',
+      String? channelName,
+      AdhanReciter? reciter,
+      String? stopLabel,
+      String? verse,
+      bool islamicStyle = false}) {
     final bool adhan = sound == NotificationSound.adhan;
+    final r = reciter ?? AdhanReciters.byId(AdhanReciters.defaultId);
     final bool silent = sound == NotificationSound.silent;
+    final bigText = (verse == null || verse.isEmpty) ? body : '$body\n$verse';
     return NotificationDetails(
       android: AndroidNotificationDetails(
         channelId,
         channelName ?? channelId,
-        importance: silent ? Importance.high : Importance.max,
+        importance: silent ? Importance.high : Importance.max, // max = heads-up banner
         priority: Priority.high,
         playSound: !silent,
+        enableVibration: !silent,
         sound: silent
             ? null
-            : RawResourceAndroidNotificationSound(adhan ? 'adhan' : 'notification'),
+            : RawResourceAndroidNotificationSound(adhan
+                ? r.rawName
+                : (channelId == _chFriday ? 'friday_chime' : 'notification')),
         audioAttributesUsage:
             adhan ? AudioAttributesUsage.alarm : AudioAttributesUsage.notification,
         category: AndroidNotificationCategory.reminder,
-        visibility: NotificationVisibility.public,
-        styleInformation: BigTextStyleInformation(body),
+        visibility: NotificationVisibility.public, // readable + usable on the lock screen
+        icon: _smallIcon,
+        color: _brandColor,
+        largeIcon: islamicStyle ? const DrawableResourceAndroidBitmap(_largeIcon) : null,
+        styleInformation: BigTextStyleInformation(bigText),
+        autoCancel: !adhan,
+        ongoing: adhan,
+        timeoutAfter: adhan ? 240000 : null,
+        // Runs WITHOUT opening the app: cancels the notification → Android stops the sound.
+        actions: stopLabel == null
+            ? null
+            : <AndroidNotificationAction>[
+                AndroidNotificationAction(
+                  kAdhanStopActionId,
+                  stopLabel,
+                  showsUserInterface: false,
+                  cancelNotification: true,
+                ),
+              ],
       ),
       iOS: DarwinNotificationDetails(
         presentSound: !silent,
-        sound: silent ? null : (adhan ? 'adhan.mp3' : 'notification.mp3'),
+        sound: silent ? null : (adhan ? r.iosSound : 'notification.mp3'),
         interruptionLevel:
             adhan ? InterruptionLevel.timeSensitive : InterruptionLevel.active,
       ),
     );
   }
 
-  String channelFor(NotificationSound s) {
+  String channelFor(NotificationSound s, {String? adhanId}) {
     switch (s) {
       case NotificationSound.adhan:
-        return _chAdhan;
+        return AdhanReciters.byId(adhanId).channelId;
       case NotificationSound.short:
         return _chShort;
       case NotificationSound.silent:
@@ -332,14 +385,32 @@ class NotificationService {
     required DateTime when,
     required NotificationSound sound,
     String? channelId,
+    String? adhanId,
     DateTimeComponents? repeat,
+    String? stopLabel,
+    String? verse,
+    bool islamicStyle = false,
   }) async {
     if (kIsWeb || !_initialized) return false;
     final scheduled = tz.TZDateTime.from(when, tz.local);
     if (repeat == null && scheduled.isBefore(tz.TZDateTime.now(tz.local))) {
       return false;
     }
-    final details = _details(channelId ?? channelFor(sound), sound, body: body);
+    final reciter = AdhanReciters.byId(adhanId);
+    // On Android the full Adhan is owned by the native engine (see applyPlan) — never
+    // schedule it here too, or it would play twice.
+    if (!kIsWeb && Platform.isAndroid && sound == NotificationSound.adhan) return false;
+
+    final details = _details(
+        sound == NotificationSound.silent
+            ? _chSilent
+            : (channelId ?? channelFor(sound, adhanId: adhanId)),
+        sound,
+        body: body,
+        reciter: reciter,
+        stopLabel: stopLabel,
+        verse: verse,
+        islamicStyle: islamicStyle);
     Future<void> go(AndroidScheduleMode mode) => plugin.zonedSchedule(
           id: id,
           title: title,
@@ -366,6 +437,71 @@ class NotificationService {
     return false;
   }
 
+  /// Displays a notification immediately (e.g. for testing or instant alerts).
+  Future<bool> showNow({
+    required int id,
+    required String title,
+    required String body,
+    required NotificationSound sound,
+    String? channelId,
+    String? adhanId,
+    String? stopLabel,
+    String? verse,
+    bool islamicStyle = false,
+  }) async {
+    if (kIsWeb || !_initialized) return false;
+    final reciter = AdhanReciters.byId(adhanId);
+    if (!kIsWeb && Platform.isAndroid && sound == NotificationSound.adhan && stopLabel != null) {
+      try {
+        await plugin.cancel(id: id);
+      } catch (_) {}
+      return AdhanNativeService.instance.startAdhan(
+        id: id,
+        title: title,
+        body: body,
+        rawSound: reciter.rawName,
+        stopLabel: stopLabel,
+      );
+    }
+    final details = _details(
+      sound == NotificationSound.silent
+          ? _chSilent
+          : (channelId ?? channelFor(sound, adhanId: adhanId)),
+      sound,
+      body: body,
+      reciter: reciter,
+      stopLabel: stopLabel,
+      verse: verse,
+      islamicStyle: islamicStyle,
+    );
+    try {
+      await plugin.show(
+        id: id,
+        title: title,
+        body: body,
+        notificationDetails: details,
+      );
+      return true;
+    } catch (e, s) {
+      AppLogger.e(_tag, e, s, 'showNow failed id=$id');
+      return false;
+    }
+  }
+
+  /// Cancels one notification everywhere: pending native alarm + the one already showing.
+  Future<void> cancelId(int id) async {
+    if (kIsWeb || !_initialized) return;
+    try {
+      if (!kIsWeb && Platform.isAndroid) {
+        await AdhanNativeService.instance
+            .sync(const [], replace: false, keepSlots: const [], kind: 'alert', cancelIds: [id]);
+      }
+      await plugin.cancel(id: id);
+    } catch (e, s) {
+      AppLogger.e(_tag, e, s, 'cancelId $id');
+    }
+  }
+
   /// Cancels only the pending notifications whose id matches [test].
   Future<void> cancelWhere(bool Function(int id) test) async {
     if (kIsWeb || !_initialized) return;
@@ -388,69 +524,183 @@ class NotificationService {
   }
 
   // ---- idempotent plan application ----------------------------------------
-  static const _planKey = 'notif_plan_v2';
+  static const _planKey = 'notif_plan_v3';
+  static const _schemaKey = 'notif_schema';
+  static const _schema = 5; // 5: all Android notifications are scheduled natively
+
+  /// One-time clean slate after an app update that changed ids/channels/architecture.
+  /// Without it, notifications created by older versions (other ids) stay forever next to
+  /// the new ones → duplicates and "mess" right after every update.
+  Future<void> _migrateIfNeeded(SharedPreferences prefs) async {
+    if ((prefs.getInt(_schemaKey) ?? 0) >= _schema) return;
+    try {
+      await plugin.cancelAll();
+      await AdhanNativeService.instance
+          .sync(const [], replace: true, keepSlots: const []);
+      await prefs.remove(_planKey);
+      await prefs.setInt(_schemaKey, _schema);
+      AppLogger.d(_tag, 'migrated to schema $_schema');
+    } catch (e, s) {
+      AppLogger.e(_tag, e, s, 'migration');
+    }
+  }
 
   /// Makes the OS match [plans] with the MINIMUM of changes.
   ///
-  /// Why: the old flow did "cancel everything → schedule everything" on every app
-  /// open. If the app was closed / killed / offline in the middle, the user was left
-  /// with NO notifications — which looked like "sometimes they arrive, sometimes not".
-  /// Now: nothing is cancelled before its replacement exists; unchanged items are
-  /// left alone; items that failed to schedule are retried next time.
+  /// ANDROID: every notification (Adhan AND normal/silent alerts) is scheduled by the
+  /// native engine (AdhanReceiver). The plugin's own scheduler is NOT used, because its
+  /// boot receiver re-fires every overdue notification right after a reboot / update
+  /// (the "lots of notifications in a row when the phone starts" bug). The native engine
+  /// re-arms only FUTURE items after a reboot and drops overdue ones.
   ///
-  /// [cancelStalePrayers] must be false when the prayer plan is incomplete
-  /// (e.g. offline) so we never delete valid future prayers just because we
-  /// couldn't re-fetch their times.
-  Future<void> applyPlan(List<NotificationPlan> plans,
-      {bool cancelStalePrayers = true}) {
+  /// [cancelStalePrayers] false = the prayer plan is incomplete (offline) → never delete
+  /// future prayers just because their times could not be re-fetched. Even then, anything
+  /// the USER disabled ([enabledSlots]/[preEnabled]/[adhanSlots]) is removed.
+  Future<void> applyPlan(
+    List<NotificationPlan> plans, {
+    bool cancelStalePrayers = true,
+    List<int> enabledSlots = const [0, 1, 2, 3, 4],
+    List<int> adhanSlots = const [],
+    bool preEnabled = true,
+  }) {
     return synchronized(() async {
       if (kIsWeb || !_initialized) return;
       try {
         final prefs = await SharedPreferences.getInstance();
+        await prefs.reload(); // the background isolate writes here too
+        await _migrateIfNeeded(prefs);
         Map<String, dynamic> stored = {};
         try {
           stored = (jsonDecode(prefs.getString(_planKey) ?? '{}') as Map).cast<String, dynamic>();
         } catch (_) {}
 
-        final pending = (await plugin.pendingNotificationRequests()).map((p) => p.id).toSet();
-        final mode = await _scheduleMode();
-        final exact = mode == AndroidScheduleMode.exactAllowWhileIdle;
-
-        final result = <String, String>{};
-        int scheduled = 0, kept = 0, failed = 0;
-        for (final p in plans) {
-          final h = '${p.fingerprint}|$_tzName|$exact';
-          if (pending.contains(p.id) && stored['${p.id}'] == h) {
-            result['${p.id}'] = h;
-            kept++;
-            continue;
+        final wanted = plans.map((p) => p.id).toSet();
+        bool isStale(int id) {
+          if (wanted.contains(id)) return false;
+          if (NotificationIds.isPrayer(id)) {
+            final disabled = !enabledSlots.contains(NotificationIds.prayerSlot(id)) ||
+                (NotificationIds.isPrePrayer(id) && !preEnabled);
+            return cancelStalePrayers || disabled;
           }
-          final ok = await scheduleAt(
-            id: p.id, title: p.title, body: p.body, when: p.when,
-            sound: p.sound, channelId: p.channelId, repeat: p.repeat,
-          );
-          if (ok) {
-            result['${p.id}'] = h;
-            scheduled++;
-          } else if (!p.isPastOneShot) {
-            failed++;
-          }
+          return NotificationIds.isQuran(id) ||
+              NotificationIds.isAzkar(id) ||
+              NotificationIds.isFriday(id) ||
+              NotificationIds.isIqama(id) ||
+              NotificationIds.isNudge(id) ||
+              NotificationIds.isMode(id) ||
+              NotificationIds.isZakat(id) ||
+              NotificationIds.isSleep(id) ||
+              NotificationIds.isWeekly(id) ||
+              NotificationIds.legacy.contains(id);
         }
 
-        // Remove only what is no longer wanted.
-        final wanted = plans.map((p) => p.id).toSet();
-        for (final id in pending) {
-          if (wanted.contains(id)) continue;
-          final managed = NotificationIds.isQuran(id) ||
-              id == NotificationIds.azkarMorning ||
-              id == NotificationIds.azkarEvening ||
-              (cancelStalePrayers && NotificationIds.isPrayer(id));
-          if (managed) await plugin.cancel(id: id);
+        final pending = (await plugin.pendingNotificationRequests()).map((p) => p.id).toSet();
+        final result = <String, String>{};
+        int scheduled = 0, kept = 0, failed = 0;
+
+        if (!kIsWeb && Platform.isAndroid) {
+          final adhan = <AdhanAlarm>[];
+          final alerts = <AdhanAlarm>[];
+          final modes = <AdhanAlarm>[];
+          for (final p in plans) {
+            if (p.kind == 'mode') {
+              modes.add(AdhanAlarm(
+                id: p.id,
+                when: p.when,
+                slot: -1,
+                title: p.title, // 'on' | 'off'
+                body: '',
+                rawSound: '',
+                stopLabel: '',
+                kind: 'mode',
+              ));
+            } else if (p.sound == NotificationSound.adhan) {
+              adhan.add(AdhanAlarm(
+                id: p.id,
+                when: p.when,
+                slot: NotificationIds.prayerSlot(p.id),
+                title: p.title,
+                body: p.body,
+                rawSound: AdhanReciters.byId(p.adhanId).rawName,
+                stopLabel: p.stopLabel ?? 'Stop',
+                route: p.route ?? '',
+              ));
+            } else {
+              final silent = p.sound == NotificationSound.silent;
+              final ch = silent ? _chSilent : (p.channelId ?? _chShort);
+              alerts.add(AdhanAlarm(
+                id: p.id,
+                when: p.when,
+                slot: -1,
+                title: p.title,
+                body: p.body,
+                rawSound: '',
+                kind: 'alert',
+                channel: ch,
+                channelName: ch,
+                silent: silent,
+                largeIcon: p.islamicStyle,
+                stopLabel: p.actionLabel ?? '',
+                act: p.actionPayload ?? '',
+                route: p.route ?? '',
+              ));
+            }
+          }
+          // ids we scheduled earlier that are no longer wanted
+          final stale = <int>{
+            for (final k in stored.keys)
+              if (int.tryParse(k) != null && isStale(int.parse(k))) int.parse(k)
+          };
+          final ok1 = await AdhanNativeService.instance.sync(adhan,
+              replace: cancelStalePrayers, keepSlots: adhanSlots, cancelIds: stale.toList());
+          final ok2 = await AdhanNativeService.instance.sync(alerts,
+              replace: false, keepSlots: const [], kind: 'alert', cancelIds: stale.toList());
+          final ok3 = await AdhanNativeService.instance.sync(modes,
+              replace: false, keepSlots: const [], kind: 'mode', cancelIds: stale.toList());
+          for (final p in plans) {
+            final ok = p.kind == 'mode' ? ok3 : (p.sound == NotificationSound.adhan ? ok1 : ok2);
+            if (ok) {
+              result['${p.id}'] = p.fingerprint;
+              scheduled++;
+            } else {
+              failed++;
+            }
+          }
+          // Anything the plugin still holds from older versions must go (it would fire late).
+          for (final id in pending) {
+            if (NotificationIds.isManaged(id)) await plugin.cancel(id: id);
+          }
+        } else {
+          // iOS: the plugin schedules (rolling window, see PrayerSchedulerService).
+          final mode = await _scheduleMode();
+          final exact = mode == AndroidScheduleMode.exactAllowWhileIdle;
+          for (final p in plans) {
+            if (p.kind == 'mode') continue; // no auto-silence on iOS
+            final h = '${p.fingerprint}|$_tzName|$exact';
+            if (pending.contains(p.id) && stored['${p.id}'] == h) {
+              result['${p.id}'] = h;
+              kept++;
+              continue;
+            }
+            final ok = await scheduleAt(
+              id: p.id, title: p.title, body: p.body, when: p.when,
+              sound: p.sound, channelId: p.channelId, adhanId: p.adhanId, repeat: p.repeat,
+              stopLabel: p.stopLabel, verse: p.verse, islamicStyle: p.islamicStyle,
+            );
+            if (ok) {
+              result['${p.id}'] = h;
+              scheduled++;
+            } else if (!p.isPastOneShot) {
+              failed++;
+            }
+          }
+          for (final id in pending) {
+            if (isStale(id)) await plugin.cancel(id: id);
+          }
         }
 
         await prefs.setString(_planKey, jsonEncode(result));
-        AppLogger.d(_tag,
-            'plan applied: new=$scheduled kept=$kept failed=$failed exact=$exact tz=$_tzName');
+        AppLogger.d(_tag, 'plan applied: new=$scheduled kept=$kept failed=$failed tz=$_tzName');
       } catch (e, s) {
         AppLogger.e(_tag, e, s, 'applyPlan');
       }
@@ -476,7 +726,24 @@ class NotificationPlan {
   final DateTime when;
   final NotificationSound sound;
   final String? channelId;
+  /// Which Muadhin plays (only meaningful when [sound] is adhan).
+  final String? adhanId;
   final DateTimeComponents? repeat;
+  /// Non-null → the notification gets a "Stop Adhan" button with this label.
+  final String? stopLabel;
+  /// Optional verse shown in the expanded notification (and in the in-app banner).
+  final String? verse;
+  /// Gold crescent large icon (prayer notifications).
+  final bool islamicStyle;
+  /// Show the in-app Adhan banner while the app is open.
+  final bool showBanner;
+  /// 'alert' (default notification) | 'mode' (prayer-mode silence ON/OFF; [title] = 'on'|'off').
+  final String kind;
+  /// Optional notification button (Android): label + payload, e.g. 'prayed:2:2026-11-14'.
+  final String? actionLabel;
+  final String? actionPayload;
+  /// In-app route opened when the notification is tapped (Android), e.g. 'azkar:morning'.
+  final String? route;
   const NotificationPlan({
     required this.id,
     required this.title,
@@ -484,7 +751,16 @@ class NotificationPlan {
     required this.when,
     required this.sound,
     this.channelId,
+    this.adhanId,
     this.repeat,
+    this.stopLabel,
+    this.verse,
+    this.islamicStyle = false,
+    this.showBanner = false,
+    this.kind = 'alert',
+    this.actionLabel,
+    this.actionPayload,
+    this.route,
   });
 
   /// Repeating items are identified by clock time (their next date moves every day).
@@ -492,7 +768,7 @@ class NotificationPlan {
     final t = repeat != null
         ? 'r${when.hour}:${when.minute}'
         : '${when.millisecondsSinceEpoch}';
-    return '$t|$title|$body|${sound.index}|${channelId ?? ''}';
+    return '$t|$title|$body|${sound.index}|${channelId ?? ''}|${sound == NotificationSound.adhan ? (adhanId ?? '') : ''}|${stopLabel ?? ''}|${verse ?? ''}|$islamicStyle|$kind|${actionLabel ?? ''}|${actionPayload ?? ''}|${route ?? ''}';
   }
 
   bool get isPastOneShot => repeat == null && !when.isAfter(DateTime.now());

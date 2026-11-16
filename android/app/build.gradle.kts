@@ -6,6 +6,12 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
+val localProperties = Properties()
+val localPropertiesFile = rootProject.file("local.properties")
+if (localPropertiesFile.exists()) {
+    localProperties.load(FileInputStream(localPropertiesFile))
+}
+
 val keystoreProperties = Properties()
 val keystorePropertiesFile = rootProject.file("key.properties")
 
@@ -30,6 +36,11 @@ android {
         targetSdk = 36
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+        // Google Maps SDK key: android/local.properties (MAPS_API_KEY=...) or the MAPS_API_KEY env var.
+        // Keep the real key out of git and restrict it to this app (package + SHA-1) in Google Cloud.
+        manifestPlaceholders["MAPS_API_KEY"] = localProperties.getProperty("MAPS_API_KEY")
+            ?: System.getenv("MAPS_API_KEY")
+            ?: "AIzaSyCGQw2-PW8mSiS-3lBxoS9nyWlR3jgIMlg"
     }
 
     // Release signing is created ONLY when key.properties exists, so debug builds /

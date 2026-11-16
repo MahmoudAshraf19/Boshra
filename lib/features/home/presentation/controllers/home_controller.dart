@@ -5,11 +5,12 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../../../core/data/known_cities.dart';
 import '../../../../core/services/location_service.dart';
 import '../../../prayer/data/models/prayer_times_model.dart';
 import '../../../prayer/data/repositories/prayer_repository.dart';
-import '../../../prayer/domain/prayer_scheduler_service.dart';
 import '../../../../core/services/hijri_api_service.dart';
+import '../../../tracker/data/hijri_calendar.dart';
 import '../../../../core/services/quran_api_service.dart';
 import '../../../quran/data/models/quran_models.dart';
 
@@ -26,6 +27,9 @@ class HomeController extends ChangeNotifier {
   AyahModel? dailyAyah;
   String locationName = '...';
   bool isLoading = true;
+  /// true while the shown times are based on a default city (no GPS / no permission / no choice).
+  bool isFallbackLocation = false;
+  DateTime? _lastResumeSync;
 
   String nextPrayerName = '';
   Duration timeUntilNextPrayer = Duration.zero;
@@ -42,6 +46,16 @@ class HomeController extends ChangeNotifier {
     await _syncDataInBackground();
     isLoading = false;
     notifyListeners();
+  }
+
+  /// Call when the app returns to the foreground: re-checks the location at most every
+  /// 3 minutes (permission granted in Settings, travelled, GPS switched on...).
+  Future<void> onAppResumed() async {
+    final now = DateTime.now();
+    if (_lastResumeSync != null && now.difference(_lastResumeSync!) < const Duration(minutes: 3)) return;
+    _lastResumeSync = now;
+    PrayerRepository.invalidateLocation();
+    await refreshData();
   }
 
   Future<void> _init() async {
@@ -88,28 +102,39 @@ class HomeController extends ChangeNotifier {
   Future<void> _syncDataInBackground() async {
     final prefs = await SharedPreferences.getInstance();
     
-    // 1. Fetch Location
+    // 1. Resolve location (manual city > GPS > saved > regional default). Never Makkah.
+    ResolvedLocation? loc;
     try {
-      final position = await _locationService.getCurrentLocation();
-      if (position != null) {
-        final name = await _locationService.getLocationName(position.latitude, position.longitude);
-        if (name != null) {
-          locationName = name;
-          prefs.setString('cached_location_name', name);
-        }
-      } else {
-        if (locationName == '...') locationName = 'Makkah (Default)';
+      loc = await _locationService.resolve(requestPermission: false);
+      final prevLat = prefs.getDouble('home_loc_lat');
+      final prevLng = prefs.getDouble('home_loc_lng');
+      if (prevLat != null && prevLng != null &&
+          LocationService.distanceKm(prevLat, prevLng, loc.lat, loc.lng) > LocationService.movedKm) {
+        PrayerRepository.invalidateLocation(); // the user travelled → recompute for the new place
       }
+      await prefs.setDouble('home_loc_lat', loc.lat);
+      await prefs.setDouble('home_loc_lng', loc.lng);
+      isFallbackLocation = !loc.isReal;
+      if (loc.name != null) {
+        locationName = loc.name!;
+      } else {
+        final name = await _locationService.getLocationName(loc.lat, loc.lng);
+        if (name != null) locationName = name;
+      }
+      if (locationName != '...') prefs.setString('cached_location_name', locationName);
     } catch (e) {
       appLog('Location sync error: $e');
-      if (locationName == '...') locationName = 'Makkah (Default)';
+      if (locationName == '...') locationName = KnownCities.cairo.nameAr;
     }
-    
+
     // 2. Fetch Prayer Times fresh (now with location)
     prayerTimes = await _prayerRepo.getTodayPrayerTimes();
+    // Keep the garden's Hijri calendar in step with the date shown on Home (Umm al-Qura).
+    final apiHijri = prayerTimes?.dateInfo.hijri.date ?? '';
+    if (apiHijri.isNotEmpty) HijriCalendar.calibrate(DateTime.now(), apiHijri);
     // Location may have changed → (re)schedule notifications once, serialized.
     NotificationCoordinator.instance.rescheduleAll(force: true);
-    
+
     // 3. Fetch Hijri Date
     final todayStr = DateFormat('dd-MM-yyyy').format(DateTime.now());
     final newHijri = await _hijriService.convertDate(todayStr);
@@ -135,7 +160,6 @@ class HomeController extends ChangeNotifier {
     if (prayerTimes == null) return;
 
     final now = DateTime.now();
-    final DateFormat format = DateFormat('HH:mm');
     
     final timings = prayerTimes!.timings;
     

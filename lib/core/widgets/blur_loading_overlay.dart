@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
-import 'package:boshra/l10n/app_localizations.dart';
 
 class BlurLoadingOverlay extends StatelessWidget {
   const BlurLoadingOverlay({super.key});

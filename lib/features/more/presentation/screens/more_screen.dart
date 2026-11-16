@@ -6,6 +6,14 @@ import 'about_screen.dart';
 import 'terms_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:share_plus/share_plus.dart';
+import '../../../../core/theme/sky_theme.dart';
+import '../../../zakat/presentation/screens/zakat_screen.dart';
+import '../../../tracker/presentation/screens/weekly_summary_screen.dart';
+import '../../../diagnostics/presentation/screens/adhan_diagnostics_screen.dart';
+import '../../../sadaqa/presentation/screens/sadaqa_jariya_screen.dart';
+import '../../../tracker/presentation/screens/prayer_garden_screen.dart';
+import '../../../tracker/presentation/screens/prayer_tracker_screen.dart';
+import '../../../prayer/presentation/screens/prayer_mode_screen.dart';
 import 'package:provider/provider.dart';
 import '../../../../core/providers/locale_provider.dart';
 import '../../../../core/providers/theme_provider.dart';
@@ -23,8 +31,8 @@ class MoreScreen extends StatelessWidget {
     final colorScheme = theme.colorScheme;
     final isDark = theme.brightness == Brightness.dark;
     
-    // Get current language from provider
-    final currentLangCode = context.watch<LocaleProvider>().locale?.languageCode ?? 'en';
+    // Get current language from provider efficiently with select
+    final currentLangCode = context.select<LocaleProvider, String>((p) => p.locale.languageCode);
     final currentLangName = LanguageBottomSheet.supportedLanguages.firstWhere(
       (lang) => lang['code'] == currentLangCode,
       orElse: () => {'name': 'English'},
@@ -49,139 +57,278 @@ class MoreScreen extends StatelessWidget {
         ),
       ),
       body: ListView(
+        cacheExtent: 800,
+        physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
         padding: const EdgeInsets.all(20.0),
         children: [
           // Section 1: General
           _SectionTitle(title: l10n.generalSettings),
-          _SettingsGroupCard(
-            children: [
-              _SettingsTile(
-                iconData: Icons.palette_outlined,
-                title: l10n.appearance,
-                subtitle: _getThemeSubtitle(context, l10n),
-                onTap: () {
-                  ThemeBottomSheet.show(context);
-                },
-              ),
-              _SettingsTile(
-                iconData: Icons.language_outlined,
-                title: l10n.appLanguage,
-                subtitle: currentLangName,
-                isLast: true,
-                onTap: () {
-                  LanguageBottomSheet.show(context);
-                },
-              ),
-            ],
+          RepaintBoundary(
+            child: _SettingsGroupCard(
+              children: [
+                _SettingsTile(
+                  iconData: Icons.palette_outlined,
+                  title: l10n.appearance,
+                  subtitle: _getThemeSubtitle(context, l10n),
+                  onTap: () {
+                    ThemeBottomSheet.show(context);
+                  },
+                ),
+                _SettingsTile(
+                  iconData: Icons.language_outlined,
+                  title: l10n.appLanguage,
+                  subtitle: currentLangName,
+                  isLast: true,
+                  onTap: () {
+                    LanguageBottomSheet.show(context);
+                  },
+                ),
+              ],
+            ),
           ),
           
           const SizedBox(height: 24),
           
           // Section 2: Alerts
           _SectionTitle(title: l10n.alertsSettings),
-          _SettingsGroupCard(
-            children: [
-              _SettingsTile(
-                iconData: Icons.notifications_none_outlined,
-                title: l10n.notifications,
-                subtitle: l10n.adhanAndReminders,
-                isLast: true,
-                onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const PrayerSettingsScreen()));
-                },
-              ),
-            ],
+          RepaintBoundary(
+            child: _SettingsGroupCard(
+              children: [
+                _SettingsTile(
+                  iconData: Icons.notifications_none_outlined,
+                  title: l10n.notifications,
+                  subtitle: l10n.adhanAndReminders,
+                  isLast: true,
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const PrayerSettingsScreen()));
+                  },
+                ),
+              ],
+            ),
           ),
 
           const SizedBox(height: 24),
 
           // Section 3: Data & Storage
           _SectionTitle(title: l10n.dataAndStorage),
-          _SettingsGroupCard(
-            children: [
-              _SettingsTile(
-                iconData: Icons.folder_open_outlined,
-                title: l10n.storage,
-                subtitle: l10n.storageDesc,
-                isLast: true,
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const StorageScreen()),
-                  );
-                },
-              ),
-            ],
+          RepaintBoundary(
+            child: _SettingsGroupCard(
+              children: [
+                _SettingsTile(
+                  iconData: Icons.folder_open_outlined,
+                  title: l10n.storage,
+                  subtitle: l10n.storageDesc,
+                  isLast: true,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const StorageScreen()),
+                    );
+                  },
+                ),
+              ],
+            ),
           ),
 
           const SizedBox(height: 24),
 
-          // Section 4: Info & Support
+          // Section 4: Features & Services
+          _SectionTitle(
+            title: switch (currentLangCode) {
+              'ar' => 'خدمات ومميزات',
+              'ur' => 'خدمات اور خصوصیات',
+              'fa' => 'ویژگی‌ها و خدمات',
+              'fr' => 'Fonctionnalités et services',
+              'es' => 'Funciones y servicios',
+              'it' => 'Funzionalità e servizi',
+              'hi' => 'सुविधाएँ और सेवाएँ',
+              _ => 'Features & Services',
+            },
+          ),
+          RepaintBoundary(
+            child: _SettingsGroupCard(
+              children: [
+                _SettingsTile(
+                  iconData: Icons.calculate_outlined,
+                  title: Localizations.localeOf(context).languageCode == 'ar' ? 'حاسبة الزكاة' : 'Zakat calculator',
+                  subtitle: Localizations.localeOf(context).languageCode == 'ar'
+                      ? 'بأسعار الذهب والفضة بعملتك + تذكير سنوي'
+                      : 'With live gold & silver prices in your currency + yearly reminder',
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (_) => const ZakatScreen()));
+                  },
+                ),
+                _SettingsTile(
+                  iconData: Icons.insights_outlined,
+                  title: Localizations.localeOf(context).languageCode == 'ar' ? 'ملخّصك الأسبوعي' : 'Weekly summary',
+                  subtitle: Localizations.localeOf(context).languageCode == 'ar'
+                      ? 'صلواتك هذا الأسبوع + شجرتك للمشاركة'
+                      : 'Your prayers this week + your tree to share',
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (_) => const WeeklySummaryScreen()));
+                  },
+                ),
+                _SettingsTile(
+                  iconData: Icons.wb_twilight_outlined,
+                  title: Localizations.localeOf(context).languageCode == 'ar' ? 'المظهر الحي' : 'Living theme',
+                  subtitle: Localizations.localeOf(context).languageCode == 'ar'
+                      ? 'خلفية تتغيّر مع الشمس الحقيقية في مدينتك والفصل'
+                      : 'A sky that follows the real sun in your city and the season',
+                  onTap: () {
+                    final ar = Localizations.localeOf(context).languageCode == 'ar';
+                    showModalBottomSheet<void>(
+                      context: context,
+                      showDragHandle: true,
+                      builder: (_) => ValueListenableBuilder<bool>(
+                        valueListenable: SkyTheme.enabled,
+                        builder: (ctx, on, __) => SafeArea(
+                          child: SwitchListTile(
+                            secondary: const Icon(Icons.wb_twilight_rounded),
+                            title: Text(ar ? 'المظهر الحي' : 'Living theme'),
+                            subtitle: Text(ar
+                                ? 'فجر، شروق، ظهر، غروب… الشمس والقمر في مكانهم الحقيقي بمدينتك، ولمسة تتغيّر مع الفصل.'
+                                : 'Dawn, sunrise, noon, sunset… the sun and moon at their real place in your city, with a seasonal touch.'),
+                            value: on,
+                            onChanged: (v) => SkyTheme.setEnabled(v),
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+                _SettingsTile(
+                  iconData: Icons.yard_outlined,
+                  title: Localizations.localeOf(context).languageCode == 'ar' ? 'حديقتي' : 'My garden',
+                  subtitle: Localizations.localeOf(context).languageCode == 'ar'
+                      ? 'حديقة شهرية بالهجري — شجرة لكل صلاة في كل يوم'
+                      : 'A monthly Hijri garden — a tree for every prayer, every day',
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (_) => const PrayerGardenScreen()));
+                  },
+                ),
+                _SettingsTile(
+                  iconData: Icons.park_outlined,
+                  title: Localizations.localeOf(context).languageCode == 'ar' ? 'متتبّع الصلوات' : 'Prayer tracker',
+                  subtitle: Localizations.localeOf(context).languageCode == 'ar'
+                      ? 'سجّل صلواتك وكبّر شجرتك'
+                      : 'Log your prayers and grow your trees',
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (_) => const PrayerTrackerScreen()));
+                  },
+                ),
+                _SettingsTile(
+                  iconData: Icons.do_not_disturb_on_outlined,
+                  title: Localizations.localeOf(context).languageCode == 'ar' ? 'وضع الصلاة والإقامة' : 'Prayer mode & Iqama',
+                  subtitle: Localizations.localeOf(context).languageCode == 'ar'
+                      ? 'كتم تلقائي بعد الأذان وتنبيه الإقامة'
+                      : 'Auto-silence after the Adhan and iqama alert',
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (_) => const PrayerModeScreen()));
+                  },
+                ),
+                _SettingsTile(
+                  iconData: Icons.volunteer_activism_outlined,
+                  title: Localizations.localeOf(context).languageCode == 'ar' ? 'صدقة جارية' : 'Ongoing charity',
+                  subtitle: Localizations.localeOf(context).languageCode == 'ar'
+                      ? 'شارك التطبيق بكود الدعوة الخاص بك'
+                      : 'Share the app with your invite code',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const SadaqaJariyaScreen()),
+                    );
+                  },
+                ),
+                _SettingsTile(
+                  iconData: Icons.health_and_safety_outlined,
+                  title: Localizations.localeOf(context).languageCode == 'ar' ? 'هل الأذان هيشتغل؟' : 'Will the Adhan ring?',
+                  subtitle: Localizations.localeOf(context).languageCode == 'ar'
+                      ? 'فحص الأذونات والبطارية والموقع والجدولة'
+                      : 'Check permissions, battery, location & scheduling',
+                  isLast: true,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const AdhanDiagnosticsScreen()),
+                    );
+                  },
+                ),
+              ],
+            ),
+          ),
+
+          const SizedBox(height: 24),
+
+          // Section 5: Info & Support
           _SectionTitle(title: l10n.infoAndSupport),
-          _SettingsGroupCard(
-            children: [
-              _SettingsTile(
-                iconData: Icons.description_outlined,
-                title: l10n.termsAndConditions,
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (_) => const TermsScreen()),
-                  );
-                },
-              ),
-              _SettingsTile(
-                iconData: Icons.shield_outlined,
-                title: l10n.privacyAndPermissions,
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (_) => const PrivacyScreen()),
-                  );
-                },
-              ),
-              _SettingsTile(
-                iconData: Icons.star_rate_outlined,
-                title: l10n.rateBoshra,
-                subtitle: l10n.rateBoshraDesc,
-                onTap: () {
-                  launchUrl(
-                    Uri.parse('https://play.google.com/store/apps/details?id=com.app.boshra'),
-                    mode: LaunchMode.externalApplication,
-                  );
-                },
-              ),
-              _SettingsTile(
-                iconData: Icons.share_outlined,
-                title: l10n.shareBoshra,
-                subtitle: l10n.shareBoshraDesc,
-                onTap: () {
-                  Share.share('https://play.google.com/store/apps/details?id=com.app.boshra');
-                },
-              ),
-              _SettingsTile(
-                iconData: Icons.chat_outlined,
-                title: l10n.contactUs,
-                subtitle: l10n.contactUsDesc,
-                onTap: () {
-                  launchUrl(
-                    Uri.parse('https://wa.me/201150125129'),
-                    mode: LaunchMode.externalApplication,
-                  );
-                },
-              ),
-              _SettingsTile(
-                iconData: Icons.info_outline,
-                title: l10n.aboutBoshra,
-                isLast: true,
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (_) => const AboutScreen()),
-                  );
-                },
-              ),
-            ],
+          RepaintBoundary(
+            child: _SettingsGroupCard(
+              children: [
+                _SettingsTile(
+                  iconData: Icons.description_outlined,
+                  title: l10n.termsAndConditions,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const TermsScreen()),
+                    );
+                  },
+                ),
+                _SettingsTile(
+                  iconData: Icons.shield_outlined,
+                  title: l10n.privacyAndPermissions,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const PrivacyScreen()),
+                    );
+                  },
+                ),
+                _SettingsTile(
+                  iconData: Icons.star_rate_outlined,
+                  title: l10n.rateBoshra,
+                  subtitle: l10n.rateBoshraDesc,
+                  onTap: () {
+                    launchUrl(
+                      Uri.parse('https://play.google.com/store/apps/details?id=com.app.boshra'),
+                      mode: LaunchMode.externalApplication,
+                    );
+                  },
+                ),
+                _SettingsTile(
+                  iconData: Icons.share_outlined,
+                  title: l10n.shareBoshra,
+                  subtitle: l10n.shareBoshraDesc,
+                  onTap: () async {
+                    final ar = Localizations.localeOf(context).languageCode == 'ar';
+                    final code = await SadaqaJariyaScreen.inviteCode();
+                    await Share.share(SadaqaJariyaScreen.message(code, ar));
+                  },
+                ),
+                _SettingsTile(
+                  iconData: Icons.chat_outlined,
+                  title: l10n.contactUs,
+                  subtitle: l10n.contactUsDesc,
+                  onTap: () {
+                    launchUrl(
+                      Uri.parse('https://wa.me/201150125129'),
+                      mode: LaunchMode.externalApplication,
+                    );
+                  },
+                ),
+                _SettingsTile(
+                  iconData: Icons.info_outline,
+                  title: l10n.aboutBoshra,
+                  isLast: true,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const AboutScreen()),
+                    );
+                  },
+                ),
+              ],
+            ),
           ),
           
           const SizedBox(height: 48), // Bottom padding
@@ -191,7 +338,7 @@ class MoreScreen extends StatelessWidget {
   }
 
   String _getThemeSubtitle(BuildContext context, AppLocalizations l10n) {
-    final mode = context.watch<ThemeProvider>().themeMode;
+    final mode = context.select<ThemeProvider, ThemeMode>((p) => p.themeMode);
     switch (mode) {
       case ThemeMode.light:
         return l10n.themeLight;
@@ -240,14 +387,14 @@ class _SettingsGroupCard extends StatelessWidget {
     // Card background color should stand out slightly from scaffold
     final cardColor = isDark ? colorScheme.surfaceContainerHighest.withValues(alpha: 0.5) : Colors.white;
 
-    return Container(
-      decoration: BoxDecoration(
-        color: cardColor,
+    return Material(
+      color: cardColor,
+      clipBehavior: Clip.antiAlias,
+      shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(
+        side: BorderSide(
           color: isDark ? colorScheme.outlineVariant : Colors.transparent,
         ),
-        boxShadow: const [],
       ),
       child: Column(
         children: children,

@@ -103,7 +103,7 @@ class QuranRepository {
 
   Future<String> selectedReciterId() async {
     final p = await SharedPreferences.getInstance();
-    return p.getString('selected_reciter_id') ?? 'ar.abdulsamad';
+    return p.getString('selected_reciter_id') ?? 'ar.minshawi';
   }
 
   /// Surahs whose audio is fully on the device for the selected reciter.

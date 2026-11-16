@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:just_audio_background/just_audio_background.dart';
 import '../quran_meta.dart';
@@ -14,9 +15,13 @@ class AyahAudio {
     required int ayahInSurah,
     required MediaItem tag,
   }) async {
+    final global = QuranMeta.globalAyah(surah, ayahInSurah);
+    if (kIsWeb) {
+      return AudioSource.uri(Uri.parse(AudioDownloadManager.urlFor(reciterId, global)), tag: tag);
+    }
     final m = AudioDownloadManager.instance;
     await m.ensureReciter(reciterId);
-    return _build(m, reciterId, QuranMeta.globalAyah(surah, ayahInSurah), tag);
+    return _build(m, reciterId, global, tag);
   }
 
   /// Playlist for a whole surah. Ayahs already downloaded play from disk,
@@ -26,15 +31,27 @@ class AyahAudio {
     required int surah,
     required MediaItem Function(int ayahInSurah) tagFor,
   }) async {
+    final n = QuranMeta.ayahCount(surah);
+    if (kIsWeb) {
+      return [
+        for (var a = 1; a <= n; a++)
+          AudioSource.uri(
+            Uri.parse(AudioDownloadManager.urlFor(reciterId, QuranMeta.globalAyah(surah, a))),
+            tag: tagFor(a),
+          ),
+      ];
+    }
     final m = AudioDownloadManager.instance;
     await m.ensureReciter(reciterId);
-    final n = QuranMeta.ayahCount(surah);
     return [
       for (var a = 1; a <= n; a++) _build(m, reciterId, QuranMeta.globalAyah(surah, a), tagFor(a)),
     ];
   }
 
   static AudioSource _build(AudioDownloadManager m, String reciterId, int global, MediaItem tag) {
+    if (kIsWeb) {
+      return AudioSource.uri(Uri.parse(AudioDownloadManager.urlFor(reciterId, global)), tag: tag);
+    }
     final f = m.localFile(reciterId, global);
     return f != null
         ? AudioSource.file(f.path, tag: tag)

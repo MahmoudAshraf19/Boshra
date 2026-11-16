@@ -1,5 +1,7 @@
 import '../../../permissions/presentation/permission_gate.dart';
 import 'package:flutter/material.dart';
+import '../../../../core/navigation/app_navigator.dart';
+import '../../../../core/services/rating_prompt.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../home/presentation/screens/home_screen.dart';
@@ -21,7 +23,7 @@ class MainLayoutScreen extends StatefulWidget {
   State<MainLayoutScreen> createState() => _MainLayoutScreenState();
 }
 
-class _MainLayoutScreenState extends State<MainLayoutScreen> {
+class _MainLayoutScreenState extends State<MainLayoutScreen> with WidgetsBindingObserver {
   static bool _hasShownLocationDialog = false;
   int _currentIndex = 0;
   DateTime? _lastBackPressTime;
@@ -43,20 +45,52 @@ class _MainLayoutScreenState extends State<MainLayoutScreen> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _startupChecks();
     });
   }
 
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  /// Back from Settings / another app: permission or GPS may have changed → refresh
+  /// location + prayer times + notifications (throttled inside the controller).
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      HomeController.instance?.onAppResumed();
+      // e.g. user opens the app right after an Adhan that played correctly
+      Future.delayed(const Duration(seconds: 4), () {
+        if (mounted) RatingPrompt.maybeAsk(context);
+      });
+    }
+  }
+
   /// 1) location dialog (if needed)  2) notification / alarm / battery setup.
   Future<void> _startupChecks() async {
+    await RatingPrompt.recordOpen();
     await _checkLocationPermission();
     if (!mounted) return;
     await PermissionGate.maybeShow(context);
+    // Open the screen a tapped notification asked for (azkar / weekly summary / zakat…).
+    AppRoutes.markReady();
+    // After the setup flow, a few seconds later; never in the first days (see RatingPrompt).
+    Future.delayed(const Duration(seconds: 6), () {
+      if (mounted) RatingPrompt.maybeAsk(context);
+    });
   }
 
   Future<void> _checkLocationPermission() async {
     if (_hasShownLocationDialog) return;
+    // The user chose a city by hand → no GPS needed, never nag.
+    if (await LocationService().isManual()) {
+      _hasShownLocationDialog = true;
+      return;
+    }
 
     bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
     LocationPermission permission = await Geolocator.checkPermission();

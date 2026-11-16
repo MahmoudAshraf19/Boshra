@@ -1,4 +1,8 @@
 class AppAssets {
+  // Splash (video + its last frame, also used as the native launch image)
+  static const String splashVideo = 'assets/video/boshra_splash.mp4';
+  static const String splashLastFrame = 'assets/images/boshra_splash_last_frame.png';
+
   // Images
   static const String splashBackground = 'assets/images/splash.png';
   static const String splashLogo = 'assets/images/splash_logo.png';
